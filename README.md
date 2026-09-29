@@ -16,7 +16,7 @@ Five domains, five task levels, and **72 frozen dataset splits containing 15,552
 
 Mode identity is prompt-local. Different wording alone does not create a different mode; different Python programs can produce the same divisor vector.
 
-[Installation](#installation) · [Evaluation](#evaluation) · [Metrics](#metrics) · [Datasets](#datasets) · [Reproducibility](#reproducibility) · [Contributing](#contributing) · [Changelog](#changelog) · [Citation](#citation)
+[Installation](#installation) · [Evaluation](#evaluation) · [Metrics](#metrics) · [Datasets](#datasets) · [Levels and results](#levels-and-results) · [Reproducibility](#reproducibility) · [Contributing](#contributing) · [Changelog](#changelog) · [Citation](#citation)
 
 ## Installation
 
@@ -336,6 +336,179 @@ python ops/materialize_training_data.py --config level1_countdown --output outpu
 ```
 
 This creates `train/` with subset `train` and `eval/` with subset `multi_answer`, preserving frozen rows and refusing an existing destination. Basic-domain generators remain in [ops/](ops/); consult their `--help`. Pantry construction requires an explicit ingredient-table JSON via `--ingredients`. Full higher-level construction, fitting, and admission workflows are not consolidated; generated variants require separate identities and admission evidence.
+
+## Levels and results
+
+Levels identify **separately constructed task distributions with shared correctness and mode definitions**. They are not a guarantee that every larger-numbered level has more variables, more modes, or lower success for every model. “Tuning” here means selecting dataset construction parameters and mixtures with frozen reference models; it does not mean training those models on the benchmark.
+
+| Level | What it represents | How it was tuned / admitted |
+| --- | --- | --- |
+| **1 — Native baseline** | Small executable tasks with multiple certified solution modes. The original evaluation sets anchor the baseline experiments. | Exact verification/enumeration and domain-specific construction; this is the starting distribution, not a scale-matched level. Separate Level-1 development/confirmation reserves were used for later construction. |
+| **2 — Harder for the same model** | Structural variants that preserve the verifier and canonical mode definition. | Support-count histograms matched to designated Level-1 references, with disjoint identities. Before treatment training, frozen Qwen2.5-0.5B development pass@8 had to be **0.10–0.90 and lower than the paired Level-1 reference**. The final admission also records Falcon3-1B checks. |
+| **3 — Calibrated at 3B** | A mixture of construction settings intended to make Qwen2.5-3B perform like the fixed Qwen2.5-0.5B Level-1 reference. | Fit on development outcomes, then confirm on held-out tasks. Absolute differences must be **≤0.04 pass@1 and ≤0.08 pass@8** in each domain. All five pass; Graph/Python were revised in adaptive round 2, while the other domains retain round-1 evidence. |
+| **4 — Calibrated at 7B, with a failed domain** | The analogous construction target for Qwen2.5-7B. | Same two tolerances. Graph, Countdown, Python, and PantryPlan pass; **MathIR fails pass@1**. The packaged release marks the overall level **not admitted**. Its frozen tasks remain available for explicitly qualified analysis. |
+| **5 — Calibrated at 14B** | The analogous construction target for Qwen2.5-14B. | Same two tolerances, development fitting, fresh confirmation, and original-grader replay. **All five domains pass**; the composite release records each domain's recipe and protocol identities. |
+
+For Level 2, support matching uses native Level-1 training histograms and designated development/confirmation reserves in Graph, Countdown, Python, and MathIR. PantryPlan uses its native splits; its 64-row development histogram is doubled for a 128-row target. The construction reserves are **different from the native Level-1 test population** used in the experiment tables.
+
+For Levels 3–5, the fit chooses mixtures of generated difficulty settings within support-count cells (also task-family cells for PantryPlan). Development correctness determines the mixture; fixed ordering and integer allocation select rows without ranking held-out outcomes. Recipes and split identities are frozen before candidate confirmation. The recorded four-tier fit searches weights in increments of 1/20, minimizing tolerance-normalized pass@1/pass@8 errors. **Distinct@8 and PCMD are not fitting objectives.** Revisions use new candidate confirmation evidence; they are not a single untouched, all-five-domain experiment. The [construction summary](provenance/level-construction.json) preserves the historical sources and Level-3 information boundary.
+
+Scale calibration (Levels 3–5) uses native chat, temperature 1, top-p 1, four groups of eight responses, and a 192-token limit. Graph uses boxed-direct answers; the other domains use solution guidance and decoding constrained to legal syntax. Changing those prompts or removing hints changes the measured condition. The current CLI grades saved responses; it does not reproduce the original generation masks.
+
+<details>
+<summary>What changes inside each domain?</summary>
+
+These counts and ranges describe the **128 frozen evaluation rows** in each cell, not all possible generator outputs. Mixture fitting can select smaller structures at a later level if that better meets the reference target.
+
+| Domain | Level 1 | Level 2 | Level 3 | Level 4 | Level 5 |
+| --- | --- | --- | --- | --- | --- |
+| Graph | 4–6 vertices; 3 uncolored vertices | 5–6 vertices; 4 hidden | 5 vertices; 3 hidden, with calibrated topology/anchor presets | 5–6 vertices; 3–4 hidden, bridge mixtures | 6–7 vertices; 3–4 hidden, density-graded topology |
+| Countdown | 3 operands, values 2–12 | 4 operands, values 2–14; shallow/product target preferences | Mixed 3/4 operands, values 2–99 | 4 operands, values 2–192 | 4 operands, values 5–188; separately fitted target mixture |
+| Python factors | 4 executed inputs, values 6–96 | 4 inputs, values 6–192, including an input above 96 | 4 inputs, values 60–254; minimum-input/factor-band mixtures | 6 inputs, values 25–998; hidden-prime ladder with appended prime squares | 4 inputs, values 48–996; exceptional-factor construction |
+| MathIR | Mixed linear equation families, including one- and two-sided variables | Two-sided-variable families with symmetric/cancelling-coefficient preferences | Fixed-sign and rational-equation mixtures | Rational-equation mixture; **not difficulty-matched** | Structural rational families, including coefficient-sum/difference denominators |
+| PantryPlan | 6 ingredients; base nutritional/dietary constraints; support-mask response projected to quantities | 6 ingredients; stronger dietary/composition constraints; allocation response | Mixtures with 6–8 ingredients | Six-ingredient bridge mixtures with changed composition | Separate 6–8-ingredient mixtures and composition laws |
+
+MathIR retains five canonical trajectories per prompt in these evaluation splits. The other domains' mode counts vary by task. Larger input values or more ingredients do not by themselves establish equal difficulty, and support histograms need not match the native test sets across levels. Exact split identities and observed structure are recorded in [the construction summary](provenance/level-construction.json).
+
+</details>
+
+<!-- modebench-level-results:start -->
+### Recorded tuning outcomes
+
+These are **construction/confirmation measurements**, not the later native evaluation grid. All rates below are fractions; `pass@1` is per-response correctness. Displayed values are rounded; linked JSON retains full precision.
+
+<details>
+<summary>Level-2 development admission and Levels 3–5 held-out matching</summary>
+
+Level 2: frozen models evaluated paired Level-1 construction references and Level-2 development tasks, with eight responses per prompt. Every listed Level-2 value is in [0.10, 0.90] and below its paired reference. The final source also records a Falcon3-1B check.
+
+| Domain | Qwen2.5-0.5B L1 → L2 pass@8 | Falcon3-1B L1 → L2 pass@8 |
+| --- | --- | --- |
+| Graph | 0.430 → 0.148 | 0.539 → 0.172 |
+| Countdown | 0.148 → 0.109 | 0.141 → 0.133 |
+| Python | 0.906 → 0.727 | 0.414 → 0.320 |
+| MathIR | 0.258 → 0.188 | 0.133 → 0.117 |
+| PantryPlan | 0.266 → 0.250 | 0.250 → 0.125 |
+
+Levels 3–5: each entry is **pass@1 / pass@8**. The reference is a fixed Qwen2.5-0.5B measurement on historical Level-1 confirmation tasks. Candidates use 3B, 7B, and 14B respectively, with 128 prompts × four groups × eight responses per domain. Both absolute differences must be within **0.04 / 0.08**.
+
+| Domain | Fixed L1 reference | L3, Qwen 3B | L4, Qwen 7B | L5, Qwen 14B |
+| --- | --- | --- | --- | --- |
+| Graph | 0.2078 / 0.5625 | 0.1687 / 0.5371 | 0.2102 / 0.5352 | 0.1980 / 0.5176 |
+| Countdown | 0.0127 / 0.0859 | 0.0251 / 0.1152 | 0.0205 / 0.0879 | 0.0300 / 0.1016 |
+| Python | 0.2109 / 0.7695 | 0.1982 / 0.7285 | 0.2236 / 0.7715 | 0.2141 / 0.7129 |
+| MathIR | 0.0437 / 0.2402 | 0.0688 / 0.2266 | 0.0864 / 0.2090 **†** | 0.0803 / 0.2773 |
+| PantryPlan | 0.0586 / 0.2598 | 0.0469 / 0.1934 | 0.0872 / 0.1953 | 0.0784 / 0.2402 |
+
+**† Level-4 MathIR fails the pass@1 gate:** 0.0864258 − 0.0437012 = 0.0427246, exceeding 0.04. Its pass@8 gate passes. All other displayed candidate cells pass both gates. The public package retains Level 4 as not admitted overall; MathIR results are descriptive and must not be labeled difficulty-matched.
+
+The Level-3 release is adaptive round 2: Graph and Python have new confirmation measurements; Countdown, MathIR, and PantryPlan retain their earlier confirmation evidence. The Level-1 reference was not resampled. These tolerances establish empirical matching, not a statistical equivalence test. [Calibration values, source hashes, and information boundaries](provenance/level-construction.json) retain the details.
+
+</details>
+
+### Untrained-model results across levels
+
+The frozen grid contains **375 model/domain/level cells**. The table gives mean **pass@8** over all five domains for four Qwen2.5-Instruct scales measured at every level. Each cell uses 128 native held-out prompts and four independent groups of eight responses. Scores are averaged over groups within prompts, then prompts, then domains; this is not pass@32.
+
+| Level | Qwen 0.5B | Qwen 3B | Qwen 7B | Qwen 14B |
+| --- | --- | --- | --- | --- |
+| 1 | 0.387 | 0.436 | 0.532 | 0.518 |
+| 2 | 0.276 | 0.368 | 0.429 | 0.495 |
+| 3 | 0.344 | 0.359 | 0.468 | 0.472 |
+| 4 † | 0.194 | 0.272 | 0.398 | 0.411 |
+| 5 | 0.169 | 0.150 | 0.318 | 0.359 |
+
+† Includes the unmatched MathIR condition. This grid uses native chat, temperature 1, top-p 1, a 192-token limit, boxed-direct Graph prompts, and guided, syntax-constrained decoding for the other domains. It is a separate measurement from tuning and from training evaluation; the saved-response CLI does not generate those constrained samples.
+
+<details>
+<summary>Qwen2.5-7B by level and domain: correctness, distinct modes, and PCMD</summary>
+
+The same 7B model is shown across all 25 cells. PCMD pools the 32 responses **within each prompt** and then averages prompts with at least two verified responses. `Eligible` gives that count out of 128. A dash suppresses PCMD when fewer than 30 prompts qualify; it is not zero.
+
+| Level | Domain | pass@8 | distinct@8 | PCMD | Eligible |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Graph | 0.680 | 1.014 | 0.344 | 98/128 |
+| 1 | Countdown | 0.428 | 0.508 | 0.259 | 67/128 |
+| 1 | Python | 1.000 | 1.062 | 0.023 | 128/128 |
+| 1 | MathIR | 0.330 | 0.338 | 0.020 | 46/128 |
+| 1 | PantryPlan | 0.225 | 0.354 | 0.329 | 30/128 |
+| 2 | Graph | 0.344 | 0.447 | 0.404 | 50/128 |
+| 2 | Countdown | 0.117 | 0.117 | — | 14/128 |
+| 2 | Python | 0.996 | 1.020 | 0.010 | 128/128 |
+| 2 | MathIR | 0.414 | 0.424 | 0.043 | 61/128 |
+| 2 | PantryPlan | 0.271 | 0.387 | 0.260 | 36/128 |
+| 3 | Graph | 0.521 | 0.756 | 0.375 | 73/128 |
+| 3 | Countdown | 0.225 | 0.279 | 0.232 | 32/128 |
+| 3 | Python | 1.000 | 1.027 | 0.013 | 128/128 |
+| 3 | MathIR | 0.400 | 0.408 | 0.028 | 54/128 |
+| 3 | PantryPlan | 0.191 | 0.273 | — | 27/128 |
+| 4 | Graph | 0.490 | 0.781 | 0.447 | 71/128 |
+| 4 | Countdown | 0.084 | 0.088 | — | 13/128 |
+| 4 | Python | 1.000 | 1.094 | 0.032 | 128/128 |
+| 4 | MathIR | 0.221 | 0.223 | 0.026 | 31/128 |
+| 4 | PantryPlan | 0.195 | 0.256 | — | 29/128 |
+| 5 | Graph | 0.418 | 0.537 | 0.268 | 60/128 |
+| 5 | Countdown | 0.117 | 0.123 | — | 16/128 |
+| 5 | Python | 0.781 | 0.814 | 0.033 | 103/128 |
+| 5 | MathIR | 0.156 | 0.158 | — | 20/128 |
+| 5 | PantryPlan | 0.117 | 0.154 | — | 18/128 |
+
+All measured models, domains, support counts, standard errors, and receipt identities are in [the frozen grid](evidence/mode_diversity_base_grid.json). Model coverage is 17 models at Levels 1–4 and seven Qwen scales at Level 5, so an all-model average would change its population. The table above uses the same four models and five domains throughout.
+
+</details>
+
+### Training experiments on Levels 1–3
+
+**Qwen2.5-0.5B-Instruct**, final recorded step **3072**, seeds **43–47**, four groups of eight responses on 128 held-out prompts per domain. Re:Dr adds verified-mode replay to Dr.GRPO; Re:Max adds it to MaxRL. Training implementations and broader cohorts live in [Re:Max](https://github.com/liv-daliberti/remax). These are recorded experiments, not new training runs.
+
+For a complete common correctness population, pass@8 weights **Graph, Countdown, Python, and PantryPlan** equally within each seed and then averages the five seeds. MathIR is excluded consistently because one Level-3 MaxRL terminal evaluation is conflicted. PCMD averages eligible seeds within each of **Graph, MathIR, and PantryPlan**, then weights those three domains equally. The seed counts are shown in that order; every contributing seed needs at least **30 eligible prompts**. Countdown and Python are excluded from this overview because some method/level combinations lack eligible seeds; all five domains appear below. These PCMD means are descriptive: their contributing seed populations differ, so differences are not paired treatment-effect estimates or confidence intervals.
+
+| Level | Method | pass@8 (4 domains) | PCMD (3 domains) | PCMD seeds: Graph / MathIR / Pantry |
+| --- | --- | --- | --- | --- |
+| 1 | Dr.GRPO | 0.374 | 0.001 | 5 / 5 / 5 |
+| 1 | Re:Dr | 0.724 | 0.304 | 5 / 5 / 5 |
+| 1 | MaxRL | 0.455 | 0.029 | 5 / 5 / 5 |
+| 1 | Re:Max | 0.753 | 0.283 | 5 / 5 / 5 |
+| 2 | Dr.GRPO | 0.329 | 0.117 | 1 / 3 / 1 |
+| 2 | Re:Dr | 0.570 | 0.179 | 5 / 5 / 5 |
+| 2 | MaxRL | 0.388 | 0.089 | 5 / 5 / 2 |
+| 2 | Re:Max | 0.543 | 0.187 | 5 / 5 / 4 |
+| 3 | Dr.GRPO | 0.417 | 0.126 | 3 / 5 / 1 |
+| 3 | Re:Dr | 0.626 | 0.238 | 5 / 5 / 5 |
+| 3 | MaxRL | 0.526 | 0.128 | 5 / 4 / 2 |
+| 3 | Re:Max | 0.613 | 0.225 | 5 / 5 / 5 |
+
+<details>
+<summary>Training results for every domain and level</summary>
+
+Each entry is **pass@8 / PCMD [eligible PCMD seeds]**. Pass@8 uses all five terminal seeds unless marked `*`. PCMD uses only the eligible seeds shown; `— [0]` means insufficient support. These are absolute endpoint means, not paired replay effects.
+
+| Level | Domain | Dr.GRPO | Re:Dr | MaxRL | Re:Max |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Graph | 0.323 / 0.001 [5] | 0.969 / 0.560 [5] | 0.537 / 0.087 [5] | 0.945 / 0.526 [5] |
+| 1 | Countdown | 0.480 / 0.007 [5] | 0.672 / 0.487 [5] | 0.582 / 0.022 [5] | 0.666 / 0.511 [5] |
+| 1 | Python | 0.172 / — [0] | 0.528 / 0.000 [2] | 0.172 / — [0] | 0.681 / 0.312 [4] |
+| 1 | MathIR | 0.512 / 0.001 [5] | 0.796 / 0.018 [5] | 0.445 / 0.000 [5] | 0.789 / 0.006 [5] |
+| 1 | PantryPlan | 0.522 / 0.000 [5] | 0.729 / 0.334 [5] | 0.531 / 0.000 [5] | 0.721 / 0.317 [5] |
+| 2 | Graph | 0.202 / 0.111 [1] | 0.762 / 0.346 [5] | 0.434 / 0.112 [5] | 0.739 / 0.325 [5] |
+| 2 | Countdown | 0.131 / — [0] | 0.156 / — [0] | 0.118 / — [0] | 0.158 / — [0] |
+| 2 | Python | 0.812 / 0.000 [5] | 0.887 / 0.181 [5] | 0.812 / 0.000 [5] | 0.850 / 0.088 [5] |
+| 2 | MathIR | 0.502 / 0.000 [3] | 0.994 / 0.000 [5] | 0.785 / 0.000 [5] | 0.958 / 0.001 [5] |
+| 2 | PantryPlan | 0.170 / 0.241 [1] | 0.475 / 0.189 [5] | 0.189 / 0.156 [2] | 0.426 / 0.237 [4] |
+| 3 | Graph | 0.426 / 0.015 [3] | 0.982 / 0.420 [5] | 0.764 / 0.004 [5] | 0.980 / 0.336 [5] |
+| 3 | Countdown | 0.099 / — [0] | 0.179 / 0.110 [1] | 0.122 / — [0] | 0.134 / — [0] |
+| 3 | Python | 1.000 / 0.000 [5] | 1.000 / 0.418 [5] | 1.000 / 0.000 [5] | 1.000 / 0.425 [5] |
+| 3 | MathIR | 0.756 / 0.000 [5] | 0.995 / 0.053 [5] | 0.859* / 0.000 [4] | 0.998 / 0.052 [5] |
+| 3 | PantryPlan | 0.141 / 0.363 [1] | 0.343 / 0.243 [5] | 0.216 / 0.380 [2] | 0.338 / 0.285 [5] |
+
+*Level-3 MaxRL MathIR correctness uses four seeds; seed 45 has conflicted terminal draws and is omitted. The retained Level-2 Re:Max PantryPlan diversity archive lacks seed 46, while its correctness endpoint is available; it is not imputed. [Per-seed values, draw metadata, gaps, and source hashes](evidence/level-training.json) support these summaries. Some later manuscript analyses use a 20-prompt PCMD threshold; these tables consistently use the retained 30-prompt rule and therefore can differ from those figures.
+
+</details>
+
+**Coverage limits:** the complete grid supplies untrained-model measurements on Levels 1–5; this training summary covers Levels 1–3 only. It contains no Level-4/5 Re:Max or Re:Dr training endpoints. Levels differ in task populations, mode-count distributions, and sometimes prompt guidance, so cross-level differences do not isolate a causal effect of difficulty. Comparisons of a trained policy to an untrained model need the same evaluation protocol.
+
+Regenerate these tables with `python ops/summarize_levels.py --write`; verify them with `python ops/summarize_levels.py --check`. This reproduces the tabulated summaries from retained evidence without accessing the research checkout. The extract does not bundle training checkpoints or raw generations, so it does not independently regrade or rerun those experiments.
+<!-- modebench-level-results:end -->
 
 ## Reproducibility
 

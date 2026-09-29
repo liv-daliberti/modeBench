@@ -1,0 +1,1332 @@
+{
+  "schema": "modebench-level-construction-summary-v1",
+  "scope": "Historical construction and confirmation evidence; distinct from the later native-eval model grid and training experiments. Extracted fields retain source hashes. Admission follows the packaged manifests, not later research-tree status edits.",
+  "published_admission": {
+    "level4": {
+      "admitted": false,
+      "difficulty_matched": false,
+      "difficulty_matched_domains": [
+        "countdown",
+        "graph_coloring",
+        "pantry",
+        "python_factors"
+      ],
+      "mathir_note": "The Level 1 MathIR target is not reachable at 7B by any construction measured: the target pairs pass@1 0.0437 with pass@8 0.2402, a heterogeneity gap of 0.060, while every 7B MathIR construction runs 0.169 to 0.398, so the two gates cannot be met together. The dataset itself is sound and verified.",
+      "meaning": "Level 4 cleared held-out confirmation in four of five domains. MathIR missed its pass@1 gate at 1.07 of tolerance, so the level is not admitted. The four confirmed domains carry the same warrant as Levels 1-3; MathIR does not, and a MathIR result at Level 4 should not be reported as difficulty-matched.",
+      "not_difficulty_matched_domains": [
+        "mathir"
+      ]
+    },
+    "level5": {
+      "admitted": true,
+      "difficulty_matched": true,
+      "domains": [
+        "countdown",
+        "graph_coloring",
+        "mathir",
+        "pantry",
+        "python_factors"
+      ],
+      "meaning": "Level 5 cleared held-out confirmation in all five domains against 128 fresh rows per domain with original-grader replay, and is admitted. It carries the same warrant as Levels 1-3."
+    }
+  },
+  "sources": {
+    "level2": {
+      "path": "var/data/modebench_harder_v2_matched_r5/admission_fairness_report.json",
+      "sha256": "0070600d687715fadff0cdf920e8959aeb6bcb398c566047bcdc285a05a611cb"
+    },
+    "level3": {
+      "path": "var/artifacts/modebench_hf_release_20260911/package/provenance/confirmation_report.json",
+      "sha256": "b685cfa6b20d6f9b714239546a7946947af95af3d4e83ed8ab1b7ad96c453195"
+    },
+    "level123_manifest": {
+      "path": "modebench/provenance/levels123_manifest.json",
+      "sha256": "858f23b93bbc555a69f080dff59cd1f4ef62f05133e1dc3e616ad734e56f9a07"
+    },
+    "level45_manifest": {
+      "path": "modebench/provenance/levels45_manifest.json",
+      "sha256": "e5a8a65116eac395624ee96f21f1056f903ef9ff672a8ac825d4c18f9a1b94d2"
+    },
+    "level3_fitter": {
+      "path": "ops/exp_scaling/fit_modebench_level3.py",
+      "sha256": "e901202341aef73a2ee3757be11c7fff8d7051eaae8560955fe5d57197536349"
+    },
+    "scale_fitter": {
+      "path": "ops/exp_scaling/fit_modebench_scale.py",
+      "sha256": "4b1fd0f43f22a41a675bda456b7727aa9e43607aaefcdbc68a70dae4ba817795"
+    }
+  },
+  "level2": {
+    "difficulty": {
+      "countdown": "four operands versus three; operands up to 14; within each exact support cell prefer shallow paired-product or one-multiplication targets, then smaller operands",
+      "graph_coloring": "four hidden vertices versus three",
+      "mathir": "variable-on-both-sides families; within each exact support cell prefer symmetric/cancelling variable coefficients, then larger binding magnitude",
+      "pantry": "exact support/family matching; lexicographically maximize active dietary exclusions, then the frozen ingredient-composition difficulty score",
+      "python_factors": "four cases with at least one value above 96"
+    },
+    "fairness_contract": {
+      "identity_disjointness": "all Level-1 and all Level-2 splits",
+      "prompt_and_response_budget": "paired evaluator must use identical settings",
+      "support_histogram": "exact counts when source and target sizes match; exact integer expansion otherwise (Pantry dev 64 to 128 uses factor 2)",
+      "verifier_and_canonicalization": "unchanged"
+    },
+    "viability_gate": {
+      "freeze": "before treatment training",
+      "harder_than_level1": "level2_pass_at_8 < level1_pass_at_8",
+      "maximum": 0.9,
+      "metric": "pass@8",
+      "minimum": 0.1
+    },
+    "sampling": {
+      "contract": "Each frozen model/domain cell uses one recorded protocol identically for its paired Level-1 and Level-2 evaluation; shared sample count, temperature, top-p, generation-token budget, chat-template mode, dtype, and full-row setting are invariant across all cells. Domain/model-specific prompt, syntax, and context-length profiles are frozen before this final run.",
+      "per_cell": {
+        "countdown": {
+          "falcon-1b": {
+            "dtype": "float16",
+            "max_model_len": 2048,
+            "max_tokens": 192,
+            "prompt_profile": "countdown_shallow_v6",
+            "prompt_template": "model_native_chat_template",
+            "row_limit": 0,
+            "sample_count": 8,
+            "seed": 5317200,
+            "syntax_profile": "countdown_legal_v3",
+            "temperature": 1.0,
+            "top_p": 1.0
+          },
+          "qwen-0.5b": {
+            "dtype": "float16",
+            "max_model_len": 2048,
+            "max_tokens": 192,
+            "prompt_profile": "hybrid_solver_v4",
+            "prompt_template": "model_native_chat_template",
+            "row_limit": 0,
+            "sample_count": 8,
+            "seed": 5317100,
+            "syntax_profile": "countdown_legal_v3",
+            "temperature": 1.0,
+            "top_p": 1.0
+          }
+        },
+        "graph_coloring": {
+          "falcon-1b": {
+            "dtype": "float16",
+            "max_model_len": 1024,
+            "max_tokens": 192,
+            "prompt_profile": "boxed_direct_v1",
+            "prompt_template": "model_native_chat_template",
+            "row_limit": 0,
+            "sample_count": 8,
+            "seed": 5217201,
+            "syntax_profile": "none",
+            "temperature": 1.0,
+            "top_p": 1.0
+          },
+          "qwen-0.5b": {
+            "dtype": "float16",
+            "max_model_len": 1024,
+            "max_tokens": 192,
+            "prompt_profile": "boxed_direct_v1",
+            "prompt_template": "model_native_chat_template",
+            "row_limit": 0,
+            "sample_count": 8,
+            "seed": 5217101,
+            "syntax_profile": "none",
+            "temperature": 1.0,
+            "top_p": 1.0
+          }
+        },
+        "mathir": {
+          "falcon-1b": {
+            "dtype": "float16",
+            "max_model_len": 2048,
+            "max_tokens": 192,
+            "prompt_profile": "hybrid_solver_v4",
+            "prompt_template": "model_native_chat_template",
+            "row_limit": 0,
+            "sample_count": 8,
+            "seed": 5317202,
+            "syntax_profile": "domain_legal_v1",
+            "temperature": 1.0,
+            "top_p": 1.0
+          },
+          "qwen-0.5b": {
+            "dtype": "float16",
+            "max_model_len": 2048,
+            "max_tokens": 192,
+            "prompt_profile": "hybrid_solver_v4",
+            "prompt_template": "model_native_chat_template",
+            "row_limit": 0,
+            "sample_count": 8,
+            "seed": 5317102,
+            "syntax_profile": "domain_legal_v1",
+            "temperature": 1.0,
+            "top_p": 1.0
+          }
+        },
+        "pantry": {
+          "falcon-1b": {
+            "dtype": "float16",
+            "max_model_len": 2048,
+            "max_tokens": 192,
+            "prompt_profile": "hybrid_solver_v4",
+            "prompt_template": "model_native_chat_template",
+            "row_limit": 0,
+            "sample_count": 8,
+            "seed": 5317203,
+            "syntax_profile": "domain_legal_v1",
+            "temperature": 1.0,
+            "top_p": 1.0
+          },
+          "qwen-0.5b": {
+            "dtype": "float16",
+            "max_model_len": 2048,
+            "max_tokens": 192,
+            "prompt_profile": "hybrid_solver_v4",
+            "prompt_template": "model_native_chat_template",
+            "row_limit": 0,
+            "sample_count": 8,
+            "seed": 5317103,
+            "syntax_profile": "domain_legal_v1",
+            "temperature": 1.0,
+            "top_p": 1.0
+          }
+        },
+        "python_factors": {
+          "falcon-1b": {
+            "dtype": "float16",
+            "max_model_len": 2048,
+            "max_tokens": 192,
+            "prompt_profile": "hybrid_solver_v4",
+            "prompt_template": "model_native_chat_template",
+            "row_limit": 0,
+            "sample_count": 8,
+            "seed": 5317201,
+            "syntax_profile": "domain_legal_v1",
+            "temperature": 1.0,
+            "top_p": 1.0
+          },
+          "qwen-0.5b": {
+            "dtype": "float16",
+            "max_model_len": 2048,
+            "max_tokens": 192,
+            "prompt_profile": "hybrid_solver_v4",
+            "prompt_template": "model_native_chat_template",
+            "row_limit": 0,
+            "sample_count": 8,
+            "seed": 5317101,
+            "syntax_profile": "domain_legal_v1",
+            "temperature": 1.0,
+            "top_p": 1.0
+          }
+        }
+      },
+      "shared": {
+        "dtype": "float16",
+        "max_tokens": 192,
+        "prompt_template": "model_native_chat_template",
+        "row_limit": 0,
+        "sample_count": 8,
+        "temperature": 1.0,
+        "top_p": 1.0
+      }
+    },
+    "measurements": [
+      {
+        "domain": "countdown",
+        "model": "falcon-1b",
+        "level1_pass_at_8": 0.140625,
+        "level2_pass_at_8": 0.1328125,
+        "level1_rows": 128,
+        "level2_rows": 128,
+        "level1_rows_sha256": "dcfaf703d78edc55f51e2ac3d477fa0308cf710c8fd563517f77b41f9cdee463",
+        "level2_rows_sha256": "5d615683d03832c8686552d0f1401f4d42d5f568a06bf14f80d25a1de16d4fd0",
+        "checks": {
+          "level2_harder_than_level1": true,
+          "level2_not_effectively_zero": true,
+          "level2_not_too_easy": true
+        },
+        "status": "pass"
+      },
+      {
+        "domain": "countdown",
+        "model": "qwen-0.5b",
+        "level1_pass_at_8": 0.1484375,
+        "level2_pass_at_8": 0.109375,
+        "level1_rows": 128,
+        "level2_rows": 128,
+        "level1_rows_sha256": "dcfaf703d78edc55f51e2ac3d477fa0308cf710c8fd563517f77b41f9cdee463",
+        "level2_rows_sha256": "5d615683d03832c8686552d0f1401f4d42d5f568a06bf14f80d25a1de16d4fd0",
+        "checks": {
+          "level2_harder_than_level1": true,
+          "level2_not_effectively_zero": true,
+          "level2_not_too_easy": true
+        },
+        "status": "pass"
+      },
+      {
+        "domain": "graph_coloring",
+        "model": "falcon-1b",
+        "level1_pass_at_8": 0.5390625,
+        "level2_pass_at_8": 0.171875,
+        "level1_rows": 128,
+        "level2_rows": 128,
+        "level1_rows_sha256": "55b382f35dc76be53a9b9183a382f97de95da917488226dc3b9b8e6744c1748c",
+        "level2_rows_sha256": "36bb6789024ee97b8b01b3d80f47c9e66492e536bc55ddde50efb28b433b022a",
+        "checks": {
+          "level2_harder_than_level1": true,
+          "level2_not_effectively_zero": true,
+          "level2_not_too_easy": true
+        },
+        "status": "pass"
+      },
+      {
+        "domain": "graph_coloring",
+        "model": "qwen-0.5b",
+        "level1_pass_at_8": 0.4296875,
+        "level2_pass_at_8": 0.1484375,
+        "level1_rows": 128,
+        "level2_rows": 128,
+        "level1_rows_sha256": "55b382f35dc76be53a9b9183a382f97de95da917488226dc3b9b8e6744c1748c",
+        "level2_rows_sha256": "36bb6789024ee97b8b01b3d80f47c9e66492e536bc55ddde50efb28b433b022a",
+        "checks": {
+          "level2_harder_than_level1": true,
+          "level2_not_effectively_zero": true,
+          "level2_not_too_easy": true
+        },
+        "status": "pass"
+      },
+      {
+        "domain": "mathir",
+        "model": "falcon-1b",
+        "level1_pass_at_8": 0.1328125,
+        "level2_pass_at_8": 0.1171875,
+        "level1_rows": 128,
+        "level2_rows": 128,
+        "level1_rows_sha256": "192d3e06c1dc2659873c47be6a9a560cae574e957ee99f634b38f2c7178e34e9",
+        "level2_rows_sha256": "fcce375c20f7d005a17498cada68cf25ba88b1457b12f48d64f2ae008a110994",
+        "checks": {
+          "level2_harder_than_level1": true,
+          "level2_not_effectively_zero": true,
+          "level2_not_too_easy": true
+        },
+        "status": "pass"
+      },
+      {
+        "domain": "mathir",
+        "model": "qwen-0.5b",
+        "level1_pass_at_8": 0.2578125,
+        "level2_pass_at_8": 0.1875,
+        "level1_rows": 128,
+        "level2_rows": 128,
+        "level1_rows_sha256": "192d3e06c1dc2659873c47be6a9a560cae574e957ee99f634b38f2c7178e34e9",
+        "level2_rows_sha256": "fcce375c20f7d005a17498cada68cf25ba88b1457b12f48d64f2ae008a110994",
+        "checks": {
+          "level2_harder_than_level1": true,
+          "level2_not_effectively_zero": true,
+          "level2_not_too_easy": true
+        },
+        "status": "pass"
+      },
+      {
+        "domain": "pantry_plan",
+        "model": "falcon-1b",
+        "level1_pass_at_8": 0.25,
+        "level2_pass_at_8": 0.125,
+        "level1_rows": 64,
+        "level2_rows": 128,
+        "level1_rows_sha256": "01ab230b7ab3524b20a871cdb12e672dd18c7fcfedbdd45e98ccc21f4dbb4d7f",
+        "level2_rows_sha256": "5b8b1a3d90c511fb9dd91fb418df6c9f9902dd03459c982db7a561650a0b2781",
+        "checks": {
+          "level2_harder_than_level1": true,
+          "level2_not_effectively_zero": true,
+          "level2_not_too_easy": true
+        },
+        "status": "pass"
+      },
+      {
+        "domain": "pantry_plan",
+        "model": "qwen-0.5b",
+        "level1_pass_at_8": 0.265625,
+        "level2_pass_at_8": 0.25,
+        "level1_rows": 64,
+        "level2_rows": 128,
+        "level1_rows_sha256": "01ab230b7ab3524b20a871cdb12e672dd18c7fcfedbdd45e98ccc21f4dbb4d7f",
+        "level2_rows_sha256": "5b8b1a3d90c511fb9dd91fb418df6c9f9902dd03459c982db7a561650a0b2781",
+        "checks": {
+          "level2_harder_than_level1": true,
+          "level2_not_effectively_zero": true,
+          "level2_not_too_easy": true
+        },
+        "status": "pass"
+      },
+      {
+        "domain": "python_factors",
+        "model": "falcon-1b",
+        "level1_pass_at_8": 0.4140625,
+        "level2_pass_at_8": 0.3203125,
+        "level1_rows": 128,
+        "level2_rows": 128,
+        "level1_rows_sha256": "fc7a36270c1f883ae41da82654ac0441c03f3995d6c52dc194ae34b54e7d1276",
+        "level2_rows_sha256": "8e3aa736e3fe18d31368d7c187eab293fbb4b4a0142410392c70ca364194eec0",
+        "checks": {
+          "level2_harder_than_level1": true,
+          "level2_not_effectively_zero": true,
+          "level2_not_too_easy": true
+        },
+        "status": "pass"
+      },
+      {
+        "domain": "python_factors",
+        "model": "qwen-0.5b",
+        "level1_pass_at_8": 0.90625,
+        "level2_pass_at_8": 0.7265625,
+        "level1_rows": 128,
+        "level2_rows": 128,
+        "level1_rows_sha256": "fc7a36270c1f883ae41da82654ac0441c03f3995d6c52dc194ae34b54e7d1276",
+        "level2_rows_sha256": "8e3aa736e3fe18d31368d7c187eab293fbb4b4a0142410392c70ca364194eec0",
+        "checks": {
+          "level2_harder_than_level1": true,
+          "level2_not_effectively_zero": true,
+          "level2_not_too_easy": true
+        },
+        "status": "pass"
+      }
+    ]
+  },
+  "scale_calibration": {
+    "reference_model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "candidate_models": {
+      "3": "Qwen/Qwen2.5-3B-Instruct",
+      "4": "Qwen/Qwen2.5-7B-Instruct",
+      "5": "Qwen/Qwen2.5-14B-Instruct"
+    },
+    "tolerances": {
+      "pass1": 0.04,
+      "pass8": 0.08
+    },
+    "level3_information_boundary": {
+      "adaptive_confirmation_round": 2,
+      "all_five_fresh_same_round": false,
+      "fixed_reference_uncertainty_is_not_reestimated_as_new_level1_sampling": true,
+      "fresh_candidate_domains": [
+        "graph_coloring",
+        "python_factors"
+      ],
+      "fresh_heldout_claim_applies_to_revised_level3_only": true,
+      "historical_level1_confirmation_used_as_fixed_reference": true,
+      "historical_level3_confirmation_used_for_mixture_fitting": false,
+      "new_candidate_fitting_uses_development_outcomes_only": true,
+      "reference_semantics": "fixed_measured_level1_benchmark",
+      "retained_domains": [
+        "countdown",
+        "mathir",
+        "pantry"
+      ],
+      "statistical_equivalence_claimed": false,
+      "treatment_training_started": false
+    },
+    "measurements": [
+      {
+        "level": 3,
+        "domain": "countdown",
+        "target": {
+          "pass1": 0.0126953125,
+          "pass8": 0.0859375
+        },
+        "metrics": {
+          "pass1": 0.025146484375,
+          "pass8": 0.115234375
+        },
+        "differences": {
+          "pass1": 0.012451171875,
+          "pass8": 0.029296875
+        },
+        "difficulty_matched": true,
+        "evidence_role": "retained_historical_level3_confirmation",
+        "candidate_confirmation_round": 1,
+        "candidate_receipt": {
+          "identity_sha256": "0decfd3581d2f7e5a84e8c0b5be525d0d34995788ccb4c9ea6b5a7ad89e99bd3",
+          "path": "/n/fs/similarity/maxent-grpo/var/results/modebench_level3_v2/confirmation_python_v6/confirmation_3b_countdown.json",
+          "sha256": "b0c5e7f5ea80b30436b6fe308d8c0030ad5ed99010cc2a96827f3152bf713afb"
+        }
+      },
+      {
+        "level": 3,
+        "domain": "graph_coloring",
+        "target": {
+          "pass1": 0.207763671875,
+          "pass8": 0.5625
+        },
+        "metrics": {
+          "pass1": 0.168701171875,
+          "pass8": 0.537109375
+        },
+        "differences": {
+          "pass1": -0.0390625,
+          "pass8": -0.025390625
+        },
+        "difficulty_matched": true,
+        "evidence_role": "fresh_level3_against_fixed_measured_level1_reference",
+        "candidate_confirmation_round": 2,
+        "candidate_receipt": {
+          "path": "/n/fs/similarity/maxent-grpo/var/results/modebench_level3_v3/confirmation/confirmation_3b_graph_coloring.json",
+          "sha256": "e8079c89532bab8bc9f209686d8b3f686859b267eac3a8f4fbc592d03a0feba2"
+        }
+      },
+      {
+        "level": 3,
+        "domain": "mathir",
+        "target": {
+          "pass1": 0.043701171875,
+          "pass8": 0.240234375
+        },
+        "metrics": {
+          "pass1": 0.06884765625,
+          "pass8": 0.2265625
+        },
+        "differences": {
+          "pass1": 0.025146484375,
+          "pass8": -0.013671875
+        },
+        "difficulty_matched": true,
+        "evidence_role": "retained_historical_level3_confirmation",
+        "candidate_confirmation_round": 1,
+        "candidate_receipt": {
+          "identity_sha256": "996cbedc7559adf87f4f32be5350a384e0aefb7354610d4a5ab47d37488bdc16",
+          "path": "/n/fs/similarity/maxent-grpo/var/results/modebench_level3_v2/confirmation_python_v6/confirmation_3b_mathir.json",
+          "sha256": "883d4d2f331e6bbe12e58cf90f0dd69f727a7843f4ca7a498d2c762721d9bcf1"
+        }
+      },
+      {
+        "level": 3,
+        "domain": "pantry_plan",
+        "target": {
+          "pass1": 0.05859375,
+          "pass8": 0.259765625
+        },
+        "metrics": {
+          "pass1": 0.046875,
+          "pass8": 0.193359375
+        },
+        "differences": {
+          "pass1": -0.01171875,
+          "pass8": -0.06640625
+        },
+        "difficulty_matched": true,
+        "evidence_role": "retained_historical_level3_confirmation",
+        "candidate_confirmation_round": 1,
+        "candidate_receipt": {
+          "identity_sha256": "9923f11828caf4882f7f12d936c1bf20c37a7ad65a8448c1447f6131b3e51a3a",
+          "path": "/n/fs/similarity/maxent-grpo/var/results/modebench_level3_v2/confirmation_python_v6/confirmation_3b_pantry.json",
+          "sha256": "28717d016fbf8a511001a0e911a4e44d7739c0b5527eb8fd17b283c8593b0857"
+        }
+      },
+      {
+        "level": 3,
+        "domain": "python_factors",
+        "target": {
+          "pass1": 0.2109375,
+          "pass8": 0.76953125
+        },
+        "metrics": {
+          "pass1": 0.1982421875,
+          "pass8": 0.728515625
+        },
+        "differences": {
+          "pass1": -0.0126953125,
+          "pass8": -0.041015625
+        },
+        "difficulty_matched": true,
+        "evidence_role": "fresh_level3_against_fixed_measured_level1_reference",
+        "candidate_confirmation_round": 2,
+        "candidate_receipt": {
+          "path": "/n/fs/similarity/maxent-grpo/var/results/modebench_level3_v3/confirmation/confirmation_3b_python_factors.json",
+          "sha256": "56356b8122c8a34c70bc1eb2b1e6c7157862e016a88d82abc96186dc248a913b"
+        }
+      },
+      {
+        "level": 4,
+        "domain": "countdown",
+        "source": {
+          "path": "var/data/modebench_scale_v1/level4/confirmation/countdown.json",
+          "sha256": "3474c3d2a3876aefe29fbcb2dd1d4e336b8ac59ce18f76ff1fd4b1e7a0bee3c0"
+        },
+        "target": {
+          "pass1": 0.0126953125,
+          "pass8": 0.0859375
+        },
+        "metrics": {
+          "distinct8": 0.095703125,
+          "distinct8_standard_error_across_prompts": 0.023549371092666426,
+          "pass1": 0.0205078125,
+          "pass1_standard_error_across_prompts": 0.006087539067743054,
+          "pass8": 0.087890625,
+          "pass8_standard_error_across_prompts": 0.021225568500424563,
+          "rows": 128
+        },
+        "differences": {
+          "pass1": 0.0078125,
+          "pass8": 0.001953125
+        },
+        "gates": {
+          "pass1": true,
+          "pass8": true
+        },
+        "difficulty_matched": true,
+        "recipe_sha256": "aa6e64ac19e6c1c3acd56ac37c9550c79df8314c8042c299a5e3a0503451bfeb",
+        "receipt_sha256": "285719e0afe1c0a0c7965ee0740f4521b2c4d4b1b333a31c484ec4aff63762cd",
+        "original_grader_replayed_attempts": 4096,
+        "eval_parquet_sha256": "d9ffe3a874ea6fb39713c7aa9f10c56895415e3297f4d42247bd07c2d92cbee6"
+      },
+      {
+        "level": 4,
+        "domain": "graph_coloring",
+        "source": {
+          "path": "var/data/modebench_scale_domain_revisions_v1/level4_graph_coloring_r2/level4/confirmation/graph_coloring.json",
+          "sha256": "718a592f5b0aae226add9a345f703853b79233d666eb95edc7d4cf70a5e7eaba"
+        },
+        "target": {
+          "pass1": 0.207763671875,
+          "pass8": 0.5625
+        },
+        "metrics": {
+          "distinct8": 0.80078125,
+          "distinct8_standard_error_across_prompts": 0.07039020613181236,
+          "pass1": 0.210205078125,
+          "pass1_standard_error_across_prompts": 0.023513540432560813,
+          "pass8": 0.53515625,
+          "pass8_standard_error_across_prompts": 0.03849707659275551,
+          "rows": 128
+        },
+        "differences": {
+          "pass1": 0.00244140625,
+          "pass8": -0.02734375
+        },
+        "gates": {
+          "pass1": true,
+          "pass8": true
+        },
+        "difficulty_matched": true,
+        "recipe_sha256": "1c15a4297b39d516d46f27d61e79f8b0f6d1e01bf7251253b7421f47de414a36",
+        "receipt_sha256": "d5e3625decf797d43c7cd8f3bfa0c2237eb94f98a1672b6cd2fa64d11997a814",
+        "original_grader_replayed_attempts": 4096,
+        "eval_parquet_sha256": "84789a0071d78197e9f961bf4ab02189e168e8b84bd496902630bc098bbeec36"
+      },
+      {
+        "level": 4,
+        "domain": "mathir",
+        "source": {
+          "path": "var/data/modebench_scale_v1/level4/confirmation/mathir.json",
+          "sha256": "0950da4c029636ca418e08f7493a209d41dfaeca04e297cfd78d29d37e51e5a2"
+        },
+        "target": {
+          "pass1": 0.043701171875,
+          "pass8": 0.240234375
+        },
+        "metrics": {
+          "distinct8": 0.2109375,
+          "distinct8_standard_error_across_prompts": 0.03274446922027774,
+          "pass1": 0.08642578125,
+          "pass1_standard_error_across_prompts": 0.018388978083175824,
+          "pass8": 0.208984375,
+          "pass8_standard_error_across_prompts": 0.032311849348402415,
+          "rows": 128
+        },
+        "differences": {
+          "pass1": 0.042724609375,
+          "pass8": -0.03125
+        },
+        "gates": {
+          "pass1": false,
+          "pass8": true
+        },
+        "difficulty_matched": false,
+        "recipe_sha256": "ce60dda02a56faa9ecd1e180982227625fd8b8684595d52a6b33c396b150aa02",
+        "receipt_sha256": "206d10a2f73f05b8df0cb7f00e3d43d7c64866a6d02e69f919657d4055050680",
+        "original_grader_replayed_attempts": 4096,
+        "eval_parquet_sha256": "ef8e32741a37d447c5b62b7e9a52f46760731f00184b8df2ed9dfd57f9ed1a85"
+      },
+      {
+        "level": 4,
+        "domain": "pantry_plan",
+        "source": {
+          "path": "var/data/modebench_scale_domain_revisions_v1/level4_pantry_r2/level4/confirmation/pantry.json",
+          "sha256": "d17535de732adb24441ab95eca03ff66b454398a629d1dd70ab2575d3ea3f41d"
+        },
+        "target": {
+          "pass1": 0.05859375,
+          "pass8": 0.259765625
+        },
+        "metrics": {
+          "distinct8": 0.2578125,
+          "distinct8_standard_error_across_prompts": 0.04614652948824055,
+          "pass1": 0.087158203125,
+          "pass1_standard_error_across_prompts": 0.020162809252719106,
+          "pass8": 0.1953125,
+          "pass8_standard_error_across_prompts": 0.031119004478205387,
+          "rows": 128
+        },
+        "differences": {
+          "pass1": 0.028564453125,
+          "pass8": -0.064453125
+        },
+        "gates": {
+          "pass1": true,
+          "pass8": true
+        },
+        "difficulty_matched": true,
+        "recipe_sha256": "a3580c2977ca063aea85f2f1729374302479f05da2bb64d4291d6d9cf984692d",
+        "receipt_sha256": "885462489b922683b6b4dff714bf424f1b844fec5cd20fce9863488095236d6e",
+        "original_grader_replayed_attempts": 4096,
+        "eval_parquet_sha256": "8c97438a150b84fa558e611cb32ccce0ae57f17e0b3b2c725219f75302c6e981"
+      },
+      {
+        "level": 4,
+        "domain": "python_factors",
+        "source": {
+          "path": "var/data/modebench_scale_domain_revisions_v1/level4_python_factors_r5/level4/confirmation/python_factors.json",
+          "sha256": "0abbe20c078db604c717d9acc2685f49e1ac87404d32deaa85d39681ef356ed3"
+        },
+        "target": {
+          "pass1": 0.2109375,
+          "pass8": 0.76953125
+        },
+        "metrics": {
+          "distinct8": 0.78125,
+          "distinct8_standard_error_across_prompts": 0.030753936755873252,
+          "pass1": 0.2236328125,
+          "pass1_standard_error_across_prompts": 0.011787433545028508,
+          "pass8": 0.771484375,
+          "pass8_standard_error_across_prompts": 0.030125861686746344,
+          "rows": 128
+        },
+        "differences": {
+          "pass1": 0.0126953125,
+          "pass8": 0.001953125
+        },
+        "gates": {
+          "pass1": true,
+          "pass8": true
+        },
+        "difficulty_matched": true,
+        "recipe_sha256": "cd623c6134dc452b27101185486704b9dbd9bfd8a9d5f450abb2ea3c9631da35",
+        "receipt_sha256": "fb80be2429feac9ccd5a745813c14a4e0bc22a002a08fb58feb5c50515f0f4c0",
+        "original_grader_replayed_attempts": 4096,
+        "eval_parquet_sha256": "d4e60141fd94d3a038ef4a3af794623bcbe8664306e347676f84ce13213eed1d"
+      },
+      {
+        "level": 5,
+        "domain": "countdown",
+        "source": {
+          "path": "var/data/modebench_scale_v1/level5/confirmation/countdown.json",
+          "sha256": "dd7f14a21c5594938a122554d98c0cac77803b6acde3b0bad354f8bd1dd21913"
+        },
+        "target": {
+          "pass1": 0.0126953125,
+          "pass8": 0.0859375
+        },
+        "metrics": {
+          "distinct8": 0.103515625,
+          "distinct8_standard_error_across_prompts": 0.022447058736330655,
+          "pass1": 0.030029296875,
+          "pass1_standard_error_across_prompts": 0.009361420455921955,
+          "pass8": 0.1015625,
+          "pass8_standard_error_across_prompts": 0.02173526446148355,
+          "rows": 128
+        },
+        "differences": {
+          "pass1": 0.017333984375,
+          "pass8": 0.015625
+        },
+        "gates": {
+          "pass1": true,
+          "pass8": true
+        },
+        "difficulty_matched": true,
+        "recipe_sha256": "a17638b37fd5b240b3984bff4d2a4adaa4cb4a167292b8eb1f73c6a38c233ac8",
+        "receipt_sha256": "6e35202df16ea9f451b38484bf80dbbf03dc33cee2e347531be04fac9597ac3e",
+        "original_grader_replayed_attempts": 4096,
+        "eval_parquet_sha256": "11459a06b49bd0dd61eb668e52ae3f2958c2b1aae22dbc1a9514fe41a28fb3ea"
+      },
+      {
+        "level": 5,
+        "domain": "graph_coloring",
+        "source": {
+          "path": "var/data/modebench_scale_domain_revisions_v1/level5_graph_coloring_r5/level5/confirmation/graph_coloring.json",
+          "sha256": "6f0a167b36d13b60bd01cd02f264b110a662019258543bad7d5463183ea56f83"
+        },
+        "target": {
+          "pass1": 0.207763671875,
+          "pass8": 0.5625
+        },
+        "metrics": {
+          "distinct8": 0.623046875,
+          "distinct8_standard_error_across_prompts": 0.05128126550076658,
+          "pass1": 0.197998046875,
+          "pass1_standard_error_across_prompts": 0.02271185707449689,
+          "pass8": 0.517578125,
+          "pass8_standard_error_across_prompts": 0.03814080866476534,
+          "rows": 128
+        },
+        "differences": {
+          "pass1": -0.009765625,
+          "pass8": -0.044921875
+        },
+        "gates": {
+          "pass1": true,
+          "pass8": true
+        },
+        "difficulty_matched": true,
+        "recipe_sha256": "0edc2d5bf0e4b7ee50e3af876d0247eb5415e57f3dee59af151b29aa79824417",
+        "receipt_sha256": "fbc7d0775baea0adab3e564a0df3bed210ddc4fdc20c71bdc83e46058501141b",
+        "original_grader_replayed_attempts": 4096,
+        "eval_parquet_sha256": "75ca0480b6e7e113ea681d3a1b1145a09fa2c3de7355ff921919ad708851febc"
+      },
+      {
+        "level": 5,
+        "domain": "mathir",
+        "source": {
+          "path": "var/data/modebench_scale_domain_revisions_v1/level5_mathir_r2/level5/confirmation/mathir.json",
+          "sha256": "aee996de10a8ed8fe8f9bd136e633caf69850805566ab67f291190f0c639bd5e"
+        },
+        "target": {
+          "pass1": 0.043701171875,
+          "pass8": 0.240234375
+        },
+        "metrics": {
+          "distinct8": 0.30859375,
+          "distinct8_standard_error_across_prompts": 0.04154714829189224,
+          "pass1": 0.080322265625,
+          "pass1_standard_error_across_prompts": 0.012781361044420129,
+          "pass8": 0.27734375,
+          "pass8_standard_error_across_prompts": 0.034214053132872686,
+          "rows": 128
+        },
+        "differences": {
+          "pass1": 0.03662109375,
+          "pass8": 0.037109375
+        },
+        "gates": {
+          "pass1": true,
+          "pass8": true
+        },
+        "difficulty_matched": true,
+        "recipe_sha256": "3424a2d400fb4e436197e6b7fcf822a7da7b08b18c367b986409d55d1331d957",
+        "receipt_sha256": "d6f06a31e9df2e3d02848eb0841defd34be1e53d6a4626f40a6c22359856fffe",
+        "original_grader_replayed_attempts": 4096,
+        "eval_parquet_sha256": "a82293cd9a2245eb664f1f9082eec83d7232a00308e28a47de9b895a0ca8fd04"
+      },
+      {
+        "level": 5,
+        "domain": "pantry_plan",
+        "source": {
+          "path": "var/data/modebench_scale_domain_revisions_v1/level5_pantry_r4/level5/confirmation/pantry.json",
+          "sha256": "5c7932f72bf55b751304bfd4ea47f24ae72e8e898a8bdd39d079128e0abfc97f"
+        },
+        "target": {
+          "pass1": 0.05859375,
+          "pass8": 0.259765625
+        },
+        "metrics": {
+          "distinct8": 0.361328125,
+          "distinct8_standard_error_across_prompts": 0.05991251938458064,
+          "pass1": 0.078369140625,
+          "pass1_standard_error_across_prompts": 0.01541597115403021,
+          "pass8": 0.240234375,
+          "pass8_standard_error_across_prompts": 0.03366668501162716,
+          "rows": 128
+        },
+        "differences": {
+          "pass1": 0.019775390625,
+          "pass8": -0.01953125
+        },
+        "gates": {
+          "pass1": true,
+          "pass8": true
+        },
+        "difficulty_matched": true,
+        "recipe_sha256": "79a9c52ca8daae72ce7922cda15c2fcfd7b0fde59b8a827d291d477b75b5f561",
+        "receipt_sha256": "1bbf38c2aea21748f44ebf2aa5b5b16d1cc1f20ff7002e745a11bb588f3a74b9",
+        "original_grader_replayed_attempts": 4096,
+        "eval_parquet_sha256": "474f112bfcb3abf9c3ac41e49c03e2b4f34e6a1d11670a4ad03768a6f37ac763"
+      },
+      {
+        "level": 5,
+        "domain": "python_factors",
+        "source": {
+          "path": "var/data/modebench_scale_domain_revisions_v1/level5_python_factors_r2/level5/confirmation/python_factors.json",
+          "sha256": "6cba2273cdebc730482028b71907dd02a8ddcc794e0fff028530b5a94ba16cb7"
+        },
+        "target": {
+          "pass1": 0.2109375,
+          "pass8": 0.76953125
+        },
+        "metrics": {
+          "distinct8": 0.728515625,
+          "distinct8_standard_error_across_prompts": 0.033163296804862394,
+          "pass1": 0.214111328125,
+          "pass1_standard_error_across_prompts": 0.014024727488234164,
+          "pass8": 0.712890625,
+          "pass8_standard_error_across_prompts": 0.03174919250471811,
+          "rows": 128
+        },
+        "differences": {
+          "pass1": 0.003173828125,
+          "pass8": -0.056640625
+        },
+        "gates": {
+          "pass1": true,
+          "pass8": true
+        },
+        "difficulty_matched": true,
+        "recipe_sha256": "d5739495cd03252f6485a1306d1db9d0da8ac061d9f4463a69f5cdeb9e6f5bbd",
+        "receipt_sha256": "b52696e1046b45aeb3fd39906184862ee35b9935765e10cf9f46762fd9b63bc0",
+        "original_grader_replayed_attempts": 4096,
+        "eval_parquet_sha256": "496f9d6020fcb906a1ee6b6ec9cb868a4d5478c3f492ab0514d3a825a083b521"
+      }
+    ]
+  },
+  "frozen_eval_structure": [
+    {
+      "level": 1,
+      "domain": "graph_coloring",
+      "rows": 128,
+      "source": {
+        "path": "modebench/data/level1/graph_coloring/eval.parquet",
+        "sha256": "5c009576b979ac78b9bf73c80790e0048a75f4c27c400569907f096e18a220fb"
+      },
+      "observed": {
+        "vertices": [
+          4,
+          5,
+          6
+        ],
+        "hidden_vertices": [
+          3
+        ]
+      }
+    },
+    {
+      "level": 1,
+      "domain": "countdown",
+      "rows": 128,
+      "source": {
+        "path": "modebench/data/level1/countdown/eval.parquet",
+        "sha256": "a1da95c1b5997a0c8d804c8bf7b607817b11bb8c7982b3d04bd4c345da7b9c33"
+      },
+      "observed": {
+        "operands": [
+          3
+        ],
+        "operand_range": [
+          2,
+          12
+        ]
+      }
+    },
+    {
+      "level": 1,
+      "domain": "python_factors",
+      "rows": 128,
+      "source": {
+        "path": "modebench/data/level1/python_factors/eval.parquet",
+        "sha256": "88a3f35b0f3e8e9b8ec4da5151ca7697afc79894c0507d00c258d4154983cea0"
+      },
+      "observed": {
+        "cases": [
+          4
+        ],
+        "case_range": [
+          6,
+          96
+        ]
+      }
+    },
+    {
+      "level": 1,
+      "domain": "mathir",
+      "rows": 128,
+      "source": {
+        "path": "modebench/data/level1/mathir/eval.parquet",
+        "sha256": "fc0280c144e5c9c54624303cd508612dbbb3a0ef130dfee9a42fb8f9413e9902"
+      },
+      "observed": {
+        "families": [
+          "ax_plus_b_eq_c",
+          "ax_plus_b_eq_c_minus_dx",
+          "ax_plus_b_eq_dx_plus_c",
+          "x_over_a_plus_b_eq_c"
+        ],
+        "mode_counts": [
+          5
+        ]
+      }
+    },
+    {
+      "level": 1,
+      "domain": "pantry_plan",
+      "rows": 128,
+      "source": {
+        "path": "modebench/data/level1/pantry_plan/eval.parquet",
+        "sha256": "2807515694c01108c5b8a616eded485a6ffded07fd1f9eb5fa0155cfeb7c2c34"
+      },
+      "observed": {
+        "ingredients": [
+          6
+        ]
+      }
+    },
+    {
+      "level": 2,
+      "domain": "graph_coloring",
+      "rows": 128,
+      "source": {
+        "path": "modebench/data/level2/graph_coloring/eval.parquet",
+        "sha256": "63e5f1b8f4b3db950022080c9971cec71c864d369f346f64aa9c303da5b1e33f"
+      },
+      "observed": {
+        "vertices": [
+          5,
+          6
+        ],
+        "hidden_vertices": [
+          4
+        ]
+      }
+    },
+    {
+      "level": 2,
+      "domain": "countdown",
+      "rows": 128,
+      "source": {
+        "path": "modebench/data/level2/countdown/eval.parquet",
+        "sha256": "50b90a6197ff1ac83ba0020239bb903bb597c334a27329d3e8703f163cf5d17c"
+      },
+      "observed": {
+        "operands": [
+          4
+        ],
+        "operand_range": [
+          2,
+          14
+        ]
+      }
+    },
+    {
+      "level": 2,
+      "domain": "python_factors",
+      "rows": 128,
+      "source": {
+        "path": "modebench/data/level2/python_factors/eval.parquet",
+        "sha256": "3b6f96ca863cb4a5be793fd4e5e12337db48622faf3f70782553c37f64675a42"
+      },
+      "observed": {
+        "cases": [
+          4
+        ],
+        "case_range": [
+          6,
+          192
+        ]
+      }
+    },
+    {
+      "level": 2,
+      "domain": "mathir",
+      "rows": 128,
+      "source": {
+        "path": "modebench/data/level2/mathir/eval.parquet",
+        "sha256": "646e8780fdfbad6ec5681fba1583dafc9ac6755200b2cb80f497dab75320819f"
+      },
+      "observed": {
+        "families": [
+          "ax_plus_b_eq_c_minus_dx",
+          "ax_plus_b_eq_dx_plus_c"
+        ],
+        "mode_counts": [
+          5
+        ]
+      }
+    },
+    {
+      "level": 2,
+      "domain": "pantry_plan",
+      "rows": 128,
+      "source": {
+        "path": "modebench/data/level2/pantry_plan/eval.parquet",
+        "sha256": "94a1aac4a48bfd21e363433397fcd834bbd39c096551900f63b29dadc960905b"
+      },
+      "observed": {
+        "ingredients": [
+          6
+        ]
+      }
+    },
+    {
+      "level": 3,
+      "domain": "graph_coloring",
+      "rows": 128,
+      "source": {
+        "path": "modebench/data/level3/graph_coloring/eval.parquet",
+        "sha256": "dd4bc7dedf28e5d153c80046abd3f8e8a80a6adcdd11b80aa05dde3cd5378bc7"
+      },
+      "observed": {
+        "vertices": [
+          5
+        ],
+        "hidden_vertices": [
+          3
+        ]
+      }
+    },
+    {
+      "level": 3,
+      "domain": "countdown",
+      "rows": 128,
+      "source": {
+        "path": "modebench/data/level3/countdown/eval.parquet",
+        "sha256": "b8c8540758fb32b8d49c0bc0f1c4337b6f29017f9f9fdcb618365d232a3e8c9a"
+      },
+      "observed": {
+        "operands": [
+          3,
+          4
+        ],
+        "operand_range": [
+          2,
+          99
+        ]
+      }
+    },
+    {
+      "level": 3,
+      "domain": "python_factors",
+      "rows": 128,
+      "source": {
+        "path": "modebench/data/level3/python_factors/eval.parquet",
+        "sha256": "77d32ab09bb2125206b5fe291251b74219130a1a89d79d2b2d93700305ee0f21"
+      },
+      "observed": {
+        "cases": [
+          4
+        ],
+        "case_range": [
+          60,
+          254
+        ]
+      }
+    },
+    {
+      "level": 3,
+      "domain": "mathir",
+      "rows": 128,
+      "source": {
+        "path": "modebench/data/level3/mathir/eval.parquet",
+        "sha256": "9903ce6c9a612887787db2e803519fa715214e6733e2c684e85d1735c770d89a"
+      },
+      "observed": {
+        "families": [
+          "ax_plus_b_eq_c",
+          "level3_rational_equation_3"
+        ],
+        "mode_counts": [
+          5
+        ]
+      }
+    },
+    {
+      "level": 3,
+      "domain": "pantry_plan",
+      "rows": 128,
+      "source": {
+        "path": "modebench/data/level3/pantry_plan/eval.parquet",
+        "sha256": "63840b51ead4a7799c1376e49739322f2a085beaef981389a5f077ff058757a7"
+      },
+      "observed": {
+        "ingredients": [
+          6,
+          7,
+          8
+        ]
+      }
+    },
+    {
+      "level": 4,
+      "domain": "graph_coloring",
+      "rows": 128,
+      "source": {
+        "path": "modebench/data/level4/graph_coloring/eval.parquet",
+        "sha256": "84789a0071d78197e9f961bf4ab02189e168e8b84bd496902630bc098bbeec36"
+      },
+      "observed": {
+        "vertices": [
+          5,
+          6
+        ],
+        "hidden_vertices": [
+          3,
+          4
+        ]
+      }
+    },
+    {
+      "level": 4,
+      "domain": "countdown",
+      "rows": 128,
+      "source": {
+        "path": "modebench/data/level4/countdown/eval.parquet",
+        "sha256": "d9ffe3a874ea6fb39713c7aa9f10c56895415e3297f4d42247bd07c2d92cbee6"
+      },
+      "observed": {
+        "operands": [
+          4
+        ],
+        "operand_range": [
+          2,
+          192
+        ]
+      }
+    },
+    {
+      "level": 4,
+      "domain": "python_factors",
+      "rows": 128,
+      "source": {
+        "path": "modebench/data/level4/python_factors/eval.parquet",
+        "sha256": "d4e60141fd94d3a038ef4a3af794623bcbe8664306e347676f84ce13213eed1d"
+      },
+      "observed": {
+        "cases": [
+          6
+        ],
+        "case_range": [
+          25,
+          998
+        ]
+      }
+    },
+    {
+      "level": 4,
+      "domain": "mathir",
+      "rows": 128,
+      "source": {
+        "path": "modebench/data/level4/mathir/eval.parquet",
+        "sha256": "ef8e32741a37d447c5b62b7e9a52f46760731f00184b8df2ed9dfd57f9ed1a85"
+      },
+      "observed": {
+        "families": [
+          "level3_rational_equation_2",
+          "level3_rational_equation_3"
+        ],
+        "mode_counts": [
+          5
+        ]
+      }
+    },
+    {
+      "level": 4,
+      "domain": "pantry_plan",
+      "rows": 128,
+      "source": {
+        "path": "modebench/data/level4/pantry_plan/eval.parquet",
+        "sha256": "8c97438a150b84fa558e611cb32ccce0ae57f17e0b3b2c725219f75302c6e981"
+      },
+      "observed": {
+        "ingredients": [
+          6
+        ]
+      }
+    },
+    {
+      "level": 5,
+      "domain": "graph_coloring",
+      "rows": 128,
+      "source": {
+        "path": "modebench/data/level5/graph_coloring/eval.parquet",
+        "sha256": "75ca0480b6e7e113ea681d3a1b1145a09fa2c3de7355ff921919ad708851febc"
+      },
+      "observed": {
+        "vertices": [
+          6,
+          7
+        ],
+        "hidden_vertices": [
+          3,
+          4
+        ]
+      }
+    },
+    {
+      "level": 5,
+      "domain": "countdown",
+      "rows": 128,
+      "source": {
+        "path": "modebench/data/level5/countdown/eval.parquet",
+        "sha256": "11459a06b49bd0dd61eb668e52ae3f2958c2b1aae22dbc1a9514fe41a28fb3ea"
+      },
+      "observed": {
+        "operands": [
+          4
+        ],
+        "operand_range": [
+          5,
+          188
+        ]
+      }
+    },
+    {
+      "level": 5,
+      "domain": "python_factors",
+      "rows": 128,
+      "source": {
+        "path": "modebench/data/level5/python_factors/eval.parquet",
+        "sha256": "496f9d6020fcb906a1ee6b6ec9cb868a4d5478c3f492ab0514d3a825a083b521"
+      },
+      "observed": {
+        "cases": [
+          4
+        ],
+        "case_range": [
+          48,
+          996
+        ]
+      }
+    },
+    {
+      "level": 5,
+      "domain": "mathir",
+      "rows": 128,
+      "source": {
+        "path": "modebench/data/level5/mathir/eval.parquet",
+        "sha256": "a82293cd9a2245eb664f1f9082eec83d7232a00308e28a47de9b895a0ca8fd04"
+      },
+      "observed": {
+        "families": [
+          "level3_rational_equation_1",
+          "scale_split_linear_sum_coefficient_denominator_v1",
+          "scale_split_linear_sum_difference_denominators_v1"
+        ],
+        "mode_counts": [
+          5
+        ]
+      }
+    },
+    {
+      "level": 5,
+      "domain": "pantry_plan",
+      "rows": 128,
+      "source": {
+        "path": "modebench/data/level5/pantry_plan/eval.parquet",
+        "sha256": "474f112bfcb3abf9c3ac41e49c03e2b4f34e6a1d11670a4ad03768a6f37ac763"
+      },
+      "observed": {
+        "ingredients": [
+          6,
+          7,
+          8
+        ]
+      }
+    }
+  ]
+}

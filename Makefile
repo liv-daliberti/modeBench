@@ -1,6 +1,6 @@
 PYTHON ?= python
-.PHONY: check test reproduce conformance quality
-check: test reproduce conformance quality
+.PHONY: check test reproduce conformance quality levels
+check: test reproduce conformance quality levels
 	$(PYTHON) ops/verify_data.py
 test:
 	$(PYTHON) -m pytest -q
@@ -12,3 +12,6 @@ conformance:
 
 quality:
 	$(PYTHON) ops/check_quality.py
+
+levels:
+	$(PYTHON) ops/summarize_levels.py --check

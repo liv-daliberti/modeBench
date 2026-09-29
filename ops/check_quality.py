@@ -16,6 +16,7 @@ CHECKED = [
     "src/modebench/evaluation.py",
     "src/modebench/cli.py",
     "ops/benchmark_evaluation.py",
+    "ops/summarize_levels.py",
     "ops/check_quality.py",
     "tests/test_streaming.py",
     "tests/test_public_api.py",

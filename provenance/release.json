@@ -38,13 +38,13 @@
     },
     {
       "path": "Makefile",
-      "sha256": "71efe5bd9be2dde10934019aa85ae013385c1b9c012abb4cc1df472fd1a91b49",
-      "bytes": 309
+      "sha256": "1cfa121b434dbc90159f8bf6cc4fcbb5283fdd4f34167b8bb458360e6ee20f4d",
+      "bytes": 375
     },
     {
       "path": "README.md",
-      "sha256": "8ad02d8d380606a347fdb10587752168e98a0ee7ebec41c1074f22e5a5a1f9a5",
-      "bytes": 41026
+      "sha256": "069c145e5c2932c71a8919218d89a0215546367385952ea075c782dc84202a7e",
+      "bytes": 57981
     },
     {
       "path": "assets/modebench-domains.png",
@@ -422,6 +422,11 @@
       "bytes": 1040794
     },
     {
+      "path": "evidence/level-training.json",
+      "sha256": "ce630b4b9b725deb12a332e7fb38cdb4bd5727ac0913d27d3c56f443ab12baf3",
+      "bytes": 613506
+    },
+    {
       "path": "evidence/mode_diversity_base_grid.json",
       "sha256": "9b667eef28039c6abeb221f45813897b214e06e77db763df72ed544d459c92d7",
       "bytes": 300422
@@ -453,8 +458,8 @@
     },
     {
       "path": "ops/check_quality.py",
-      "sha256": "4440b45d956b19b083361b3b751339b4c4478c0297608ef49d77f38930433ea6",
-      "bytes": 2041
+      "sha256": "66adb98b33c4c6fae8e60b09810dc3a1cf71508d754cfaf3f5768d400e64a90a",
+      "bytes": 2072
     },
     {
       "path": "ops/make_exact_countdown_mode_data.py",
@@ -497,6 +502,11 @@
       "bytes": 3014
     },
     {
+      "path": "ops/summarize_levels.py",
+      "sha256": "2204c4d326cb02f0f02780b4d81aea06eeffbd182580d3f567a70bd802d48a65",
+      "bytes": 15187
+    },
+    {
       "path": "ops/test_installed.py",
       "sha256": "a7c98b30fa97a42874c338421d640a7459d87238736cc3cf03671e34374dc9ce",
       "bytes": 8047
@@ -525,6 +535,11 @@
       "path": "provenance/constraints-py310.txt",
       "sha256": "0176f760c54cb3b2de083a09385f8c914fd5f44175cf5e6dc4ad1de074ea1ec7",
       "bytes": 907
+    },
+    {
+      "path": "provenance/level-construction.json",
+      "sha256": "048886f28bc2bdcf0699e56874dbb77149207b6a150833a715f36378f2479fd6",
+      "bytes": 43807
     },
     {
       "path": "provenance/levels123_manifest.json",
