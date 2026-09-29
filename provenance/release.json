@@ -12,11 +12,6 @@
       "bytes": 87
     },
     {
-      "path": "CONTRIBUTING.md",
-      "sha256": "c159a42ecc00e8b0ce1dc47b3d091d11aeceee57dc0cadccbaa562e8bb1f0c19",
-      "bytes": 1927
-    },
-    {
       "path": "LICENSE",
       "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
       "bytes": 11357
@@ -27,34 +22,14 @@
       "bytes": 177
     },
     {
-      "path": "PROVENANCE.json",
-      "sha256": "4b46d068c5d9511721127a9db394b0b94a08d0171e8c710d9ad8922cd3a1f6c1",
-      "bytes": 13997
-    },
-    {
       "path": "README.md",
-      "sha256": "c008ca45d929e6bb8c82a6faf57e0099f179ec8fb2577f9c268f5f430b32d050",
-      "bytes": 6832
+      "sha256": "bdfc5b53872c157578f0f5cc9e6c17154367580e875c1c7ad90e0eef344daf02",
+      "bytes": 14128
     },
     {
-      "path": "RELEASE_STATUS.md",
-      "sha256": "1a601b458c5e4cb677f0fdbb5dabdabbad15c0f6f63633211747eb21b8078ac8",
-      "bytes": 1877
-    },
-    {
-      "path": "VALIDATION.md",
-      "sha256": "d24bb7041bb0b2861a3f8ce445b9d593c216af9c62c5885e5731b8123b644991",
-      "bytes": 2390
-    },
-    {
-      "path": "constraints-py310-tested.txt",
-      "sha256": "89594655d6726e5dc263b223ad6b4cba99f4bb44fac458b2b231f8ee476100b4",
-      "bytes": 903
-    },
-    {
-      "path": "data/README.md",
-      "sha256": "d617e03d6c273a9f38f15fd169cf4021d33008fcc8229630f69dc399270ccb33",
-      "bytes": 1811
+      "path": "assets/modebench-domains.png",
+      "sha256": "5485d7e44b6b5d20085d138885e6661535c52cb738125105ff206dc8cd0fcb5b",
+      "bytes": 394834
     },
     {
       "path": "data/level1/countdown/eval.parquet",
@@ -422,31 +397,6 @@
       "bytes": 54973
     },
     {
-      "path": "docs/assets/modebench-domains.png",
-      "sha256": "5485d7e44b6b5d20085d138885e6661535c52cb738125105ff206dc8cd0fcb5b",
-      "bytes": 394834
-    },
-    {
-      "path": "docs/datasets.md",
-      "sha256": "8574ea1a7db517e837152ab59976bbda7e23b01b951a00b66a67c9ef4d54be95",
-      "bytes": 8453
-    },
-    {
-      "path": "docs/evaluation.md",
-      "sha256": "5ff1b9c99f613215df6565c6b58c51c8f24a99a7b3b2ec18d57b6d46b7895810",
-      "bytes": 6685
-    },
-    {
-      "path": "docs/getting-started.md",
-      "sha256": "d8c66834deae35f41624f9350546bfbf6d1245dedbf330afa76543a38b41aefb",
-      "bytes": 5552
-    },
-    {
-      "path": "docs/reproducibility.md",
-      "sha256": "9f82c5f46b682048b786cda33c6bfd61c796fb5261992da7ab0c57a974c6d7a9",
-      "bytes": 5656
-    },
-    {
       "path": "evidence/base_grid_keys.jsonl.gz",
       "sha256": "351e0111aabe58d367e925c99c5fa39307311a86825947aa57f68a379880fa0c",
       "bytes": 1040794
@@ -513,18 +463,13 @@
     },
     {
       "path": "ops/verify_release.py",
-      "sha256": "642ae3e46ca3b4609c16084d9a2cadc037a2d90d2a3225f27c60a776580d095f",
-      "bytes": 2392
+      "sha256": "54973cd7cb8ffc0222c2332aa5da155d129dae30225390488044de0b5fd00b54",
+      "bytes": 2399
     },
     {
-      "path": "provenance/levels123_LICENSE_PROVENANCE.md",
-      "sha256": "b7b05e3788472a530d7b3528789c41c524c575004cf4e258dd4438a91ab3196d",
-      "bytes": 778
-    },
-    {
-      "path": "provenance/levels123_SPLITS.md",
-      "sha256": "e8dfe2a3026382ff6c7d3a84b399824c1a36d180763aa4f99e6bed2b904c6563",
-      "bytes": 2430
+      "path": "provenance/constraints-py310.txt",
+      "sha256": "0176f760c54cb3b2de083a09385f8c914fd5f44175cf5e6dc4ad1de074ea1ec7",
+      "bytes": 907
     },
     {
       "path": "provenance/levels123_manifest.json",
@@ -537,14 +482,24 @@
       "bytes": 166737
     },
     {
+      "path": "provenance/licenses/data-sources.json",
+      "sha256": "1340491ab6897a426d1a9341f8f642570f007715b24866edf76e95a8f5da8202",
+      "bytes": 753
+    },
+    {
       "path": "provenance/licenses/source_repository_APACHE_2.0.txt",
       "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
       "bytes": 11357
     },
     {
+      "path": "provenance/source.json",
+      "sha256": "86bd173f0dd5b456b236b546034ed5a1e5421071e088073379443369b65ae179",
+      "bytes": 13964
+    },
+    {
       "path": "pyproject.toml",
-      "sha256": "945becc85da047d9976ca7b740da539d22a9f563b87a05b6c792cb15e26fd76a",
-      "bytes": 862
+      "sha256": "fdf648817f2a59e57f2a9b451570a78dc413fccdfcc74c206987f81438864618",
+      "bytes": 854
     },
     {
       "path": "src/modebench/__init__.py",

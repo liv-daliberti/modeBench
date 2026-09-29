@@ -17,7 +17,7 @@ dev = ["pytest", "datasets>=2.16.1", "huggingface-hub"]
 
 [project.urls]
 Repository = "https://github.com/liv-daliberti/modeBench"
-Documentation = "https://github.com/liv-daliberti/modeBench/tree/main/docs"
+Documentation = "https://github.com/liv-daliberti/modeBench#readme"
 Issues = "https://github.com/liv-daliberti/modeBench/issues"
 
 [project.scripts]

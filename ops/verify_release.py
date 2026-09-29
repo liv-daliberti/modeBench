@@ -5,6 +5,8 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+MANIFEST = ROOT / 'provenance/release.json'
+PROVENANCE = ROOT / 'provenance/source.json'
 EXCLUDED = {'.git', '__pycache__', '.pytest_cache', '.ruff_cache', 'build', 'dist', '.cache', '.venv', 'outputs'}
 
 
@@ -13,14 +15,14 @@ def digest(path):
 
 
 def included(path):
-    return path.name != 'RELEASE_MANIFEST.json' and not any(
+    return path != MANIFEST and not any(
         part in EXCLUDED or part.endswith('.egg-info')
         for part in path.relative_to(ROOT).parts
     )
 
 
 def refresh():
-    path = ROOT / 'PROVENANCE.json'
+    path = PROVENANCE
     provenance = json.loads(path.read_text())
     for record in provenance['files']:
         source = ROOT / record['path']
@@ -32,11 +34,11 @@ def refresh():
         {'path': str(path.relative_to(ROOT)), 'sha256': digest(path), 'bytes': path.stat().st_size}
         for path in sorted(ROOT.rglob('*')) if path.is_file() and included(path)
     ]
-    (ROOT / 'RELEASE_MANIFEST.json').write_text(json.dumps({'schema': 'local-release-files-v1', 'files': files}, indent=2) + '\n')
+    MANIFEST.write_text(json.dumps({'schema': 'local-release-files-v1', 'files': files}, indent=2) + '\n')
 
 
 def verify():
-    manifest = json.loads((ROOT / 'RELEASE_MANIFEST.json').read_text())
+    manifest = json.loads(MANIFEST.read_text())
     expected = set()
     for record in manifest['files']:
         path = ROOT / record['path']

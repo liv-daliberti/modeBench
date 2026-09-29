@@ -9,7 +9,7 @@
       "source": "src/oat_drgrpo/math_grader.py",
       "source_sha256": "5bc8a2382ab30d9ccb2dfa4a9cbfb78be28187e1b5049063814cc262b5bac255",
       "extracted_sha256": "dcb9c199ff430b7c93fee773a8daee60fa3a4aa2299aa70f474c9097f4d13f47",
-      "post_extraction_review": "See repository validation and release status; final file identity differs from the initial mechanical extraction."
+      "post_extraction_review": "See README reproducibility section; final file identity differs from the initial mechanical extraction."
     },
     {
       "path": "src/modebench/mathir.py",
@@ -90,7 +90,7 @@
       "source": "ops/modebench_current_contract.py",
       "source_sha256": "3a2f63cb70469ccd7374f1295b99549df9b0a84dcc687ddc1dcc63086fd77310",
       "extracted_sha256": "3a99e9145f18a3c08cd97958899fa1b66e800bc90e5bc0135de6ee91297167e3",
-      "post_extraction_review": "See repository validation and release status; final file identity differs from the initial mechanical extraction."
+      "post_extraction_review": "See README reproducibility section; final file identity differs from the initial mechanical extraction."
     },
     {
       "path": "src/modebench/__init__.py",
@@ -209,7 +209,7 @@
       "source": "tests/test_mode_diversity.py",
       "source_sha256": "98b5e168d4118db580d5dcb60026622ce46ba67272b629673fe3e9bc548e5106",
       "extracted_sha256": "97ff7f23e9ffd798c1d876a115e8dd3f1f7d6241b5f8e4dcfe13fca852e7cca5",
-      "post_extraction_review": "See repository validation and release status; final file identity differs from the initial mechanical extraction."
+      "post_extraction_review": "See README reproducibility section; final file identity differs from the initial mechanical extraction."
     },
     {
       "path": "tests/test_frontier_modebench_contract.py",
@@ -240,7 +240,7 @@
       "extracted_sha256": "8f705f40cc7bdfc8eea108fcd6258562e177d13f171dd505705bb8740bb52b39"
     },
     {
-      "path": "docs/assets/modebench-domains.png",
+      "path": "assets/modebench-domains.png",
       "source": "paper/figures/modebench_examples.png",
       "source_sha256": "5485d7e44b6b5d20085d138885e6661535c52cb738125105ff206dc8cd0fcb5b",
       "sha256": "5485d7e44b6b5d20085d138885e6661535c52cb738125105ff206dc8cd0fcb5b",
@@ -248,5 +248,5 @@
       "transformation": "Unmodified paper domain illustration, copied for the public README."
     }
   ],
-  "scope": "Initial source extraction map. RELEASE_MANIFEST.json covers all final files, including new interfaces and evidence."
+  "scope": "Initial source extraction map. provenance/release.json covers all final files, including new interfaces and evidence."
 }
