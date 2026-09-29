@@ -13,6 +13,10 @@ The documented installation was tested in a fresh Linux/Python 3.10 virtual envi
 
 The standalone run exposed three Pantry tests that still referenced the original research checkout. Their fixtures now load the bundled, hash-verified Level 1 Pantry development split; all 112 tests pass from this repository's own root.
 
+## Dataset layout update
+
+All 72 Parquet splits were moved to `data/<level>/<domain>/` without changing their bytes or hashes. The single-answer diagnostic is under `data/level1/graph_coloring/unique_answer/`. Every split was loaded through its unchanged configuration name and checked against the manifest; the full repository checks and Countdown training materialization were rerun after the move.
+
 ## Earlier extraction checks
 
 The initial combined ModeBench/Re:Max suite passed 240 tests in the research Python 3.10 environment. Both packages built as wheels without dependency resolution. An isolated installed-wheel check exercised Countdown and the external Python-factor worker without importing PyTorch or the parent research package.

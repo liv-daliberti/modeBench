@@ -2,6 +2,28 @@
 
 The Git checkout bundles 26 configurations: five domains at each of five levels, plus a Level 1 graph-coloring single-answer diagnostic. Together they contain 72 Parquet splits and 15,552 rows. The diagnostic is separate from the main multi-answer benchmark.
 
+## Directory layout
+
+Files are organized first by level, then by domain, then by split:
+
+```text
+data/
+├── manifest.json
+├── level1/
+│   ├── countdown/{train,eval}.parquet
+│   ├── graph_coloring/
+│   │   ├── train.parquet
+│   │   ├── eval.parquet
+│   │   └── unique_answer/eval.parquet
+│   ├── mathir/{train,eval}.parquet
+│   ├── pantry_plan/{train,dev,eval}.parquet
+│   └── python_factors/{train,eval}.parquet
+└── level2/ … level5/
+    └── <domain>/{train,dev,eval}.parquet
+```
+
+See the [dataset directory](../data/README.md) for links by level and domain. Configuration names such as `level1_countdown` remain stable: the loader resolves each file through the manifest. The Level 1 graph-coloring `unique_answer/` subdirectory holds the separate diagnostic. Reorganizing the folders did not change any Parquet bytes, row counts, split membership, or dataset hashes.
+
 ## Load frozen data
 
 ```python

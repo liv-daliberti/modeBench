@@ -71,6 +71,8 @@ PCMD is undefined for a prompt with fewer than two verified responses. Always re
 
 ## Datasets and protocol
 
+Frozen datasets are arranged as [`data/<level>/<domain>/<split>.parquet`](data/README.md), with stable configuration names resolved by the manifest.
+
 The [dataset guide](docs/datasets.md) lists every configuration, split size, task interface, and admission caveat. Frozen Parquet bytes and split membership are preserved from the retained release packages.
 
 **Level 4 MathIR is not difficulty-matched.** The other four Level 4 domains passed their matching checks; Level 4 as a whole is not admitted. All five Level 5 domains are admitted according to the retained release manifest. These labels do not establish statistical equivalence between levels.

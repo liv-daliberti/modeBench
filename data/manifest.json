@@ -3,7 +3,7 @@
   "splits": [
     {
       "config_name": "level1_countdown",
-      "data_file": "data/level1_countdown/eval.parquet",
+      "data_file": "data/level1/countdown/eval.parquet",
       "domain": "countdown",
       "level": 1,
       "original_datasetdict_split": "multi_answer",
@@ -21,7 +21,7 @@
     },
     {
       "config_name": "level1_countdown",
-      "data_file": "data/level1_countdown/train.parquet",
+      "data_file": "data/level1/countdown/train.parquet",
       "domain": "countdown",
       "level": 1,
       "original_datasetdict_split": "train",
@@ -39,7 +39,7 @@
     },
     {
       "config_name": "level1_graph_coloring",
-      "data_file": "data/level1_graph_coloring/eval.parquet",
+      "data_file": "data/level1/graph_coloring/eval.parquet",
       "domain": "graph_coloring",
       "level": 1,
       "original_datasetdict_split": "multi_answer",
@@ -57,7 +57,7 @@
     },
     {
       "config_name": "level1_graph_coloring",
-      "data_file": "data/level1_graph_coloring/train.parquet",
+      "data_file": "data/level1/graph_coloring/train.parquet",
       "domain": "graph_coloring",
       "level": 1,
       "original_datasetdict_split": "train",
@@ -75,7 +75,7 @@
     },
     {
       "config_name": "level1_graph_coloring_unique_answer",
-      "data_file": "data/level1_graph_coloring_unique_answer/eval.parquet",
+      "data_file": "data/level1/graph_coloring/unique_answer/eval.parquet",
       "domain": "graph_coloring",
       "level": 1,
       "original_datasetdict_split": "unique_answer",
@@ -93,7 +93,7 @@
     },
     {
       "config_name": "level1_mathir",
-      "data_file": "data/level1_mathir/eval.parquet",
+      "data_file": "data/level1/mathir/eval.parquet",
       "domain": "mathir",
       "level": 1,
       "original_datasetdict_split": "multi_answer",
@@ -112,7 +112,7 @@
     },
     {
       "config_name": "level1_mathir",
-      "data_file": "data/level1_mathir/train.parquet",
+      "data_file": "data/level1/mathir/train.parquet",
       "domain": "mathir",
       "level": 1,
       "original_datasetdict_split": "train",
@@ -131,7 +131,7 @@
     },
     {
       "config_name": "level1_pantry_plan",
-      "data_file": "data/level1_pantry_plan/dev.parquet",
+      "data_file": "data/level1/pantry_plan/dev.parquet",
       "domain": "pantry_plan",
       "level": 1,
       "original_datasetdict_split": "multi_answer",
@@ -151,7 +151,7 @@
     },
     {
       "config_name": "level1_pantry_plan",
-      "data_file": "data/level1_pantry_plan/eval.parquet",
+      "data_file": "data/level1/pantry_plan/eval.parquet",
       "domain": "pantry_plan",
       "level": 1,
       "original_datasetdict_split": "multi_answer",
@@ -171,7 +171,7 @@
     },
     {
       "config_name": "level1_pantry_plan",
-      "data_file": "data/level1_pantry_plan/train.parquet",
+      "data_file": "data/level1/pantry_plan/train.parquet",
       "domain": "pantry_plan",
       "level": 1,
       "original_datasetdict_split": "train",
@@ -191,7 +191,7 @@
     },
     {
       "config_name": "level1_python_factors",
-      "data_file": "data/level1_python_factors/eval.parquet",
+      "data_file": "data/level1/python_factors/eval.parquet",
       "domain": "python_factors",
       "level": 1,
       "original_datasetdict_split": "multi_answer",
@@ -209,7 +209,7 @@
     },
     {
       "config_name": "level1_python_factors",
-      "data_file": "data/level1_python_factors/train.parquet",
+      "data_file": "data/level1/python_factors/train.parquet",
       "domain": "python_factors",
       "level": 1,
       "original_datasetdict_split": "train",
@@ -227,7 +227,7 @@
     },
     {
       "config_name": "level2_countdown",
-      "data_file": "data/level2_countdown/dev.parquet",
+      "data_file": "data/level2/countdown/dev.parquet",
       "domain": "countdown",
       "level": 2,
       "original_datasetdict_split": "multi_answer",
@@ -245,7 +245,7 @@
     },
     {
       "config_name": "level2_countdown",
-      "data_file": "data/level2_countdown/eval.parquet",
+      "data_file": "data/level2/countdown/eval.parquet",
       "domain": "countdown",
       "level": 2,
       "original_datasetdict_split": "multi_answer",
@@ -263,7 +263,7 @@
     },
     {
       "config_name": "level2_countdown",
-      "data_file": "data/level2_countdown/train.parquet",
+      "data_file": "data/level2/countdown/train.parquet",
       "domain": "countdown",
       "level": 2,
       "original_datasetdict_split": "train",
@@ -281,7 +281,7 @@
     },
     {
       "config_name": "level2_graph_coloring",
-      "data_file": "data/level2_graph_coloring/dev.parquet",
+      "data_file": "data/level2/graph_coloring/dev.parquet",
       "domain": "graph_coloring",
       "level": 2,
       "original_datasetdict_split": "multi_answer",
@@ -299,7 +299,7 @@
     },
     {
       "config_name": "level2_graph_coloring",
-      "data_file": "data/level2_graph_coloring/eval.parquet",
+      "data_file": "data/level2/graph_coloring/eval.parquet",
       "domain": "graph_coloring",
       "level": 2,
       "original_datasetdict_split": "multi_answer",
@@ -317,7 +317,7 @@
     },
     {
       "config_name": "level2_graph_coloring",
-      "data_file": "data/level2_graph_coloring/train.parquet",
+      "data_file": "data/level2/graph_coloring/train.parquet",
       "domain": "graph_coloring",
       "level": 2,
       "original_datasetdict_split": "train",
@@ -335,7 +335,7 @@
     },
     {
       "config_name": "level2_mathir",
-      "data_file": "data/level2_mathir/dev.parquet",
+      "data_file": "data/level2/mathir/dev.parquet",
       "domain": "mathir",
       "level": 2,
       "original_datasetdict_split": "multi_answer",
@@ -354,7 +354,7 @@
     },
     {
       "config_name": "level2_mathir",
-      "data_file": "data/level2_mathir/eval.parquet",
+      "data_file": "data/level2/mathir/eval.parquet",
       "domain": "mathir",
       "level": 2,
       "original_datasetdict_split": "multi_answer",
@@ -373,7 +373,7 @@
     },
     {
       "config_name": "level2_mathir",
-      "data_file": "data/level2_mathir/train.parquet",
+      "data_file": "data/level2/mathir/train.parquet",
       "domain": "mathir",
       "level": 2,
       "original_datasetdict_split": "train",
@@ -392,7 +392,7 @@
     },
     {
       "config_name": "level2_pantry_plan",
-      "data_file": "data/level2_pantry_plan/dev.parquet",
+      "data_file": "data/level2/pantry_plan/dev.parquet",
       "domain": "pantry_plan",
       "level": 2,
       "original_datasetdict_split": "multi_answer",
@@ -412,7 +412,7 @@
     },
     {
       "config_name": "level2_pantry_plan",
-      "data_file": "data/level2_pantry_plan/eval.parquet",
+      "data_file": "data/level2/pantry_plan/eval.parquet",
       "domain": "pantry_plan",
       "level": 2,
       "original_datasetdict_split": "multi_answer",
@@ -432,7 +432,7 @@
     },
     {
       "config_name": "level2_pantry_plan",
-      "data_file": "data/level2_pantry_plan/train.parquet",
+      "data_file": "data/level2/pantry_plan/train.parquet",
       "domain": "pantry_plan",
       "level": 2,
       "original_datasetdict_split": "train",
@@ -452,7 +452,7 @@
     },
     {
       "config_name": "level2_python_factors",
-      "data_file": "data/level2_python_factors/dev.parquet",
+      "data_file": "data/level2/python_factors/dev.parquet",
       "domain": "python_factors",
       "level": 2,
       "original_datasetdict_split": "multi_answer",
@@ -470,7 +470,7 @@
     },
     {
       "config_name": "level2_python_factors",
-      "data_file": "data/level2_python_factors/eval.parquet",
+      "data_file": "data/level2/python_factors/eval.parquet",
       "domain": "python_factors",
       "level": 2,
       "original_datasetdict_split": "multi_answer",
@@ -488,7 +488,7 @@
     },
     {
       "config_name": "level2_python_factors",
-      "data_file": "data/level2_python_factors/train.parquet",
+      "data_file": "data/level2/python_factors/train.parquet",
       "domain": "python_factors",
       "level": 2,
       "original_datasetdict_split": "train",
@@ -506,7 +506,7 @@
     },
     {
       "config_name": "level3_countdown",
-      "data_file": "data/level3_countdown/dev.parquet",
+      "data_file": "data/level3/countdown/dev.parquet",
       "domain": "countdown",
       "level": 3,
       "original_datasetdict_split": "multi_answer",
@@ -530,7 +530,7 @@
     },
     {
       "config_name": "level3_countdown",
-      "data_file": "data/level3_countdown/eval.parquet",
+      "data_file": "data/level3/countdown/eval.parquet",
       "domain": "countdown",
       "level": 3,
       "original_datasetdict_split": "multi_answer",
@@ -554,7 +554,7 @@
     },
     {
       "config_name": "level3_countdown",
-      "data_file": "data/level3_countdown/train.parquet",
+      "data_file": "data/level3/countdown/train.parquet",
       "domain": "countdown",
       "level": 3,
       "original_datasetdict_split": "train",
@@ -578,7 +578,7 @@
     },
     {
       "config_name": "level3_graph_coloring",
-      "data_file": "data/level3_graph_coloring/dev.parquet",
+      "data_file": "data/level3/graph_coloring/dev.parquet",
       "domain": "graph_coloring",
       "level": 3,
       "original_datasetdict_split": "multi_answer",
@@ -600,7 +600,7 @@
     },
     {
       "config_name": "level3_graph_coloring",
-      "data_file": "data/level3_graph_coloring/eval.parquet",
+      "data_file": "data/level3/graph_coloring/eval.parquet",
       "domain": "graph_coloring",
       "level": 3,
       "original_datasetdict_split": "multi_answer",
@@ -622,7 +622,7 @@
     },
     {
       "config_name": "level3_graph_coloring",
-      "data_file": "data/level3_graph_coloring/train.parquet",
+      "data_file": "data/level3/graph_coloring/train.parquet",
       "domain": "graph_coloring",
       "level": 3,
       "original_datasetdict_split": "train",
@@ -644,7 +644,7 @@
     },
     {
       "config_name": "level3_mathir",
-      "data_file": "data/level3_mathir/dev.parquet",
+      "data_file": "data/level3/mathir/dev.parquet",
       "domain": "mathir",
       "level": 3,
       "original_datasetdict_split": "multi_answer",
@@ -666,7 +666,7 @@
     },
     {
       "config_name": "level3_mathir",
-      "data_file": "data/level3_mathir/eval.parquet",
+      "data_file": "data/level3/mathir/eval.parquet",
       "domain": "mathir",
       "level": 3,
       "original_datasetdict_split": "multi_answer",
@@ -688,7 +688,7 @@
     },
     {
       "config_name": "level3_mathir",
-      "data_file": "data/level3_mathir/train.parquet",
+      "data_file": "data/level3/mathir/train.parquet",
       "domain": "mathir",
       "level": 3,
       "original_datasetdict_split": "train",
@@ -710,7 +710,7 @@
     },
     {
       "config_name": "level3_pantry_plan",
-      "data_file": "data/level3_pantry_plan/dev.parquet",
+      "data_file": "data/level3/pantry_plan/dev.parquet",
       "domain": "pantry_plan",
       "level": 3,
       "original_datasetdict_split": "multi_answer",
@@ -733,7 +733,7 @@
     },
     {
       "config_name": "level3_pantry_plan",
-      "data_file": "data/level3_pantry_plan/eval.parquet",
+      "data_file": "data/level3/pantry_plan/eval.parquet",
       "domain": "pantry_plan",
       "level": 3,
       "original_datasetdict_split": "multi_answer",
@@ -756,7 +756,7 @@
     },
     {
       "config_name": "level3_pantry_plan",
-      "data_file": "data/level3_pantry_plan/train.parquet",
+      "data_file": "data/level3/pantry_plan/train.parquet",
       "domain": "pantry_plan",
       "level": 3,
       "original_datasetdict_split": "train",
@@ -779,7 +779,7 @@
     },
     {
       "config_name": "level3_python_factors",
-      "data_file": "data/level3_python_factors/dev.parquet",
+      "data_file": "data/level3/python_factors/dev.parquet",
       "domain": "python_factors",
       "level": 3,
       "original_datasetdict_split": "multi_answer",
@@ -806,7 +806,7 @@
     },
     {
       "config_name": "level3_python_factors",
-      "data_file": "data/level3_python_factors/eval.parquet",
+      "data_file": "data/level3/python_factors/eval.parquet",
       "domain": "python_factors",
       "level": 3,
       "original_datasetdict_split": "multi_answer",
@@ -833,7 +833,7 @@
     },
     {
       "config_name": "level3_python_factors",
-      "data_file": "data/level3_python_factors/train.parquet",
+      "data_file": "data/level3/python_factors/train.parquet",
       "domain": "python_factors",
       "level": 3,
       "original_datasetdict_split": "train",
@@ -860,7 +860,7 @@
     },
     {
       "config_name": "level4_countdown",
-      "data_file": "data/level4_countdown/dev.parquet",
+      "data_file": "data/level4/countdown/dev.parquet",
       "difficulty_matched": true,
       "domain": "countdown",
       "level": 4,
@@ -886,7 +886,7 @@
     },
     {
       "config_name": "level4_countdown",
-      "data_file": "data/level4_countdown/eval.parquet",
+      "data_file": "data/level4/countdown/eval.parquet",
       "difficulty_matched": true,
       "domain": "countdown",
       "level": 4,
@@ -912,7 +912,7 @@
     },
     {
       "config_name": "level4_countdown",
-      "data_file": "data/level4_countdown/train.parquet",
+      "data_file": "data/level4/countdown/train.parquet",
       "difficulty_matched": true,
       "domain": "countdown",
       "level": 4,
@@ -938,7 +938,7 @@
     },
     {
       "config_name": "level4_graph_coloring",
-      "data_file": "data/level4_graph_coloring/dev.parquet",
+      "data_file": "data/level4/graph_coloring/dev.parquet",
       "difficulty_matched": true,
       "domain": "graph_coloring",
       "level": 4,
@@ -964,7 +964,7 @@
     },
     {
       "config_name": "level4_graph_coloring",
-      "data_file": "data/level4_graph_coloring/eval.parquet",
+      "data_file": "data/level4/graph_coloring/eval.parquet",
       "difficulty_matched": true,
       "domain": "graph_coloring",
       "level": 4,
@@ -990,7 +990,7 @@
     },
     {
       "config_name": "level4_graph_coloring",
-      "data_file": "data/level4_graph_coloring/train.parquet",
+      "data_file": "data/level4/graph_coloring/train.parquet",
       "difficulty_matched": true,
       "domain": "graph_coloring",
       "level": 4,
@@ -1016,7 +1016,7 @@
     },
     {
       "config_name": "level4_mathir",
-      "data_file": "data/level4_mathir/dev.parquet",
+      "data_file": "data/level4/mathir/dev.parquet",
       "difficulty_matched": false,
       "domain": "mathir",
       "level": 4,
@@ -1042,7 +1042,7 @@
     },
     {
       "config_name": "level4_mathir",
-      "data_file": "data/level4_mathir/eval.parquet",
+      "data_file": "data/level4/mathir/eval.parquet",
       "difficulty_matched": false,
       "domain": "mathir",
       "level": 4,
@@ -1068,7 +1068,7 @@
     },
     {
       "config_name": "level4_mathir",
-      "data_file": "data/level4_mathir/train.parquet",
+      "data_file": "data/level4/mathir/train.parquet",
       "difficulty_matched": false,
       "domain": "mathir",
       "level": 4,
@@ -1094,7 +1094,7 @@
     },
     {
       "config_name": "level4_pantry_plan",
-      "data_file": "data/level4_pantry_plan/dev.parquet",
+      "data_file": "data/level4/pantry_plan/dev.parquet",
       "difficulty_matched": true,
       "domain": "pantry_plan",
       "level": 4,
@@ -1123,7 +1123,7 @@
     },
     {
       "config_name": "level4_pantry_plan",
-      "data_file": "data/level4_pantry_plan/eval.parquet",
+      "data_file": "data/level4/pantry_plan/eval.parquet",
       "difficulty_matched": true,
       "domain": "pantry_plan",
       "level": 4,
@@ -1152,7 +1152,7 @@
     },
     {
       "config_name": "level4_pantry_plan",
-      "data_file": "data/level4_pantry_plan/train.parquet",
+      "data_file": "data/level4/pantry_plan/train.parquet",
       "difficulty_matched": true,
       "domain": "pantry_plan",
       "level": 4,
@@ -1181,7 +1181,7 @@
     },
     {
       "config_name": "level4_python_factors",
-      "data_file": "data/level4_python_factors/dev.parquet",
+      "data_file": "data/level4/python_factors/dev.parquet",
       "difficulty_matched": true,
       "domain": "python_factors",
       "level": 4,
@@ -1207,7 +1207,7 @@
     },
     {
       "config_name": "level4_python_factors",
-      "data_file": "data/level4_python_factors/eval.parquet",
+      "data_file": "data/level4/python_factors/eval.parquet",
       "difficulty_matched": true,
       "domain": "python_factors",
       "level": 4,
@@ -1233,7 +1233,7 @@
     },
     {
       "config_name": "level4_python_factors",
-      "data_file": "data/level4_python_factors/train.parquet",
+      "data_file": "data/level4/python_factors/train.parquet",
       "difficulty_matched": true,
       "domain": "python_factors",
       "level": 4,
@@ -1259,7 +1259,7 @@
     },
     {
       "config_name": "level5_countdown",
-      "data_file": "data/level5_countdown/dev.parquet",
+      "data_file": "data/level5/countdown/dev.parquet",
       "difficulty_matched": true,
       "domain": "countdown",
       "level": 5,
@@ -1285,7 +1285,7 @@
     },
     {
       "config_name": "level5_countdown",
-      "data_file": "data/level5_countdown/eval.parquet",
+      "data_file": "data/level5/countdown/eval.parquet",
       "difficulty_matched": true,
       "domain": "countdown",
       "level": 5,
@@ -1311,7 +1311,7 @@
     },
     {
       "config_name": "level5_countdown",
-      "data_file": "data/level5_countdown/train.parquet",
+      "data_file": "data/level5/countdown/train.parquet",
       "difficulty_matched": true,
       "domain": "countdown",
       "level": 5,
@@ -1337,7 +1337,7 @@
     },
     {
       "config_name": "level5_graph_coloring",
-      "data_file": "data/level5_graph_coloring/dev.parquet",
+      "data_file": "data/level5/graph_coloring/dev.parquet",
       "difficulty_matched": true,
       "domain": "graph_coloring",
       "level": 5,
@@ -1363,7 +1363,7 @@
     },
     {
       "config_name": "level5_graph_coloring",
-      "data_file": "data/level5_graph_coloring/eval.parquet",
+      "data_file": "data/level5/graph_coloring/eval.parquet",
       "difficulty_matched": true,
       "domain": "graph_coloring",
       "level": 5,
@@ -1389,7 +1389,7 @@
     },
     {
       "config_name": "level5_graph_coloring",
-      "data_file": "data/level5_graph_coloring/train.parquet",
+      "data_file": "data/level5/graph_coloring/train.parquet",
       "difficulty_matched": true,
       "domain": "graph_coloring",
       "level": 5,
@@ -1415,7 +1415,7 @@
     },
     {
       "config_name": "level5_mathir",
-      "data_file": "data/level5_mathir/dev.parquet",
+      "data_file": "data/level5/mathir/dev.parquet",
       "difficulty_matched": true,
       "domain": "mathir",
       "level": 5,
@@ -1443,7 +1443,7 @@
     },
     {
       "config_name": "level5_mathir",
-      "data_file": "data/level5_mathir/eval.parquet",
+      "data_file": "data/level5/mathir/eval.parquet",
       "difficulty_matched": true,
       "domain": "mathir",
       "level": 5,
@@ -1471,7 +1471,7 @@
     },
     {
       "config_name": "level5_mathir",
-      "data_file": "data/level5_mathir/train.parquet",
+      "data_file": "data/level5/mathir/train.parquet",
       "difficulty_matched": true,
       "domain": "mathir",
       "level": 5,
@@ -1499,7 +1499,7 @@
     },
     {
       "config_name": "level5_pantry_plan",
-      "data_file": "data/level5_pantry_plan/dev.parquet",
+      "data_file": "data/level5/pantry_plan/dev.parquet",
       "difficulty_matched": true,
       "domain": "pantry_plan",
       "level": 5,
@@ -1528,7 +1528,7 @@
     },
     {
       "config_name": "level5_pantry_plan",
-      "data_file": "data/level5_pantry_plan/eval.parquet",
+      "data_file": "data/level5/pantry_plan/eval.parquet",
       "difficulty_matched": true,
       "domain": "pantry_plan",
       "level": 5,
@@ -1557,7 +1557,7 @@
     },
     {
       "config_name": "level5_pantry_plan",
-      "data_file": "data/level5_pantry_plan/train.parquet",
+      "data_file": "data/level5/pantry_plan/train.parquet",
       "difficulty_matched": true,
       "domain": "pantry_plan",
       "level": 5,
@@ -1586,7 +1586,7 @@
     },
     {
       "config_name": "level5_python_factors",
-      "data_file": "data/level5_python_factors/dev.parquet",
+      "data_file": "data/level5/python_factors/dev.parquet",
       "difficulty_matched": true,
       "domain": "python_factors",
       "level": 5,
@@ -1612,7 +1612,7 @@
     },
     {
       "config_name": "level5_python_factors",
-      "data_file": "data/level5_python_factors/eval.parquet",
+      "data_file": "data/level5/python_factors/eval.parquet",
       "difficulty_matched": true,
       "domain": "python_factors",
       "level": 5,
@@ -1638,7 +1638,7 @@
     },
     {
       "config_name": "level5_python_factors",
-      "data_file": "data/level5_python_factors/train.parquet",
+      "data_file": "data/level5/python_factors/train.parquet",
       "difficulty_matched": true,
       "domain": "python_factors",
       "level": 5,

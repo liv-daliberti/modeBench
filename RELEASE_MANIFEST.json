@@ -33,8 +33,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "795fdbf0d5c5777a80c3d2769756753e2e075d997f233a453cd4b1e08aa35fda",
-      "bytes": 6682
+      "sha256": "c008ca45d929e6bb8c82a6faf57e0099f179ec8fb2577f9c268f5f430b32d050",
+      "bytes": 6832
     },
     {
       "path": "RELEASE_STATUS.md",
@@ -43,8 +43,8 @@
     },
     {
       "path": "VALIDATION.md",
-      "sha256": "21c459202df5d74a1865eb472d45f3b569bfcf7566d40de832c70f216ce9b504",
-      "bytes": 1988
+      "sha256": "d24bb7041bb0b2861a3f8ce445b9d593c216af9c62c5885e5731b8123b644991",
+      "bytes": 2390
     },
     {
       "path": "constraints-py310-tested.txt",
@@ -52,368 +52,373 @@
       "bytes": 903
     },
     {
-      "path": "data/level1_countdown/eval.parquet",
+      "path": "data/README.md",
+      "sha256": "d617e03d6c273a9f38f15fd169cf4021d33008fcc8229630f69dc399270ccb33",
+      "bytes": 1811
+    },
+    {
+      "path": "data/level1/countdown/eval.parquet",
       "sha256": "a1da95c1b5997a0c8d804c8bf7b607817b11bb8c7982b3d04bd4c345da7b9c33",
       "bytes": 8432
     },
     {
-      "path": "data/level1_countdown/train.parquet",
+      "path": "data/level1/countdown/train.parquet",
       "sha256": "00054c212d28ccb103b982cb56de7c381691b91a8ee3af7d984c5e0d57fe74f1",
       "bytes": 13725
     },
     {
-      "path": "data/level1_graph_coloring/eval.parquet",
+      "path": "data/level1/graph_coloring/eval.parquet",
       "sha256": "5c009576b979ac78b9bf73c80790e0048a75f4c27c400569907f096e18a220fb",
       "bytes": 13112
     },
     {
-      "path": "data/level1_graph_coloring/train.parquet",
+      "path": "data/level1/graph_coloring/train.parquet",
       "sha256": "56266083798c5e86223e7705d3ed2b97d22dc8aba56814402a0c09afc9eddf30",
       "bytes": 22522
     },
     {
-      "path": "data/level1_graph_coloring_unique_answer/eval.parquet",
+      "path": "data/level1/graph_coloring/unique_answer/eval.parquet",
       "sha256": "759ba48dbcd3fcd4f000449eed1b9e0ea55319dc9677f5150842180ea95893bf",
       "bytes": 13015
     },
     {
-      "path": "data/level1_mathir/eval.parquet",
+      "path": "data/level1/mathir/eval.parquet",
       "sha256": "fc0280c144e5c9c54624303cd508612dbbb3a0ef130dfee9a42fb8f9413e9902",
       "bytes": 20812
     },
     {
-      "path": "data/level1_mathir/train.parquet",
+      "path": "data/level1/mathir/train.parquet",
       "sha256": "aac7f11f814eb85769cd16fe8464d886cef3daade22d3d61de50385de9c0662a",
       "bytes": 37345
     },
     {
-      "path": "data/level1_pantry_plan/dev.parquet",
+      "path": "data/level1/pantry_plan/dev.parquet",
       "sha256": "0411b6d32ff14491d14ab5c9edf37a28e8d6fc9ad95ad3afc3f172ba7ec23319",
       "bytes": 36731
     },
     {
-      "path": "data/level1_pantry_plan/eval.parquet",
+      "path": "data/level1/pantry_plan/eval.parquet",
       "sha256": "2807515694c01108c5b8a616eded485a6ffded07fd1f9eb5fa0155cfeb7c2c34",
       "bytes": 48960
     },
     {
-      "path": "data/level1_pantry_plan/train.parquet",
+      "path": "data/level1/pantry_plan/train.parquet",
       "sha256": "eced2be5ca3fb8194703e8f9d7cfd5d29a1ee701369be14cd388d2004b80a8a3",
       "bytes": 98671
     },
     {
-      "path": "data/level1_python_factors/eval.parquet",
+      "path": "data/level1/python_factors/eval.parquet",
       "sha256": "88a3f35b0f3e8e9b8ec4da5151ca7697afc79894c0507d00c258d4154983cea0",
       "bytes": 16281
     },
     {
-      "path": "data/level1_python_factors/train.parquet",
+      "path": "data/level1/python_factors/train.parquet",
       "sha256": "86e4abc2ff3f2efff47c67aaa3263af2fcb226adefcb8fa52e94ff3c15a94948",
       "bytes": 31553
     },
     {
-      "path": "data/level2_countdown/dev.parquet",
+      "path": "data/level2/countdown/dev.parquet",
       "sha256": "2f9451228cfd2a49580d3c93b21f58685a477adf2a40d014f480a8f3cc91ef99",
       "bytes": 8674
     },
     {
-      "path": "data/level2_countdown/eval.parquet",
+      "path": "data/level2/countdown/eval.parquet",
       "sha256": "50b90a6197ff1ac83ba0020239bb903bb597c334a27329d3e8703f163cf5d17c",
       "bytes": 8752
     },
     {
-      "path": "data/level2_countdown/train.parquet",
+      "path": "data/level2/countdown/train.parquet",
       "sha256": "bd6a3645bd2e84e90478ddd9f4c4f4f69c28f41a6df7615acb91a9f92374db97",
       "bytes": 14452
     },
     {
-      "path": "data/level2_graph_coloring/dev.parquet",
+      "path": "data/level2/graph_coloring/dev.parquet",
       "sha256": "9d32ed70ff3f002f35dd23b5197e4b06a477b08e4e418bc682675b1e0402ece7",
       "bytes": 13257
     },
     {
-      "path": "data/level2_graph_coloring/eval.parquet",
+      "path": "data/level2/graph_coloring/eval.parquet",
       "sha256": "63e5f1b8f4b3db950022080c9971cec71c864d369f346f64aa9c303da5b1e33f",
       "bytes": 13086
     },
     {
-      "path": "data/level2_graph_coloring/train.parquet",
+      "path": "data/level2/graph_coloring/train.parquet",
       "sha256": "bd250e096ea785d45e76d0de1c7d872ca8822e95181568cb8ae1b69a6b905fd8",
       "bytes": 23261
     },
     {
-      "path": "data/level2_mathir/dev.parquet",
+      "path": "data/level2/mathir/dev.parquet",
       "sha256": "3dbbb10af2589e467ace24420fe67387fb299ba465a1180163a2b62910dd2fd4",
       "bytes": 20318
     },
     {
-      "path": "data/level2_mathir/eval.parquet",
+      "path": "data/level2/mathir/eval.parquet",
       "sha256": "646e8780fdfbad6ec5681fba1583dafc9ac6755200b2cb80f497dab75320819f",
       "bytes": 20588
     },
     {
-      "path": "data/level2_mathir/train.parquet",
+      "path": "data/level2/mathir/train.parquet",
       "sha256": "f32e8223d9335f2460182d21f5b787e3fb895162255d42a6995d5669a0750a54",
       "bytes": 37680
     },
     {
-      "path": "data/level2_pantry_plan/dev.parquet",
+      "path": "data/level2/pantry_plan/dev.parquet",
       "sha256": "1c33bea8878ea99b007399cdc9de1b69da8053d5f700728b4203f5bef49a7f76",
       "bytes": 49384
     },
     {
-      "path": "data/level2_pantry_plan/eval.parquet",
+      "path": "data/level2/pantry_plan/eval.parquet",
       "sha256": "94a1aac4a48bfd21e363433397fcd834bbd39c096551900f63b29dadc960905b",
       "bytes": 48888
     },
     {
-      "path": "data/level2_pantry_plan/train.parquet",
+      "path": "data/level2/pantry_plan/train.parquet",
       "sha256": "dd531d612bd8addef1f6a4da8f61cbf8c5068a8738b0f0033a310a292c89a9fe",
       "bytes": 96678
     },
     {
-      "path": "data/level2_python_factors/dev.parquet",
+      "path": "data/level2/python_factors/dev.parquet",
       "sha256": "70d3c17097338e96a5284dae841d0461173ad7c019c33b3c8dbbff990a70ccd3",
       "bytes": 16949
     },
     {
-      "path": "data/level2_python_factors/eval.parquet",
+      "path": "data/level2/python_factors/eval.parquet",
       "sha256": "3b6f96ca863cb4a5be793fd4e5e12337db48622faf3f70782553c37f64675a42",
       "bytes": 17020
     },
     {
-      "path": "data/level2_python_factors/train.parquet",
+      "path": "data/level2/python_factors/train.parquet",
       "sha256": "3662ed77c4c9ab7e3b2fae14217b86b5f0939a27326a7edd139bb789bd84c5db",
       "bytes": 33339
     },
     {
-      "path": "data/level3_countdown/dev.parquet",
+      "path": "data/level3/countdown/dev.parquet",
       "sha256": "c88bea04f663a199a26371a03f5b36c2a7d0ff70031286b308a51264984a35ae",
       "bytes": 15097
     },
     {
-      "path": "data/level3_countdown/eval.parquet",
+      "path": "data/level3/countdown/eval.parquet",
       "sha256": "b8c8540758fb32b8d49c0bc0f1c4337b6f29017f9f9fdcb618365d232a3e8c9a",
       "bytes": 14941
     },
     {
-      "path": "data/level3_countdown/train.parquet",
+      "path": "data/level3/countdown/train.parquet",
       "sha256": "6003fd18559b3a1caaaed1a036d74badd61a4774346b480e49a00e28acbe7f02",
       "bytes": 23693
     },
     {
-      "path": "data/level3_graph_coloring/dev.parquet",
+      "path": "data/level3/graph_coloring/dev.parquet",
       "sha256": "a9a33bc4666a34184bea8bd3cb311fa00346811852ff466547d399327f93a9d2",
       "bytes": 15287
     },
     {
-      "path": "data/level3_graph_coloring/eval.parquet",
+      "path": "data/level3/graph_coloring/eval.parquet",
       "sha256": "dd4bc7dedf28e5d153c80046abd3f8e8a80a6adcdd11b80aa05dde3cd5378bc7",
       "bytes": 15173
     },
     {
-      "path": "data/level3_graph_coloring/train.parquet",
+      "path": "data/level3/graph_coloring/train.parquet",
       "sha256": "0f6d9e8a5196a9536a39b56583272584cb2722b8317466cc4cd4c52767edeed9",
       "bytes": 23853
     },
     {
-      "path": "data/level3_mathir/dev.parquet",
+      "path": "data/level3/mathir/dev.parquet",
       "sha256": "9bb2d32ceda8ef0fde17e3ce4ee934f5f2142aab871bd79755a96b563ca93e39",
       "bytes": 24048
     },
     {
-      "path": "data/level3_mathir/eval.parquet",
+      "path": "data/level3/mathir/eval.parquet",
       "sha256": "9903ce6c9a612887787db2e803519fa715214e6733e2c684e85d1735c770d89a",
       "bytes": 24589
     },
     {
-      "path": "data/level3_mathir/train.parquet",
+      "path": "data/level3/mathir/train.parquet",
       "sha256": "e07fe596001de4614d40bd73e5c2898ee32357e87c4c09863568015461f3c3fc",
       "bytes": 43948
     },
     {
-      "path": "data/level3_pantry_plan/dev.parquet",
+      "path": "data/level3/pantry_plan/dev.parquet",
       "sha256": "4e508afec73597913468094dc7aeac59735b3d0767b1700bddf07bd7e7e643e8",
       "bytes": 59675
     },
     {
-      "path": "data/level3_pantry_plan/eval.parquet",
+      "path": "data/level3/pantry_plan/eval.parquet",
       "sha256": "63840b51ead4a7799c1376e49739322f2a085beaef981389a5f077ff058757a7",
       "bytes": 59289
     },
     {
-      "path": "data/level3_pantry_plan/train.parquet",
+      "path": "data/level3/pantry_plan/train.parquet",
       "sha256": "e97d3cda0e229934b32cd87a5a11627f124167918502ede632b7d6e3be56b255",
       "bytes": 121812
     },
     {
-      "path": "data/level3_python_factors/dev.parquet",
+      "path": "data/level3/python_factors/dev.parquet",
       "sha256": "1d72c49e9d43afa00b1b4c2f3b75bdbc9b753e4334d346b5283b7dadcdbdffe3",
       "bytes": 24170
     },
     {
-      "path": "data/level3_python_factors/eval.parquet",
+      "path": "data/level3/python_factors/eval.parquet",
       "sha256": "77d32ab09bb2125206b5fe291251b74219130a1a89d79d2b2d93700305ee0f21",
       "bytes": 24013
     },
     {
-      "path": "data/level3_python_factors/train.parquet",
+      "path": "data/level3/python_factors/train.parquet",
       "sha256": "cf5ee666dd126716d0a0cf68c9a74512bbb222ca68ad8839dcb276fab988e358",
       "bytes": 41093
     },
     {
-      "path": "data/level4_countdown/dev.parquet",
+      "path": "data/level4/countdown/dev.parquet",
       "sha256": "2508b6201c8efc9919583a88314a2c3c668fb05f9480d1748a7386a70983c01c",
       "bytes": 14481
     },
     {
-      "path": "data/level4_countdown/eval.parquet",
+      "path": "data/level4/countdown/eval.parquet",
       "sha256": "d9ffe3a874ea6fb39713c7aa9f10c56895415e3297f4d42247bd07c2d92cbee6",
       "bytes": 14365
     },
     {
-      "path": "data/level4_countdown/train.parquet",
+      "path": "data/level4/countdown/train.parquet",
       "sha256": "4d5e969b27a0552154ad146fe342d3f1bb96b56b406bfdf36ea83e3c3a20b667",
       "bytes": 22428
     },
     {
-      "path": "data/level4_graph_coloring/dev.parquet",
+      "path": "data/level4/graph_coloring/dev.parquet",
       "sha256": "07076d1716e072a2866193c0a8dc9d012f1c5a17888e926bf2fade03bc16b233",
       "bytes": 18631
     },
     {
-      "path": "data/level4_graph_coloring/eval.parquet",
+      "path": "data/level4/graph_coloring/eval.parquet",
       "sha256": "84789a0071d78197e9f961bf4ab02189e168e8b84bd496902630bc098bbeec36",
       "bytes": 18437
     },
     {
-      "path": "data/level4_graph_coloring/train.parquet",
+      "path": "data/level4/graph_coloring/train.parquet",
       "sha256": "1806ce59d5550cc33b5c435242035b334d841fa3a60398143c70009b40c2ff9f",
       "bytes": 28409
     },
     {
-      "path": "data/level4_mathir/dev.parquet",
+      "path": "data/level4/mathir/dev.parquet",
       "sha256": "931966f5bdea1bc49e2ab0ab92cdf815305efadec9ec3671955409699cfc7237",
       "bytes": 28689
     },
     {
-      "path": "data/level4_mathir/eval.parquet",
+      "path": "data/level4/mathir/eval.parquet",
       "sha256": "ef8e32741a37d447c5b62b7e9a52f46760731f00184b8df2ed9dfd57f9ed1a85",
       "bytes": 28765
     },
     {
-      "path": "data/level4_mathir/train.parquet",
+      "path": "data/level4/mathir/train.parquet",
       "sha256": "b7046ff0b40f53880c014204ebfb94dccd4629403b7e802edcd7d4bfa4a7b8b4",
       "bytes": 50853
     },
     {
-      "path": "data/level4_pantry_plan/dev.parquet",
+      "path": "data/level4/pantry_plan/dev.parquet",
       "sha256": "0cc1be8c282c8e01bd1ee57d1277a4157eb35e85466b5bab0f709cabfc53230d",
       "bytes": 62373
     },
     {
-      "path": "data/level4_pantry_plan/eval.parquet",
+      "path": "data/level4/pantry_plan/eval.parquet",
       "sha256": "8c97438a150b84fa558e611cb32ccce0ae57f17e0b3b2c725219f75302c6e981",
       "bytes": 61747
     },
     {
-      "path": "data/level4_pantry_plan/train.parquet",
+      "path": "data/level4/pantry_plan/train.parquet",
       "sha256": "34910a2f86e5131c6e791f6e0a5666e996ce6ee09156ee3f9597d2ccfc1ecaf5",
       "bytes": 119097
     },
     {
-      "path": "data/level4_python_factors/dev.parquet",
+      "path": "data/level4/python_factors/dev.parquet",
       "sha256": "48ae468c33c36fe6afd04ff333b2acc77fa434df414eb72ae61d8ca8050d2380",
       "bytes": 25632
     },
     {
-      "path": "data/level4_python_factors/eval.parquet",
+      "path": "data/level4/python_factors/eval.parquet",
       "sha256": "d4e60141fd94d3a038ef4a3af794623bcbe8664306e347676f84ce13213eed1d",
       "bytes": 25410
     },
     {
-      "path": "data/level4_python_factors/train.parquet",
+      "path": "data/level4/python_factors/train.parquet",
       "sha256": "2f09728ab48729f6a84965617100e92333c8c63dd7a607afa5e2cbe199d82b73",
       "bytes": 43125
     },
     {
-      "path": "data/level5_countdown/dev.parquet",
+      "path": "data/level5/countdown/dev.parquet",
       "sha256": "c7bc35dca1ce719eafcab008ee08b957d7563c83eb5468bbaca57a37636b1dc1",
       "bytes": 15398
     },
     {
-      "path": "data/level5_countdown/eval.parquet",
+      "path": "data/level5/countdown/eval.parquet",
       "sha256": "11459a06b49bd0dd61eb668e52ae3f2958c2b1aae22dbc1a9514fe41a28fb3ea",
       "bytes": 15207
     },
     {
-      "path": "data/level5_countdown/train.parquet",
+      "path": "data/level5/countdown/train.parquet",
       "sha256": "d80d91bc0faeabc825482f8f6fbd44592a5be2f970350895c25eae093e10f795",
       "bytes": 24557
     },
     {
-      "path": "data/level5_graph_coloring/dev.parquet",
+      "path": "data/level5/graph_coloring/dev.parquet",
       "sha256": "db9d1789c353a2af3e5e6532dcaf2db6de28e22dc52171049d3393e82b038c02",
       "bytes": 22350
     },
     {
-      "path": "data/level5_graph_coloring/eval.parquet",
+      "path": "data/level5/graph_coloring/eval.parquet",
       "sha256": "75ca0480b6e7e113ea681d3a1b1145a09fa2c3de7355ff921919ad708851febc",
       "bytes": 21928
     },
     {
-      "path": "data/level5_graph_coloring/train.parquet",
+      "path": "data/level5/graph_coloring/train.parquet",
       "sha256": "ed2fe860cc971afc285b52536d9d2458431b26b01d5c616d105461beafa06154",
       "bytes": 33450
     },
     {
-      "path": "data/level5_mathir/dev.parquet",
+      "path": "data/level5/mathir/dev.parquet",
       "sha256": "8ee260290035a2d5a30f76481f9c42115640629a3a6efa97073841994f21d8c7",
       "bytes": 34716
     },
     {
-      "path": "data/level5_mathir/eval.parquet",
+      "path": "data/level5/mathir/eval.parquet",
       "sha256": "a82293cd9a2245eb664f1f9082eec83d7232a00308e28a47de9b895a0ca8fd04",
       "bytes": 34531
     },
     {
-      "path": "data/level5_mathir/train.parquet",
+      "path": "data/level5/mathir/train.parquet",
       "sha256": "ea91001c8fff8c230d2bc7d184343324011286fecb27d3e7ca3a94b4cf2f9250",
       "bytes": 55510
     },
     {
-      "path": "data/level5_pantry_plan/dev.parquet",
+      "path": "data/level5/pantry_plan/dev.parquet",
       "sha256": "22d002000a0bd2f6624e274415c8fa0ae291bfd95a257a938729400ab356d5ae",
       "bytes": 66774
     },
     {
-      "path": "data/level5_pantry_plan/eval.parquet",
+      "path": "data/level5/pantry_plan/eval.parquet",
       "sha256": "474f112bfcb3abf9c3ac41e49c03e2b4f34e6a1d11670a4ad03768a6f37ac763",
       "bytes": 65530
     },
     {
-      "path": "data/level5_pantry_plan/train.parquet",
+      "path": "data/level5/pantry_plan/train.parquet",
       "sha256": "6b5f3199b5bb074d8f18b84f054d9950bf20e379e1bdabbb66a1f56879d59327",
       "bytes": 127834
     },
     {
-      "path": "data/level5_python_factors/dev.parquet",
+      "path": "data/level5/python_factors/dev.parquet",
       "sha256": "4e78331a2eb9b1c8b1f71c0c844325778d65bbbc3106fee933f32e9c838c36ff",
       "bytes": 23612
     },
     {
-      "path": "data/level5_python_factors/eval.parquet",
+      "path": "data/level5/python_factors/eval.parquet",
       "sha256": "496f9d6020fcb906a1ee6b6ec9cb868a4d5478c3f492ab0514d3a825a083b521",
       "bytes": 23551
     },
     {
-      "path": "data/level5_python_factors/train.parquet",
+      "path": "data/level5/python_factors/train.parquet",
       "sha256": "7b48efcf989206137696fb1194f5caa22cfb698d06bc343d688e344ad12568e1",
       "bytes": 41534
     },
     {
       "path": "data/manifest.json",
-      "sha256": "63b9bf9944692fbcbe161c5374ce2abae37bc4a43e827d5bf04111b31e8f085f",
+      "sha256": "b25710ac5514f4d6f3fe566d830ccaedf60c42fb22345c04e852f735e6b71405",
       "bytes": 54973
     },
     {
@@ -423,8 +428,8 @@
     },
     {
       "path": "docs/datasets.md",
-      "sha256": "f6677bc791834955b3a8bf2e08ec89407254c79236297485ff4eea1c975b268c",
-      "bytes": 7488
+      "sha256": "8574ea1a7db517e837152ab59976bbda7e23b01b951a00b66a67c9ef4d54be95",
+      "bytes": 8453
     },
     {
       "path": "docs/evaluation.md",
