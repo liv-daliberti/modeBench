@@ -631,7 +631,7 @@ def validate_mathir_algebra(
 ) -> MathIRValidation | None:
     """Execute and validate a MathIR program, returning its canonical path.
 
-    All failures return ``None``.  This function is the single admission
+    Expected reference/candidate errors return ``None``; unexpected failures propagate.  This function is the single admission
     boundary used by both task reward and the online canonical bank.
     """
 
@@ -649,7 +649,7 @@ def validate_mathir_algebra(
             commands=commands,
             key_version=MATHIR_VERSION,
         )
-    except Exception:
+    except (MathIRError, KeyError):
         return None
 
 
@@ -745,7 +745,7 @@ def validate_mathir_action_menu(
             key_version=MATHIR_MENU_VERSION,
             action_ids=action_ids,
         )
-    except Exception:
+    except (MathIRError, KeyError):
         return None
 
 
@@ -904,3 +904,16 @@ def mathir_command_histogram(validation: MathIRValidation) -> Counter[str]:
     """Small diagnostic helper used by audits and tests."""
 
     return Counter(command.op for command in validation.commands)
+
+
+def validate_reference(spec, level):
+    """Validate this domain reference before any response is scored."""
+    from modebench.validation import InputError, positive_integer
+    verifier = spec['verifier']
+    if 'max_steps' in spec:
+        positive_integer(spec['max_steps'], 'answer.max_steps')
+    for field in ('initial_lhs', 'initial_rhs'):
+        if not isinstance(spec.get(field), str) or not spec[field].strip():
+            raise InputError(f'answer.{field} must be a nonempty string')
+    parser = _validated_menu_reference if verifier == MATHIR_MENU_VERIFIER else _validated_reference
+    parser(spec)

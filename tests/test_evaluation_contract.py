@@ -29,8 +29,7 @@ def test_domain_reference_mismatch_is_not_scored_as_a_different_domain():
     row['domain'] = 'graph_coloring'
     with pytest.raises(InputError, match='does not match domain'):
         evaluate([row])
-    with pytest.raises(InputError, match='does not match domain'):
-        grade_response(1, 'graph_coloring', row, '1+2+3')
+    assert grade_response(1, 'graph_coloring', row, '1+2+3')['status'] == 'invalid_reference'
 
 
 @pytest.mark.parametrize('field,value,message', [
@@ -150,10 +149,10 @@ def test_valid_custom_scores_remain_unchanged_and_identity_is_explicit():
     result = evaluate([record()], min_defined_prompts=1)
     cell = result['cells'][0]
     assert (cell['accuracy'], cell['pass_at_k'], cell['distinct_at_k'], cell['pcmd']['d_mode']) == (0.5, 1, 2, 1)
-    assert result['schema'] == 'modebench-saved-responses-v2'
+    assert result['schema'] == 'modebench-saved-responses-v3'
     assert result['dataset'] == {'kind': 'custom', 'references_authenticated': False}
     assert result['run'] is None and result['generation_metadata_status'] == 'unreported'
-    assert result['software']['modebench_version'] == '0.2.0'
+    assert result['software']['modebench_version'] == '0.3.0'
     assert len(result['software']['package_source_sha256']) == 64
     prompt = cell['prompt_results'][0]
     assert len(prompt['reference_sha256']) == 64

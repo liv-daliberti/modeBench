@@ -15,11 +15,6 @@ from datasets import Dataset, DatasetDict
 
 
 ROOT = Path(os.environ.get("OAT_ZERO_REPO_ROOT", Path(__file__).resolve().parents[1]))
-OPS = Path(os.environ.get("OAT_ZERO_OPS_ROOT", ROOT / "ops"))
-SRC = Path(os.environ.get("OAT_ZERO_SOURCE_ROOT", ROOT / "src"))
-for path in (OPS, SRC):
-    if str(path) not in sys.path:
-        sys.path.insert(0, str(path))
 
 from make_pantry_plan_mode_data import (  # noqa: E402
     FAMILY_POOLS,

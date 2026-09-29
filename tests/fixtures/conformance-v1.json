@@ -1,0 +1,3268 @@
+{
+  "schema": "modebench-verifier-conformance-v1",
+  "baseline_commit": "0ae27d301c144411d6a3b67b9a3d2483d33b02bb",
+  "review_method": "Exact-arithmetic and domain-constraint checks in tests/conformance_oracle.py, independent of production validators. Canonical strings and formatting behavior captured from the pinned pre-change baseline. No external human review claimed.",
+  "fixtures": [
+    {
+      "config": "level1_countdown",
+      "level": 1,
+      "domain": "countdown",
+      "split": "eval",
+      "row_index": 0,
+      "parquet_sha256": "a1da95c1b5997a0c8d804c8bf7b607817b11bb8c7982b3d04bd4c345da7b9c33",
+      "row": {
+        "problem": "Using the numbers [3, 6, 9], create an arithmetic expression that equals 18. Use each given number exactly once. You may use +, -, *, /, and parentheses. Return exactly one final answer and no explanation: the expression inside \\boxed{}.",
+        "answer": {
+          "instance_id": "eval_multi_answer-10000-0",
+          "num_completions": 8,
+          "num_expressions": 8,
+          "numbers": [
+            3,
+            6,
+            9
+          ],
+          "source": "synthetic_exact_countdown",
+          "target": 18,
+          "verifier": "countdown"
+        }
+      },
+      "witnesses": [
+        {
+          "response": "(3+(6+9))"
+        },
+        {
+          "response": "((3+6)+9)"
+        }
+      ],
+      "cases": [
+        {
+          "name": "accepted_a",
+          "response": "(3+(6+9))",
+          "expected": {
+            "verified": true,
+            "canonical_key": "countdown:add(3,add(6,9))",
+            "graded_text": "(3+(6+9))"
+          }
+        },
+        {
+          "name": "accepted_b",
+          "response": "((3+6)+9)",
+          "expected": {
+            "verified": true,
+            "canonical_key": "countdown:add(9,add(3,6))",
+            "graded_text": "((3+6)+9)"
+          }
+        },
+        {
+          "name": "same_mode_format",
+          "response": "\\boxed{(3+(6+9))}",
+          "expected": {
+            "verified": true,
+            "canonical_key": "countdown:add(3,add(6,9))",
+            "graded_text": "\\boxed{(3+(6+9))}"
+          }
+        },
+        {
+          "name": "incorrect",
+          "response": "18",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "18"
+          }
+        },
+        {
+          "name": "malformed",
+          "response": "not a solution",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "not a solution"
+          }
+        },
+        {
+          "name": "format_boundary",
+          "response": "\\boxed{(3+(6+9))",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "\\boxed{(3+(6+9))"
+          }
+        },
+        {
+          "name": "oversized_candidate",
+          "response": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          }
+        }
+      ]
+    },
+    {
+      "config": "level1_graph_coloring",
+      "level": 1,
+      "domain": "graph_coloring",
+      "split": "eval",
+      "row_index": 0,
+      "parquet_sha256": "5c009576b979ac78b9bf73c80790e0048a75f4c27c400569907f096e18a220fb",
+      "row": {
+        "problem": "Color this graph with vertices 1 through 6. The undirected edges are: (1,2), (1,3), (3,5), (3,6), (4,6), (5,6). Assign each vertex one color from {1, 2, 3} so that no edge has the same color on both endpoints. A partial coloring is 2??1?2, where ? means uncolored. Keep every shown digit fixed. There are exactly 3 question marks. Return exactly one final answer and no explanation: exactly 3 digits, each one 1, 2, or 3, for the missing positions from left to right, inside \\boxed{}.",
+        "answer": {
+          "edges": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              3,
+              6
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              5,
+              6
+            ]
+          ],
+          "instance_id": "eval_multi_answer-10000-0",
+          "n": 6,
+          "num_completions": 4,
+          "num_solutions": 48,
+          "partial_colors": [
+            2,
+            null,
+            null,
+            1,
+            null,
+            2
+          ],
+          "source": "exact_answer_mode_graph_coloring",
+          "verifier": "graph_coloring"
+        }
+      },
+      "witnesses": [
+        {
+          "response": "211132"
+        },
+        {
+          "response": "213112"
+        }
+      ],
+      "cases": [
+        {
+          "name": "accepted_a",
+          "response": "211132",
+          "expected": {
+            "verified": true,
+            "canonical_key": "graph_coloring:211132",
+            "graded_text": "211132"
+          }
+        },
+        {
+          "name": "accepted_b",
+          "response": "213112",
+          "expected": {
+            "verified": true,
+            "canonical_key": "graph_coloring:213112",
+            "graded_text": "213112"
+          }
+        },
+        {
+          "name": "same_mode_format",
+          "response": "\\boxed{211132}",
+          "expected": {
+            "verified": true,
+            "canonical_key": "graph_coloring:211132",
+            "graded_text": "\\boxed{211132}"
+          }
+        },
+        {
+          "name": "incorrect",
+          "response": "111111",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "111111"
+          }
+        },
+        {
+          "name": "malformed",
+          "response": "not a solution",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "not a solution"
+          }
+        },
+        {
+          "name": "format_boundary",
+          "response": "\\boxed{211132",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "\\boxed{211132"
+          }
+        },
+        {
+          "name": "oversized_candidate",
+          "response": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          }
+        }
+      ]
+    },
+    {
+      "config": "level1_python_factors",
+      "level": 1,
+      "domain": "python_factors",
+      "split": "eval",
+      "row_index": 0,
+      "parquet_sha256": "88a3f35b0f3e8e9b8ec4da5151ca7697afc79894c0507d00c258d4154983cea0",
+      "row": {
+        "problem": "Write one pure Python function with the exact form lambda n: EXPR. An external Python tool will call it once for each n in [18, 82, 91, 93]. For every call, return an integer d satisfying 1 < d < n and n % d == 0. Different valid return vectors are different solution modes. You may use integer literals, n, +, -, *, //, %, comparisons, Boolean operators, and conditional expressions; calls, imports, attributes, containers, and other names are forbidden. Return exactly the one-line lambda inside \\boxed{} and no explanation.",
+        "answer": {
+          "cases": [
+            18,
+            82,
+            91,
+            93
+          ],
+          "certified_mode_key_sha256": "7f7bb10e238bc7cf095f8ced7c4b3859cbafb3477184c874ff9d569831730d9e",
+          "instance_id": "eval-15100-93",
+          "num_externally_certified_modes": 2,
+          "num_modes": 32,
+          "python_version": "factor-v1",
+          "source": "synthetic_python_factor_modebench_v1",
+          "verifier": "python_factor_function"
+        }
+      },
+      "witnesses": [
+        {
+          "response": "lambda n: 2 if n==18 else 2 if n==82 else 7 if n==91 else 3",
+          "outputs": [
+            2,
+            2,
+            7,
+            3
+          ]
+        },
+        {
+          "response": "lambda n: 9 if n==18 else 41 if n==82 else 13 if n==91 else 31",
+          "outputs": [
+            9,
+            41,
+            13,
+            31
+          ]
+        }
+      ],
+      "cases": [
+        {
+          "name": "accepted_a",
+          "response": "lambda n: 2 if n==18 else 2 if n==82 else 7 if n==91 else 3",
+          "expected": {
+            "verified": true,
+            "canonical_key": "python_factor:2,2,7,3",
+            "graded_text": "lambda n: 2 if n==18 else 2 if n==82 else 7 if n==91 else 3"
+          }
+        },
+        {
+          "name": "accepted_b",
+          "response": "lambda n: 9 if n==18 else 41 if n==82 else 13 if n==91 else 31",
+          "expected": {
+            "verified": true,
+            "canonical_key": "python_factor:9,41,13,31",
+            "graded_text": "lambda n: 9 if n==18 else 41 if n==82 else 13 if n==91 else 31"
+          }
+        },
+        {
+          "name": "same_mode_format",
+          "response": "\\boxed{lambda n: 2 if n==18 else 2 if n==82 else 7 if n==91 else 3}",
+          "expected": {
+            "verified": true,
+            "canonical_key": "python_factor:2,2,7,3",
+            "graded_text": "\\boxed{lambda n: 2 if n==18 else 2 if n==82 else 7 if n==91 else 3}"
+          }
+        },
+        {
+          "name": "incorrect",
+          "response": "lambda n: 1",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "lambda n: 1"
+          }
+        },
+        {
+          "name": "malformed",
+          "response": "not a solution",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "not a solution"
+          }
+        },
+        {
+          "name": "format_boundary",
+          "response": "\\boxed{lambda n: 2 if n==18 else 2 if n==82 else 7 if n==91 else 3",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "\\boxed{lambda n: 2 if n==18 else 2 if n==82 else 7 if n==91 else 3"
+          }
+        },
+        {
+          "name": "oversized_candidate",
+          "response": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          }
+        }
+      ]
+    },
+    {
+      "config": "level1_mathir",
+      "level": 1,
+      "domain": "mathir",
+      "split": "eval",
+      "row_index": 0,
+      "parquet_sha256": "fc0280c144e5c9c54624303cd508612dbbb3a0ef130dfee9a42fb8f9413e9902",
+      "row": {
+        "problem": "MathIR linear-menu-v1. Solve for x by choosing an executable action sequence. Every selected action is applied exactly to BOTH sides of the current equation, followed by exact simplification. Bindings: a=2, b=-9, c=-1. Initial equation: x/a + b = c. Action menu: A means div(a); B means add(b); C means sub(b); D means sub(c); E means sub(mul(a,b)); F means mul(a). Choose 1-4 action IDs. Illegal operations, repeated states, and paths that do not finish with x isolated are rejected. Return only the IDs separated by semicolons inside the answer box; for example formatting only: \\boxed{A;C}. Do not return x's numeric value.",
+        "answer": {
+          "actions": {
+            "A": "div(a)",
+            "B": "add(b)",
+            "C": "sub(b)",
+            "D": "sub(c)",
+            "E": "sub(mul(a,b))",
+            "F": "mul(a)"
+          },
+          "bindings": {
+            "a": 2,
+            "b": -9,
+            "c": -1
+          },
+          "family": "x_over_a_plus_b_eq_c",
+          "initial_lhs": "add(div(x,a),b)",
+          "initial_rhs": "c",
+          "instance_id": "multi_answer-15900-61",
+          "mathir_version": "linear-menu-v1",
+          "max_steps": 4,
+          "num_completions": 5,
+          "source": "synthetic_mathir_action_menu_v1",
+          "support_is_open": false,
+          "valid_mode_count": 5,
+          "valid_mode_key_sha256": "712b6aa21de2beaecd85fbb7cb4934a4cdb22b4fffde923c092e21ed1e819809",
+          "verifier": "mathir_action_menu"
+        }
+      },
+      "witnesses": [
+        {
+          "response": "C;F"
+        },
+        {
+          "response": "F;E"
+        }
+      ],
+      "cases": [
+        {
+          "name": "accepted_a",
+          "response": "C;F",
+          "expected": {
+            "verified": true,
+            "canonical_key": "mathir:linear-menu-v1:eq(mul(inv(a),x),add(c,mul(-1,b)))>eq(x,add(mul(-1,a,b),mul(a,c)))",
+            "graded_text": "C;F"
+          }
+        },
+        {
+          "name": "accepted_b",
+          "response": "F;E",
+          "expected": {
+            "verified": true,
+            "canonical_key": "mathir:linear-menu-v1:eq(add(mul(a,b),x),mul(a,c))>eq(x,add(mul(-1,a,b),mul(a,c)))",
+            "graded_text": "F;E"
+          }
+        },
+        {
+          "name": "same_mode_format",
+          "response": "\\boxed{C;F}",
+          "expected": {
+            "verified": true,
+            "canonical_key": "mathir:linear-menu-v1:eq(mul(inv(a),x),add(c,mul(-1,b)))>eq(x,add(mul(-1,a,b),mul(a,c)))",
+            "graded_text": "\\boxed{C;F}"
+          }
+        },
+        {
+          "name": "incorrect",
+          "response": "A",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "A"
+          }
+        },
+        {
+          "name": "malformed",
+          "response": "not a solution",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "not a solution"
+          }
+        },
+        {
+          "name": "format_boundary",
+          "response": "\\boxed{C;F",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "\\boxed{C;F"
+          }
+        },
+        {
+          "name": "oversized_candidate",
+          "response": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          }
+        }
+      ]
+    },
+    {
+      "config": "level1_pantry_plan",
+      "level": 1,
+      "domain": "pantry_plan",
+      "split": "eval",
+      "row_index": 0,
+      "parquet_sha256": "2807515694c01108c5b8a616eded485a6ffded07fd1f9eb5fa0155cfeb7c2c34",
+      "row": {
+        "problem": "Create one feasible high fiber snack from this frozen pantry.\nNutrition values are per 100 g. Quantities are exact integer grams.\n\nPantry:\n- almonds: available=100g, step=25g, minimum-if-used=50g; energy=584kcal, protein=21.5g, fiber=10.8g, sodium=0.0mg; tags=tree_nut\n- banana: available=125g, step=25g, minimum-if-used=50g; energy=97.0kcal, protein=0.74g, fiber=4.62g, sodium=0.0mg; tags=none\n- carrots: available=150g, step=25g, minimum-if-used=50g; energy=45.0kcal, protein=0.941g, fiber=3.1g, sodium=86.6mg; tags=none\n- grape_tomatoes: available=100g, step=25g, minimum-if-used=50g; energy=27.0kcal, protein=0.83g, fiber=2.1g, sodium=6.0mg; tags=none\n- navel_orange: available=150g, step=25g, minimum-if-used=50g; energy=47.0kcal, protein=0.91g, fiber=2.0g, sodium=9.0mg; tags=none\n- sunflower_seeds: available=125g, step=25g, minimum-if-used=50g; energy=571kcal, protein=18.9g, fiber=7.22g, sodium=0.0mg; tags=none\n\nUse 2 to 4 ingredients.\nForbidden tags: none\nTargets:\n- mass_g: minimum 125, maximum 200\n- energy_kcal: minimum 239.4, maximum 432.25\n- protein_g: minimum 6.423\n- fiber_g: minimum 3.478\n- sodium_mg: maximum 37.6\n\nReturn only ingredient_id=grams pairs separated by semicolons inside \\boxed{}. Do not add a recipe name or preparation prose.",
+        "answer": {
+          "certified_mode_count": 14,
+          "certified_support_sha256": "af0ced590203a0cbce6a9a2bca80fd3dfb3cdb6a12a1eea845176da5bd339b83",
+          "family": "high_fiber_snack",
+          "forbidden_tags": [],
+          "ingredients": [
+            {
+              "attributes_per_100g": {
+                "energy_kcal": "584",
+                "fiber_g": "10.8",
+                "protein_g": "21.5",
+                "sodium_mg": "0.0"
+              },
+              "available_g": 100,
+              "id": "almonds",
+              "min_if_used_g": 50,
+              "step_g": 25,
+              "tags": [
+                "tree_nut"
+              ]
+            },
+            {
+              "attributes_per_100g": {
+                "energy_kcal": "97.0",
+                "fiber_g": "4.62",
+                "protein_g": "0.74",
+                "sodium_mg": "0.0"
+              },
+              "available_g": 125,
+              "id": "banana",
+              "min_if_used_g": 50,
+              "step_g": 25,
+              "tags": []
+            },
+            {
+              "attributes_per_100g": {
+                "energy_kcal": "45.0",
+                "fiber_g": "3.1",
+                "protein_g": "0.941",
+                "sodium_mg": "86.6"
+              },
+              "available_g": 150,
+              "id": "carrots",
+              "min_if_used_g": 50,
+              "step_g": 25,
+              "tags": []
+            },
+            {
+              "attributes_per_100g": {
+                "energy_kcal": "27.0",
+                "fiber_g": "2.1",
+                "protein_g": "0.83",
+                "sodium_mg": "6.0"
+              },
+              "available_g": 100,
+              "id": "grape_tomatoes",
+              "min_if_used_g": 50,
+              "step_g": 25,
+              "tags": []
+            },
+            {
+              "attributes_per_100g": {
+                "energy_kcal": "47.0",
+                "fiber_g": "2.0",
+                "protein_g": "0.91",
+                "sodium_mg": "9.0"
+              },
+              "available_g": 150,
+              "id": "navel_orange",
+              "min_if_used_g": 50,
+              "step_g": 25,
+              "tags": []
+            },
+            {
+              "attributes_per_100g": {
+                "energy_kcal": "571",
+                "fiber_g": "7.22",
+                "protein_g": "18.9",
+                "sodium_mg": "0.0"
+              },
+              "available_g": 125,
+              "id": "sunflower_seeds",
+              "min_if_used_g": 50,
+              "step_g": 25,
+              "tags": []
+            }
+          ],
+          "instance_id": "eval-94002-high_fiber_snack-19",
+          "max_ingredients": 4,
+          "min_ingredients": 2,
+          "pantry_version": "pantry-v1",
+          "source_ingredient_table_sha256": "f49560f417cf6b1e01f901aba4b3fa4e73744b3f6d0d8a50b7042afd950678e2",
+          "targets": {
+            "energy_kcal": {
+              "max": "432.25",
+              "min": "239.4"
+            },
+            "fiber_g": {
+              "min": "3.478"
+            },
+            "mass_g": {
+              "max": "200",
+              "min": "125"
+            },
+            "protein_g": {
+              "min": "6.423"
+            },
+            "sodium_mg": {
+              "max": "37.6"
+            }
+          },
+          "verifier": "pantry_plan"
+        }
+      },
+      "witnesses": [
+        {
+          "response": "110000",
+          "allocations": {
+            "almonds": 50,
+            "banana": 75
+          }
+        },
+        {
+          "response": "100100",
+          "allocations": {
+            "almonds": 50,
+            "grape_tomatoes": 75
+          }
+        }
+      ],
+      "cases": [
+        {
+          "name": "accepted_a",
+          "response": "110000",
+          "expected": {
+            "verified": true,
+            "canonical_key": "pantry_plan:pantry-v1:almonds+banana",
+            "graded_text": "almonds=50;banana=75"
+          }
+        },
+        {
+          "name": "accepted_b",
+          "response": "100100",
+          "expected": {
+            "verified": true,
+            "canonical_key": "pantry_plan:pantry-v1:almonds+grape_tomatoes",
+            "graded_text": "almonds=50;grape_tomatoes=75"
+          }
+        },
+        {
+          "name": "same_mode_format",
+          "response": " 110000 ",
+          "expected": {
+            "verified": true,
+            "canonical_key": "pantry_plan:pantry-v1:almonds+banana",
+            "graded_text": "almonds=50;banana=75"
+          }
+        },
+        {
+          "name": "incorrect",
+          "response": "000000",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "__INVALID_PANTRY_SUPPORT_MASK__"
+          }
+        },
+        {
+          "name": "malformed",
+          "response": "not a solution",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "__INVALID_PANTRY_SUPPORT_MASK__"
+          }
+        },
+        {
+          "name": "format_boundary",
+          "response": "\\boxed{110000}",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "__INVALID_PANTRY_SUPPORT_MASK__"
+          }
+        },
+        {
+          "name": "oversized_candidate",
+          "response": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "__INVALID_PANTRY_SUPPORT_MASK__"
+          }
+        }
+      ]
+    },
+    {
+      "config": "level2_countdown",
+      "level": 2,
+      "domain": "countdown",
+      "split": "eval",
+      "row_index": 0,
+      "parquet_sha256": "50b90a6197ff1ac83ba0020239bb903bb597c334a27329d3e8703f163cf5d17c",
+      "row": {
+        "problem": "Using the numbers [2, 4, 6, 7], create an arithmetic expression that equals 18. Use each given number exactly once. You may use +, -, *, /, and parentheses. Return exactly one final answer and no explanation: the expression inside \\boxed{}.",
+        "answer": {
+          "instance_id": "level2_eval-4237100-1567",
+          "num_completions": 6,
+          "num_expressions": 6,
+          "numbers": [
+            2,
+            4,
+            6,
+            7
+          ],
+          "source": "synthetic_exact_countdown",
+          "target": 18,
+          "verifier": "countdown"
+        }
+      },
+      "witnesses": [
+        {
+          "response": "(2*(6-(4-7)))"
+        },
+        {
+          "response": "(2*((6-4)+7))"
+        }
+      ],
+      "cases": [
+        {
+          "name": "accepted_a",
+          "response": "(2*(6-(4-7)))",
+          "expected": {
+            "verified": true,
+            "canonical_key": "countdown:mul(2,sub(6,sub(4,7)))",
+            "graded_text": "(2*(6-(4-7)))"
+          }
+        },
+        {
+          "name": "accepted_b",
+          "response": "(2*((6-4)+7))",
+          "expected": {
+            "verified": true,
+            "canonical_key": "countdown:mul(2,add(7,sub(6,4)))",
+            "graded_text": "(2*((6-4)+7))"
+          }
+        },
+        {
+          "name": "same_mode_format",
+          "response": "\\boxed{(2*(6-(4-7)))}",
+          "expected": {
+            "verified": true,
+            "canonical_key": "countdown:mul(2,sub(6,sub(4,7)))",
+            "graded_text": "\\boxed{(2*(6-(4-7)))}"
+          }
+        },
+        {
+          "name": "incorrect",
+          "response": "18",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "18"
+          }
+        },
+        {
+          "name": "malformed",
+          "response": "not a solution",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "not a solution"
+          }
+        },
+        {
+          "name": "format_boundary",
+          "response": "\\boxed{(2*(6-(4-7)))",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "\\boxed{(2*(6-(4-7)))"
+          }
+        },
+        {
+          "name": "oversized_candidate",
+          "response": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          }
+        }
+      ]
+    },
+    {
+      "config": "level2_graph_coloring",
+      "level": 2,
+      "domain": "graph_coloring",
+      "split": "eval",
+      "row_index": 0,
+      "parquet_sha256": "63e5f1b8f4b3db950022080c9971cec71c864d369f346f64aa9c303da5b1e33f",
+      "row": {
+        "problem": "Color this graph with vertices 1 through 5. The undirected edges are: (1,3), (1,4), (1,5), (2,3), (2,4), (2,5), (4,5). Assign each vertex one color from {1, 2, 3} so that no edge has the same color on both endpoints. A partial coloring is ????3, where ? means uncolored. Keep every shown digit fixed. There are exactly 4 question marks. Return exactly one final answer and no explanation: exactly 4 digits, each one 1, 2, or 3, for the missing positions from left to right, inside \\boxed{}.",
+        "answer": {
+          "edges": [
+            [
+              1,
+              3
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              4,
+              5
+            ]
+          ],
+          "instance_id": "level2_eval-4237200-0",
+          "n": 5,
+          "num_completions": 4,
+          "num_solutions": 12,
+          "partial_colors": [
+            null,
+            null,
+            null,
+            null,
+            3
+          ],
+          "source": "exact_answer_mode_graph_coloring",
+          "verifier": "graph_coloring"
+        }
+      },
+      "witnesses": [
+        {
+          "response": "11223"
+        },
+        {
+          "response": "11323"
+        }
+      ],
+      "cases": [
+        {
+          "name": "accepted_a",
+          "response": "11223",
+          "expected": {
+            "verified": true,
+            "canonical_key": "graph_coloring:11223",
+            "graded_text": "11223"
+          }
+        },
+        {
+          "name": "accepted_b",
+          "response": "11323",
+          "expected": {
+            "verified": true,
+            "canonical_key": "graph_coloring:11323",
+            "graded_text": "11323"
+          }
+        },
+        {
+          "name": "same_mode_format",
+          "response": "\\boxed{11223}",
+          "expected": {
+            "verified": true,
+            "canonical_key": "graph_coloring:11223",
+            "graded_text": "\\boxed{11223}"
+          }
+        },
+        {
+          "name": "incorrect",
+          "response": "11111",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "11111"
+          }
+        },
+        {
+          "name": "malformed",
+          "response": "not a solution",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "not a solution"
+          }
+        },
+        {
+          "name": "format_boundary",
+          "response": "\\boxed{11223",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "\\boxed{11223"
+          }
+        },
+        {
+          "name": "oversized_candidate",
+          "response": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          }
+        }
+      ]
+    },
+    {
+      "config": "level2_python_factors",
+      "level": 2,
+      "domain": "python_factors",
+      "split": "eval",
+      "row_index": 0,
+      "parquet_sha256": "3b6f96ca863cb4a5be793fd4e5e12337db48622faf3f70782553c37f64675a42",
+      "row": {
+        "problem": "Write one pure Python function with the exact form lambda n: EXPR. An external Python tool will call it once for each n in [15, 68, 160, 166]. For every call, return an integer d satisfying 1 < d < n and n % d == 0. Different valid return vectors are different solution modes. You may use integer literals, n, +, -, *, //, %, comparisons, Boolean operators, and conditional expressions; calls, imports, attributes, containers, and other names are forbidden. Return exactly the one-line lambda inside \\boxed{} and no explanation.",
+        "answer": {
+          "cases": [
+            15,
+            68,
+            160,
+            166
+          ],
+          "certified_mode_key_sha256": "69834ec3fe7106fd952a35bb643e74cf1a710e6f77785645028a6b127b8f74cb",
+          "instance_id": "level2_eval-4237300-87",
+          "num_externally_certified_modes": 2,
+          "num_modes": 160,
+          "python_version": "factor-v1",
+          "source": "synthetic_python_factor_modebench_v1",
+          "verifier": "python_factor_function"
+        }
+      },
+      "witnesses": [
+        {
+          "response": "lambda n: 3 if n==15 else 2 if n==68 else 2 if n==160 else 2",
+          "outputs": [
+            3,
+            2,
+            2,
+            2
+          ]
+        },
+        {
+          "response": "lambda n: 5 if n==15 else 34 if n==68 else 80 if n==160 else 83",
+          "outputs": [
+            5,
+            34,
+            80,
+            83
+          ]
+        }
+      ],
+      "cases": [
+        {
+          "name": "accepted_a",
+          "response": "lambda n: 3 if n==15 else 2 if n==68 else 2 if n==160 else 2",
+          "expected": {
+            "verified": true,
+            "canonical_key": "python_factor:3,2,2,2",
+            "graded_text": "lambda n: 3 if n==15 else 2 if n==68 else 2 if n==160 else 2"
+          }
+        },
+        {
+          "name": "accepted_b",
+          "response": "lambda n: 5 if n==15 else 34 if n==68 else 80 if n==160 else 83",
+          "expected": {
+            "verified": true,
+            "canonical_key": "python_factor:5,34,80,83",
+            "graded_text": "lambda n: 5 if n==15 else 34 if n==68 else 80 if n==160 else 83"
+          }
+        },
+        {
+          "name": "same_mode_format",
+          "response": "\\boxed{lambda n: 3 if n==15 else 2 if n==68 else 2 if n==160 else 2}",
+          "expected": {
+            "verified": true,
+            "canonical_key": "python_factor:3,2,2,2",
+            "graded_text": "\\boxed{lambda n: 3 if n==15 else 2 if n==68 else 2 if n==160 else 2}"
+          }
+        },
+        {
+          "name": "incorrect",
+          "response": "lambda n: 1",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "lambda n: 1"
+          }
+        },
+        {
+          "name": "malformed",
+          "response": "not a solution",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "not a solution"
+          }
+        },
+        {
+          "name": "format_boundary",
+          "response": "\\boxed{lambda n: 3 if n==15 else 2 if n==68 else 2 if n==160 else 2",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "\\boxed{lambda n: 3 if n==15 else 2 if n==68 else 2 if n==160 else 2"
+          }
+        },
+        {
+          "name": "oversized_candidate",
+          "response": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          }
+        }
+      ]
+    },
+    {
+      "config": "level2_mathir",
+      "level": 2,
+      "domain": "mathir",
+      "split": "eval",
+      "row_index": 0,
+      "parquet_sha256": "646e8780fdfbad6ec5681fba1583dafc9ac6755200b2cb80f497dab75320819f",
+      "row": {
+        "problem": "MathIR linear-menu-v1. Solve for x by choosing an executable action sequence. Every selected action is applied exactly to BOTH sides of the current equation, followed by exact simplification. Bindings: a=1, b=11, c=25, d=1. Initial equation: a*x + b = c - d*x. Action menu: A means sub(b); B means div(a); C means add(mul(d,x)); D means add(b); E means div(add(a,d)); F means sub(sub(b,mul(d,x))). Choose 1-4 action IDs. Illegal operations, repeated states, and paths that do not finish with x isolated are rejected. Return only the IDs separated by semicolons inside the answer box; for example formatting only: \\boxed{A;C}. Do not return x's numeric value.",
+        "answer": {
+          "actions": {
+            "A": "sub(b)",
+            "B": "div(a)",
+            "C": "add(mul(d,x))",
+            "D": "add(b)",
+            "E": "div(add(a,d))",
+            "F": "sub(sub(b,mul(d,x)))"
+          },
+          "bindings": {
+            "a": 1,
+            "b": 11,
+            "c": 25,
+            "d": 1
+          },
+          "family": "ax_plus_b_eq_c_minus_dx",
+          "initial_lhs": "add(mul(a,x),b)",
+          "initial_rhs": "sub(c,mul(d,x))",
+          "instance_id": "level2_eval-4237400-843",
+          "mathir_version": "linear-menu-v1",
+          "max_steps": 4,
+          "num_completions": 5,
+          "source": "synthetic_mathir_action_menu_v1",
+          "support_is_open": false,
+          "valid_mode_count": 5,
+          "valid_mode_key_sha256": "63eea5fdb392676524bacf855420853a372d42f80eb9671596ec46df662e1327",
+          "verifier": "mathir_action_menu"
+        }
+      },
+      "witnesses": [
+        {
+          "response": "F;E"
+        },
+        {
+          "response": "A;C;E"
+        }
+      ],
+      "cases": [
+        {
+          "name": "accepted_a",
+          "response": "F;E",
+          "expected": {
+            "verified": true,
+            "canonical_key": "mathir:linear-menu-v1:eq(add(mul(a,x),mul(d,x)),add(c,mul(-1,b)))>eq(x,mul(add(c,mul(-1,b)),inv(add(a,d))))",
+            "graded_text": "F;E"
+          }
+        },
+        {
+          "name": "accepted_b",
+          "response": "A;C;E",
+          "expected": {
+            "verified": true,
+            "canonical_key": "mathir:linear-menu-v1:eq(mul(a,x),add(c,mul(-1,b),mul(-1,d,x)))>eq(add(mul(a,x),mul(d,x)),add(c,mul(-1,b)))>eq(x,mul(add(c,mul(-1,b)),inv(add(a,d))))",
+            "graded_text": "A;C;E"
+          }
+        },
+        {
+          "name": "same_mode_format",
+          "response": "\\boxed{F;E}",
+          "expected": {
+            "verified": true,
+            "canonical_key": "mathir:linear-menu-v1:eq(add(mul(a,x),mul(d,x)),add(c,mul(-1,b)))>eq(x,mul(add(c,mul(-1,b)),inv(add(a,d))))",
+            "graded_text": "\\boxed{F;E}"
+          }
+        },
+        {
+          "name": "incorrect",
+          "response": "A",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "A"
+          }
+        },
+        {
+          "name": "malformed",
+          "response": "not a solution",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "not a solution"
+          }
+        },
+        {
+          "name": "format_boundary",
+          "response": "\\boxed{F;E",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "\\boxed{F;E"
+          }
+        },
+        {
+          "name": "oversized_candidate",
+          "response": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          }
+        }
+      ]
+    },
+    {
+      "config": "level2_pantry_plan",
+      "level": 2,
+      "domain": "pantry_plan",
+      "split": "eval",
+      "row_index": 0,
+      "parquet_sha256": "94a1aac4a48bfd21e363433397fcd834bbd39c096551900f63b29dadc960905b",
+      "row": {
+        "problem": "Create one feasible plant protein bowl from this frozen pantry.\nNutrition values are per 100 g. Quantities are exact integer grams.\n\nPantry:\n- black_beans_canned: available=150g, step=25g, minimum-if-used=50g; energy=115kcal, protein=6.91g, fiber=6.69g, sodium=218mg; tags=none\n- carrots: available=150g, step=25g, minimum-if-used=50g; energy=45.0kcal, protein=0.941g, fiber=3.1g, sodium=86.6mg; tags=none\n- chickpeas_canned: available=100g, step=25g, minimum-if-used=50g; energy=133kcal, protein=7.02g, fiber=5.92g, sodium=202mg; tags=none\n- hummus: available=125g, step=25g, minimum-if-used=50g; energy=229kcal, protein=7.35g, fiber=5.4g, sodium=438mg; tags=none\n- kale: available=125g, step=25g, minimum-if-used=50g; energy=35.0kcal, protein=2.92g, fiber=4.1g, sodium=53.0mg; tags=none\n- pumpkin_seeds: available=125g, step=25g, minimum-if-used=50g; energy=515kcal, protein=29.9g, fiber=5.08g, sodium=0.0mg; tags=none\n\nUse 2 to 4 ingredients.\nForbidden tags: none\nTargets:\n- mass_g: minimum 175, maximum 250\n- energy_kcal: minimum 422.64, maximum 763.1\n- protein_g: minimum 19.395\n- fiber_g: minimum 7.147\n- sodium_mg: maximum 560.5\n\nReturn only ingredient_id=grams pairs separated by semicolons inside \\boxed{}. Do not add a recipe name or preparation prose.",
+        "answer": {
+          "certified_mode_count": 25,
+          "certified_support_sha256": "cf0a85556926b24249373ebd024fd6b1a419ee691e50966e1a6bf8cc5dc592af",
+          "family": "plant_protein_bowl",
+          "forbidden_tags": [],
+          "ingredients": [
+            {
+              "attributes_per_100g": {
+                "energy_kcal": "115",
+                "fiber_g": "6.69",
+                "protein_g": "6.91",
+                "sodium_mg": "218"
+              },
+              "available_g": 150,
+              "id": "black_beans_canned",
+              "min_if_used_g": 50,
+              "step_g": 25,
+              "tags": []
+            },
+            {
+              "attributes_per_100g": {
+                "energy_kcal": "45.0",
+                "fiber_g": "3.1",
+                "protein_g": "0.941",
+                "sodium_mg": "86.6"
+              },
+              "available_g": 150,
+              "id": "carrots",
+              "min_if_used_g": 50,
+              "step_g": 25,
+              "tags": []
+            },
+            {
+              "attributes_per_100g": {
+                "energy_kcal": "133",
+                "fiber_g": "5.92",
+                "protein_g": "7.02",
+                "sodium_mg": "202"
+              },
+              "available_g": 100,
+              "id": "chickpeas_canned",
+              "min_if_used_g": 50,
+              "step_g": 25,
+              "tags": []
+            },
+            {
+              "attributes_per_100g": {
+                "energy_kcal": "229",
+                "fiber_g": "5.4",
+                "protein_g": "7.35",
+                "sodium_mg": "438"
+              },
+              "available_g": 125,
+              "id": "hummus",
+              "min_if_used_g": 50,
+              "step_g": 25,
+              "tags": []
+            },
+            {
+              "attributes_per_100g": {
+                "energy_kcal": "35.0",
+                "fiber_g": "4.1",
+                "protein_g": "2.92",
+                "sodium_mg": "53.0"
+              },
+              "available_g": 125,
+              "id": "kale",
+              "min_if_used_g": 50,
+              "step_g": 25,
+              "tags": []
+            },
+            {
+              "attributes_per_100g": {
+                "energy_kcal": "515",
+                "fiber_g": "5.08",
+                "protein_g": "29.9",
+                "sodium_mg": "0.0"
+              },
+              "available_g": 125,
+              "id": "pumpkin_seeds",
+              "min_if_used_g": 50,
+              "step_g": 25,
+              "tags": []
+            }
+          ],
+          "instance_id": "level2_eval-4237500-plant_protein_bowl-4",
+          "max_ingredients": 4,
+          "min_ingredients": 2,
+          "pantry_version": "pantry-v1",
+          "source_ingredient_table_sha256": "f49560f417cf6b1e01f901aba4b3fa4e73744b3f6d0d8a50b7042afd950678e2",
+          "targets": {
+            "energy_kcal": {
+              "max": "763.1",
+              "min": "422.64"
+            },
+            "fiber_g": {
+              "min": "7.147"
+            },
+            "mass_g": {
+              "max": "250",
+              "min": "175"
+            },
+            "protein_g": {
+              "min": "19.395"
+            },
+            "sodium_mg": {
+              "max": "560.5"
+            }
+          },
+          "verifier": "pantry_plan"
+        }
+      },
+      "witnesses": [
+        {
+          "response": "black_beans_canned=50;pumpkin_seeds=125",
+          "allocations": {
+            "black_beans_canned": 50,
+            "pumpkin_seeds": 125
+          }
+        },
+        {
+          "response": "carrots=50;pumpkin_seeds=125",
+          "allocations": {
+            "carrots": 50,
+            "pumpkin_seeds": 125
+          }
+        }
+      ],
+      "cases": [
+        {
+          "name": "accepted_a",
+          "response": "black_beans_canned=50;pumpkin_seeds=125",
+          "expected": {
+            "verified": true,
+            "canonical_key": "pantry_plan:pantry-v1:black_beans_canned+pumpkin_seeds",
+            "graded_text": "black_beans_canned=50;pumpkin_seeds=125"
+          }
+        },
+        {
+          "name": "accepted_b",
+          "response": "carrots=50;pumpkin_seeds=125",
+          "expected": {
+            "verified": true,
+            "canonical_key": "pantry_plan:pantry-v1:carrots+pumpkin_seeds",
+            "graded_text": "carrots=50;pumpkin_seeds=125"
+          }
+        },
+        {
+          "name": "same_mode_format",
+          "response": "\\boxed{black_beans_canned=50;pumpkin_seeds=125}",
+          "expected": {
+            "verified": true,
+            "canonical_key": "pantry_plan:pantry-v1:black_beans_canned+pumpkin_seeds",
+            "graded_text": "\\boxed{black_beans_canned=50;pumpkin_seeds=125}"
+          }
+        },
+        {
+          "name": "incorrect",
+          "response": "black_beans_canned=1",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "black_beans_canned=1"
+          }
+        },
+        {
+          "name": "malformed",
+          "response": "not a solution",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "not a solution"
+          }
+        },
+        {
+          "name": "format_boundary",
+          "response": "\\boxed{black_beans_canned=50;pumpkin_seeds=125",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "\\boxed{black_beans_canned=50;pumpkin_seeds=125"
+          }
+        },
+        {
+          "name": "oversized_candidate",
+          "response": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          }
+        }
+      ]
+    },
+    {
+      "config": "level3_countdown",
+      "level": 3,
+      "domain": "countdown",
+      "split": "eval",
+      "row_index": 0,
+      "parquet_sha256": "b8c8540758fb32b8d49c0bc0f1c4337b6f29017f9f9fdcb618365d232a3e8c9a",
+      "row": {
+        "problem": "Using the numbers [16, 24, 28, 34], create an arithmetic expression that equals 36. Use each given number exactly once. You may use +, -, *, /, and parentheses. Return exactly one final answer and no explanation: the expression inside \\boxed{}.",
+        "answer": {
+          "instance_id": "level3_eval-7520100-m2-4",
+          "num_completions": 2,
+          "num_expressions": 2,
+          "numbers": [
+            16,
+            24,
+            28,
+            34
+          ],
+          "source": "modebench_level3_countdown_candidate_v3",
+          "target": 36,
+          "verifier": "countdown"
+        }
+      },
+      "witnesses": [
+        {
+          "response": "((24/(28-16))+34)"
+        },
+        {
+          "response": "(34-(24/(16-28)))"
+        }
+      ],
+      "cases": [
+        {
+          "name": "accepted_a",
+          "response": "((24/(28-16))+34)",
+          "expected": {
+            "verified": true,
+            "canonical_key": "countdown:add(34,div(24,sub(28,16)))",
+            "graded_text": "((24/(28-16))+34)"
+          }
+        },
+        {
+          "name": "accepted_b",
+          "response": "(34-(24/(16-28)))",
+          "expected": {
+            "verified": true,
+            "canonical_key": "countdown:sub(34,div(24,sub(16,28)))",
+            "graded_text": "(34-(24/(16-28)))"
+          }
+        },
+        {
+          "name": "same_mode_format",
+          "response": "\\boxed{((24/(28-16))+34)}",
+          "expected": {
+            "verified": true,
+            "canonical_key": "countdown:add(34,div(24,sub(28,16)))",
+            "graded_text": "\\boxed{((24/(28-16))+34)}"
+          }
+        },
+        {
+          "name": "incorrect",
+          "response": "36",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "36"
+          }
+        },
+        {
+          "name": "malformed",
+          "response": "not a solution",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "not a solution"
+          }
+        },
+        {
+          "name": "format_boundary",
+          "response": "\\boxed{((24/(28-16))+34)",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "\\boxed{((24/(28-16))+34)"
+          }
+        },
+        {
+          "name": "oversized_candidate",
+          "response": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          }
+        }
+      ]
+    },
+    {
+      "config": "level3_graph_coloring",
+      "level": 3,
+      "domain": "graph_coloring",
+      "split": "eval",
+      "row_index": 0,
+      "parquet_sha256": "dd4bc7dedf28e5d153c80046abd3f8e8a80a6adcdd11b80aa05dde3cd5378bc7",
+      "row": {
+        "problem": "Color this graph with vertices 1 through 5. The undirected edges are: (1,5), (2,3), (3,4), (4,5). Assign each vertex one color from {1, 2, 3} so that no edge has the same color on both endpoints. A partial coloring is ??3?2, where ? means uncolored. Keep every shown digit fixed. There are exactly 3 question marks. Return exactly one final answer and no explanation: exactly 3 digits, each one 1, 2, or 3, for the missing positions from left to right, inside \\boxed{}.",
+        "answer": {
+          "edges": [
+            [
+              1,
+              5
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ]
+          ],
+          "instance_id": "level3_v3_eval-9337100-support-4-6",
+          "n": 5,
+          "num_completions": 4,
+          "num_solutions": 48,
+          "partial_colors": [
+            null,
+            null,
+            3,
+            null,
+            2
+          ],
+          "source": "modebench_level3_graph_candidate_v8",
+          "verifier": "graph_coloring"
+        }
+      },
+      "witnesses": [
+        {
+          "response": "11312"
+        },
+        {
+          "response": "12312"
+        }
+      ],
+      "cases": [
+        {
+          "name": "accepted_a",
+          "response": "11312",
+          "expected": {
+            "verified": true,
+            "canonical_key": "graph_coloring:11312",
+            "graded_text": "11312"
+          }
+        },
+        {
+          "name": "accepted_b",
+          "response": "12312",
+          "expected": {
+            "verified": true,
+            "canonical_key": "graph_coloring:12312",
+            "graded_text": "12312"
+          }
+        },
+        {
+          "name": "same_mode_format",
+          "response": "\\boxed{11312}",
+          "expected": {
+            "verified": true,
+            "canonical_key": "graph_coloring:11312",
+            "graded_text": "\\boxed{11312}"
+          }
+        },
+        {
+          "name": "incorrect",
+          "response": "11111",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "11111"
+          }
+        },
+        {
+          "name": "malformed",
+          "response": "not a solution",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "not a solution"
+          }
+        },
+        {
+          "name": "format_boundary",
+          "response": "\\boxed{11312",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "\\boxed{11312"
+          }
+        },
+        {
+          "name": "oversized_candidate",
+          "response": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          }
+        }
+      ]
+    },
+    {
+      "config": "level3_python_factors",
+      "level": 3,
+      "domain": "python_factors",
+      "split": "eval",
+      "row_index": 0,
+      "parquet_sha256": "77d32ab09bb2125206b5fe291251b74219130a1a89d79d2b2d93700305ee0f21",
+      "row": {
+        "problem": "Write one pure Python function with the exact form lambda n: EXPR. An external Python tool will call it once for each n in [68, 81, 96, 130]. For every call, return an integer d satisfying 1 < d < n and n % d == 0. Different valid return vectors are different solution modes. You may use integer literals, n, +, -, *, //, %, comparisons, Boolean operators, and conditional expressions; calls, imports, attributes, containers, and other names are forbidden. Return exactly the one-line lambda inside \\boxed{} and no explanation.",
+        "answer": {
+          "cases": [
+            68,
+            81,
+            96,
+            130
+          ],
+          "certified_mode_key_sha256": "f78f8cec17af1f745f41fdb8d78be9efa34d21da587c8c22e6d29052bf519d07",
+          "instance_id": "level3_v3_eval-support-720-9440100-0",
+          "num_externally_certified_modes": 2,
+          "num_modes": 720,
+          "python_version": "factor-v1",
+          "source": "synthetic_python_factor_modebench_v1",
+          "verifier": "python_factor_function"
+        }
+      },
+      "witnesses": [
+        {
+          "response": "lambda n: 2 if n==68 else 3 if n==81 else 2 if n==96 else 2",
+          "outputs": [
+            2,
+            3,
+            2,
+            2
+          ]
+        },
+        {
+          "response": "lambda n: 34 if n==68 else 27 if n==81 else 48 if n==96 else 65",
+          "outputs": [
+            34,
+            27,
+            48,
+            65
+          ]
+        }
+      ],
+      "cases": [
+        {
+          "name": "accepted_a",
+          "response": "lambda n: 2 if n==68 else 3 if n==81 else 2 if n==96 else 2",
+          "expected": {
+            "verified": true,
+            "canonical_key": "python_factor:2,3,2,2",
+            "graded_text": "lambda n: 2 if n==68 else 3 if n==81 else 2 if n==96 else 2"
+          }
+        },
+        {
+          "name": "accepted_b",
+          "response": "lambda n: 34 if n==68 else 27 if n==81 else 48 if n==96 else 65",
+          "expected": {
+            "verified": true,
+            "canonical_key": "python_factor:34,27,48,65",
+            "graded_text": "lambda n: 34 if n==68 else 27 if n==81 else 48 if n==96 else 65"
+          }
+        },
+        {
+          "name": "same_mode_format",
+          "response": "\\boxed{lambda n: 2 if n==68 else 3 if n==81 else 2 if n==96 else 2}",
+          "expected": {
+            "verified": true,
+            "canonical_key": "python_factor:2,3,2,2",
+            "graded_text": "\\boxed{lambda n: 2 if n==68 else 3 if n==81 else 2 if n==96 else 2}"
+          }
+        },
+        {
+          "name": "incorrect",
+          "response": "lambda n: 1",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "lambda n: 1"
+          }
+        },
+        {
+          "name": "malformed",
+          "response": "not a solution",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "not a solution"
+          }
+        },
+        {
+          "name": "format_boundary",
+          "response": "\\boxed{lambda n: 2 if n==68 else 3 if n==81 else 2 if n==96 else 2",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "\\boxed{lambda n: 2 if n==68 else 3 if n==81 else 2 if n==96 else 2"
+          }
+        },
+        {
+          "name": "oversized_candidate",
+          "response": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          }
+        }
+      ]
+    },
+    {
+      "config": "level3_mathir",
+      "level": 3,
+      "domain": "mathir",
+      "split": "eval",
+      "row_index": 0,
+      "parquet_sha256": "9903ce6c9a612887787db2e803519fa715214e6733e2c684e85d1735c770d89a",
+      "row": {
+        "problem": "MathIR linear-menu-v1. Solve for x by choosing an executable action sequence. Every selected action is applied exactly to BOTH sides of the current equation, followed by exact simplification. Bindings: a=1, b=-8, c=0. Initial equation: a*x + b = c. Action menu: A means mul(a); B means sub(b); C means add(b); D means sub(div(b,a)); E means div(a); F means sub(c). Choose 1-4 action IDs. Illegal operations, repeated states, and paths that do not finish with x isolated are rejected. Return only the IDs separated by semicolons inside the answer box; for example formatting only: \\boxed{A;C}. Do not return x's numeric value.",
+        "answer": {
+          "actions": {
+            "A": "mul(a)",
+            "B": "sub(b)",
+            "C": "add(b)",
+            "D": "sub(div(b,a))",
+            "E": "div(a)",
+            "F": "sub(c)"
+          },
+          "bindings": {
+            "a": 1,
+            "b": -8,
+            "c": 0
+          },
+          "family": "ax_plus_b_eq_c",
+          "initial_lhs": "add(mul(a,x),b)",
+          "initial_rhs": "c",
+          "instance_id": "level3_eval-7549100-50",
+          "mathir_version": "linear-menu-v1",
+          "max_steps": 4,
+          "num_completions": 5,
+          "source": "synthetic_mathir_level3_fixed_sign_candidates_v1",
+          "support_is_open": false,
+          "valid_mode_count": 5,
+          "valid_mode_key_sha256": "74fa6c88c9374d1ea62ef16e1052215fb07d3e7444aae7ef4b91fd2dda3a5e0c",
+          "verifier": "mathir_action_menu"
+        }
+      },
+      "witnesses": [
+        {
+          "response": "B;E"
+        },
+        {
+          "response": "E;D"
+        }
+      ],
+      "cases": [
+        {
+          "name": "accepted_a",
+          "response": "B;E",
+          "expected": {
+            "verified": true,
+            "canonical_key": "mathir:linear-menu-v1:eq(mul(a,x),add(c,mul(-1,b)))>eq(x,mul(add(c,mul(-1,b)),inv(a)))",
+            "graded_text": "B;E"
+          }
+        },
+        {
+          "name": "accepted_b",
+          "response": "E;D",
+          "expected": {
+            "verified": true,
+            "canonical_key": "mathir:linear-menu-v1:eq(mul(add(b,mul(a,x)),inv(a)),mul(c,inv(a)))>eq(x,mul(add(c,mul(-1,b)),inv(a)))",
+            "graded_text": "E;D"
+          }
+        },
+        {
+          "name": "same_mode_format",
+          "response": "\\boxed{B;E}",
+          "expected": {
+            "verified": true,
+            "canonical_key": "mathir:linear-menu-v1:eq(mul(a,x),add(c,mul(-1,b)))>eq(x,mul(add(c,mul(-1,b)),inv(a)))",
+            "graded_text": "\\boxed{B;E}"
+          }
+        },
+        {
+          "name": "incorrect",
+          "response": "A",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "A"
+          }
+        },
+        {
+          "name": "malformed",
+          "response": "not a solution",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "not a solution"
+          }
+        },
+        {
+          "name": "format_boundary",
+          "response": "\\boxed{B;E",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "\\boxed{B;E"
+          }
+        },
+        {
+          "name": "oversized_candidate",
+          "response": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          }
+        }
+      ]
+    },
+    {
+      "config": "level3_pantry_plan",
+      "level": 3,
+      "domain": "pantry_plan",
+      "split": "eval",
+      "row_index": 0,
+      "parquet_sha256": "63840b51ead4a7799c1376e49739322f2a085beaef981389a5f077ff058757a7",
+      "row": {
+        "problem": "Create one feasible breakfast formulation from this frozen pantry.\nNutrition values are per 100 g. Quantities are exact integer grams.\n\nPantry:\n- almonds: available=150g, step=25g, minimum-if-used=50g; energy=584kcal, protein=21.5g, fiber=10.8g, sodium=0.0mg; tags=tree_nut\n- banana: available=125g, step=25g, minimum-if-used=50g; energy=97.0kcal, protein=0.74g, fiber=4.62g, sodium=0.0mg; tags=none\n- navel_orange: available=100g, step=25g, minimum-if-used=50g; energy=47.0kcal, protein=0.91g, fiber=2.0g, sodium=9.0mg; tags=none\n- pumpkin_seeds: available=150g, step=25g, minimum-if-used=50g; energy=515kcal, protein=29.9g, fiber=5.08g, sodium=0.0mg; tags=none\n- rolled_oats: available=100g, step=25g, minimum-if-used=50g; energy=379kcal, protein=13.5g, fiber=10.4g, sodium=0.668mg; tags=none\n- sunflower_seeds: available=150g, step=25g, minimum-if-used=50g; energy=571kcal, protein=18.9g, fiber=7.22g, sodium=0.0mg; tags=none\n\nUse 2 to 4 ingredients.\nForbidden tags: none\nTargets:\n- mass_g: minimum 286.886, maximum 313.114\n- energy_kcal: minimum 1274.357, maximum 1474.643\n- protein_g: minimum 43.679\n- fiber_g: minimum 23.231\n- sodium_mg: maximum 9.205\n\nReturn only ingredient_id=grams pairs separated by semicolons inside \\boxed{}. Do not add a recipe name or preparation prose.",
+        "answer": {
+          "certified_mode_count": 13,
+          "certified_support_sha256": "df1edcd9e46223d27be73b0bb03d43e6b5e7290c66a0c068c4f47bc82e07d477",
+          "family": "breakfast_formulation",
+          "forbidden_tags": [],
+          "ingredients": [
+            {
+              "attributes_per_100g": {
+                "energy_kcal": "584",
+                "fiber_g": "10.8",
+                "protein_g": "21.5",
+                "sodium_mg": "0.0"
+              },
+              "available_g": 150,
+              "id": "almonds",
+              "min_if_used_g": 50,
+              "step_g": 25,
+              "tags": [
+                "tree_nut"
+              ]
+            },
+            {
+              "attributes_per_100g": {
+                "energy_kcal": "97.0",
+                "fiber_g": "4.62",
+                "protein_g": "0.74",
+                "sodium_mg": "0.0"
+              },
+              "available_g": 125,
+              "id": "banana",
+              "min_if_used_g": 50,
+              "step_g": 25,
+              "tags": []
+            },
+            {
+              "attributes_per_100g": {
+                "energy_kcal": "47.0",
+                "fiber_g": "2.0",
+                "protein_g": "0.91",
+                "sodium_mg": "9.0"
+              },
+              "available_g": 100,
+              "id": "navel_orange",
+              "min_if_used_g": 50,
+              "step_g": 25,
+              "tags": []
+            },
+            {
+              "attributes_per_100g": {
+                "energy_kcal": "515",
+                "fiber_g": "5.08",
+                "protein_g": "29.9",
+                "sodium_mg": "0.0"
+              },
+              "available_g": 150,
+              "id": "pumpkin_seeds",
+              "min_if_used_g": 50,
+              "step_g": 25,
+              "tags": []
+            },
+            {
+              "attributes_per_100g": {
+                "energy_kcal": "379",
+                "fiber_g": "10.4",
+                "protein_g": "13.5",
+                "sodium_mg": "0.668"
+              },
+              "available_g": 100,
+              "id": "rolled_oats",
+              "min_if_used_g": 50,
+              "step_g": 25,
+              "tags": []
+            },
+            {
+              "attributes_per_100g": {
+                "energy_kcal": "571",
+                "fiber_g": "7.22",
+                "protein_g": "18.9",
+                "sodium_mg": "0.0"
+              },
+              "available_g": 150,
+              "id": "sunflower_seeds",
+              "min_if_used_g": 50,
+              "step_g": 25,
+              "tags": []
+            }
+          ],
+          "instance_id": "level3_eval-7557100-breakfast_formulation-57",
+          "max_ingredients": 4,
+          "min_ingredients": 2,
+          "pantry_version": "pantry-v1",
+          "source_ingredient_table_sha256": "f49560f417cf6b1e01f901aba4b3fa4e73744b3f6d0d8a50b7042afd950678e2",
+          "targets": {
+            "energy_kcal": {
+              "max": "1474.643",
+              "min": "1274.357"
+            },
+            "fiber_g": {
+              "min": "23.231"
+            },
+            "mass_g": {
+              "max": "313.114",
+              "min": "286.886"
+            },
+            "protein_g": {
+              "min": "43.679"
+            },
+            "sodium_mg": {
+              "max": "9.205"
+            }
+          },
+          "verifier": "pantry_plan"
+        }
+      },
+      "witnesses": [
+        {
+          "response": "almonds=150;banana=50;pumpkin_seeds=100",
+          "allocations": {
+            "almonds": 150,
+            "banana": 50,
+            "pumpkin_seeds": 100
+          }
+        },
+        {
+          "response": "almonds=150;banana=50;rolled_oats=100",
+          "allocations": {
+            "almonds": 150,
+            "banana": 50,
+            "rolled_oats": 100
+          }
+        }
+      ],
+      "cases": [
+        {
+          "name": "accepted_a",
+          "response": "almonds=150;banana=50;pumpkin_seeds=100",
+          "expected": {
+            "verified": true,
+            "canonical_key": "pantry_plan:pantry-v1:almonds+banana+pumpkin_seeds",
+            "graded_text": "almonds=150;banana=50;pumpkin_seeds=100"
+          }
+        },
+        {
+          "name": "accepted_b",
+          "response": "almonds=150;banana=50;rolled_oats=100",
+          "expected": {
+            "verified": true,
+            "canonical_key": "pantry_plan:pantry-v1:almonds+banana+rolled_oats",
+            "graded_text": "almonds=150;banana=50;rolled_oats=100"
+          }
+        },
+        {
+          "name": "same_mode_format",
+          "response": "\\boxed{almonds=150;banana=50;pumpkin_seeds=100}",
+          "expected": {
+            "verified": true,
+            "canonical_key": "pantry_plan:pantry-v1:almonds+banana+pumpkin_seeds",
+            "graded_text": "\\boxed{almonds=150;banana=50;pumpkin_seeds=100}"
+          }
+        },
+        {
+          "name": "incorrect",
+          "response": "almonds=1",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "almonds=1"
+          }
+        },
+        {
+          "name": "malformed",
+          "response": "not a solution",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "not a solution"
+          }
+        },
+        {
+          "name": "format_boundary",
+          "response": "\\boxed{almonds=150;banana=50;pumpkin_seeds=100",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "\\boxed{almonds=150;banana=50;pumpkin_seeds=100"
+          }
+        },
+        {
+          "name": "oversized_candidate",
+          "response": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          }
+        }
+      ]
+    },
+    {
+      "config": "level4_countdown",
+      "level": 4,
+      "domain": "countdown",
+      "split": "eval",
+      "row_index": 0,
+      "parquet_sha256": "d9ffe3a874ea6fb39713c7aa9f10c56895415e3297f4d42247bd07c2d92cbee6",
+      "row": {
+        "problem": "Using the numbers [38, 45, 53, 142], create an arithmetic expression that equals 2111. Use each given number exactly once. You may use +, -, *, /, and parentheses. Return exactly one final answer and no explanation: the expression inside \\boxed{}.",
+        "answer": {
+          "instance_id": "level4_eval-46779914746395-m5-7",
+          "num_completions": 5,
+          "num_expressions": 5,
+          "numbers": [
+            38,
+            45,
+            53,
+            142
+          ],
+          "source": "modebench_scale_candidate_laws_v1",
+          "target": 2111,
+          "verifier": "countdown"
+        }
+      },
+      "witnesses": [
+        {
+          "response": "((38*53)-(45-142))"
+        },
+        {
+          "response": "(((38*53)-45)+142)"
+        }
+      ],
+      "cases": [
+        {
+          "name": "accepted_a",
+          "response": "((38*53)-(45-142))",
+          "expected": {
+            "verified": true,
+            "canonical_key": "countdown:sub(mul(38,53),sub(45,142))",
+            "graded_text": "((38*53)-(45-142))"
+          }
+        },
+        {
+          "name": "accepted_b",
+          "response": "(((38*53)-45)+142)",
+          "expected": {
+            "verified": true,
+            "canonical_key": "countdown:add(142,sub(mul(38,53),45))",
+            "graded_text": "(((38*53)-45)+142)"
+          }
+        },
+        {
+          "name": "same_mode_format",
+          "response": "\\boxed{((38*53)-(45-142))}",
+          "expected": {
+            "verified": true,
+            "canonical_key": "countdown:sub(mul(38,53),sub(45,142))",
+            "graded_text": "\\boxed{((38*53)-(45-142))}"
+          }
+        },
+        {
+          "name": "incorrect",
+          "response": "2111",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "2111"
+          }
+        },
+        {
+          "name": "malformed",
+          "response": "not a solution",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "not a solution"
+          }
+        },
+        {
+          "name": "format_boundary",
+          "response": "\\boxed{((38*53)-(45-142))",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "\\boxed{((38*53)-(45-142))"
+          }
+        },
+        {
+          "name": "oversized_candidate",
+          "response": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          }
+        }
+      ]
+    },
+    {
+      "config": "level4_graph_coloring",
+      "level": 4,
+      "domain": "graph_coloring",
+      "split": "eval",
+      "row_index": 0,
+      "parquet_sha256": "84789a0071d78197e9f961bf4ab02189e168e8b84bd496902630bc098bbeec36",
+      "row": {
+        "problem": "Color this graph with vertices 1 through 6. The undirected edges are: (1,4), (2,6), (3,4), (3,5), (3,6), (4,5), (5,6). Assign each vertex one color from {1, 2, 3} so that no edge has the same color on both endpoints. A partial coloring is 3??1??, where ? means uncolored. Keep every shown digit fixed. There are exactly 4 question marks. Return exactly one final answer and no explanation: exactly 4 digits, each one 1, 2, or 3, for the missing positions from left to right, inside \\boxed{}.",
+        "answer": {
+          "edges": [
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              6
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              3,
+              6
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ]
+          ],
+          "instance_id": "level4_revision_2_eval-173688957822860-t3-m4-4",
+          "n": 6,
+          "num_completions": 4,
+          "num_solutions": 24,
+          "partial_colors": [
+            3,
+            null,
+            null,
+            1,
+            null,
+            null
+          ],
+          "source": "modebench_scale_l4_bridge_candidate_laws_v1",
+          "verifier": "graph_coloring"
+        }
+      },
+      "witnesses": [
+        {
+          "response": "322131"
+        },
+        {
+          "response": "323121"
+        }
+      ],
+      "cases": [
+        {
+          "name": "accepted_a",
+          "response": "322131",
+          "expected": {
+            "verified": true,
+            "canonical_key": "graph_coloring:322131",
+            "graded_text": "322131"
+          }
+        },
+        {
+          "name": "accepted_b",
+          "response": "323121",
+          "expected": {
+            "verified": true,
+            "canonical_key": "graph_coloring:323121",
+            "graded_text": "323121"
+          }
+        },
+        {
+          "name": "same_mode_format",
+          "response": "\\boxed{322131}",
+          "expected": {
+            "verified": true,
+            "canonical_key": "graph_coloring:322131",
+            "graded_text": "\\boxed{322131}"
+          }
+        },
+        {
+          "name": "incorrect",
+          "response": "111111",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "111111"
+          }
+        },
+        {
+          "name": "malformed",
+          "response": "not a solution",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "not a solution"
+          }
+        },
+        {
+          "name": "format_boundary",
+          "response": "\\boxed{322131",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "\\boxed{322131"
+          }
+        },
+        {
+          "name": "oversized_candidate",
+          "response": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          }
+        }
+      ]
+    },
+    {
+      "config": "level4_python_factors",
+      "level": 4,
+      "domain": "python_factors",
+      "split": "eval",
+      "row_index": 0,
+      "parquet_sha256": "d4e60141fd94d3a038ef4a3af794623bcbe8664306e347676f84ce13213eed1d",
+      "row": {
+        "problem": "Write one pure Python function with the exact form lambda n: EXPR. An external Python tool will call it once for each n in [25, 49, 150, 221, 668, 914]. For every call, return an integer d satisfying 1 < d < n and n % d == 0. Different valid return vectors are different solution modes. You may use integer literals, n, +, -, *, //, %, comparisons, Boolean operators, and conditional expressions; calls, imports, attributes, containers, and other names are forbidden. Return exactly the one-line lambda inside \\boxed{} and no explanation.",
+        "answer": {
+          "cases": [
+            25,
+            49,
+            150,
+            221,
+            668,
+            914
+          ],
+          "certified_mode_key_sha256": "9394bd7676d5e793af9b90a74135f9ec1a0124b0e812e87d7732f5d88efd8e5c",
+          "instance_id": "level4_revision_5_eval-t2-m160-5003067136877-0",
+          "num_externally_certified_modes": 2,
+          "num_modes": 160,
+          "python_version": "factor-v1",
+          "source": "synthetic_python_factor_modebench_v1",
+          "verifier": "python_factor_function"
+        }
+      },
+      "witnesses": [
+        {
+          "response": "lambda n: 5 if n==25 else 7 if n==49 else 2 if n==150 else 13 if n==221 else 2 if n==668 else 2",
+          "outputs": [
+            5,
+            7,
+            2,
+            13,
+            2,
+            2
+          ]
+        },
+        {
+          "response": "lambda n: 5 if n==25 else 7 if n==49 else 75 if n==150 else 17 if n==221 else 334 if n==668 else 457",
+          "outputs": [
+            5,
+            7,
+            75,
+            17,
+            334,
+            457
+          ]
+        }
+      ],
+      "cases": [
+        {
+          "name": "accepted_a",
+          "response": "lambda n: 5 if n==25 else 7 if n==49 else 2 if n==150 else 13 if n==221 else 2 if n==668 else 2",
+          "expected": {
+            "verified": true,
+            "canonical_key": "python_factor:5,7,2,13,2,2",
+            "graded_text": "lambda n: 5 if n==25 else 7 if n==49 else 2 if n==150 else 13 if n==221 else 2 if n==668 else 2"
+          }
+        },
+        {
+          "name": "accepted_b",
+          "response": "lambda n: 5 if n==25 else 7 if n==49 else 75 if n==150 else 17 if n==221 else 334 if n==668 else 457",
+          "expected": {
+            "verified": true,
+            "canonical_key": "python_factor:5,7,75,17,334,457",
+            "graded_text": "lambda n: 5 if n==25 else 7 if n==49 else 75 if n==150 else 17 if n==221 else 334 if n==668 else 457"
+          }
+        },
+        {
+          "name": "same_mode_format",
+          "response": "\\boxed{lambda n: 5 if n==25 else 7 if n==49 else 2 if n==150 else 13 if n==221 else 2 if n==668 else 2}",
+          "expected": {
+            "verified": true,
+            "canonical_key": "python_factor:5,7,2,13,2,2",
+            "graded_text": "\\boxed{lambda n: 5 if n==25 else 7 if n==49 else 2 if n==150 else 13 if n==221 else 2 if n==668 else 2}"
+          }
+        },
+        {
+          "name": "incorrect",
+          "response": "lambda n: 1",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "lambda n: 1"
+          }
+        },
+        {
+          "name": "malformed",
+          "response": "not a solution",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "not a solution"
+          }
+        },
+        {
+          "name": "format_boundary",
+          "response": "\\boxed{lambda n: 5 if n==25 else 7 if n==49 else 2 if n==150 else 13 if n==221 else 2 if n==668 else 2",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "\\boxed{lambda n: 5 if n==25 else 7 if n==49 else 2 if n==150 else 13 if n==221 else 2 if n==668 else 2"
+          }
+        },
+        {
+          "name": "oversized_candidate",
+          "response": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          }
+        }
+      ]
+    },
+    {
+      "config": "level4_mathir",
+      "level": 4,
+      "domain": "mathir",
+      "split": "eval",
+      "row_index": 0,
+      "parquet_sha256": "ef8e32741a37d447c5b62b7e9a52f46760731f00184b8df2ed9dfd57f9ed1a85",
+      "row": {
+        "problem": "MathIR linear-menu-v1. Solve for x by choosing an executable action sequence. Every selected action is applied exactly to BOTH sides of the current equation, followed by exact simplification. Bindings: a=7, b=-15, c=-18, d=-3, e=-3, f=-4. Initial equation: (a*x + b)/e = (d*x + c)/f. Action menu: A means sub(add(mul(div(d,f),x),div(b,e))); B means sub(mul(div(d,f),x)); C means sub(div(b,e)); D means div(div(a,e)); E means add(div(b,e)); F means div(sub(div(a,e),div(d,f))). Choose 1-4 action IDs. Illegal operations, repeated states, and paths that do not finish with x isolated are rejected. Return only the IDs separated by semicolons inside the answer box; for example formatting only: \\boxed{A;C}. Do not return x's numeric value.",
+        "answer": {
+          "actions": {
+            "A": "sub(add(mul(div(d,f),x),div(b,e)))",
+            "B": "sub(mul(div(d,f),x))",
+            "C": "sub(div(b,e))",
+            "D": "div(div(a,e))",
+            "E": "add(div(b,e))",
+            "F": "div(sub(div(a,e),div(d,f)))"
+          },
+          "bindings": {
+            "a": 7,
+            "b": -15,
+            "c": -18,
+            "d": -3,
+            "e": -3,
+            "f": -4
+          },
+          "family": "level3_rational_equation_2",
+          "initial_lhs": "div(add(mul(a,x),b),e)",
+          "initial_rhs": "div(add(mul(d,x),c),f)",
+          "instance_id": "level4_eval-62813300684508-22",
+          "mathir_version": "linear-menu-v1",
+          "max_steps": 4,
+          "num_completions": 5,
+          "source": "synthetic_mathir_level3_candidates_v1",
+          "support_is_open": false,
+          "valid_mode_count": 5,
+          "valid_mode_key_sha256": "3345ecd175ad72cc5367458834c561ce7de2aaeccf18faeee23125321c982797",
+          "verifier": "mathir_action_menu"
+        }
+      },
+      "witnesses": [
+        {
+          "response": "A;F"
+        },
+        {
+          "response": "B;C;F"
+        }
+      ],
+      "cases": [
+        {
+          "name": "accepted_a",
+          "response": "A;F",
+          "expected": {
+            "verified": true,
+            "canonical_key": "mathir:linear-menu-v1:eq(mul(add(mul(-1,d,e,x),mul(a,f,x)),inv(e),inv(f)),mul(add(mul(-1,b,f),mul(c,e)),inv(e),inv(f)))>eq(x,mul(add(mul(-1,b,f),mul(c,e)),inv(add(mul(-1,d,e),mul(a,f)))))",
+            "graded_text": "A;F"
+          }
+        },
+        {
+          "name": "accepted_b",
+          "response": "B;C;F",
+          "expected": {
+            "verified": true,
+            "canonical_key": "mathir:linear-menu-v1:eq(mul(add(mul(-1,d,e,x),mul(a,f,x),mul(b,f)),inv(e),inv(f)),mul(c,inv(f)))>eq(mul(add(mul(-1,d,e,x),mul(a,f,x)),inv(e),inv(f)),mul(add(mul(-1,b,f),mul(c,e)),inv(e),inv(f)))>eq(x,mul(add(mul(-1,b,f),mul(c,e)),inv(add(mul(-1,d,e),mul(a,f)))))",
+            "graded_text": "B;C;F"
+          }
+        },
+        {
+          "name": "same_mode_format",
+          "response": "\\boxed{A;F}",
+          "expected": {
+            "verified": true,
+            "canonical_key": "mathir:linear-menu-v1:eq(mul(add(mul(-1,d,e,x),mul(a,f,x)),inv(e),inv(f)),mul(add(mul(-1,b,f),mul(c,e)),inv(e),inv(f)))>eq(x,mul(add(mul(-1,b,f),mul(c,e)),inv(add(mul(-1,d,e),mul(a,f)))))",
+            "graded_text": "\\boxed{A;F}"
+          }
+        },
+        {
+          "name": "incorrect",
+          "response": "A",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "A"
+          }
+        },
+        {
+          "name": "malformed",
+          "response": "not a solution",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "not a solution"
+          }
+        },
+        {
+          "name": "format_boundary",
+          "response": "\\boxed{A;F",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "\\boxed{A;F"
+          }
+        },
+        {
+          "name": "oversized_candidate",
+          "response": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          }
+        }
+      ]
+    },
+    {
+      "config": "level4_pantry_plan",
+      "level": 4,
+      "domain": "pantry_plan",
+      "split": "eval",
+      "row_index": 0,
+      "parquet_sha256": "8c97438a150b84fa558e611cb32ccce0ae57f17e0b3b2c725219f75302c6e981",
+      "row": {
+        "problem": "Create one feasible high fiber snack from this frozen pantry.\nNutrition values are per 100 g. Quantities are exact integer grams.\n\nPantry:\n- carrots: available=100g, step=25g, minimum-if-used=50g; energy=45.0kcal, protein=0.941g, fiber=3.1g, sodium=86.6mg; tags=none\n- granny_smith_apple: available=100g, step=25g, minimum-if-used=50g; energy=53.0kcal, protein=0.266g, fiber=2.51g, sodium=0.0mg; tags=none\n- grape_tomatoes: available=150g, step=25g, minimum-if-used=50g; energy=27.0kcal, protein=0.83g, fiber=2.1g, sodium=6.0mg; tags=none\n- hummus: available=100g, step=25g, minimum-if-used=50g; energy=229kcal, protein=7.35g, fiber=5.4g, sodium=438mg; tags=none\n- navel_orange: available=125g, step=25g, minimum-if-used=50g; energy=47.0kcal, protein=0.91g, fiber=2.0g, sodium=9.0mg; tags=none\n- sunflower_seeds: available=125g, step=25g, minimum-if-used=50g; energy=571kcal, protein=18.9g, fiber=7.22g, sodium=0.0mg; tags=none\n\nUse 2 to 4 ingredients.\nForbidden tags: none\nTargets:\n- mass_g: minimum 0, maximum 474.178\n- energy_kcal: minimum 0, maximum 305.482\n- protein_g: minimum 0\n- fiber_g: minimum 0\n- sodium_mg: maximum 147.589\n\nReturn only ingredient_id=grams pairs separated by semicolons inside \\boxed{}. Do not add a recipe name or preparation prose.",
+        "answer": {
+          "certified_mode_count": 12,
+          "certified_support_sha256": "838b2824f2b051e481dee19cea35ceede4f1af691fa56a0482b116fc70f823ca",
+          "family": "high_fiber_snack",
+          "forbidden_tags": [],
+          "ingredients": [
+            {
+              "attributes_per_100g": {
+                "energy_kcal": "45.0",
+                "fiber_g": "3.1",
+                "protein_g": "0.941",
+                "sodium_mg": "86.6"
+              },
+              "available_g": 100,
+              "id": "carrots",
+              "min_if_used_g": 50,
+              "step_g": 25,
+              "tags": []
+            },
+            {
+              "attributes_per_100g": {
+                "energy_kcal": "53.0",
+                "fiber_g": "2.51",
+                "protein_g": "0.266",
+                "sodium_mg": "0.0"
+              },
+              "available_g": 100,
+              "id": "granny_smith_apple",
+              "min_if_used_g": 50,
+              "step_g": 25,
+              "tags": []
+            },
+            {
+              "attributes_per_100g": {
+                "energy_kcal": "27.0",
+                "fiber_g": "2.1",
+                "protein_g": "0.83",
+                "sodium_mg": "6.0"
+              },
+              "available_g": 150,
+              "id": "grape_tomatoes",
+              "min_if_used_g": 50,
+              "step_g": 25,
+              "tags": []
+            },
+            {
+              "attributes_per_100g": {
+                "energy_kcal": "229",
+                "fiber_g": "5.4",
+                "protein_g": "7.35",
+                "sodium_mg": "438"
+              },
+              "available_g": 100,
+              "id": "hummus",
+              "min_if_used_g": 50,
+              "step_g": 25,
+              "tags": []
+            },
+            {
+              "attributes_per_100g": {
+                "energy_kcal": "47.0",
+                "fiber_g": "2.0",
+                "protein_g": "0.91",
+                "sodium_mg": "9.0"
+              },
+              "available_g": 125,
+              "id": "navel_orange",
+              "min_if_used_g": 50,
+              "step_g": 25,
+              "tags": []
+            },
+            {
+              "attributes_per_100g": {
+                "energy_kcal": "571",
+                "fiber_g": "7.22",
+                "protein_g": "18.9",
+                "sodium_mg": "0.0"
+              },
+              "available_g": 125,
+              "id": "sunflower_seeds",
+              "min_if_used_g": 50,
+              "step_g": 25,
+              "tags": []
+            }
+          ],
+          "instance_id": "level4_revision_2_eval-216861534353611-high_fiber_snack-t3-m12-0",
+          "max_ingredients": 4,
+          "min_ingredients": 2,
+          "pantry_version": "pantry-v1",
+          "source_ingredient_table_sha256": "f49560f417cf6b1e01f901aba4b3fa4e73744b3f6d0d8a50b7042afd950678e2",
+          "targets": {
+            "energy_kcal": {
+              "max": "305.482",
+              "min": "0"
+            },
+            "fiber_g": {
+              "min": "0"
+            },
+            "mass_g": {
+              "max": "474.178",
+              "min": "0"
+            },
+            "protein_g": {
+              "min": "0"
+            },
+            "sodium_mg": {
+              "max": "147.589"
+            }
+          },
+          "verifier": "pantry_plan"
+        }
+      },
+      "witnesses": [
+        {
+          "response": "carrots=50;granny_smith_apple=50",
+          "allocations": {
+            "carrots": 50,
+            "granny_smith_apple": 50
+          }
+        },
+        {
+          "response": "carrots=50;grape_tomatoes=50",
+          "allocations": {
+            "carrots": 50,
+            "grape_tomatoes": 50
+          }
+        }
+      ],
+      "cases": [
+        {
+          "name": "accepted_a",
+          "response": "carrots=50;granny_smith_apple=50",
+          "expected": {
+            "verified": true,
+            "canonical_key": "pantry_plan:pantry-v1:carrots+granny_smith_apple",
+            "graded_text": "carrots=50;granny_smith_apple=50"
+          }
+        },
+        {
+          "name": "accepted_b",
+          "response": "carrots=50;grape_tomatoes=50",
+          "expected": {
+            "verified": true,
+            "canonical_key": "pantry_plan:pantry-v1:carrots+grape_tomatoes",
+            "graded_text": "carrots=50;grape_tomatoes=50"
+          }
+        },
+        {
+          "name": "same_mode_format",
+          "response": "\\boxed{carrots=50;granny_smith_apple=50}",
+          "expected": {
+            "verified": true,
+            "canonical_key": "pantry_plan:pantry-v1:carrots+granny_smith_apple",
+            "graded_text": "\\boxed{carrots=50;granny_smith_apple=50}"
+          }
+        },
+        {
+          "name": "incorrect",
+          "response": "carrots=1",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "carrots=1"
+          }
+        },
+        {
+          "name": "malformed",
+          "response": "not a solution",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "not a solution"
+          }
+        },
+        {
+          "name": "format_boundary",
+          "response": "\\boxed{carrots=50;granny_smith_apple=50",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "\\boxed{carrots=50;granny_smith_apple=50"
+          }
+        },
+        {
+          "name": "oversized_candidate",
+          "response": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          }
+        }
+      ]
+    },
+    {
+      "config": "level5_countdown",
+      "level": 5,
+      "domain": "countdown",
+      "split": "eval",
+      "row_index": 0,
+      "parquet_sha256": "11459a06b49bd0dd61eb668e52ae3f2958c2b1aae22dbc1a9514fe41a28fb3ea",
+      "row": {
+        "problem": "Using the numbers [22, 24, 30, 68], create an arithmetic expression that equals 8976. Use each given number exactly once. You may use +, -, *, /, and parentheses. Return exactly one final answer and no explanation: the expression inside \\boxed{}.",
+        "answer": {
+          "instance_id": "level5_eval-164240965556331-m3-11",
+          "num_completions": 3,
+          "num_expressions": 3,
+          "numbers": [
+            22,
+            24,
+            30,
+            68
+          ],
+          "source": "modebench_scale_candidate_laws_v1",
+          "target": 8976,
+          "verifier": "countdown"
+        }
+      },
+      "witnesses": [
+        {
+          "response": "(22*((30-24)*68))"
+        },
+        {
+          "response": "((22*(30-24))*68)"
+        }
+      ],
+      "cases": [
+        {
+          "name": "accepted_a",
+          "response": "(22*((30-24)*68))",
+          "expected": {
+            "verified": true,
+            "canonical_key": "countdown:mul(22,mul(68,sub(30,24)))",
+            "graded_text": "(22*((30-24)*68))"
+          }
+        },
+        {
+          "name": "accepted_b",
+          "response": "((22*(30-24))*68)",
+          "expected": {
+            "verified": true,
+            "canonical_key": "countdown:mul(68,mul(22,sub(30,24)))",
+            "graded_text": "((22*(30-24))*68)"
+          }
+        },
+        {
+          "name": "same_mode_format",
+          "response": "\\boxed{(22*((30-24)*68))}",
+          "expected": {
+            "verified": true,
+            "canonical_key": "countdown:mul(22,mul(68,sub(30,24)))",
+            "graded_text": "\\boxed{(22*((30-24)*68))}"
+          }
+        },
+        {
+          "name": "incorrect",
+          "response": "8976",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "8976"
+          }
+        },
+        {
+          "name": "malformed",
+          "response": "not a solution",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "not a solution"
+          }
+        },
+        {
+          "name": "format_boundary",
+          "response": "\\boxed{(22*((30-24)*68))",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "\\boxed{(22*((30-24)*68))"
+          }
+        },
+        {
+          "name": "oversized_candidate",
+          "response": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          }
+        }
+      ]
+    },
+    {
+      "config": "level5_graph_coloring",
+      "level": 5,
+      "domain": "graph_coloring",
+      "split": "eval",
+      "row_index": 0,
+      "parquet_sha256": "75ca0480b6e7e113ea681d3a1b1145a09fa2c3de7355ff921919ad708851febc",
+      "row": {
+        "problem": "Color this graph with vertices 1 through 6. The undirected edges are: (1,4), (2,4), (2,6), (3,5), (4,5). Assign each vertex one color from {1, 2, 3} so that no edge has the same color on both endpoints. A partial coloring is 132???, where ? means uncolored. Keep every shown digit fixed. There are exactly 3 question marks. Return exactly one final answer and no explanation: exactly 3 digits, each one 1, 2, or 3, for the missing positions from left to right, inside \\boxed{}.",
+        "answer": {
+          "edges": [
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              2,
+              6
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              4,
+              5
+            ]
+          ],
+          "instance_id": "level5_revision_5_eval-116720028990632-t2-m4-24",
+          "n": 6,
+          "num_completions": 4,
+          "num_solutions": 96,
+          "partial_colors": [
+            1,
+            3,
+            2,
+            null,
+            null,
+            null
+          ],
+          "source": "modebench_scale_graph_r7_density_graded_laws_v1",
+          "verifier": "graph_coloring"
+        }
+      },
+      "witnesses": [
+        {
+          "response": "132211"
+        },
+        {
+          "response": "132212"
+        }
+      ],
+      "cases": [
+        {
+          "name": "accepted_a",
+          "response": "132211",
+          "expected": {
+            "verified": true,
+            "canonical_key": "graph_coloring:132211",
+            "graded_text": "132211"
+          }
+        },
+        {
+          "name": "accepted_b",
+          "response": "132212",
+          "expected": {
+            "verified": true,
+            "canonical_key": "graph_coloring:132212",
+            "graded_text": "132212"
+          }
+        },
+        {
+          "name": "same_mode_format",
+          "response": "\\boxed{132211}",
+          "expected": {
+            "verified": true,
+            "canonical_key": "graph_coloring:132211",
+            "graded_text": "\\boxed{132211}"
+          }
+        },
+        {
+          "name": "incorrect",
+          "response": "111111",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "111111"
+          }
+        },
+        {
+          "name": "malformed",
+          "response": "not a solution",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "not a solution"
+          }
+        },
+        {
+          "name": "format_boundary",
+          "response": "\\boxed{132211",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "\\boxed{132211"
+          }
+        },
+        {
+          "name": "oversized_candidate",
+          "response": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          }
+        }
+      ]
+    },
+    {
+      "config": "level5_python_factors",
+      "level": 5,
+      "domain": "python_factors",
+      "split": "eval",
+      "row_index": 0,
+      "parquet_sha256": "496f9d6020fcb906a1ee6b6ec9cb868a4d5478c3f492ab0514d3a825a083b521",
+      "row": {
+        "problem": "Write one pure Python function with the exact form lambda n: EXPR. An external Python tool will call it once for each n in [209, 450, 471, 549]. For every call, return an integer d satisfying 1 < d < n and n % d == 0. Different valid return vectors are different solution modes. You may use integer literals, n, +, -, *, //, %, comparisons, Boolean operators, and conditional expressions; calls, imports, attributes, containers, and other names are forbidden. Return exactly the one-line lambda inside \\boxed{} and no explanation.",
+        "answer": {
+          "cases": [
+            209,
+            450,
+            471,
+            549
+          ],
+          "certified_mode_key_sha256": "54046c00e490040660dd5409c9415a39c08711115cfe621ece5c42e487fcbc04",
+          "instance_id": "level5_revision_2_eval-t2-m256-16823796285933-0",
+          "num_externally_certified_modes": 2,
+          "num_modes": 256,
+          "python_version": "factor-v1",
+          "source": "synthetic_python_factor_modebench_v1",
+          "verifier": "python_factor_function"
+        }
+      },
+      "witnesses": [
+        {
+          "response": "lambda n: 11 if n==209 else 2 if n==450 else 3 if n==471 else 3",
+          "outputs": [
+            11,
+            2,
+            3,
+            3
+          ]
+        },
+        {
+          "response": "lambda n: 19 if n==209 else 225 if n==450 else 157 if n==471 else 183",
+          "outputs": [
+            19,
+            225,
+            157,
+            183
+          ]
+        }
+      ],
+      "cases": [
+        {
+          "name": "accepted_a",
+          "response": "lambda n: 11 if n==209 else 2 if n==450 else 3 if n==471 else 3",
+          "expected": {
+            "verified": true,
+            "canonical_key": "python_factor:11,2,3,3",
+            "graded_text": "lambda n: 11 if n==209 else 2 if n==450 else 3 if n==471 else 3"
+          }
+        },
+        {
+          "name": "accepted_b",
+          "response": "lambda n: 19 if n==209 else 225 if n==450 else 157 if n==471 else 183",
+          "expected": {
+            "verified": true,
+            "canonical_key": "python_factor:19,225,157,183",
+            "graded_text": "lambda n: 19 if n==209 else 225 if n==450 else 157 if n==471 else 183"
+          }
+        },
+        {
+          "name": "same_mode_format",
+          "response": "\\boxed{lambda n: 11 if n==209 else 2 if n==450 else 3 if n==471 else 3}",
+          "expected": {
+            "verified": true,
+            "canonical_key": "python_factor:11,2,3,3",
+            "graded_text": "\\boxed{lambda n: 11 if n==209 else 2 if n==450 else 3 if n==471 else 3}"
+          }
+        },
+        {
+          "name": "incorrect",
+          "response": "lambda n: 1",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "lambda n: 1"
+          }
+        },
+        {
+          "name": "malformed",
+          "response": "not a solution",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "not a solution"
+          }
+        },
+        {
+          "name": "format_boundary",
+          "response": "\\boxed{lambda n: 11 if n==209 else 2 if n==450 else 3 if n==471 else 3",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "\\boxed{lambda n: 11 if n==209 else 2 if n==450 else 3 if n==471 else 3"
+          }
+        },
+        {
+          "name": "oversized_candidate",
+          "response": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          }
+        }
+      ]
+    },
+    {
+      "config": "level5_mathir",
+      "level": 5,
+      "domain": "mathir",
+      "split": "eval",
+      "row_index": 0,
+      "parquet_sha256": "a82293cd9a2245eb664f1f9082eec83d7232a00308e28a47de9b895a0ca8fd04",
+      "row": {
+        "problem": "MathIR linear-menu-v1. Solve for x by choosing an executable action sequence. Every selected action is applied exactly to BOTH sides of the current equation, followed by exact simplification. Bindings: a=8, b=-1, c=-5, d=2, e=4, f=1. Initial equation: a*x/(a+e) + b/f = d*x + c. Action menu: A means div(sub(div(a,add(a,e)),d)); B means sub(mul(d,x)); C means add(div(b,f)); D means div(div(a,add(a,e))); E means sub(add(mul(d,x),div(b,f))); F means sub(div(b,f)). Choose 1-4 action IDs. Illegal operations, repeated states, and paths that do not finish with x isolated are rejected. Return only the IDs separated by semicolons inside the answer box; for example formatting only: \\boxed{A;C}. Do not return x's numeric value.",
+        "answer": {
+          "actions": {
+            "A": "div(sub(div(a,add(a,e)),d))",
+            "B": "sub(mul(d,x))",
+            "C": "add(div(b,f))",
+            "D": "div(div(a,add(a,e)))",
+            "E": "sub(add(mul(d,x),div(b,f)))",
+            "F": "sub(div(b,f))"
+          },
+          "bindings": {
+            "a": 8,
+            "b": -1,
+            "c": -5,
+            "d": 2,
+            "e": 4,
+            "f": 1
+          },
+          "family": "scale_split_linear_sum_coefficient_denominator_v1",
+          "initial_lhs": "add(div(mul(a,x),add(a,e)),div(b,f))",
+          "initial_rhs": "add(mul(d,x),c)",
+          "instance_id": "level5_revision_2_eval-t1-m5-88522187678908-61",
+          "mathir_version": "linear-menu-v1",
+          "max_steps": 4,
+          "num_completions": 5,
+          "source": "modebench_scale_l5_mathir_structural_candidate_laws_v1",
+          "support_is_open": false,
+          "valid_mode_count": 5,
+          "valid_mode_key_sha256": "81559288b63102d25d9c74de1127dc49b14d08698b666ee4ebd6573e5455b0c0",
+          "verifier": "mathir_action_menu"
+        }
+      },
+      "witnesses": [
+        {
+          "response": "E;A"
+        },
+        {
+          "response": "B;F;A"
+        }
+      ],
+      "cases": [
+        {
+          "name": "accepted_a",
+          "response": "E;A",
+          "expected": {
+            "verified": true,
+            "canonical_key": "mathir:linear-menu-v1:eq(mul(add(mul(-1,a,d,x),mul(-1,d,e,x),mul(a,x)),inv(add(a,e))),mul(add(mul(-1,b),mul(c,f)),inv(f)))>eq(x,mul(add(mul(-1,a,c,f),mul(-1,c,e,f),mul(a,b),mul(b,e)),inv(add(mul(-1,a,f),mul(a,d,f),mul(d,e,f)))))",
+            "graded_text": "E;A"
+          }
+        },
+        {
+          "name": "accepted_b",
+          "response": "B;F;A",
+          "expected": {
+            "verified": true,
+            "canonical_key": "mathir:linear-menu-v1:eq(mul(add(mul(-1,a,d,f,x),mul(-1,d,e,f,x),mul(a,b),mul(a,f,x),mul(b,e)),inv(add(mul(a,f),mul(e,f)))),c)>eq(mul(add(mul(-1,a,d,x),mul(-1,d,e,x),mul(a,x)),inv(add(a,e))),mul(add(mul(-1,b),mul(c,f)),inv(f)))>eq(x,mul(add(mul(-1,a,c,f),mul(-1,c,e,f),mul(a,b),mul(b,e)),inv(add(mul(-1,a,f),mul(a,d,f),mul(d,e,f)))))",
+            "graded_text": "B;F;A"
+          }
+        },
+        {
+          "name": "same_mode_format",
+          "response": "\\boxed{E;A}",
+          "expected": {
+            "verified": true,
+            "canonical_key": "mathir:linear-menu-v1:eq(mul(add(mul(-1,a,d,x),mul(-1,d,e,x),mul(a,x)),inv(add(a,e))),mul(add(mul(-1,b),mul(c,f)),inv(f)))>eq(x,mul(add(mul(-1,a,c,f),mul(-1,c,e,f),mul(a,b),mul(b,e)),inv(add(mul(-1,a,f),mul(a,d,f),mul(d,e,f)))))",
+            "graded_text": "\\boxed{E;A}"
+          }
+        },
+        {
+          "name": "incorrect",
+          "response": "A",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "A"
+          }
+        },
+        {
+          "name": "malformed",
+          "response": "not a solution",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "not a solution"
+          }
+        },
+        {
+          "name": "format_boundary",
+          "response": "\\boxed{E;A",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "\\boxed{E;A"
+          }
+        },
+        {
+          "name": "oversized_candidate",
+          "response": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          }
+        }
+      ]
+    },
+    {
+      "config": "level5_pantry_plan",
+      "level": 5,
+      "domain": "pantry_plan",
+      "split": "eval",
+      "row_index": 0,
+      "parquet_sha256": "474f112bfcb3abf9c3ac41e49c03e2b4f34e6a1d11670a4ad03768a6f37ac763",
+      "row": {
+        "problem": "Create one feasible breakfast formulation from this frozen pantry.\nNutrition values are per 100 g. Quantities are exact integer grams.\n\nPantry:\n- almonds: available=150g, step=25g, minimum-if-used=50g; energy=584kcal, protein=21.5g, fiber=10.8g, sodium=0.0mg; tags=tree_nut\n- granny_smith_apple: available=125g, step=25g, minimum-if-used=50g; energy=53.0kcal, protein=0.266g, fiber=2.51g, sodium=0.0mg; tags=none\n- navel_orange: available=150g, step=25g, minimum-if-used=50g; energy=47.0kcal, protein=0.91g, fiber=2.0g, sodium=9.0mg; tags=none\n- pumpkin_seeds: available=125g, step=25g, minimum-if-used=50g; energy=515kcal, protein=29.9g, fiber=5.08g, sodium=0.0mg; tags=none\n- rolled_oats: available=100g, step=25g, minimum-if-used=50g; energy=379kcal, protein=13.5g, fiber=10.4g, sodium=0.668mg; tags=none\n- sunflower_seeds: available=125g, step=25g, minimum-if-used=50g; energy=571kcal, protein=18.9g, fiber=7.22g, sodium=0.0mg; tags=none\n\nUse 2 to 4 ingredients.\nForbidden tags: none\nTargets:\n- mass_g: minimum 253.48, maximum 296.52\n- energy_kcal: minimum 755.441, maximum 982.059\n- protein_g: minimum 33.533\n- fiber_g: minimum 10.703\n- sodium_mg: maximum 14.576\n\nReturn only ingredient_id=grams pairs separated by semicolons inside \\boxed{}. Do not add a recipe name or preparation prose.",
+        "answer": {
+          "certified_mode_count": 18,
+          "certified_support_sha256": "6ffdc6925f4e89d363484d316af04c257b88428d658e0412f9dfda7950f90ecf",
+          "family": "breakfast_formulation",
+          "forbidden_tags": [],
+          "ingredients": [
+            {
+              "attributes_per_100g": {
+                "energy_kcal": "584",
+                "fiber_g": "10.8",
+                "protein_g": "21.5",
+                "sodium_mg": "0.0"
+              },
+              "available_g": 150,
+              "id": "almonds",
+              "min_if_used_g": 50,
+              "step_g": 25,
+              "tags": [
+                "tree_nut"
+              ]
+            },
+            {
+              "attributes_per_100g": {
+                "energy_kcal": "53.0",
+                "fiber_g": "2.51",
+                "protein_g": "0.266",
+                "sodium_mg": "0.0"
+              },
+              "available_g": 125,
+              "id": "granny_smith_apple",
+              "min_if_used_g": 50,
+              "step_g": 25,
+              "tags": []
+            },
+            {
+              "attributes_per_100g": {
+                "energy_kcal": "47.0",
+                "fiber_g": "2.0",
+                "protein_g": "0.91",
+                "sodium_mg": "9.0"
+              },
+              "available_g": 150,
+              "id": "navel_orange",
+              "min_if_used_g": 50,
+              "step_g": 25,
+              "tags": []
+            },
+            {
+              "attributes_per_100g": {
+                "energy_kcal": "515",
+                "fiber_g": "5.08",
+                "protein_g": "29.9",
+                "sodium_mg": "0.0"
+              },
+              "available_g": 125,
+              "id": "pumpkin_seeds",
+              "min_if_used_g": 50,
+              "step_g": 25,
+              "tags": []
+            },
+            {
+              "attributes_per_100g": {
+                "energy_kcal": "379",
+                "fiber_g": "10.4",
+                "protein_g": "13.5",
+                "sodium_mg": "0.668"
+              },
+              "available_g": 100,
+              "id": "rolled_oats",
+              "min_if_used_g": 50,
+              "step_g": 25,
+              "tags": []
+            },
+            {
+              "attributes_per_100g": {
+                "energy_kcal": "571",
+                "fiber_g": "7.22",
+                "protein_g": "18.9",
+                "sodium_mg": "0.0"
+              },
+              "available_g": 125,
+              "id": "sunflower_seeds",
+              "min_if_used_g": 50,
+              "step_g": 25,
+              "tags": []
+            }
+          ],
+          "instance_id": "level5_revision_4_eval-140774320202102-breakfast_formulation-t0-m18-0",
+          "max_ingredients": 4,
+          "min_ingredients": 2,
+          "pantry_version": "pantry-v1",
+          "source_ingredient_table_sha256": "f49560f417cf6b1e01f901aba4b3fa4e73744b3f6d0d8a50b7042afd950678e2",
+          "targets": {
+            "energy_kcal": {
+              "max": "982.059",
+              "min": "755.441"
+            },
+            "fiber_g": {
+              "min": "10.703"
+            },
+            "mass_g": {
+              "max": "296.52",
+              "min": "253.48"
+            },
+            "protein_g": {
+              "min": "33.533"
+            },
+            "sodium_mg": {
+              "max": "14.576"
+            }
+          },
+          "verifier": "pantry_plan"
+        }
+      },
+      "witnesses": [
+        {
+          "response": "almonds=50;granny_smith_apple=125;pumpkin_seeds=100",
+          "allocations": {
+            "almonds": 50,
+            "granny_smith_apple": 125,
+            "pumpkin_seeds": 100
+          }
+        },
+        {
+          "response": "almonds=125;granny_smith_apple=100;rolled_oats=50",
+          "allocations": {
+            "almonds": 125,
+            "granny_smith_apple": 100,
+            "rolled_oats": 50
+          }
+        }
+      ],
+      "cases": [
+        {
+          "name": "accepted_a",
+          "response": "almonds=50;granny_smith_apple=125;pumpkin_seeds=100",
+          "expected": {
+            "verified": true,
+            "canonical_key": "pantry_plan:pantry-v1:almonds+granny_smith_apple+pumpkin_seeds",
+            "graded_text": "almonds=50;granny_smith_apple=125;pumpkin_seeds=100"
+          }
+        },
+        {
+          "name": "accepted_b",
+          "response": "almonds=125;granny_smith_apple=100;rolled_oats=50",
+          "expected": {
+            "verified": true,
+            "canonical_key": "pantry_plan:pantry-v1:almonds+granny_smith_apple+rolled_oats",
+            "graded_text": "almonds=125;granny_smith_apple=100;rolled_oats=50"
+          }
+        },
+        {
+          "name": "same_mode_format",
+          "response": "\\boxed{almonds=50;granny_smith_apple=125;pumpkin_seeds=100}",
+          "expected": {
+            "verified": true,
+            "canonical_key": "pantry_plan:pantry-v1:almonds+granny_smith_apple+pumpkin_seeds",
+            "graded_text": "\\boxed{almonds=50;granny_smith_apple=125;pumpkin_seeds=100}"
+          }
+        },
+        {
+          "name": "incorrect",
+          "response": "almonds=1",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "almonds=1"
+          }
+        },
+        {
+          "name": "malformed",
+          "response": "not a solution",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "not a solution"
+          }
+        },
+        {
+          "name": "format_boundary",
+          "response": "\\boxed{almonds=50;granny_smith_apple=125;pumpkin_seeds=100",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "\\boxed{almonds=50;granny_smith_apple=125;pumpkin_seeds=100"
+          }
+        },
+        {
+          "name": "oversized_candidate",
+          "response": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "expected": {
+            "verified": false,
+            "canonical_key": null,
+            "graded_text": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -19,9 +19,6 @@ from datasets import Dataset, DatasetDict
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SRC = ROOT / "src"
-if str(SRC) not in sys.path:
-    sys.path.insert(0, str(SRC))
 
 from modebench.pantry_plan import (  # noqa: E402
     PANTRY_PLAN_VERIFIER,

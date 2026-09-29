@@ -4,7 +4,7 @@
   "files": [
     {
       "path": "src/modebench/grading.py",
-      "sha256": "e455521ce5e83a3c7f7bfaa83f0b660e2e96e6e574c5a970fa381933afb6bea5",
+      "sha256": "86c6b1ba0a23a9d529c6b9da24d025e5acae8a03aa9b2bb7006e177f470b4dd8",
       "transformation": "extract benchmark functions; remove maze dispatch; benchmark-only reward adapter",
       "source": "src/oat_drgrpo/math_grader.py",
       "source_sha256": "5bc8a2382ab30d9ccb2dfa4a9cbfb78be28187e1b5049063814cc262b5bac255",
@@ -12,48 +12,53 @@
       "post_extraction_review": "See README reproducibility section; final file identity differs from the initial mechanical extraction."
     },
     {
-      "path": "src/modebench/mathir.py",
-      "sha256": "1f35d72b68033e1a272305034ca15ab3a53a74edd93a838de831262c75b5825a",
-      "transformation": "namespace relocation; lazy torch import in templates",
+      "path": "src/modebench/domains/mathir/verifier.py",
+      "sha256": "03189623196831d9be93cdb3d461d0ef8b552da23fac59510515a7374ff8f16f",
+      "transformation": "namespace relocation; lazy torch import in templates; domain package relocation with legacy import aliases",
       "source": "src/oat_drgrpo/mathir.py",
       "source_sha256": "1f35d72b68033e1a272305034ca15ab3a53a74edd93a838de831262c75b5825a",
-      "extracted_sha256": "1f35d72b68033e1a272305034ca15ab3a53a74edd93a838de831262c75b5825a"
+      "extracted_sha256": "1f35d72b68033e1a272305034ca15ab3a53a74edd93a838de831262c75b5825a",
+      "previous_release_path": "src/modebench/mathir.py"
     },
     {
-      "path": "src/modebench/pantry_plan.py",
-      "sha256": "dd246a0510fc5d2964794b6d228ff30cc682200cdc0073540bf45e3273666712",
-      "transformation": "namespace relocation; lazy torch import in templates",
+      "path": "src/modebench/domains/pantry_plan/verifier.py",
+      "sha256": "b7f3bac17e615d1981ee4f1136184b07b21fef94ff2459f8a25cdb0e876cb0f4",
+      "transformation": "namespace relocation; lazy torch import in templates; domain package relocation with legacy import aliases",
       "source": "src/oat_drgrpo/pantry_plan.py",
       "source_sha256": "dd246a0510fc5d2964794b6d228ff30cc682200cdc0073540bf45e3273666712",
-      "extracted_sha256": "dd246a0510fc5d2964794b6d228ff30cc682200cdc0073540bf45e3273666712"
+      "extracted_sha256": "dd246a0510fc5d2964794b6d228ff30cc682200cdc0073540bf45e3273666712",
+      "previous_release_path": "src/modebench/pantry_plan.py"
     },
     {
-      "path": "src/modebench/pantry_support_action.py",
-      "sha256": "78c555485b1975fd17cc8ad30886f3665b41a4c6423b14ade9540136db212a6a",
-      "transformation": "namespace relocation; lazy torch import in templates",
+      "path": "src/modebench/domains/pantry_plan/support.py",
+      "sha256": "4d28a73265e76b70c7c94d566af898974c6a7ffe51c4c0b41788cfcbd5c445db",
+      "transformation": "namespace relocation; lazy torch import in templates; domain package relocation with legacy import aliases",
       "source": "src/oat_drgrpo/pantry_support_action.py",
       "source_sha256": "78c555485b1975fd17cc8ad30886f3665b41a4c6423b14ade9540136db212a6a",
-      "extracted_sha256": "78c555485b1975fd17cc8ad30886f3665b41a4c6423b14ade9540136db212a6a"
+      "extracted_sha256": "78c555485b1975fd17cc8ad30886f3665b41a4c6423b14ade9540136db212a6a",
+      "previous_release_path": "src/modebench/pantry_support_action.py"
     },
     {
-      "path": "src/modebench/python_modebench.py",
-      "sha256": "94e77d8c8f45800138f97776c343280c6f7419ee8d8587bbc0a1182418777a40",
-      "transformation": "namespace relocation; lazy torch import in templates",
+      "path": "src/modebench/domains/python_factors/verifier.py",
+      "sha256": "33f51cc7d0a96d0f39ab00f27bd26532cb5a609a32a3c900e8c7eac80c825da1",
+      "transformation": "namespace relocation; lazy torch import in templates; domain package relocation with legacy import aliases",
       "source": "src/oat_drgrpo/python_modebench.py",
       "source_sha256": "0fa4a452d5935f3922ef3e2ffeacbc5d9f3ddb8defdcbb31c04050346313c726",
-      "extracted_sha256": "94e77d8c8f45800138f97776c343280c6f7419ee8d8587bbc0a1182418777a40"
+      "extracted_sha256": "94e77d8c8f45800138f97776c343280c6f7419ee8d8587bbc0a1182418777a40",
+      "previous_release_path": "src/modebench/python_modebench.py"
     },
     {
-      "path": "src/modebench/python_modebench_process.py",
-      "sha256": "7679505af4f683d5c593bfb3c679b578d43d6d86d5b8fea9b87c78672c562244",
-      "transformation": "namespace relocation; lazy torch import in templates",
+      "path": "src/modebench/domains/python_factors/process.py",
+      "sha256": "028f5277c4d6d8567bd7c868c5553ad969227aee902756956ce6ca7deed5f66e",
+      "transformation": "namespace relocation; lazy torch import in templates; domain package relocation with legacy import aliases",
       "source": "src/oat_drgrpo/python_modebench_process.py",
       "source_sha256": "5b8471171f9ef433d111db19b39dba172482bfcc32e01897cf3382357096680e",
-      "extracted_sha256": "7679505af4f683d5c593bfb3c679b578d43d6d86d5b8fea9b87c78672c562244"
+      "extracted_sha256": "7679505af4f683d5c593bfb3c679b578d43d6d86d5b8fea9b87c78672c562244",
+      "previous_release_path": "src/modebench/python_modebench_process.py"
     },
     {
       "path": "src/modebench/python_modebench_worker.py",
-      "sha256": "6595e9ea6a1786753734e8ddb03efd4d78ac7f6091e8dc3c6db312eef12db210",
+      "sha256": "407f1ee73ae1b74ad26cd58e255c58589229ee8ea352acf34fed13c3a41cfd4b",
       "transformation": "namespace relocation; lazy torch import in templates",
       "source": "src/oat_drgrpo/python_modebench_worker.py",
       "source_sha256": "6595e9ea6a1786753734e8ddb03efd4d78ac7f6091e8dc3c6db312eef12db210",
@@ -69,7 +74,7 @@
     },
     {
       "path": "src/modebench/metrics.py",
-      "sha256": "611fee51132bec4b1c32568c3e6ccd449a70557887b18faa085ad02c6978b249",
+      "sha256": "5db29e747818391fe74ae1d5ee0ded29a62bfaa500022d2e154f5fb2504a7e69",
       "transformation": "byte-preserving copy",
       "source": "ops/mode_diversity.py",
       "source_sha256": "7ec513efc3c9ce627945833a27692620129b5f3888dc2311584554ff21aed6a5",
@@ -77,7 +82,7 @@
     },
     {
       "path": "src/modebench/historical_prompts.py",
-      "sha256": "ebb0888e14000bd66acb30853de5772d92af200a81220c676b387a7e7ef97f24",
+      "sha256": "e2e6b6395b7c5aa6ed464f42514309a32d2abb077e75f6822f80180da5e61f02",
       "transformation": "package imports; remove research-checkout sys.path injection",
       "source": "ops/frontier_modebench_contract.py",
       "source_sha256": "abfd71ec6f08267310aa2545f6f19e0a6213c8d69b2838410953850e101624f7",
@@ -94,7 +99,7 @@
     },
     {
       "path": "src/modebench/__init__.py",
-      "sha256": "ed30e5f9c9d6ed64cfd1593d27d7028324591130f096eff5ac497d46179dff59",
+      "sha256": "c9f2383712177710fab979c285247fb7c25e779d06a33148110100b6c8c54c1e",
       "transformation": "new release interface",
       "extracted_sha256": "238f7da5285e1c507aa02ba3251cfffa3ed959ce13fb8c3025dad3258bf2b592"
     },
@@ -108,7 +113,7 @@
     },
     {
       "path": "ops/make_exact_countdown_mode_data.py",
-      "sha256": "a087efc9253981aa589138a2aff2d2f5de1cab4d0dd7012e9890c24a64cae165",
+      "sha256": "59dd4b3f5831c5b4f21c443124dcd234e1e9eb8af9c1931e64908b47847fe900",
       "transformation": "benchmark imports relocated",
       "source": "ops/make_exact_countdown_mode_data.py",
       "source_sha256": "9712aa2b01f61df567cbbef569c4d7e1230aebebf34d51db641daeaccee5f583",
@@ -116,7 +121,7 @@
     },
     {
       "path": "ops/make_python_factor_mode_data.py",
-      "sha256": "b522c592e03b2e772f45486723f3d182fc21add9e4d6c0a887d01f699d6474ec",
+      "sha256": "a1637ff093fa0ae04007738d739be2074b896035ba226a05b567a7a889759e1a",
       "transformation": "benchmark imports relocated",
       "source": "ops/make_python_factor_mode_data.py",
       "source_sha256": "86d0f23147360bd389190eac4a0fbb99950e08287a986a01bda7dd13f811bc18",
@@ -124,7 +129,7 @@
     },
     {
       "path": "ops/verify_python_factor_mode.py",
-      "sha256": "22964a490a63d48faacce75941c48a01565ca922ca564c28a3b2dd4b74a30a3b",
+      "sha256": "7f3efc724d7c753fba217ceec75160ddca92b05cab9a843ff8a017642ee37d5d",
       "transformation": "benchmark imports relocated",
       "source": "ops/verify_python_factor_mode.py",
       "source_sha256": "8bb662ac8bdc866a25f9db94f9b903b4f39daba3ccba705d971b9ca5ba4718e0",
@@ -132,7 +137,7 @@
     },
     {
       "path": "ops/make_mathir_action_menu_data.py",
-      "sha256": "9075e3f1c4ac7a0d2b337cab1d016f2752612c6a94b7b993a0b9d0eb28477716",
+      "sha256": "46a6977dec657c750658b081b605292d4769e07e6f9e746590262210610df7f1",
       "transformation": "benchmark imports relocated",
       "source": "ops/make_mathir_action_menu_data.py",
       "source_sha256": "bc1122151c9abbfa5b7e3e7dbbe48535b30bb75bea3b1619c0472b2fd0ae0418",
@@ -140,7 +145,7 @@
     },
     {
       "path": "ops/make_pantry_plan_mode_data.py",
-      "sha256": "a5f2942f93fe8b1ac0a55c51c164aedaa999873db43a996792d9d340e7d09cdb",
+      "sha256": "f98a48a688230defb839f616825c743ac807102923e972c5c635a1fb2d24edb0",
       "transformation": "benchmark imports relocated",
       "source": "ops/make_pantry_plan_mode_data.py",
       "source_sha256": "ce790e0da293774d722c5faab69ce9fa23d70e0f7ab78ca92022fb1d6319d866",
@@ -148,7 +153,7 @@
     },
     {
       "path": "ops/make_pantry_plan_mode_data_v2.py",
-      "sha256": "d32bac202688be48588887acf7f0800137ffb77ee5b3f1ce9c11b42bad956240",
+      "sha256": "77427c4a0235376935ff08ee38e2ac9e14601c9191a9bb25156fd95db2eaecc4",
       "transformation": "benchmark imports relocated",
       "source": "ops/make_pantry_plan_mode_data_v2.py",
       "source_sha256": "d32bac202688be48588887acf7f0800137ffb77ee5b3f1ce9c11b42bad956240",
@@ -204,7 +209,7 @@
     },
     {
       "path": "tests/test_mode_diversity.py",
-      "sha256": "646f0cd265d2efcbb7e2791b9e65e7add48d24595b7c16c3596735b6b8dc87f3",
+      "sha256": "fb03be8de1bc031040ae259de27ad0f3ec343d71ec5bd0afe28ae46e54774d47",
       "transformation": "imports relocated",
       "source": "tests/test_mode_diversity.py",
       "source_sha256": "98b5e168d4118db580d5dcb60026622ce46ba67272b629673fe3e9bc548e5106",
@@ -213,7 +218,7 @@
     },
     {
       "path": "tests/test_frontier_modebench_contract.py",
-      "sha256": "4cf8e40e86906eaf15431e613915b9a6b054cd513f614a67b14a951f7efa473d",
+      "sha256": "b60025dbf18b4a7f73c9b10e996759edcdc468780c6863170563151cf6ec5fa4",
       "transformation": "imports relocated",
       "source": "tests/test_frontier_modebench_contract.py",
       "source_sha256": "ec58989190025a2abac60308810c9b64a62b0bd06ff3b85b4eb553edd584b51a",

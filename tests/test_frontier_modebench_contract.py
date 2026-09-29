@@ -7,7 +7,6 @@ import sys
 import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "ops"))
 from modebench.historical_prompts import grade_response, make_messages, profile_metadata
 from modebench.templates import TEMPLATE_FACTORY, render_chat_prompt
 

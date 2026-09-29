@@ -12,7 +12,7 @@ from itertools import product
 import re
 from typing import Any, Mapping
 
-from .pantry_plan import (
+from modebench.domains.pantry_plan.verifier import (
     PantryPlanError,
     PantryPlanValidation,
     parse_pantry_plan_spec,

@@ -236,3 +236,9 @@ def execute_python_factor_candidate(
     output_tuple = tuple(outputs)
     key = "python_factor:" + ",".join(str(value) for value in output_tuple)
     return PythonFactorValidation(canonical_key=key, outputs=output_tuple)
+
+
+def validate_reference(spec, level):
+    """Validate this domain reference before any response is scored."""
+    from modebench.validation import InputError, positive_integer
+    parse_python_factor_spec(spec)

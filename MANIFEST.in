@@ -1,0 +1,5 @@
+include README.md LICENSE
+include assets/modebench-domains.png
+recursive-include src/modebench *.json
+prune tests
+prune ops

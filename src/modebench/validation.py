@@ -52,14 +52,21 @@ def loads(text):
     return value
 
 
-def validate_reference(level, domain, answer):
+def _validate_reference_local(level, domain, answer):
     """Validate a task reference before any generated answers are scored."""
     from .historical_prompts import _identity
-    from .mathir import MATHIR_VERIFIER, MATHIR_MENU_VERIFIER
-    from .mathir import _validated_reference, _validated_menu_reference
-    from .pantry_plan import parse_pantry_plan_spec
-    from .python_modebench import PYTHON_FACTOR_VERIFIER, parse_python_factor_spec
+    from modebench.domains.mathir.verifier import MATHIR_VERIFIER, MATHIR_MENU_VERIFIER
+    from modebench.domains.python_factors.verifier import PYTHON_FACTOR_VERIFIER
+    from .domains.countdown.verifier import validate_reference as validate_countdown
+    from .domains.graph_coloring.verifier import validate_reference as validate_graph_coloring
+    from .domains.python_factors.verifier import validate_reference as validate_python_factors
+    from .domains.pantry_plan.verifier import validate_reference as validate_pantry_plan
+    from .domains.mathir.verifier import validate_reference as validate_mathir
 
+    from .diagnostics import MAX_REFERENCE_BYTES
+    encoded = json.dumps(answer, allow_nan=False)
+    if len(encoded.encode()) > MAX_REFERENCE_BYTES:
+        raise InputError('reference byte limit exceeded')
     level, domain = _identity(level, domain)
     spec = loads(answer) if isinstance(answer, str) else answer
     if not isinstance(spec, dict):
@@ -76,45 +83,14 @@ def validate_reference(level, domain, answer):
     if not isinstance(verifier, str) or verifier not in allowed[domain]:
         raise InputError(f'answer.verifier {verifier!r} does not match domain {domain!r}')
     try:
-        if domain == 'countdown':
-            numbers = spec.get('numbers')
-            if not isinstance(numbers, list) or not numbers:
-                raise InputError('answer.numbers must be a nonempty list of integers')
-            for label, value in [('target', spec.get('target'))] + [('numbers', n) for n in numbers]:
-                if isinstance(value, bool) or not isinstance(value, int):
-                    raise InputError(f'answer.{label} must contain integers')
-        elif domain == 'graph_coloring':
-            n = positive_integer(spec.get('n'), 'answer.n')
-            edges = spec.get('edges')
-            if not isinstance(edges, list):
-                raise InputError('answer.edges must be a list of vertex pairs')
-            for edge in edges:
-                if not isinstance(edge, list) or len(edge) != 2:
-                    raise InputError('each graph edge must be a pair')
-                if any(isinstance(v, bool) or not isinstance(v, int) or not 1 <= v <= n for v in edge):
-                    raise InputError('graph edge endpoints must be integers in 1..n')
-                if edge[0] == edge[1]:
-                    raise InputError('graph edges must not be self-loops')
-            colors = spec.get('partial_colors')
-            if colors is not None:
-                if not isinstance(colors, list) or len(colors) != n:
-                    raise InputError('answer.partial_colors must have n entries')
-                if any(c is not None and (type(c) is not int or c not in (1, 2, 3)) for c in colors):
-                    raise InputError('partial colors must be null or integers 1, 2, 3')
-        elif domain == 'python_factors':
-            parse_python_factor_spec(spec)
-        elif domain == 'pantry_plan':
-            parsed = parse_pantry_plan_spec(spec)
-            if level == 1 and len(parsed.ingredients) != 6:
-                raise InputError('Level 1 Pantry requires exactly six ingredients for its support mask')
-        else:
-            if 'max_steps' in spec:
-                positive_integer(spec['max_steps'], 'answer.max_steps')
-            for field in ('initial_lhs', 'initial_rhs'):
-                if not isinstance(spec.get(field), str) or not spec[field].strip():
-                    raise InputError(f'answer.{field} must be a nonempty string')
-            parser = _validated_menu_reference if verifier == MATHIR_MENU_VERIFIER else _validated_reference
-            parser(spec)
+        validators = {
+            'countdown': validate_countdown,
+            'graph_coloring': validate_graph_coloring,
+            'python_factors': validate_python_factors,
+            'pantry_plan': validate_pantry_plan,
+            'mathir': validate_mathir,
+        }
+        validators[domain](spec, level)
     except (KeyError, TypeError, ValueError, ZeroDivisionError, OverflowError) as error:
         raise InputError(f'invalid {domain} reference: {error}') from error
     return spec
@@ -143,3 +119,9 @@ def validate_run(run):
     if run['prompt_condition'] not in CONDITIONS:
         raise InputError('run.prompt_condition is not a supported prompt condition')
     return loads(json.dumps(run, allow_nan=False))
+
+
+def validate_reference(level, domain, answer):
+    """Validate references in the same bounded worker used for grading."""
+    from .verifier import reference_check
+    return reference_check(level, domain, answer)

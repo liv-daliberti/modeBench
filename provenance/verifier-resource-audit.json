@@ -1,0 +1,36 @@
+{
+  "schema": "modebench-resource-audit-v1",
+  "dataset_splits": 72,
+  "dataset_rows": 15552,
+  "observed": {
+    "countdown": {
+      "rows": 3072,
+      "max_reference_encoded_bytes": 248,
+      "max_operands": 4
+    },
+    "graph_coloring": {
+      "rows": 3200,
+      "max_reference_encoded_bytes": 362,
+      "max_vertices": 7,
+      "max_edges": 10
+    },
+    "python_factors": {
+      "rows": 3072,
+      "max_reference_encoded_bytes": 393,
+      "max_cases": 6,
+      "max_case_value": 1000
+    },
+    "mathir": {
+      "rows": 3072,
+      "max_reference_encoded_bytes": 852,
+      "max_steps": 4
+    },
+    "pantry_plan": {
+      "rows": 3136,
+      "max_reference_encoded_bytes": 2451,
+      "max_ingredients": 8,
+      "max_quantity_combinations_for_one_support": 6561
+    }
+  },
+  "scope": "Observed input sizes across all frozen rows; not a throughput benchmark or proof that every possible response completes. Per-request worker deadlines and address-space limits bound custom work; exhaustion is unscorable."
+}

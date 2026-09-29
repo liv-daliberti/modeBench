@@ -97,29 +97,6 @@ def make_messages(level: int | str, domain: str, row: Mapping[str, Any]) -> list
 
 
 def grade_response(level: int | str, domain: str, row: Mapping[str, Any], text: str) -> dict[str, Any]:
-    """Grade with the original executable verifier, retaining the graded surface.
-
-    A Level 1 Pantry mask is decoded by the existing deterministic environment
-    transition before verification. It searches only the selected ingredient
-    support and never substitutes a different support. Invalid masks fail closed.
-    """
-    from modebench.grading import validated_modebench_outcome_key
-
-    level, domain = _identity(level, domain)
-    if not isinstance(text, str):
-        raise TypeError("response text must be a string")
-    from .validation import validate_reference
-
-    if "answer" not in row:
-        raise ValueError("missing field: answer")
-    answer = validate_reference(level, domain, row["answer"])
-    graded_text = text
-    if level == 1 and domain == "pantry_plan":
-        from modebench.pantry_support_action import decode_pantry_support_mask
-
-        spec = json.loads(answer) if isinstance(answer, str) else answer
-        if not isinstance(spec, Mapping):
-            raise ValueError("Pantry executable spec must be an object")
-        graded_text = decode_pantry_support_mask(text, spec)
-    key = validated_modebench_outcome_key(graded_text, answer)
-    return {"verified": key is not None, "canonical_key": key, "graded_text": graded_text}
+    """Grade through the bounded verifier, preserving typed failure diagnostics."""
+    from .verifier import grade_response as checked_grade
+    return checked_grade(level, domain, row, text)

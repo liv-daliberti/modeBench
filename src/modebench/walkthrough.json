@@ -1,0 +1,302 @@
+{
+  "schema": "modebench-walkthrough-v1",
+  "source": "Level 1 eval row 0 from immutable conformance-v1 fixtures; demonstration, not a benchmark run.",
+  "records": [
+    {
+      "id": "level1_countdown/walkthrough/0",
+      "level": 1,
+      "domain": "countdown",
+      "problem": "Using the numbers [3, 6, 9], create an arithmetic expression that equals 18. Use each given number exactly once. You may use +, -, *, /, and parentheses. Return exactly one final answer and no explanation: the expression inside \\boxed{}.",
+      "answer": {
+        "instance_id": "eval_multi_answer-10000-0",
+        "num_completions": 8,
+        "num_expressions": 8,
+        "numbers": [
+          3,
+          6,
+          9
+        ],
+        "source": "synthetic_exact_countdown",
+        "target": 18,
+        "verifier": "countdown"
+      },
+      "responses": [
+        "(3+(6+9))",
+        "((3+6)+9)",
+        "18",
+        "not a solution"
+      ]
+    },
+    {
+      "id": "level1_graph_coloring/walkthrough/0",
+      "level": 1,
+      "domain": "graph_coloring",
+      "problem": "Color this graph with vertices 1 through 6. The undirected edges are: (1,2), (1,3), (3,5), (3,6), (4,6), (5,6). Assign each vertex one color from {1, 2, 3} so that no edge has the same color on both endpoints. A partial coloring is 2??1?2, where ? means uncolored. Keep every shown digit fixed. There are exactly 3 question marks. Return exactly one final answer and no explanation: exactly 3 digits, each one 1, 2, or 3, for the missing positions from left to right, inside \\boxed{}.",
+      "answer": {
+        "edges": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            5,
+            6
+          ]
+        ],
+        "instance_id": "eval_multi_answer-10000-0",
+        "n": 6,
+        "num_completions": 4,
+        "num_solutions": 48,
+        "partial_colors": [
+          2,
+          null,
+          null,
+          1,
+          null,
+          2
+        ],
+        "source": "exact_answer_mode_graph_coloring",
+        "verifier": "graph_coloring"
+      },
+      "responses": [
+        "211132",
+        "213112",
+        "111111",
+        "not a solution"
+      ]
+    },
+    {
+      "id": "level1_python_factors/walkthrough/0",
+      "level": 1,
+      "domain": "python_factors",
+      "problem": "Write one pure Python function with the exact form lambda n: EXPR. An external Python tool will call it once for each n in [18, 82, 91, 93]. For every call, return an integer d satisfying 1 < d < n and n % d == 0. Different valid return vectors are different solution modes. You may use integer literals, n, +, -, *, //, %, comparisons, Boolean operators, and conditional expressions; calls, imports, attributes, containers, and other names are forbidden. Return exactly the one-line lambda inside \\boxed{} and no explanation.",
+      "answer": {
+        "cases": [
+          18,
+          82,
+          91,
+          93
+        ],
+        "certified_mode_key_sha256": "7f7bb10e238bc7cf095f8ced7c4b3859cbafb3477184c874ff9d569831730d9e",
+        "instance_id": "eval-15100-93",
+        "num_externally_certified_modes": 2,
+        "num_modes": 32,
+        "python_version": "factor-v1",
+        "source": "synthetic_python_factor_modebench_v1",
+        "verifier": "python_factor_function"
+      },
+      "responses": [
+        "lambda n: 2 if n==18 else 2 if n==82 else 7 if n==91 else 3",
+        "lambda n: 9 if n==18 else 41 if n==82 else 13 if n==91 else 31",
+        "lambda n: 1",
+        "not a solution"
+      ]
+    },
+    {
+      "id": "level1_mathir/walkthrough/0",
+      "level": 1,
+      "domain": "mathir",
+      "problem": "MathIR linear-menu-v1. Solve for x by choosing an executable action sequence. Every selected action is applied exactly to BOTH sides of the current equation, followed by exact simplification. Bindings: a=2, b=-9, c=-1. Initial equation: x/a + b = c. Action menu: A means div(a); B means add(b); C means sub(b); D means sub(c); E means sub(mul(a,b)); F means mul(a). Choose 1-4 action IDs. Illegal operations, repeated states, and paths that do not finish with x isolated are rejected. Return only the IDs separated by semicolons inside the answer box; for example formatting only: \\boxed{A;C}. Do not return x's numeric value.",
+      "answer": {
+        "actions": {
+          "A": "div(a)",
+          "B": "add(b)",
+          "C": "sub(b)",
+          "D": "sub(c)",
+          "E": "sub(mul(a,b))",
+          "F": "mul(a)"
+        },
+        "bindings": {
+          "a": 2,
+          "b": -9,
+          "c": -1
+        },
+        "family": "x_over_a_plus_b_eq_c",
+        "initial_lhs": "add(div(x,a),b)",
+        "initial_rhs": "c",
+        "instance_id": "multi_answer-15900-61",
+        "mathir_version": "linear-menu-v1",
+        "max_steps": 4,
+        "num_completions": 5,
+        "source": "synthetic_mathir_action_menu_v1",
+        "support_is_open": false,
+        "valid_mode_count": 5,
+        "valid_mode_key_sha256": "712b6aa21de2beaecd85fbb7cb4934a4cdb22b4fffde923c092e21ed1e819809",
+        "verifier": "mathir_action_menu"
+      },
+      "responses": [
+        "C;F",
+        "F;E",
+        "A",
+        "not a solution"
+      ]
+    },
+    {
+      "id": "level1_pantry_plan/walkthrough/0",
+      "level": 1,
+      "domain": "pantry_plan",
+      "problem": "Create one feasible high fiber snack from this frozen pantry.\nNutrition values are per 100 g. Quantities are exact integer grams.\n\nPantry:\n- almonds: available=100g, step=25g, minimum-if-used=50g; energy=584kcal, protein=21.5g, fiber=10.8g, sodium=0.0mg; tags=tree_nut\n- banana: available=125g, step=25g, minimum-if-used=50g; energy=97.0kcal, protein=0.74g, fiber=4.62g, sodium=0.0mg; tags=none\n- carrots: available=150g, step=25g, minimum-if-used=50g; energy=45.0kcal, protein=0.941g, fiber=3.1g, sodium=86.6mg; tags=none\n- grape_tomatoes: available=100g, step=25g, minimum-if-used=50g; energy=27.0kcal, protein=0.83g, fiber=2.1g, sodium=6.0mg; tags=none\n- navel_orange: available=150g, step=25g, minimum-if-used=50g; energy=47.0kcal, protein=0.91g, fiber=2.0g, sodium=9.0mg; tags=none\n- sunflower_seeds: available=125g, step=25g, minimum-if-used=50g; energy=571kcal, protein=18.9g, fiber=7.22g, sodium=0.0mg; tags=none\n\nUse 2 to 4 ingredients.\nForbidden tags: none\nTargets:\n- mass_g: minimum 125, maximum 200\n- energy_kcal: minimum 239.4, maximum 432.25\n- protein_g: minimum 6.423\n- fiber_g: minimum 3.478\n- sodium_mg: maximum 37.6\n\nReturn only ingredient_id=grams pairs separated by semicolons inside \\boxed{}. Do not add a recipe name or preparation prose.",
+      "answer": {
+        "certified_mode_count": 14,
+        "certified_support_sha256": "af0ced590203a0cbce6a9a2bca80fd3dfb3cdb6a12a1eea845176da5bd339b83",
+        "family": "high_fiber_snack",
+        "forbidden_tags": [],
+        "ingredients": [
+          {
+            "attributes_per_100g": {
+              "energy_kcal": "584",
+              "fiber_g": "10.8",
+              "protein_g": "21.5",
+              "sodium_mg": "0.0"
+            },
+            "available_g": 100,
+            "id": "almonds",
+            "min_if_used_g": 50,
+            "step_g": 25,
+            "tags": [
+              "tree_nut"
+            ]
+          },
+          {
+            "attributes_per_100g": {
+              "energy_kcal": "97.0",
+              "fiber_g": "4.62",
+              "protein_g": "0.74",
+              "sodium_mg": "0.0"
+            },
+            "available_g": 125,
+            "id": "banana",
+            "min_if_used_g": 50,
+            "step_g": 25,
+            "tags": []
+          },
+          {
+            "attributes_per_100g": {
+              "energy_kcal": "45.0",
+              "fiber_g": "3.1",
+              "protein_g": "0.941",
+              "sodium_mg": "86.6"
+            },
+            "available_g": 150,
+            "id": "carrots",
+            "min_if_used_g": 50,
+            "step_g": 25,
+            "tags": []
+          },
+          {
+            "attributes_per_100g": {
+              "energy_kcal": "27.0",
+              "fiber_g": "2.1",
+              "protein_g": "0.83",
+              "sodium_mg": "6.0"
+            },
+            "available_g": 100,
+            "id": "grape_tomatoes",
+            "min_if_used_g": 50,
+            "step_g": 25,
+            "tags": []
+          },
+          {
+            "attributes_per_100g": {
+              "energy_kcal": "47.0",
+              "fiber_g": "2.0",
+              "protein_g": "0.91",
+              "sodium_mg": "9.0"
+            },
+            "available_g": 150,
+            "id": "navel_orange",
+            "min_if_used_g": 50,
+            "step_g": 25,
+            "tags": []
+          },
+          {
+            "attributes_per_100g": {
+              "energy_kcal": "571",
+              "fiber_g": "7.22",
+              "protein_g": "18.9",
+              "sodium_mg": "0.0"
+            },
+            "available_g": 125,
+            "id": "sunflower_seeds",
+            "min_if_used_g": 50,
+            "step_g": 25,
+            "tags": []
+          }
+        ],
+        "instance_id": "eval-94002-high_fiber_snack-19",
+        "max_ingredients": 4,
+        "min_ingredients": 2,
+        "pantry_version": "pantry-v1",
+        "source_ingredient_table_sha256": "f49560f417cf6b1e01f901aba4b3fa4e73744b3f6d0d8a50b7042afd950678e2",
+        "targets": {
+          "energy_kcal": {
+            "max": "432.25",
+            "min": "239.4"
+          },
+          "fiber_g": {
+            "min": "3.478"
+          },
+          "mass_g": {
+            "max": "200",
+            "min": "125"
+          },
+          "protein_g": {
+            "min": "6.423"
+          },
+          "sodium_mg": {
+            "max": "37.6"
+          }
+        },
+        "verifier": "pantry_plan"
+      },
+      "responses": [
+        "110000",
+        "100100",
+        "000000",
+        "not a solution"
+      ]
+    }
+  ],
+  "run": {
+    "model": {
+      "id": "recorded-walkthrough",
+      "revision": "conformance-v1"
+    },
+    "generation": {
+      "source": "handwritten verified examples, not model generations",
+      "draws_per_prompt": 4
+    },
+    "prompt_condition": "registered_hints_v1"
+  },
+  "expected": {
+    "cells": 5,
+    "per_cell": {
+      "accuracy": 0.5,
+      "pass_at_k": 1.0,
+      "distinct_at_k": 2.0,
+      "pcmd": 1.0,
+      "reportable": false
+    },
+    "status_counts": {
+      "correct": 10,
+      "incorrect": 5,
+      "malformed": 5
+    }
+  }
+}

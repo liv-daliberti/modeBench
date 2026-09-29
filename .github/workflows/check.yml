@@ -5,17 +5,75 @@ on:
 permissions:
   contents: read
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - run: python -m pip install build twine
+      - run: python -m build
+      - run: python -m twine check dist/*
+      - uses: actions/upload-artifact@v4
+        with:
+          name: distributions
+          path: dist/*
   benchmark:
+    needs: build
     runs-on: ubuntu-latest
     strategy:
       matrix:
         python-version: ['3.10', '3.11', '3.12']
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-      - run: python -m pip install -e '.[dev]'
+      - uses: actions/download-artifact@v4
+        with:
+          name: distributions
+          path: dist
+      - run: |
+          package=(dist/*.whl)
+          python -m pip install "${package[0]}[dev]"
       - run: make check
+      - name: Compare verifier behavior with PR base fixtures
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: python ops/check_conformance.py --base-ref "$BASE_SHA"
       - run: modebench evaluate examples/responses.jsonl --output outputs/example.json
       - run: python ops/verify_release.py
+  installed:
+    needs: build
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {python: '3.10', format: whl, profile: core, minimum: '--minimum'}
+          - {python: '3.10', format: tar.gz, profile: data, minimum: '--minimum'}
+          - {python: '3.11', format: whl, profile: core, minimum: ''}
+          - {python: '3.11', format: tar.gz, profile: data, minimum: ''}
+          - {python: '3.12', format: whl, profile: data, minimum: ''}
+          - {python: '3.12', format: tar.gz, profile: core, minimum: ''}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: distributions
+          path: dist
+      - name: Test clean install outside checkout
+        env:
+          FORMAT: ${{ matrix.format }}
+          PROFILE: ${{ matrix.profile }}
+          MINIMUM: ${{ matrix.minimum }}
+        run: |
+          artifact=(dist/*.$FORMAT)
+          python ops/check_install.py --artifact "${artifact[0]}" --profile "$PROFILE" $MINIMUM

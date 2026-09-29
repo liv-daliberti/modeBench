@@ -366,5 +366,13 @@ def validate_pantry_plan(
             allocations_g=allocations,
             totals=tuple(sorted(totals.items())),
         )
-    except (PantryPlanError, ArithmeticError, ValueError):
+    except PantryPlanError:
         return None
+
+
+def validate_reference(spec, level):
+    """Validate this domain reference before any response is scored."""
+    from modebench.validation import InputError, positive_integer
+    parsed = parse_pantry_plan_spec(spec)
+    if level == 1 and len(parsed.ingredients) != 6:
+        raise InputError('Level 1 Pantry requires exactly six ingredients for its support mask')

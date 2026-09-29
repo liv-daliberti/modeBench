@@ -54,6 +54,7 @@ import statistics
 import math
 from numbers import Integral, Real
 from .validation import positive_integer
+from .diagnostics import STATUSES, UNSCORABLE, VerifierExecutionError
 
 PER_GROUP = 'per_group'
 POOLED = 'pooled'
@@ -135,8 +136,13 @@ def verified_mode_counts(attempts: Sequence[Mapping[str, Any]]) -> Counter:
     """Count verified attempts by canonical key, ignoring failures."""
     counts = Counter()
     for attempt in attempts:
+        if isinstance(attempt, Mapping) and attempt.get('status') in UNSCORABLE:
+            raise VerifierExecutionError(dict(attempt))
         if not isinstance(attempt, Mapping) or type(attempt.get('verified')) is not bool:
             raise ValueError('each attempt requires a boolean verified flag')
+        status = attempt.get('status')
+        if status is not None and (status not in STATUSES or attempt['verified'] != (status == 'correct')):
+            raise ValueError('attempt status and verified flag disagree')
         if attempt['verified']:
             key = attempt.get('canonical_key')
             if not isinstance(key, str) or not key:

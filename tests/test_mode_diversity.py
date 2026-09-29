@@ -6,8 +6,6 @@ from pathlib import Path
 import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
-if str(ROOT / "ops") not in sys.path:
-    sys.path.insert(0, str(ROOT / "ops"))
 
 from modebench.metrics import (  # noqa: E402
     DEFAULT_MIN_DEFINED_PROMPTS,
@@ -169,9 +167,7 @@ def test_agrees_with_the_registered_collision_estimator():
     import random
     from collections import Counter
 
-    if str(ROOT / "ops" / "exp_scaling") not in sys.path:
-        sys.path.insert(0, str(ROOT / "ops" / "exp_scaling"))
-    from collision_reference import collision
+    from tests.collision_reference import collision
 
     random.seed(20260914)
     for _ in range(500):

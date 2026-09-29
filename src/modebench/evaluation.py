@@ -1,11 +1,12 @@
 """Validated saved-response evaluation and self-describing result receipts."""
-from collections import defaultdict
+from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 import hashlib
 import statistics
 
 from .data import load_split, prompt_id, split_record
+from .diagnostics import UNSCORABLE, VerifierExecutionError
 from .historical_prompts import _identity, grade_response
 from .identity import digest_json, software_identity
 from .metrics import POOLED, cell_summary
@@ -113,6 +114,8 @@ def evaluate(records, *, min_defined_prompts=30, run=None, data_root=None,
                 elif digest_json(inline) != digest_json(declared_run):
                     raise InputError('mixed model or generation conditions: run metadata differ')
             prepared.append((label, raw, rid, level, domain, row))
+        except VerifierExecutionError as error:
+            raise VerifierExecutionError({**error.diagnostic, 'detail': f'{label}: {error}'}) from error
         except (ValueError, TypeError, KeyError) as error:
             raise InputError(f'{label}: {error}') from error
 
@@ -157,26 +160,34 @@ def evaluate(records, *, min_defined_prompts=30, run=None, data_root=None,
                         raise InputError(f'{field} does not match the registered prompt')
             bindings.append({'reference_sha256': digest_json(row['answer']),
                              'prompt_sha256': prompt_hash, 'prompt_profile': profile})
+        except VerifierExecutionError as error:
+            raise VerifierExecutionError({**error.diagnostic, 'detail': f'{label}: {error}'}) from error
         except (ValueError, TypeError, KeyError) as error:
             raise InputError(f'{label}: {error}') from error
 
     cells = defaultdict(list)
+    status_counts = Counter()
     for (_, raw, rid, level, domain, row), binding in zip(prepared, bindings):
         attempts = [grade_response(level, domain, row, text) for text in raw['responses']]
+        status_counts.update(a['status'] for a in attempts)
+        failed = any(a['status'] in UNSCORABLE for a in attempts)
         keys = [a['canonical_key'] for a in attempts if a['verified']]
         cells[(level, domain, len(attempts))].append({
             'id': rid, **binding, 'draws': [{'attempts': attempts}],
-            'pass_at_k': float(bool(keys)), 'distinct_at_k': len(set(keys)),
-            'accuracy': len(keys) / len(attempts),
+            'pass_at_k': None if failed else float(bool(keys)),
+            'distinct_at_k': None if failed else len(set(keys)),
+            'accuracy': None if failed else len(keys) / len(attempts),
         })
+    healthy = not any(status_counts[s] for s in UNSCORABLE)
     result = []
     for (level, domain, k), prompts in sorted(cells.items()):
         result.append({
             'level': level, 'domain': domain, 'k': k,
-            'pass_at_k': statistics.fmean(p['pass_at_k'] for p in prompts),
-            'distinct_at_k': statistics.fmean(p['distinct_at_k'] for p in prompts),
-            'accuracy': statistics.fmean(p['accuracy'] for p in prompts),
-            'pcmd': cell_summary(prompts, POOLED, min_defined_prompts=min_defined_prompts),
+            'pass_at_k': statistics.fmean(p['pass_at_k'] for p in prompts) if healthy else None,
+            'distinct_at_k': statistics.fmean(p['distinct_at_k'] for p in prompts) if healthy else None,
+            'accuracy': statistics.fmean(p['accuracy'] for p in prompts) if healthy else None,
+            'pcmd': (cell_summary(prompts, POOLED, min_defined_prompts=min_defined_prompts) if healthy
+                     else {'d_mode': None, 'reportable': False, 'reason': 'verifier_failure'}),
             'protocol_notes': _notes(level, domain), 'prompt_results': prompts,
         })
     dataset_identity = {'kind': 'custom', 'references_authenticated': False}
@@ -195,7 +206,7 @@ def evaluate(records, *, min_defined_prompts=30, run=None, data_root=None,
         if config.endswith('_unique_answer'):
             dataset_identity['protocol_notes'] = ['Single-answer diagnostic; separate from the main benchmark.']
     return {
-        'schema': 'modebench-saved-responses-v2',
+        'schema': 'modebench-saved-responses-v3',
         'created_at': datetime.now(timezone.utc).isoformat(),
         'records_sha256': digest_json(records),
         'software': software_identity(),
@@ -204,6 +215,9 @@ def evaluate(records, *, min_defined_prompts=30, run=None, data_root=None,
         'run_sha256': digest_json(declared_run) if declared_run else None,
         'dataset': dataset_identity,
         'evaluation': {
+            'status': 'completed' if healthy else 'failed',
+            'status_counts': dict(sorted(status_counts.items())),
+            'scoring_policy': 'wrong-or-malformed-count-as-failure; verifier-errors-suppress-all-aggregates-v1',
             'aggregation': POOLED, 'groups_per_prompt': 1,
             'prompt_weighting': 'equal', 'min_defined_prompts': min_defined_prompts,
             'pass_at_k': 'empirical_saved_group',

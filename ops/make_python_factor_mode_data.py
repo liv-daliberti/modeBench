@@ -15,9 +15,6 @@ from typing import Any
 from datasets import Dataset, DatasetDict
 
 ROOT = Path(__file__).resolve().parents[1]
-SRC = ROOT / "src"
-if str(SRC) not in sys.path:
-    sys.path.insert(0, str(SRC))
 
 from modebench.python_modebench import (  # noqa: E402
     PYTHON_FACTOR_VERIFIER,
