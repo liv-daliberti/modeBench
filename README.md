@@ -16,7 +16,7 @@ Five domains, five task levels, and **72 frozen dataset splits containing 15,552
 
 Mode identity is prompt-local. Different wording alone does not create a different mode; different Python programs can produce the same divisor vector.
 
-[Installation](#installation) · [Evaluation](#evaluation) · [Metrics](#metrics) · [Datasets](#datasets) · [Reproducibility](#reproducibility) · [Contributing](#contributing)
+[Installation](#installation) · [Evaluation](#evaluation) · [Metrics](#metrics) · [Datasets](#datasets) · [Reproducibility](#reproducibility) · [Contributing](#contributing) · [Changelog](#changelog) · [Citation](#citation)
 
 ## Installation
 
@@ -62,6 +62,7 @@ Supported direct dependency ranges are SymPy `>=1.12,<2`, and, for data, dataset
 ```sh
 python -m pip install '.[data]'
 modebench datasets list
+modebench datasets card --config level1_countdown
 modebench datasets fetch --config level1_countdown
 modebench datasets inspect --config level1_countdown --row 0 --offline
 ```
@@ -74,22 +75,36 @@ Downloads use a pinned public Git commit and must match SHA-256 identities shipp
 
 ## Evaluation
 
-Load a frozen split, render the registered prompt, and grade a response:
+Use the typed public API to load a frozen task, render its prompt, and grade a saved response:
 
 ```python
-from modebench.data import load_split
-from modebench.prompts import make_messages, profile_metadata, prompt_sha256
-from modebench.historical_prompts import grade_response
+from modebench.api import load_tasks, make_prompt, grade
 
-rows = load_split("data", "level1_countdown", "eval")
-row = rows[0]
-messages = make_messages(1, "countdown", row)
-profile = profile_metadata(1, "countdown")
-prompt_hash = prompt_sha256(1, "countdown", row)
+task = next(load_tasks("level1_countdown", data_root="data"))
+messages = make_prompt(task)
 # Send only `messages` to your model, then grade its returned text.
-result = grade_response(1, "countdown", row, "YOUR_MODEL_RESPONSE")
-print(result)  # status, verified, canonical_key, graded_text, detail
+result = grade(task, "YOUR_MODEL_RESPONSE")
+print(result["status"], result["canonical_key"], result["detail"])
 ```
+
+Outside a checkout, omit `data_root` to use the verified cache; `cache_dir` and `offline=True` are supported. Reading frozen tasks requires the `data` extra. `Task` contains the reference for grading; only `make_prompt(task)` belongs in a model request.
+
+For saved response files, the same API exposes typed evaluation options, receipts, reports, and streaming details:
+
+```python
+from modebench.api import EvaluationOptions, evaluate_file, read_report, iter_results
+
+receipt = evaluate_file(
+    "responses.jsonl", "results.json",
+    options=EvaluationOptions(min_defined_prompts=30),
+)
+report = read_report(receipt.output)
+print(report.status, report.cells)
+for prompt in iter_results(receipt.output):
+    print(prompt["id"], prompt["accuracy"])
+```
+
+`read_report` verifies the detailed-result journal hash. `iter_results` verifies it before yielding results in input order. Both read v3 and v4 receipts. Type information ships in the package (`py.typed`); new integrations should use `modebench.api` instead of private helpers or historical adapters.
 
 Keep `answer`, support counts, and certified solutions out of model requests. Match saved responses by stable prompt ID, not asynchronous completion order. Preserve raw generations, refusals, and malformed answers; collection failures need a declared protocol and must not silently reduce the draw budget.
 
@@ -111,11 +126,44 @@ modebench evaluate INPUT.jsonl --output OUTPUT.json
 | `answer` | Exact executable reference from the frozen row, as an object or JSON-encoded string |
 | `responses` | Nonempty list of raw response strings, including failed answers |
 
-Use one input file per model and generation condition. Grouping uses level, domain, and response count `k`. Version 0.3 rejects unknown record fields, malformed references, domain/verifier mismatches, duplicate JSON fields, and nonfinite numbers before grading. CLI errors identify the input line and prompt. Integer counts and positive integer thresholds are enforced by the metric API too.
+Use one input file per model and generation condition. Grouping uses level, domain, and response count `k`. The evaluator rejects unknown record fields, malformed references, domain/verifier mismatches, duplicate JSON fields, and nonfinite numbers before grading. CLI errors identify the input line and prompt. Integer counts and positive integer thresholds are enforced by the metric API too.
 
 Custom references are labeled `dataset.kind: "custom"` and `references_authenticated: false`. Use `--run RUN.json` to record model, generation, and prompt metadata; without it, those details are explicitly unreported. An inline `run` object on every record is also supported. Inline metadata must match the shared run exactly; mixed models, revisions, generation settings, or prompt conditions are rejected. Arbitrary record fields such as `model_id` are rejected rather than silently ignored.
 
-Outputs use `modebench-saved-responses-v3` and include the input SHA-256, software identity, run metadata, dataset identity, aggregation settings, and cells with accuracy, pass@k, distinct@k, PCMD/support, and per-response results. Unverified responses have a null canonical key; evaluator failures also invalidate aggregate scores, as described below. For Level 1 Pantry, `graded_text` is the deterministic allocation projected from the submitted six-bit support mask. Use `grade_response` or the CLI for this interface; the low-level key validator does not apply that projection.
+File evaluations use `modebench-saved-responses-v4`: a compact final receipt contains the input SHA-256, software identity, run metadata, dataset identity, aggregation settings, and cell scores. Per-response diagnostics live in a separate JSONL journal whose path, SHA-256, and record count are bound into the receipt. Unverified responses have a null canonical key; evaluator failures also invalidate aggregate scores, as described below. For Level 1 Pantry, `graded_text` is the deterministic allocation projected from the submitted six-bit support mask. Use `modebench.api.grade` or the CLI for this interface; the low-level key validator does not apply that projection.
+
+### Streaming, interruption, and parallel workers
+
+```sh
+modebench evaluate responses.jsonl --run run.json --output results.json \
+  --progress-every 100
+# After an interrupted run, repeat the same command with --resume:
+modebench evaluate responses.jsonl --run run.json --output results.json --resume
+modebench report results.json
+```
+
+Input is streamed one JSONL record at a time. All records and references are validated before any candidate grading. Duplicate IDs are checked on disk. Each completed prompt is committed to a SQLite checkpoint and appended to `results.json.work/results.jsonl`; progress events go to stderr and the final summary goes to stdout. `--progress-every 0` disables progress. Final receipts are published atomically and never overwrite an existing output. A partial journal alone is not a completed benchmark result.
+
+The default checkpoint directory is `OUTPUT.work/`; `--work-dir PATH` selects another fresh directory. Resume verifies the input bytes and records, options, run metadata, dataset identities, software/dependency fingerprints, resource policy, and stored prompt/result hashes. It rebuilds a damaged or missing journal from committed checkpoints, then continues without regrading completed prompts. An interruption during input validation restarts validation. Changed responses, configuration, references, or software require a fresh evaluation. A completed evaluator failure is retained on resume; resume is not a selective retry policy.
+
+`--workers N` supports 1–8 isolated verifier workers, with bounded pending work and ordered results. The default is **1**. Worker count can change on resume; execution history records it. Tests compare serial, interrupted/resumed, and parallel scores and detailed results, including abrupt process termination and worker cleanup. Concurrency consumes additional memory and may not improve throughput on every machine.
+
+Retain the receipt and its journal together, preserving the relative path in `prompt_results.path`. The SQLite ledger is needed to resume, but not to read a completed report. Checkpoints contain raw responses and references: allocate disk space and handle them like the original inputs. Durability relies on filesystem locking and `fsync`; use a local filesystem with those guarantees. An existing final receipt means publication completed: read it or choose a fresh output rather than using `--resume` to overwrite it. Keep input files immutable during a run. Input records are capped at 16 MiB and 4,096 responses per prompt; worker limits below still apply.
+
+Measured on a shared Linux host with 10,000 repeated walkthrough prompts (40,000 responses):
+
+| Execution | Parent peak RSS | Parent + workers peak RSS | Responses/second |
+| --- | ---: | ---: | ---: |
+| Previous in-memory CLI | 292.5 MB | 339.2 MB | 312.8 |
+| Streaming, one worker | 60.1 MB | 106.9 MB | 219.1 |
+| Streaming, two workers | 61.2 MB | 152.1 MB | 295.3 |
+
+Serial streaming parent memory was 59.1 MB at 1,000 prompts. Durable per-prompt commits trade throughput and disk space for recovery; the two-worker 10,000-prompt checkpoint occupied about 109 MB, including its 18 MB journal. These are single development measurements with repeated tasks and warm caches, not general performance guarantees. Process-tree RSS can double-count shared pages. [Measurement records](provenance/performance.json) preserve the methods and limitations. Reproduce on your own storage and workload before selecting concurrency:
+
+```sh
+python ops/benchmark_evaluation.py --sizes 1000 10000 --workers 1 2 \
+  --output outputs/performance.json
+```
 
 ### Evaluate a frozen split
 
@@ -154,16 +202,16 @@ Frozen records must have the same draw count per prompt; failures remain in the 
 | Field | Meaning |
 | --- | --- |
 | `software` | ModeBench version, verifier contract, package-source hashes, Python/dependency versions, Git commit/dirty state when available |
-| `input_sha256` | CLI input file bytes; the Python API instead always supplies `records_sha256` for canonical JSON records |
+| `input_sha256`, `records_sha256` | File bytes and canonical JSON records; the in-memory API supplies only the record digest |
 | `run`, `run_sha256` | Declared model/revision, generation settings, prompt condition, and metadata digest |
 | `dataset` | Custom versus frozen binding; frozen split metadata, hashes, coverage, and missing IDs |
 | `evaluation` | Aggregation, equal prompt weighting, support threshold, and empirical pass@k convention |
 | `cells[*].protocol_notes` | Level 4 admission and MathIR matching caveats |
-| `prompt_results[*]` | Prompt/reference hashes, registered prompt profile, scores, and graded attempts |
+| `prompt_results` | In v4, path/hash/count of the detailed JSONL journal; each entry contains prompt/reference hashes, prompt profile, scores, and graded attempts |
 
 Generation settings are **user-declared**, not proof that a model produced the responses. Prompt hashes identify the expected registered messages, not the actual transport used. Custom records need `problem` plus declared run metadata to compute a prompt hash; otherwise it is null. Model identity/revision strings and a nonempty generation-settings object are required whenever run metadata is supplied. Record any unavailable provider revision explicitly, with the collection date; do not invent one.
 
-Version 0.3 keeps the existing `evaluate` command and `modebench.cli.evaluate` import. Accepted responses and canonical identities are checked against the pre-change baseline. The receipt schema advances from v2 to v3 to record structured diagnostics and the failure policy. Consumers must check `evaluation.status` before reading scores. Legacy key-only Python verification still returns `None` for candidate mistakes but raises `VerifierExecutionError` for execution failures.
+Version 0.4 keeps the existing `evaluate` command and in-memory `modebench.cli.evaluate` import. Accepted responses and canonical identities remain checked against the frozen baseline. The file receipt advances from v3 to v4 to separate aggregate metadata from detailed results; the in-memory API still returns nested v3 results. Use `read_report` and `iter_results` for schema-independent consumers. Consumers must check `evaluation.status` before reading scores. Legacy key-only Python verification still returns `None` for candidate mistakes but raises `VerifierExecutionError` for execution failures.
 
 The Python API also supports `evaluate(records, run=metadata, data_root="data", config="level1_countdown", split="eval", allow_partial=False)` through `modebench.evaluation`.
 
@@ -171,7 +219,7 @@ The Python API also supports `evaluate(records, run=metadata, data_root="data", 
 
 ### Wrong answers versus evaluator failures
 
-Every public `grade_response` result includes a `status`, `verified`, `canonical_key`, `graded_text`, and diagnostic `detail`:
+Every public `grade` / `grade_response` result includes a `status`, `verified`, `canonical_key`, `graded_text`, and diagnostic `detail`:
 
 | Status | Meaning | Registered scoring policy |
 | --- | --- | --- |
@@ -183,7 +231,7 @@ Every public `grade_response` result includes a `status`, `verified`, `canonical
 | `worker_failure` | Worker crashed, bad protocol reply, startup error, or unexpected backend exception | Fail the evaluation; suppress all aggregate scores |
 | `resource_limit` | Operational request/response or memory cap exceeded | Fail the evaluation; suppress all aggregate scores |
 
-The policy identity is `wrong-or-malformed-count-as-failure; verifier-errors-suppress-all-aggregates-v1`. A run containing any unscorable attempt has `evaluation.status: "failed"`, null accuracy/pass/distinct/PCMD aggregates, and `reportable: false`. Attempt diagnostics remain in the receipt; healthy prompts are not silently substituted for the failed run. The metric API rejects attempts with evaluator-failure statuses too. Invalid references are normally rejected during input preflight, before any responses are graded.
+The policy identity is `wrong-or-malformed-count-as-failure; verifier-errors-suppress-all-aggregates-v1`. A run containing any unscorable attempt has `evaluation.status: "failed"`, null accuracy/pass/distinct/PCMD aggregates, and `reportable: false`. Attempt diagnostics remain in the result journal (nested in legacy v3 receipts); healthy prompts are not silently substituted for the failed run. The metric API rejects attempts with evaluator-failure statuses too. Invalid references are normally rejected during input preflight, before any responses are graded.
 
 CLI exit codes are **0** for completed evaluation, **2** for input/usage errors, and **3** for evaluator failure. Execution failures write a diagnostic receipt, including failures during reference validation. `modebench report` also exits 3 for a failed receipt. Fix the evaluation environment or reference and rerun under a recorded protocol; do not replace the failure with an incorrect answer or silently retry only that draw.
 
@@ -209,7 +257,9 @@ Candidate grammar limits preserve the existing benchmark syntax and normally pro
 | Missing `datasets` | Install the `data` or `dev` extra. |
 | Unknown split | Use `eval`, not `test`; check split availability below. |
 | Dataset hash mismatch | Restore the file from the same revision; keep variants under separate identities. |
-| Output already exists | Choose a fresh destination. |
+| Output already exists | Read the completed report or choose a fresh destination. Resume only interrupted runs without a final receipt. |
+| Checkpoint exists / identity mismatch | Use `--resume` with the original input and configuration, or choose a fresh destination for a changed experiment. |
+| Detailed-result hash mismatch | Restore the original journal; an interrupted run can rebuild it from its checkpoint with `--resume`. |
 | PCMD is null or unreportable | Check verified draws and eligible-prompt support; missing PCMD is not zero. |
 | CLI exits 3 / evaluator failure | Inspect `failure` or attempt `status`/`detail`; fix the cause and rerun without treating it as model failure. |
 | Native Windows or macOS worker errors | Use the supported Linux runtime; WSL provides one on Windows. |
@@ -260,7 +310,7 @@ assert prompt_mode_diversity(draws, PER_GROUP) == 1.0
 
 ## Datasets
 
-Files are organized as [`data/<level>/<domain>/<split>.parquet`](data/). Configuration names remain `level1_countdown`, `level2_mathir`, and so on. The [manifest](data/manifest.json) records every configuration, split, row count, original subset, and hash. `load_split` verifies the Parquet SHA-256 and row count. For API use outside the checkout, obtain a data root with `modebench.dataset_cache.fetch(config, split)` and pass it to `load_split`.
+Files are organized as [`data/<level>/<domain>/<split>.parquet`](data/). Configuration names remain `level1_countdown`, `level2_mathir`, and so on. The [manifest](data/manifest.json) records every configuration, split, row count, original subset, and hash. `load_split` verifies the Parquet SHA-256 and row count. The public `load_tasks` API handles verified downloads and caching outside the checkout.
 
 | Configurations | Train | Dev | Eval |
 | --- | ---: | ---: | ---: |
@@ -268,6 +318,8 @@ Files are organized as [`data/<level>/<domain>/<split>.parquet`](data/). Configu
 | Level 1 PantryPlan | 384 | 64 | 128 |
 | Levels 2–5, all five domains | 384 | 128 | 128 |
 | Level 1 graph-coloring single-answer diagnostic | — | — | 128 |
+
+`modebench datasets card --config CONFIG` displays the packaged dataset card: task and mode definitions, fields, split hashes/counts, authors, source terms, intended use, and limitations. Cards cover all 25 cells and the separate single-answer diagnostic.
 
 A dash means absent. The diagnostic lives under `data/level1/graph_coloring/unique_answer/` and uses configuration `level1_graph_coloring_unique_answer`; it is separate from the main benchmark.
 
@@ -288,7 +340,7 @@ This creates `train/` with subset `train` and `eval/` with subset `multi_answer`
 ## Reproducibility
 
 ```sh
-make check                          # Tests, conformance fixtures, frozen analysis, dataset hashes
+make check                          # Tests, conformance, analysis, data hashes, and scoped quality checks
 python ops/verify_release.py         # Repository file inventory and hashes
 ```
 
@@ -296,15 +348,15 @@ Validation covers the regression suite, **175 frozen response cases across all 2
 
 Fixtures freeze behavior from commit `0ae27d301c144411d6a3b67b9a3d2483d33b02bb`, with a locked corpus hash. CI additionally compares the new verifier against the PR base's fixture bytes, so changing expected values alongside a refactor does not erase the baseline. Metric properties cover bounds, permutations, renamed modes, and exact pair-count identities; canonicalization properties and deliberate semantic mutations check that the suite detects drift. Finite fixtures cannot prove equivalence for every possible input.
 
-CI builds a wheel **from the sdist**, validates package metadata, and runs the regression matrix against regular installs on Python 3.10, 3.11, and 3.12. Six isolated installation combinations cover wheel/sdist, core/data extras, and minimum/current dependencies. Their smoke script runs outside the checkout with no source-path overrides, verifies the import comes from site-packages and is not editable, executes all 175 conformance cases and the five-domain walkthrough, and exercises offline frozen prepare/inspect/evaluate with dataset extras. The suite does not require live network access to dataset hosting.
+CI builds a wheel **from the sdist**, validates package metadata, and runs the regression matrix against regular installs on Python 3.10, 3.11, and 3.12. Six isolated installation combinations cover wheel/sdist, core/data extras, and minimum/current dependencies. Their smoke script runs outside the checkout with no source-path overrides, verifies the import comes from site-packages and is not editable, executes all 175 conformance cases and the five-domain walkthrough, checks typed API resources, dataset cards, resume and parallel equivalence, and exercises offline frozen prepare/inspect/evaluate with dataset extras. The suite does not require live network access to dataset hosting.
 
 To reproduce an installation check locally:
 
 ```sh
 python -m pip install build
 python -m build
-python ops/check_install.py --artifact dist/modebench-0.3.0-py3-none-any.whl
-python ops/check_install.py --artifact dist/modebench-0.3.0.tar.gz --profile data --minimum
+python ops/check_install.py --artifact dist/modebench-0.4.0-py3-none-any.whl
+python ops/check_install.py --artifact dist/modebench-0.4.0.tar.gz --profile data --minimum
 ```
 
 This creates and removes a fresh virtual environment and an external working directory for each check. Installing dependencies requires network access or a configured package mirror. The minimum data stack uses the compatibility constraints described above. Versioned PyPI packages and separately hosted dataset releases remain a release-management follow-up; the current dataset URL is already pinned to immutable Git bytes. Future publishing should use [PyPA's trusted-publisher workflow](https://packaging.python.org/en/latest/guides/publishing-package-distribution-releases-using-github-actions-ci-cd-workflows/) after repository ownership and publisher configuration are established.
@@ -313,7 +365,7 @@ The [verified-key archive](evidence/base_grid_keys.jsonl.gz) retains attempt fla
 
 [Source provenance](provenance/source.json) records extracted-file identities; the [release manifest](provenance/release.json) binds final files. Extraction included uncommitted research changes, so the source commit alone is insufficient. Historical machine paths identify source artifacts and are not runtime dependencies. Equivalence to every historical verifier runtime remains unestablished; fresh model generation and training-checkpoint reproduction are outside these checks.
 
-For reported results, retain raw responses and record the repository commit, dataset configuration/split/hash, selected prompt IDs and exclusions, prompt condition/hash, model revision, decoding settings, seeds/dates, draw/group structure, failures, metric support/threshold, and uncertainty method. Use the repository URL and exact commit in software citations; final scientific citation metadata remain pending.
+For reported results, retain raw responses and record the repository commit, dataset configuration/split/hash, selected prompt IDs and exclusions, prompt condition/hash, model revision, decoding settings, seeds/dates, draw/group structure, failures, metric support/threshold, and uncertainty method. Use the repository URL and exact commit in software citations; use the [paper citation](#citation) alongside those software identities.
 
 ### Repository layout
 
@@ -325,17 +377,21 @@ src/modebench/
     python_factors/  # restricted Python, divisor vectors, process adapter
     mathir/          # symbolic equation actions and state trajectories
     pantry_plan/     # allocations, feasibility, support-mask projection
-  cli.py, evaluation.py, metrics.py      # shared evaluation interface
+  api.py, api_types.py                  # supported typed public interface
+  cli.py, evaluation.py, metrics.py      # shared evaluation contract
+  streaming.py, parallel.py, reporting.py # durable file evaluation and reports
   data.py, dataset_cache.py             # shared data access
   verifier.py, verifier_worker.py       # public diagnostics and worker dispatch
   worker_process.py, diagnostics.py     # process lifecycle and failure policy
 ```
 
-Each domain owns its reference validation, answer validation, and canonical identities. Prompt profiles and common response extraction remain shared. Earlier imports such as `modebench.mathir` and `modebench.python_modebench` resolve to the corresponding domain modules for compatibility; new code should import `modebench.domains.<domain>` modules. Software fingerprints include nested domain files.
+Each domain owns its reference validation, answer validation, and canonical identities. Prompt profiles and common response extraction remain shared. Earlier imports such as `modebench.mathir` and `modebench.python_modebench` resolve to the corresponding domain modules for compatibility; new integrations should use `modebench.api`, with domain implementation code under `modebench.domains.<domain>`. The old `historical_prompts` import aliases `registered_prompts`. Software fingerprints include nested domain files.
 
-Keep `evidence/` and `provenance/`: they serve different reproducibility needs. **Evidence** holds the frozen verified-key archive and numerical results used to detect metric drift. **Provenance** holds dataset origins, attribution, admission records, dependency constraints, the resource audit, and release-file identities. Neither is required to grade a saved response in an installed package, but both belong in the scientific repository. The wheel carries only the runtime registry, walkthrough, and dataset attribution it needs.
+Keep `evidence/` and `provenance/`: they serve different reproducibility needs. **Evidence** holds the frozen verified-key archive and numerical results used to detect metric drift. **Provenance** holds dataset origins, attribution, admission records, dependency constraints, the resource audit, and release-file identities. Neither is required to grade a saved response in an installed package, but both belong in the scientific repository. The wheel carries the runtime registry, walkthrough, dataset cards and attribution, type metadata, and applicable license notices.
 
 ## Contributing
+
+Liv G. d’Aliberti (`@liv-daliberti`) is the repository maintenance and scientific-review contact, as recorded in [CODEOWNERS](.github/CODEOWNERS). The five paper authors are credited in [CITATION.cff](CITATION.cff); this does not make every author a software support contact.
 
 Run `make check` before submitting changes. Report bugs through [GitHub issues](https://github.com/liv-daliberti/modeBench/issues) with the commit, Python version, domain/level, and a minimal response/reference example.
 
@@ -343,6 +399,38 @@ Explain changes to accepted responses, canonical identities, prompts, splits, or
 
 After reviewing deliberate file changes, refresh the release inventory with `python ops/verify_release.py --refresh`, inspect its diff, then verify it again. Updating hashes records changed bytes; it does not establish scientific equivalence.
 
+### Software fixes versus benchmark changes
+
+A **software fix** preserves accepted/rejected responses, canonical identities, registered prompt bytes, dataset hashes, scoring definitions, and admitted conditions. Packaging, diagnostics, performance, recovery, and compatible APIs can receive a software release after conformance and frozen numerical checks pass. Changes to output schemas must be documented and retain explicit schema identities.
+
+A **benchmark change** alters any of those scientific contracts, including a verifier bug fix that changes which answers score. It requires a new benchmark/condition identity, explicit before/after evidence, versioned fixtures and dataset identities when applicable, scientific review coordinated by the maintainer, and a changelog explanation of which results remain comparable. Never overwrite old datasets or silently refresh reference expectations. A package version alone does not make changed scientific results comparable. Resource or failure-policy changes must be recorded and assessed for changed scoreability.
+
+Formatting and linting are enforced on the new public API, evaluation/recovery/reporting code, and their focused tests. Strict type checks cover `api.py`, `api_types.py`, and `contracts.py`, with positive and deliberately invalid client examples. `make quality` also validates citation metadata. Legacy domain internals are not yet fully typed or uniformly formatted; expand the checked scope when touching them, with semantic conformance checks alongside changes.
+
+## Changelog
+
+- **0.4.0** — Streamed file evaluation with durable per-prompt checkpoints, input/configuration-bound resume, progress, atomic v4 receipts, hash-bound result journals, and optional bounded parallel workers. Added a typed public API, dataset cards, scoped quality checks, citation metadata, ownership/version policies, and CC BY 4.0 licensing for the authors' dataset contributions. In-memory v3 APIs and legacy module aliases remain available; registered benchmark meaning and frozen dataset bytes are unchanged.
+- **0.3.0** — Structured verifier failures, isolated resource-bounded verification, frozen conformance coverage, domain packages, verified dataset discovery/cache, five-domain walkthrough, and clean wheel/sdist installation testing.
+
+
+## Citation
+
+**Measuring and Mitigating Solution Mode Collapse in RLVR** has been accepted at the [6th Workshop on Mathematical Reasoning and AI (MATH-AI), NeurIPS 2026](https://mathai-2026.github.io/), and submitted to **ICLR 2027, where it is under review**.
+
+```bibtex
+@inproceedings{dAliberti:etal:ModeCollapse:2027,
+  author    = {d'Aliberti, Liv G. and Abdulhai, Marwa and Druchyna, Sofiia and Henderson, Peter and Horta Ribeiro, Manoel},
+  title     = {Measuring and Mitigating Solution Mode Collapse in {RLVR}},
+  booktitle = {International Conference on Learning Representations ({ICLR})},
+  year      = {2027},
+  note      = {Under review at {ICLR} 2027},
+}
+```
+
+[CITATION.cff](CITATION.cff) supplies machine-readable citation metadata. Alongside the paper citation, record the ModeBench software version and commit, dataset configuration/split/hash, prompt condition, and verifier contract. The ICLR entry records the submission; it does not claim ICLR acceptance.
+
 ## License and attribution
 
-Code is licensed under [Apache 2.0](LICENSE), with original notices retained. [Dataset source terms](provenance/licenses/data-sources.json) preserve attribution, including Pantry's USDA FoodData Central source. No separate blanket dataset license was assigned by this export; the code license does not assign new rights to upstream data.
+Code is licensed under [Apache 2.0](LICENSE), with original notices retained. The authors' copyrightable dataset contributions are licensed under **[CC BY 4.0](DATA_LICENSE)** on behalf of Liv G. d'Aliberti, Marwa Abdulhai, Sofiia Druchyna, Peter Henderson, and Manoel Horta Ribeiro. Credit the authors and ModeBench, link the license, and indicate changes. The grant covers the frozen task text, executable references, annotations, compilation, and their copies in walkthroughs and fixtures.
+
+PantryPlan's upstream USDA FoodData Central records remain **CC0/public domain** under the [USDA terms](https://fdc.nal.usda.gov/api-guide/); the dataset grant adds no conditions to those elements. [Source attribution and scope](provenance/licenses/data-sources.json) distinguish project contributions from upstream material. The distribution's combined license expression reflects its software and data components. Model weights, unrelated third-party software, and the manuscript are outside this grant. Historical provenance statements recording an unresolved dataset license describe the earlier export; the current [dataset license](DATA_LICENSE) supersedes that project-level status.

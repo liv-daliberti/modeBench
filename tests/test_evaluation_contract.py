@@ -152,7 +152,7 @@ def test_valid_custom_scores_remain_unchanged_and_identity_is_explicit():
     assert result['schema'] == 'modebench-saved-responses-v3'
     assert result['dataset'] == {'kind': 'custom', 'references_authenticated': False}
     assert result['run'] is None and result['generation_metadata_status'] == 'unreported'
-    assert result['software']['modebench_version'] == '0.3.0'
+    assert result['software']['modebench_version'] == '0.4.0'
     assert len(result['software']['package_source_sha256']) == 64
     prompt = cell['prompt_results'][0]
     assert len(prompt['reference_sha256']) == 64

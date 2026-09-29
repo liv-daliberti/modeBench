@@ -7,7 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / 'provenance/release.json'
 PROVENANCE = ROOT / 'provenance/source.json'
-EXCLUDED = {'.git', '__pycache__', '.pytest_cache', '.ruff_cache', 'build', 'dist', '.cache', '.venv', 'outputs'}
+EXCLUDED = {'.git', '__pycache__', '.pytest_cache', '.ruff_cache', '.mypy_cache', 'build', 'dist', '.cache', '.venv', 'outputs'}
 
 
 def digest(path):
@@ -16,7 +16,7 @@ def digest(path):
 
 def included(path):
     return path != MANIFEST and not any(
-        part in EXCLUDED or part.endswith('.egg-info')
+        part in EXCLUDED or part.endswith(('.egg-info', '.work'))
         for part in path.relative_to(ROOT).parts
     )
 

@@ -1,5 +1,5 @@
 {
-  "dataset_specific_license": "No separate dataset license found in the frozen dataset roots; no new dataset license assigned by this export.",
+  "dataset_specific_license": "CC-BY-4.0 for the named authors' copyrightable ModeBench dataset contributions; upstream public-domain elements retain their original status.",
   "pantry_ingredient_source": {
     "archive_name": "FoodData_Central_foundation_food_json_2026-04-30.zip",
     "archive_sha256": "186e988ec542e913f51ef62b86a47758e8cdd0d1dc3889e7b055581f3c09c77a",
@@ -9,7 +9,26 @@
     "null_placeholder_rows": 32,
     "physical_rows": 395,
     "release": "April 2026",
-    "url": "https://fdc.nal.usda.gov/download-datasets/"
+    "url": "https://fdc.nal.usda.gov/download-datasets/",
+    "verified_terms_url": "https://fdc.nal.usda.gov/api-guide/",
+    "terms_checked": "2026-09-29",
+    "citation": "U.S. Department of Agriculture, Agricultural Research Service. FoodData Central. Foundation Foods, April 2026 release."
   },
-  "source_code": "Existing repository Apache-2.0 LICENSE copied verbatim; existing source copyright notices retained."
+  "source_code": "Existing repository Apache-2.0 LICENSE copied verbatim; existing source copyright notices retained.",
+  "project_dataset_license": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/",
+    "notice": "DATA_LICENSE",
+    "effective_date": "2026-09-29",
+    "attribution": [
+      "Liv G. d'Aliberti",
+      "Marwa Abdulhai",
+      "Sofiia Druchyna",
+      "Peter Henderson",
+      "Manoel Horta Ribeiro"
+    ],
+    "scope": "Frozen task text, references, annotations, compilation, and their packaged examples/fixtures; only rights the authors have authority to grant.",
+    "authorization": "Repository owner explicitly requested assignment on behalf of the listed authors.",
+    "previous_release_status": "No project-level dataset license was assigned in the original export; historical provenance snapshots retain that original observation."
+  }
 }

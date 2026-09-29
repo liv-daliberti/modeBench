@@ -34,8 +34,8 @@ def export(directory):
 
 
 def summarize(payload):
-    if not isinstance(payload, dict) or payload.get('schema') != 'modebench-saved-responses-v3':
-        raise InputError('report requires a modebench-saved-responses-v3 receipt')
+    if not isinstance(payload, dict) or payload.get('schema') not in ('modebench-saved-responses-v3', 'modebench-saved-responses-v4'):
+        raise InputError('report requires a ModeBench v3 or v4 receipt')
     evaluation = payload.get('evaluation', {})
     status = evaluation.get('status')
     if status not in ('completed', 'failed'):

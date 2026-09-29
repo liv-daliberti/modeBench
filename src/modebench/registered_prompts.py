@@ -13,18 +13,10 @@ from typing import Any, Mapping
 
 
 SCHEMA = "frontier-modebench-e124-prompt-contract-v1"
-DOMAINS = ("graph_coloring", "countdown", "python_factors", "mathir", "pantry_plan")
+from .contracts import DOMAINS, normalize_task_identity
 
-
-def _identity(level: int | str, domain: str) -> tuple[int, str]:
-    if isinstance(level, str) and level.startswith("level"):
-        level = level[5:]
-    if isinstance(level, bool) or str(level) not in {"1", "2", "3", "4", "5"}:
-        raise ValueError("level must be 1, 2, 3, 4, or 5")
-    domain = "pantry_plan" if domain == "pantry" else domain
-    if domain not in DOMAINS:
-        raise ValueError(f"unsupported ModeBench domain: {domain}")
-    return int(level), domain
+# Compatibility for callers of the older private helper.
+_identity = normalize_task_identity
 
 
 def profile_metadata(level: int | str, domain: str) -> dict[str, Any]:

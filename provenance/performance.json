@@ -1,0 +1,115 @@
+{
+  "schema": "modebench-development-performance-v1",
+  "date": "2026-09-29",
+  "units": {
+    "memory": "bytes; README MB uses decimal 1000000 bytes",
+    "throughput": "saved responses per second including validation, grading, persistence, and finalization"
+  },
+  "scope": "Single measurements during development of 0.4.0; baseline and serial streaming measured before adding parallel execution. These are not release-version performance guarantees.",
+  "reproduce_current": "python ops/benchmark_evaluation.py --sizes 1000 10000 --workers 1 2 --output outputs/performance.json",
+  "limitations": [
+    "Shared Linux host; single run per condition; machine and storage dependent.",
+    "Repeated five-domain walkthrough tasks favor parser caches and warm OS cache.",
+    "25ms RSS sampling can miss short peaks; summed process RSS double-counts shared pages.",
+    "Original and preparallel measurements did not record an implementation source hash; baseline commit is recorded and parallel development source hash is retained.",
+    "Baseline output embeds every detailed result; streaming output is a compact receipt plus journal and SQLite checkpoint. Comparing only final receipt bytes would understate storage."
+  ],
+  "measurements": {
+    "previous_in_memory": {
+      "schema": "modebench-throughput-v1",
+      "baseline_commit": "1442d888",
+      "python": "3.10.19",
+      "platform": "Linux-5.14.0-687.52.1.el9_8.x86_64-x86_64-with-glibc2.34",
+      "method": "25ms /proc RSS sampling; peak sum of live evaluator and descendant RSS; handwritten repeated five-domain inputs, four responses per prompt; warm OS filesystem cache; no model calls",
+      "runs": [
+        {
+          "prompts": 1000,
+          "responses": 4000,
+          "seconds": 14.284551879012724,
+          "responses_per_second": 280.02278502533323,
+          "peak_parent_rss_bytes": 75284480,
+          "peak_process_tree_rss_bytes": 125222912,
+          "input_bytes": 1442490,
+          "output_bytes": 2661295
+        },
+        {
+          "prompts": 10000,
+          "responses": 40000,
+          "seconds": 127.8675327309902,
+          "responses_per_second": 312.8237414586911,
+          "peak_parent_rss_bytes": 292532224,
+          "peak_process_tree_rss_bytes": 339185664,
+          "input_bytes": 14434890,
+          "output_bytes": 26543708
+        }
+      ]
+    },
+    "streaming_before_parallel": {
+      "schema": "modebench-throughput-v1",
+      "implementation": "streaming serial before parallelism",
+      "python": "3.10.19",
+      "platform": "Linux-5.14.0-687.52.1.el9_8.x86_64-x86_64-with-glibc2.34",
+      "method": "25ms /proc RSS sampling; peak sum of live evaluator and descendant RSS; handwritten repeated five-domain inputs, four responses per prompt; warm OS filesystem cache; no model calls",
+      "runs": [
+        {
+          "prompts": 1000,
+          "responses": 4000,
+          "seconds": 19.298434372001793,
+          "responses_per_second": 207.2706999383954,
+          "peak_parent_rss_bytes": 59121664,
+          "peak_process_tree_rss_bytes": 105635840,
+          "input_bytes": 1442490,
+          "output_bytes": 7534
+        },
+        {
+          "prompts": 10000,
+          "responses": 40000,
+          "seconds": 182.54746412899112,
+          "responses_per_second": 219.12109374324325,
+          "peak_parent_rss_bytes": 60121088,
+          "peak_process_tree_rss_bytes": 106856448,
+          "input_bytes": 14434890,
+          "output_bytes": 7549
+        }
+      ]
+    },
+    "streaming_two_workers": {
+      "schema": "modebench-throughput-v1",
+      "python": "3.10.19",
+      "platform": "Linux-5.14.0-687.52.1.el9_8.x86_64-x86_64-with-glibc2.34",
+      "workload": "Repeated frozen Level 1 walkthrough, five domains, four saved responses per prompt.",
+      "method": "25 ms /proc RSS sampling; sum of live evaluator and descendant RSS, including shared pages counted per process; local /tmp SQLite checkpoint; warm OS cache; no model calls; single measurement per condition.",
+      "limitations": "RSS sampling can miss short peaks; shared-page double counting; repeated tasks favor parser caches; results are machine/workload specific, not a performance guarantee.",
+      "runs": [
+        {
+          "prompts": 1000,
+          "responses": 4000,
+          "workers": 2,
+          "seconds": 15.633945841007517,
+          "responses_per_second": 255.8535152084308,
+          "peak_parent_rss_bytes": 60862464,
+          "peak_process_tree_rss_bytes": 151396352,
+          "input_bytes": 1442490,
+          "receipt_bytes": 8017,
+          "journal_bytes": 1807980,
+          "checkpoint_bytes": 10970732,
+          "package_source_sha256": "cfcdd7ff98caca553b83d1fb4035df33b0fb8560b35d94a389a0854a30dd80d5"
+        },
+        {
+          "prompts": 10000,
+          "responses": 40000,
+          "workers": 2,
+          "seconds": 135.45896076899953,
+          "responses_per_second": 295.29238798910234,
+          "peak_parent_rss_bytes": 61206528,
+          "peak_process_tree_rss_bytes": 152059904,
+          "input_bytes": 14434890,
+          "receipt_bytes": 8032,
+          "journal_bytes": 18099780,
+          "checkpoint_bytes": 109346372,
+          "package_source_sha256": "cfcdd7ff98caca553b83d1fb4035df33b0fb8560b35d94a389a0854a30dd80d5"
+        }
+      ]
+    }
+  }
+}

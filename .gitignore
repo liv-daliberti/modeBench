@@ -7,3 +7,6 @@ build/
 dist/
 outputs/
 .cache/
+*.work/
+.mypy_cache/
+.ruff_cache/

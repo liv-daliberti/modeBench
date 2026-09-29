@@ -25,6 +25,7 @@ def main():
     assert Path(modebench.__file__).resolve().is_relative_to(site), modebench.__file__
     direct = importlib.metadata.distribution('modebench').read_text('direct_url.json')
     assert not direct or not json.loads(direct).get('dir_info', {}).get('editable')
+    assert Path(modebench.__file__).with_name("py.typed").is_file()
     from modebench.identity import software_identity
     from modebench.domains.mathir import verifier as mathir
     assert importlib.import_module('modebench.mathir') is mathir
@@ -44,6 +45,8 @@ def main():
     cli('--help')
     registry = json.loads(cli('datasets', 'list', '--json'))
     assert len(registry) == 72
+    card = json.loads(cli('datasets', 'card', '--config', 'level1_countdown'))
+    assert card['license'] == 'CC-BY-4.0' and len(card['authors']) == 5
     cli('walkthrough', '--directory', 'demo')
     cli('walkthrough', '--directory', 'demo', status=2)
     tasks = [json.loads(s) for s in Path('demo/tasks.jsonl').read_text().splitlines()]
@@ -57,6 +60,39 @@ def main():
         assert (cell['accuracy'], cell['pass_at_k'], cell['distinct_at_k'], cell['pcmd']['d_mode'], cell['pcmd']['reportable']) == (.5, 1., 2., 1., False)
     assert 'Evaluation completed' in cli('report', 'demo/report.json')
     cli('evaluate', 'demo/responses.jsonl', '--output', 'demo/report.json', status=2)
+
+    from modebench.api import (
+        Task, EvaluationOptions, evaluate_file, grade, make_prompt, read_report, iter_results,
+    )
+    from importlib.resources import files
+    packaged_demo = json.loads(files('modebench').joinpath('walkthrough.json').read_text())
+    for record in packaged_demo['records']:
+        task = Task(record['id'], record['level'], record['domain'], record['problem'], record['answer'])
+        assert make_prompt(task) and grade(task, record['responses'][0])['status'] == 'correct'
+    report = read_report('demo/report.json')
+    assert report.schema == 'modebench-saved-responses-v4' and report.status == 'completed'
+    expected_results = list(iter_results('demo/report.json'))
+    assert len(expected_results) == 5
+
+    def interrupt_after_two(progress):
+        if progress['phase'] == 'grading' and progress['completed_prompts'] == 2:
+            raise KeyboardInterrupt
+
+    options = EvaluationOptions(run=packaged_demo['run'])
+    try:
+        evaluate_file('demo/responses.jsonl', 'resumed.json', options=options,
+                      progress=interrupt_after_two)
+    except KeyboardInterrupt:
+        pass
+    else:
+        raise AssertionError('expected interruption')
+    assert not Path('resumed.json').exists()
+    receipt = evaluate_file('demo/responses.jsonl', 'resumed.json', options=options,
+                            resume=True, workers=2)
+    assert receipt.prompts == 5 and receipt.status == 'completed'
+    assert read_report(receipt.output).cells == report.cells
+    assert list(iter_results(receipt.output)) == expected_results
+    assert 'Evaluation completed' in cli('report', receipt.output)
 
     from modebench.historical_prompts import grade_response
     corpus = json.loads(args.fixtures.read_text())
@@ -72,6 +108,7 @@ def main():
     close_worker()
 
     if have_data:
+        from modebench.api import load_tasks
         from modebench.dataset_cache import cache_data_root
         root = cache_data_root('cache')
         demo = {r['domain']:r for r in map(json.loads, Path('demo/responses.jsonl').read_text().splitlines())}
@@ -84,6 +121,9 @@ def main():
             config = record['config_name']
             common = ['--config', config, '--cache-dir', 'cache', '--offline']
             cli('datasets', 'fetch', *common)
+            task = next(load_tasks(config, cache_dir='cache', offline=True))
+            assert task.id == f'{config}/eval/0' and make_prompt(task)
+            assert grade(task, demo[record['domain']]['responses'][0])['status'] == 'correct'
             inspected = json.loads(cli('datasets', 'inspect', *common))
             assert inspected['id'] == f'{config}/eval/0' and 'answer' not in inspected
             requests = Path(f'{config}-requests.jsonl')

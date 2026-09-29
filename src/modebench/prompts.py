@@ -8,7 +8,9 @@ from copy import deepcopy
 import hashlib
 from pathlib import Path
 import sys
-from . import historical_prompts as historical
+from . import registered_prompts as registered
+from .contracts import normalize_task_identity
+from typing import Any, Mapping
 from modebench.templates import TEMPLATE_FACTORY,CHAT_SURFACES
 
 CURRENT='python_level3_neutral_v1'
@@ -19,8 +21,8 @@ DEFAULT_CONDITION=HISTORICAL
 
 def profile_metadata(level,domain,condition=DEFAULT_CONDITION):
     if condition not in CONDITIONS:raise ValueError('unknown prompt condition: '+str(condition))
-    level,domain=historical._identity(level,domain)
-    p=historical.profile_metadata(level,domain)
+    level,domain=normalize_task_identity(level,domain)
+    p=registered.profile_metadata(level,domain)
     changed=level==3 and domain=='python_factors' and condition==CURRENT
     if changed:p={**p,'template_name':'qwen_level3_python_factors_neutral_v1'}
     return {**p,'schema':'modebench-current-prompt-contract-v2','prompt_condition':condition,
@@ -29,10 +31,10 @@ def profile_metadata(level,domain,condition=DEFAULT_CONDITION):
             'original_difficulty_calibration_applies_to_prompt':not changed}
 
 
-def make_messages(level,domain,row,condition=DEFAULT_CONDITION):
+def make_messages(level: int | str, domain: str, row: Mapping[str, Any], condition: str = DEFAULT_CONDITION) -> list[dict[str, str]]:
     p=profile_metadata(level,domain,condition)
     # The historical adapter retains all task/role-marker validation.
-    original=historical.make_messages(level,domain,row)
+    original=registered.make_messages(level,domain,row)
     if p['system_wording']!='neutral':return original
     rendered=TEMPLATE_FACTORY[p['template_name']](row['problem'])
     sm,um,am=CHAT_SURFACES['qwen'];assert rendered.startswith(sm) and rendered.endswith(am)
@@ -44,7 +46,7 @@ def make_messages(level,domain,row,condition=DEFAULT_CONDITION):
 def training_environment(level,domain,environment,condition=DEFAULT_CONDITION):
     """Apply the same registered wording to training and its evaluation loader."""
     p=profile_metadata(level,domain,condition);result=deepcopy(environment)
-    original=historical.profile_metadata(level,domain)['template_name']
+    original=registered.profile_metadata(level,domain)['template_name']
     if environment.get('OAT_ZERO_PROMPT_TEMPLATE') not in (original,p['template_name']):
         raise ValueError('unexpected source template; require a native registered interface')
     result['OAT_ZERO_PROMPT_TEMPLATE']=p['template_name']

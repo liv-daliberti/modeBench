@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import json
 import math
+from typing import Any
 from numbers import Integral
 
 
@@ -35,7 +36,7 @@ def json_value(value, label='value'):
         raise InputError(f'{label} must contain only JSON values')
 
 
-def loads(text):
+def loads(text: str | bytes) -> Any:
     def pairs(items):
         result = {}
         for key, value in items:
@@ -54,7 +55,7 @@ def loads(text):
 
 def _validate_reference_local(level, domain, answer):
     """Validate a task reference before any generated answers are scored."""
-    from .historical_prompts import _identity
+    from .contracts import normalize_task_identity
     from modebench.domains.mathir.verifier import MATHIR_VERIFIER, MATHIR_MENU_VERIFIER
     from modebench.domains.python_factors.verifier import PYTHON_FACTOR_VERIFIER
     from .domains.countdown.verifier import validate_reference as validate_countdown
@@ -67,7 +68,7 @@ def _validate_reference_local(level, domain, answer):
     encoded = json.dumps(answer, allow_nan=False)
     if len(encoded.encode()) > MAX_REFERENCE_BYTES:
         raise InputError('reference byte limit exceeded')
-    level, domain = _identity(level, domain)
+    level, domain = normalize_task_identity(level, domain)
     spec = loads(answer) if isinstance(answer, str) else answer
     if not isinstance(spec, dict):
         raise InputError('answer must be an object or a JSON-encoded object')

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "modebench"
-version = "0.3.0"
+version = "0.4.0"
 description = "Execution-bound correctness and solution mode diversity benchmark"
 readme = "README.md"
 requires-python = ">=3.10,<3.13"
@@ -14,13 +14,14 @@ classifiers = [
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
 ]
-license = "Apache-2.0"
-license-files = ["LICENSE"]
+license = "Apache-2.0 AND CC-BY-4.0 AND CC0-1.0"
+license-files = ["LICENSE", "DATA_LICENSE", "provenance/licenses/CC-BY-4.0.txt"]
 dependencies = ["sympy>=1.12,<2"]
 
 [project.optional-dependencies]
 data = ["datasets>=2.16.1,<6", "huggingface-hub>=0.19.4,<2"]
-dev = ["pytest", "datasets>=2.16.1,<6", "huggingface-hub>=0.19.4,<2"]
+dev = ["pytest", "datasets>=2.16.1,<6", "huggingface-hub>=0.19.4,<2", "ruff==0.16.9", "mypy==1.20.2", "cffconvert==2.0.0"]
+quality = ["ruff==0.16.9", "mypy==1.20.2", "cffconvert==2.0.0"]
 
 [project.urls]
 Repository = "https://github.com/liv-daliberti/modeBench"
@@ -38,4 +39,17 @@ testpaths = ["tests"]
 addopts = "--import-mode=importlib"
 
 [tool.setuptools.package-data]
-modebench = ["*.json"]
+modebench = ["*.json", "py.typed"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+follow_imports = "silent"
+files = ["src/modebench/api.py", "src/modebench/api_types.py", "src/modebench/contracts.py"]

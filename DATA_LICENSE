@@ -1,0 +1,33 @@
+ModeBench dataset license
+SPDX-License-Identifier: CC-BY-4.0
+
+Copyright (c) 2026 Liv G. d'Aliberti, Marwa Abdulhai, Sofiia Druchyna,
+Peter Henderson, and Manoel Horta Ribeiro.
+
+The authors' copyrightable contributions to the frozen ModeBench datasets
+under data/, including task text, executable references, annotations, and
+compilation, are licensed under Creative Commons Attribution 4.0
+International (CC BY 4.0). This also covers copies and excerpts of those
+contributions in the packaged walkthrough and conformance fixtures.
+
+License: https://creativecommons.org/licenses/by/4.0/
+Full legal text: provenance/licenses/CC-BY-4.0.txt
+Source: https://github.com/liv-daliberti/modeBench
+
+Attribute the authors and ModeBench, link to this license, and indicate
+changes when sharing adaptations. Please also cite the paper using
+CITATION.cff and identify the software version and dataset hashes.
+
+Upstream exclusions
+-------------------
+USDA FoodData Central Foundation Foods source records and nutrient values
+used by PantryPlan remain CC0 1.0/public-domain data. This notice does not
+impose new conditions on those public-domain elements. Retain the USDA
+source attribution provided in provenance/licenses/data-sources.json.
+USDA terms: https://fdc.nal.usda.gov/api-guide/#bkmk-6
+CC0: https://creativecommons.org/publicdomain/zero/1.0/
+
+The software remains Apache-2.0 under LICENSE, with original third-party
+notices retained. This notice does not license third-party model weights,
+third-party software, or the research manuscript. It grants only rights in
+the dataset contributions that the named authors have authority to grant.

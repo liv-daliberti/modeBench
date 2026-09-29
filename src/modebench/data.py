@@ -4,11 +4,12 @@ from pathlib import Path
 import hashlib
 import json
 import re
+from typing import Any
 
 from .validation import InputError, loads, positive_integer
 
 
-def split_record(root, config, split, *, frozen=False):
+def split_record(root: str | Path, config: str, split: str, *, frozen: bool = False) -> dict[str, Any]:
     """Resolve a manifest entry; frozen=True also checks the packaged registry."""
     root = Path(root).resolve()
     manifest = loads((root / 'manifest.json').read_bytes())
@@ -40,7 +41,7 @@ def split_record(root, config, split, *, frozen=False):
     return record
 
 
-def load_split(root, config, split, *, frozen=False):
+def load_split(root: str | Path, config: str, split: str, *, frozen: bool = False) -> Any:
     """Load a hash-verified split; root is the repository's data directory."""
     try:
         from datasets import Dataset
@@ -57,7 +58,7 @@ def load_split(root, config, split, *, frozen=False):
     return dataset
 
 
-def prompt_id(config, split, index):
+def prompt_id(config: str, split: str, index: int) -> str:
     """Stable zero-based row identity within an immutable configuration/split."""
     if type(index) is not int or index < 0:
         raise InputError('prompt row index must be a nonnegative integer')

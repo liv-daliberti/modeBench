@@ -81,16 +81,17 @@
       "extracted_sha256": "7ec513efc3c9ce627945833a27692620129b5f3888dc2311584554ff21aed6a5"
     },
     {
-      "path": "src/modebench/historical_prompts.py",
-      "sha256": "e2e6b6395b7c5aa6ed464f42514309a32d2abb077e75f6822f80180da5e61f02",
-      "transformation": "package imports; remove research-checkout sys.path injection",
+      "path": "src/modebench/registered_prompts.py",
+      "sha256": "d5b50a3ea893462f2c7278bb7780c7db062dfe5b1987086c6cc90b16aff087f2",
+      "transformation": "package imports; remove research-checkout sys.path injection; registered prompt module name with legacy import alias and shared public identity contract",
       "source": "ops/frontier_modebench_contract.py",
       "source_sha256": "abfd71ec6f08267310aa2545f6f19e0a6213c8d69b2838410953850e101624f7",
-      "extracted_sha256": "54a9ea1b86c58c8a9a5cd144efa95d5b28b0bcf62b7b703397c44412b9282e1b"
+      "extracted_sha256": "54a9ea1b86c58c8a9a5cd144efa95d5b28b0bcf62b7b703397c44412b9282e1b",
+      "previous_release_path": "src/modebench/historical_prompts.py"
     },
     {
       "path": "src/modebench/prompts.py",
-      "sha256": "c1414eb3a2ffe7964e9f46c2afa0d7d93f63edf91cfcdc29a6996a7b5e60dea9",
+      "sha256": "027e6a4a824d285a923583914877fefb8cce27db26ff14eb06eca26394b9c080",
       "transformation": "package imports; remove research-checkout sys.path injection",
       "source": "ops/modebench_current_contract.py",
       "source_sha256": "3a2f63cb70469ccd7374f1295b99549df9b0a84dcc687ddc1dcc63086fd77310",
@@ -99,7 +100,7 @@
     },
     {
       "path": "src/modebench/__init__.py",
-      "sha256": "c9f2383712177710fab979c285247fb7c25e779d06a33148110100b6c8c54c1e",
+      "sha256": "918b4037375bfb6acfc673dbb6fb536d9d8cccd46e8fbca73505d02d0c5392e0",
       "transformation": "new release interface",
       "extracted_sha256": "238f7da5285e1c507aa02ba3251cfffa3ed959ce13fb8c3025dad3258bf2b592"
     },
@@ -234,7 +235,7 @@
     },
     {
       "path": ".gitignore",
-      "sha256": "53cfb1cacaf65736b38439ed81d55e8c5e7252aa065aa873d23f6446967e900c",
+      "sha256": "d80522e3b972aa0c7ebf801157d68677dc7032231add90ffbac5d3c709cb7e4a",
       "transformation": "new release interface",
       "extracted_sha256": "53cfb1cacaf65736b38439ed81d55e8c5e7252aa065aa873d23f6446967e900c"
     },

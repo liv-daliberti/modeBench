@@ -2,14 +2,29 @@
   "schema": "local-release-files-v1",
   "files": [
     {
+      "path": ".github/CODEOWNERS",
+      "sha256": "cfd0fa2e90659ce04ea64e61ec5c30e0af604df5613dccc8f2d25d618ae5322d",
+      "bytes": 81
+    },
+    {
       "path": ".github/workflows/check.yml",
       "sha256": "e40b6c3d2c1ec6fb78bd98a1afa3bf644cdd359c0b2c4b6b9c5fe197218a3b2a",
       "bytes": 2562
     },
     {
       "path": ".gitignore",
-      "sha256": "53cfb1cacaf65736b38439ed81d55e8c5e7252aa065aa873d23f6446967e900c",
-      "bytes": 87
+      "sha256": "d80522e3b972aa0c7ebf801157d68677dc7032231add90ffbac5d3c709cb7e4a",
+      "bytes": 121
+    },
+    {
+      "path": "CITATION.cff",
+      "sha256": "93392ddfe0f8b9a6740cb44c0e0a53dcf06edc2cd1766770cac8e93bbc330fca",
+      "bytes": 1203
+    },
+    {
+      "path": "DATA_LICENSE",
+      "sha256": "738172651cb3deaf5839a9766a214982061f9c932d2043d7b8975bf03209adb8",
+      "bytes": 1634
     },
     {
       "path": "LICENSE",
@@ -18,18 +33,18 @@
     },
     {
       "path": "MANIFEST.in",
-      "sha256": "557c75236bccde0cb8342e84a226e121f72a066a0067d6d6354e8e430ee3d822",
-      "bytes": 124
+      "sha256": "c2d1f871a4d514ce087eba96d1af29c057e8fd5e93ff038b4bde892e73ad54bc",
+      "bytes": 192
     },
     {
       "path": "Makefile",
-      "sha256": "1285d5059916cad9fad3ef457ca66915d0c39fc4cb4a6526a851d99adbc094e3",
-      "bytes": 251
+      "sha256": "71efe5bd9be2dde10934019aa85ae013385c1b9c012abb4cc1df472fd1a91b49",
+      "bytes": 309
     },
     {
       "path": "README.md",
-      "sha256": "48d2be89bb3474774d7b7e07c9fdb2b24a090c56d318b4394e05584e3b74af98",
-      "bytes": 30755
+      "sha256": "8ad02d8d380606a347fdb10587752168e98a0ee7ebec41c1074f22e5a5a1f9a5",
+      "bytes": 41026
     },
     {
       "path": "assets/modebench-domains.png",
@@ -422,6 +437,11 @@
       "bytes": 266
     },
     {
+      "path": "ops/benchmark_evaluation.py",
+      "sha256": "ee830fd4887b47f2e6602b429eb6ba36bb458606faf18b0408f75b74883dba07",
+      "bytes": 5472
+    },
+    {
       "path": "ops/check_conformance.py",
       "sha256": "0aa90601fa4c1aed1a24da876c64aff58d92b900bb13a2db798fb55af893a8c2",
       "bytes": 1858
@@ -430,6 +450,11 @@
       "path": "ops/check_install.py",
       "sha256": "d79e7a75f5de4ca3ca0b5634485d0169ff6decc6fa5efe15cbfa0730392d359f",
       "bytes": 2008
+    },
+    {
+      "path": "ops/check_quality.py",
+      "sha256": "4440b45d956b19b083361b3b751339b4c4478c0297608ef49d77f38930433ea6",
+      "bytes": 2041
     },
     {
       "path": "ops/make_exact_countdown_mode_data.py",
@@ -473,8 +498,8 @@
     },
     {
       "path": "ops/test_installed.py",
-      "sha256": "94ee46b10004f5e9401e448eb6f6124ee130a1eae2d419330cf1a2b01f4e4a4d",
-      "bytes": 5884
+      "sha256": "a7c98b30fa97a42874c338421d640a7459d87238736cc3cf03671e34374dc9ce",
+      "bytes": 8047
     },
     {
       "path": "ops/verify_data.py",
@@ -488,8 +513,8 @@
     },
     {
       "path": "ops/verify_release.py",
-      "sha256": "54973cd7cb8ffc0222c2332aa5da155d129dae30225390488044de0b5fd00b54",
-      "bytes": 2399
+      "sha256": "3c2521604e943d92aa1ab8f579a21605f6e75b90050b3a5f65a8c1046b478e7a",
+      "bytes": 2425
     },
     {
       "path": "provenance/constraints-minimum.txt",
@@ -512,9 +537,14 @@
       "bytes": 166737
     },
     {
+      "path": "provenance/licenses/CC-BY-4.0.txt",
+      "sha256": "d557539df68e771cc1eedcc91d13f70fca930e508d11eedcafa4b15db49e3744",
+      "bytes": 17023
+    },
+    {
       "path": "provenance/licenses/data-sources.json",
-      "sha256": "1340491ab6897a426d1a9341f8f642570f007715b24866edf76e95a8f5da8202",
-      "bytes": 753
+      "sha256": "cf0050a6b26f7edb016597f3a0bf1ba4ee967b1400f682ddb6bc87d7be542218",
+      "bytes": 1800
     },
     {
       "path": "provenance/licenses/source_repository_APACHE_2.0.txt",
@@ -522,9 +552,14 @@
       "bytes": 11357
     },
     {
+      "path": "provenance/performance.json",
+      "sha256": "90c7164068fcbde403e2adfdd7aeb371162f3c0dfa02d09846a86b47b26edb9f",
+      "bytes": 5328
+    },
+    {
       "path": "provenance/source.json",
-      "sha256": "e2d930c4bbf48bf2c8ac023c00ef1506b0844e4547ddfc1240be19037fbead3a",
-      "bytes": 14633
+      "sha256": "f3955eaf36e7deabd40a35d0dc9412ebc724ad263ea1d10565a101e2cecb8845",
+      "bytes": 14795
     },
     {
       "path": "provenance/verifier-resource-audit.json",
@@ -533,33 +568,53 @@
     },
     {
       "path": "pyproject.toml",
-      "sha256": "e4aa3b71ae8aa1ff67fbf93e9b708308ff5856572716cb60a932bedb5ea353f7",
-      "bytes": 1161
+      "sha256": "107c93ce9e47835e6abc69e7109aa32a9a8e55c1fdf2aa7aafc048b500fbf681",
+      "bytes": 1651
     },
     {
       "path": "src/modebench/__init__.py",
-      "sha256": "c9f2383712177710fab979c285247fb7c25e779d06a33148110100b6c8c54c1e",
-      "bytes": 977
+      "sha256": "918b4037375bfb6acfc673dbb6fb536d9d8cccd46e8fbca73505d02d0c5392e0",
+      "bytes": 1035
+    },
+    {
+      "path": "src/modebench/api.py",
+      "sha256": "6243e396db0ae01f42d025a2549ec3ffb7fe338a9d4a1fd54a6ff56679a36ffc",
+      "bytes": 5079
+    },
+    {
+      "path": "src/modebench/api_types.py",
+      "sha256": "6e621f07a547e253e8a3b724895f7d99da091ebbc78666c9b828b9e546fd3225",
+      "bytes": 2825
     },
     {
       "path": "src/modebench/cli.py",
-      "sha256": "00aff8ee72763831490cbd67e25669cd9533d8b885b59fa0eb2d9b2ea9e2debb",
-      "bytes": 8742
+      "sha256": "770f5785d004caf901ba284716fe8b60c5b09bf50b5ceb801a23ad4ff879c290",
+      "bytes": 10998
+    },
+    {
+      "path": "src/modebench/contracts.py",
+      "sha256": "4fc008ed5ed94daf6480e4128c4a3e9fd582df3bab65e1f800bf1e42377b3bce",
+      "bytes": 862
     },
     {
       "path": "src/modebench/data-sources.json",
-      "sha256": "1340491ab6897a426d1a9341f8f642570f007715b24866edf76e95a8f5da8202",
-      "bytes": 753
+      "sha256": "cf0050a6b26f7edb016597f3a0bf1ba4ee967b1400f682ddb6bc87d7be542218",
+      "bytes": 1800
     },
     {
       "path": "src/modebench/data.py",
-      "sha256": "d42fa6af5ea7b24a0382631eaf3309c59bc3ca912153804419ad0e1604613650",
-      "bytes": 3945
+      "sha256": "3a3d3fd7d220ce1668a8e09ae9436e877156764d4a011e31de57752ac22ae328",
+      "bytes": 4075
     },
     {
       "path": "src/modebench/dataset_cache.py",
-      "sha256": "83b8c5ca97da710aed7e79df00739bb64456129d750fc26da1dcaf6bfb91ab9d",
-      "bytes": 4423
+      "sha256": "c57a79bbe8b31eeb12a1ddbbdea09a016d7c1909f91519bba9528c9bd00f8fda",
+      "bytes": 4472
+    },
+    {
+      "path": "src/modebench/dataset_cards.json",
+      "sha256": "bd36ab849483327f1ae71c20d69d9d23bb9186d09f62ece09ef18ce64da12e29",
+      "bytes": 58204
     },
     {
       "path": "src/modebench/diagnostics.py",
@@ -658,8 +713,8 @@
     },
     {
       "path": "src/modebench/evaluation.py",
-      "sha256": "34695693e388311c201b0992627be49fc761fa542fbc9ca52fa964b212eace5c",
-      "bytes": 12902
+      "sha256": "f70356ec1397bd6af58b855e9676ea94c543a9f6b2d2506764496fde1cbfd2a2",
+      "bytes": 16198
     },
     {
       "path": "src/modebench/frozen_splits.json",
@@ -672,11 +727,6 @@
       "bytes": 16777
     },
     {
-      "path": "src/modebench/historical_prompts.py",
-      "sha256": "e2e6b6395b7c5aa6ed464f42514309a32d2abb077e75f6822f80180da5e61f02",
-      "bytes": 5014
-    },
-    {
       "path": "src/modebench/identity.py",
       "sha256": "e99e9c1f4ea5c5957ac922e6acc5c5adba7c1ff6a0ee664ce1982b6377f53ad9",
       "bytes": 2559
@@ -687,14 +737,39 @@
       "bytes": 10063
     },
     {
+      "path": "src/modebench/parallel.py",
+      "sha256": "991d3e4639de318df674667d48c425df886362ee38b19854572c08a93a9ec4e6",
+      "bytes": 2148
+    },
+    {
       "path": "src/modebench/prompts.py",
-      "sha256": "c1414eb3a2ffe7964e9f46c2afa0d7d93f63edf91cfcdc29a6996a7b5e60dea9",
-      "bytes": 2942
+      "sha256": "027e6a4a824d285a923583914877fefb8cce27db26ff14eb06eca26394b9c080",
+      "bytes": 3093
+    },
+    {
+      "path": "src/modebench/py.typed",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
     },
     {
       "path": "src/modebench/python_modebench_worker.py",
       "sha256": "407f1ee73ae1b74ad26cd58e255c58589229ee8ea352acf34fed13c3a41cfd4b",
       "bytes": 148
+    },
+    {
+      "path": "src/modebench/registered_prompts.py",
+      "sha256": "d5b50a3ea893462f2c7278bb7780c7db062dfe5b1987086c6cc90b16aff087f2",
+      "bytes": 4598
+    },
+    {
+      "path": "src/modebench/reporting.py",
+      "sha256": "a61eb263311aff2b2e1db113395dae39cd6b1c4c2c7d48f25f3e5bedf6e5a085",
+      "bytes": 5006
+    },
+    {
+      "path": "src/modebench/streaming.py",
+      "sha256": "62af9a128d1cdda6155ec46727d134cbbaa4eb720796912f5f7cc4c6ff5b0b61",
+      "bytes": 21922
     },
     {
       "path": "src/modebench/templates.py",
@@ -703,18 +778,18 @@
     },
     {
       "path": "src/modebench/validation.py",
-      "sha256": "4130c5efa53525f67171792bd9365cf81f372748c6a2cf721666ab853fcc599e",
-      "bytes": 5419
+      "sha256": "b2c940bb6d533e51eea7603c72a12497c7e4f3222f5af0a41fe89bdaa80d7434",
+      "bytes": 5481
     },
     {
       "path": "src/modebench/verifier.py",
-      "sha256": "076a46b26867a7c937e1ade1035b17b30d0c2ea5618b58d7f159ba2957af646f",
-      "bytes": 1590
+      "sha256": "c544ec9dc490a905bcfcb6b9b5e0e30591d1d3cb7d70906e43a1083ef2181c2c",
+      "bytes": 1873
     },
     {
       "path": "src/modebench/verifier_core.py",
-      "sha256": "2441602618cc53cbc4742664066c1960256704b816ab31771a5cccc256ed7c6b",
-      "bytes": 1836
+      "sha256": "e6a3a10cafb84ab62f6bb902c9a7810d42e90bff44539add5ab4c23af83955ae",
+      "bytes": 1855
     },
     {
       "path": "src/modebench/verifier_worker.py",
@@ -728,8 +803,8 @@
     },
     {
       "path": "src/modebench/walkthrough.py",
-      "sha256": "fe0fe586eb4d1fe2a8e8895550f52b0f7c348f19742a29fa2e0bfe77b785ec45",
-      "bytes": 3004
+      "sha256": "2f29478d44b86af82fe51fbc61dca841ea7508197713cec7179079b6c75a1652",
+      "bytes": 3032
     },
     {
       "path": "src/modebench/worker_process.py",
@@ -773,7 +848,7 @@
     },
     {
       "path": "tests/test_evaluation_contract.py",
-      "sha256": "7c5d0461c2ba96c3534120c73b10dbbee284c29080d0b6af07c45c972493be06",
+      "sha256": "50d93fe9cabca8bbef83c54a5432dc93b40133ffc4c73369862488edfa4f09ee",
       "bytes": 9258
     },
     {
@@ -817,6 +892,11 @@
       "bytes": 1625
     },
     {
+      "path": "tests/test_public_api.py",
+      "sha256": "6135b316146d42d23807f335f710f8d26c208bb2d040d150b394a66004a8269e",
+      "bytes": 3161
+    },
+    {
       "path": "tests/test_python_modebench.py",
       "sha256": "1262a5c8b962199a4e0e79f6b26ef8860bacffa6592d4c8387ff45548eeb9c80",
       "bytes": 5594
@@ -827,9 +907,19 @@
       "bytes": 1089
     },
     {
+      "path": "tests/test_streaming.py",
+      "sha256": "032941445c296bb9cd463697eb03d02b1d26d8e716dca2fe2e58454633993436",
+      "bytes": 15037
+    },
+    {
       "path": "tests/test_verifier_lifecycle.py",
       "sha256": "808342e5aafd1cc7c10de91fb4b221c6c2edc5029adcefdb9d762c506fbbfd82",
       "bytes": 11891
+    },
+    {
+      "path": "tests/typecheck/public_api.py",
+      "sha256": "ce2526c2ed411a7645d3b63816b10d612130b1d38f2ce62056f7ad9fad42c350",
+      "bytes": 555
     }
   ]
 }

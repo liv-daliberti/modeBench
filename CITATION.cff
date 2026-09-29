@@ -1,0 +1,36 @@
+cff-version: 1.2.0
+message: "Please cite the paper below and record the ModeBench software version, commit, and dataset hashes used."
+type: software
+title: ModeBench
+version: 0.4.0
+repository-code: https://github.com/liv-daliberti/modeBench
+url: https://github.com/liv-daliberti/modeBench
+license: Apache-2.0
+authors:
+  - family-names: "d'Aliberti"
+    given-names: Liv G.
+  - family-names: Abdulhai
+    given-names: Marwa
+  - family-names: Druchyna
+    given-names: Sofiia
+  - family-names: Henderson
+    given-names: Peter
+  - family-names: Horta Ribeiro
+    given-names: Manoel
+preferred-citation:
+  type: conference-paper
+  title: Measuring and Mitigating Solution Mode Collapse in RLVR
+  authors:
+    - family-names: "d'Aliberti"
+      given-names: Liv G.
+    - family-names: Abdulhai
+      given-names: Marwa
+    - family-names: Druchyna
+      given-names: Sofiia
+    - family-names: Henderson
+      given-names: Peter
+    - family-names: Horta Ribeiro
+      given-names: Manoel
+  collection-title: International Conference on Learning Representations (ICLR)
+  year: 2027
+  notes: "Under review at ICLR 2027. Accepted at the 6th Workshop on Mathematical Reasoning and AI (MATH-AI), NeurIPS 2026."

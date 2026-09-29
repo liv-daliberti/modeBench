@@ -61,7 +61,7 @@ def _atomic_write(path, content):
             temporary.unlink(missing_ok=True)
 
 
-def fetch(config, split='eval', *, cache_dir=None, offline=False):
+def fetch(config: str, split: str = 'eval', *, cache_dir: str | Path | None = None, offline: bool = False) -> Path:
     """Return a data root containing the selected immutable split.
 
     Every reuse verifies SHA-256. Corrupt cache entries fail with their path;
