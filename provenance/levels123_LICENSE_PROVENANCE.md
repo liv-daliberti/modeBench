@@ -1,0 +1,17 @@
+# Existing source terms
+
+{
+  "dataset_specific_license": "No separate dataset license found in the frozen dataset roots; no new dataset license assigned by this export.",
+  "pantry_ingredient_source": {
+    "archive_name": "FoodData_Central_foundation_food_json_2026-04-30.zip",
+    "archive_sha256": "186e988ec542e913f51ef62b86a47758e8cdd0d1dc3889e7b055581f3c09c77a",
+    "dataset": "USDA FoodData Central Foundation Foods",
+    "food_object_rows": 363,
+    "license": "CC0 1.0 / U.S. public-domain data",
+    "null_placeholder_rows": 32,
+    "physical_rows": 395,
+    "release": "April 2026",
+    "url": "https://fdc.nal.usda.gov/download-datasets/"
+  },
+  "source_code": "Existing repository Apache-2.0 LICENSE copied verbatim; existing source copyright notices retained."
+}

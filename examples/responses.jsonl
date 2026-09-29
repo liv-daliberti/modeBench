@@ -1,0 +1,2 @@
+{"id":"graph-demo","level":1,"domain":"graph_coloring","answer":{"verifier":"graph_coloring","n":4,"edges":[[1,2],[2,3],[3,4]]},"responses":["1212","2121","1111","bad"]}
+{"id":"countdown-demo","level":1,"domain":"countdown","answer":{"verifier":"countdown","numbers":[1,2,3],"target":6},"responses":["1+2+3","1*2*3","1+2","bad"]}

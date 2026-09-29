@@ -1,0 +1,7093 @@
+{
+  "admission_status": {
+    "level4": {
+      "admitted": false,
+      "difficulty_matched": false,
+      "difficulty_matched_domains": [
+        "countdown",
+        "graph_coloring",
+        "pantry",
+        "python_factors"
+      ],
+      "mathir_note": "The Level 1 MathIR target is not reachable at 7B by any construction measured: the target pairs pass@1 0.0437 with pass@8 0.2402, a heterogeneity gap of 0.060, while every 7B MathIR construction runs 0.169 to 0.398, so the two gates cannot be met together. The dataset itself is sound and verified.",
+      "meaning": "Level 4 cleared held-out confirmation in four of five domains. MathIR missed its pass@1 gate at 1.07 of tolerance, so the level is not admitted. The four confirmed domains carry the same warrant as Levels 1-3; MathIR does not, and a MathIR result at Level 4 should not be reported as difficulty-matched.",
+      "not_difficulty_matched_domains": [
+        "mathir"
+      ]
+    },
+    "level5": {
+      "admitted": true,
+      "difficulty_matched": true,
+      "domains": [
+        "countdown",
+        "graph_coloring",
+        "mathir",
+        "pantry",
+        "python_factors"
+      ],
+      "meaning": "Level 5 cleared held-out confirmation in all five domains against 128 fresh rows per domain with original-grader replay, and is admitted. It carries the same warrant as Levels 1-3."
+    }
+  },
+  "config_count": 10,
+  "configs": {
+    "level4_countdown": [
+      {
+        "path": "data/level4_countdown/dev.parquet",
+        "split": "dev"
+      },
+      {
+        "path": "data/level4_countdown/eval.parquet",
+        "split": "eval"
+      },
+      {
+        "path": "data/level4_countdown/train.parquet",
+        "split": "train"
+      }
+    ],
+    "level4_graph_coloring": [
+      {
+        "path": "data/level4_graph_coloring/dev.parquet",
+        "split": "dev"
+      },
+      {
+        "path": "data/level4_graph_coloring/eval.parquet",
+        "split": "eval"
+      },
+      {
+        "path": "data/level4_graph_coloring/train.parquet",
+        "split": "train"
+      }
+    ],
+    "level4_mathir": [
+      {
+        "path": "data/level4_mathir/dev.parquet",
+        "split": "dev"
+      },
+      {
+        "path": "data/level4_mathir/eval.parquet",
+        "split": "eval"
+      },
+      {
+        "path": "data/level4_mathir/train.parquet",
+        "split": "train"
+      }
+    ],
+    "level4_pantry_plan": [
+      {
+        "path": "data/level4_pantry_plan/dev.parquet",
+        "split": "dev"
+      },
+      {
+        "path": "data/level4_pantry_plan/eval.parquet",
+        "split": "eval"
+      },
+      {
+        "path": "data/level4_pantry_plan/train.parquet",
+        "split": "train"
+      }
+    ],
+    "level4_python_factors": [
+      {
+        "path": "data/level4_python_factors/dev.parquet",
+        "split": "dev"
+      },
+      {
+        "path": "data/level4_python_factors/eval.parquet",
+        "split": "eval"
+      },
+      {
+        "path": "data/level4_python_factors/train.parquet",
+        "split": "train"
+      }
+    ],
+    "level5_countdown": [
+      {
+        "path": "data/level5_countdown/dev.parquet",
+        "split": "dev"
+      },
+      {
+        "path": "data/level5_countdown/eval.parquet",
+        "split": "eval"
+      },
+      {
+        "path": "data/level5_countdown/train.parquet",
+        "split": "train"
+      }
+    ],
+    "level5_graph_coloring": [
+      {
+        "path": "data/level5_graph_coloring/dev.parquet",
+        "split": "dev"
+      },
+      {
+        "path": "data/level5_graph_coloring/eval.parquet",
+        "split": "eval"
+      },
+      {
+        "path": "data/level5_graph_coloring/train.parquet",
+        "split": "train"
+      }
+    ],
+    "level5_mathir": [
+      {
+        "path": "data/level5_mathir/dev.parquet",
+        "split": "dev"
+      },
+      {
+        "path": "data/level5_mathir/eval.parquet",
+        "split": "eval"
+      },
+      {
+        "path": "data/level5_mathir/train.parquet",
+        "split": "train"
+      }
+    ],
+    "level5_pantry_plan": [
+      {
+        "path": "data/level5_pantry_plan/dev.parquet",
+        "split": "dev"
+      },
+      {
+        "path": "data/level5_pantry_plan/eval.parquet",
+        "split": "eval"
+      },
+      {
+        "path": "data/level5_pantry_plan/train.parquet",
+        "split": "train"
+      }
+    ],
+    "level5_python_factors": [
+      {
+        "path": "data/level5_python_factors/dev.parquet",
+        "split": "dev"
+      },
+      {
+        "path": "data/level5_python_factors/eval.parquet",
+        "split": "eval"
+      },
+      {
+        "path": "data/level5_python_factors/train.parquet",
+        "split": "train"
+      }
+    ]
+  },
+  "created_at_utc": "2026-09-15T21:08:21.958683+00:00",
+  "extends": "the sealed Levels 1-3 release; nothing already published is rewritten",
+  "repo_id": "od2961/ModeBench",
+  "row_count": 6400,
+  "schema": "modebench-levels45-extension-manifest-v1",
+  "split_count": 30,
+  "splits": [
+    {
+      "config_name": "level4_graph_coloring",
+      "data_file": "data/level4_graph_coloring/train.parquet",
+      "difficulty_matched": true,
+      "domain": "graph_coloring",
+      "exclusions_sha256": "63c31b5763053d386d5189c3e5cbef0d65183bad4442228d5181f1c08a0996fc",
+      "features": {
+        "answer": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "answer_mode_count": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "answer_mode_split": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "modebench_task": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "problem": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_bridge_law_version": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_generator": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_profile": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_tier": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_cell_index": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_origin_metadata": {
+          "_type": "Value",
+          "dtype": "string"
+        }
+      },
+      "frozen_identity_record": {
+        "cells": [
+          {
+            "cell": [
+              4
+            ],
+            "rows": 177
+          },
+          {
+            "cell": [
+              5
+            ],
+            "rows": 11
+          },
+          {
+            "cell": [
+              6
+            ],
+            "rows": 73
+          },
+          {
+            "cell": [
+              8
+            ],
+            "rows": 61
+          },
+          {
+            "cell": [
+              9
+            ],
+            "rows": 7
+          },
+          {
+            "cell": [
+              12
+            ],
+            "rows": 54
+          },
+          {
+            "cell": [
+              18
+            ],
+            "rows": 1
+          }
+        ],
+        "fresh": true,
+        "rows": 384,
+        "rows_sha256": "02e8ca0e7a1b2ed4930f0e001f7de4d6a2b5bd257ee84eaae911c80d99fa6d0c"
+      },
+      "level": 4,
+      "level_admitted": false,
+      "original_datasetdict_split": "train",
+      "parquet_bytes": 28409,
+      "parquet_sha256": "1806ce59d5550cc33b5c435242035b334d841fa3a60398143c70009b40c2ff9f",
+      "protocol_sha256": "fc8bfdd39866bd9330d0d0efebff3a4c6f5184d692967e83c835d61d41b45026",
+      "recipe_sha256": "1c15a4297b39d516d46f27d61e79f8b0f6d1e01bf7251253b7421f47de414a36",
+      "rows": 384,
+      "rows_sha256": "02e8ca0e7a1b2ed4930f0e001f7de4d6a2b5bd257ee84eaae911c80d99fa6d0c",
+      "source_column_order": [
+        "problem",
+        "answer",
+        "modebench_task",
+        "answer_mode_count",
+        "answer_mode_split",
+        "scale_candidate_generator",
+        "scale_candidate_tier",
+        "scale_candidate_profile",
+        "scale_origin_metadata",
+        "scale_cell_index",
+        "scale_bridge_law_version"
+      ],
+      "source_repository_path": "var/data/modebench_scale_domain_revisions_v1/level4_graph_coloring_r2/level4/dataset/graph_coloring",
+      "split": "train",
+      "status": "heldout_confirmed_difficulty_matched",
+      "support_histogram": {
+        "12": 54,
+        "18": 1,
+        "4": 177,
+        "5": 11,
+        "6": 73,
+        "8": 61,
+        "9": 7
+      },
+      "verifier_values": [
+        "graph_coloring"
+      ]
+    },
+    {
+      "config_name": "level4_graph_coloring",
+      "data_file": "data/level4_graph_coloring/dev.parquet",
+      "difficulty_matched": true,
+      "domain": "graph_coloring",
+      "exclusions_sha256": "63c31b5763053d386d5189c3e5cbef0d65183bad4442228d5181f1c08a0996fc",
+      "features": {
+        "answer": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "answer_mode_count": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "answer_mode_split": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "modebench_task": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "problem": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_bridge_law_version": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_generator": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_profile": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_tier": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_cell_index": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_origin_metadata": {
+          "_type": "Value",
+          "dtype": "string"
+        }
+      },
+      "frozen_identity_record": {
+        "origin": "sole selected development rows",
+        "rows": 128,
+        "rows_sha256": "3a3d6bcff51009ffb3db004be082f9f6df83b67749076ef24128ecfc54128a35"
+      },
+      "level": 4,
+      "level_admitted": false,
+      "original_datasetdict_split": "multi_answer",
+      "parquet_bytes": 18631,
+      "parquet_sha256": "07076d1716e072a2866193c0a8dc9d012f1c5a17888e926bf2fade03bc16b233",
+      "protocol_sha256": "fc8bfdd39866bd9330d0d0efebff3a4c6f5184d692967e83c835d61d41b45026",
+      "recipe_sha256": "1c15a4297b39d516d46f27d61e79f8b0f6d1e01bf7251253b7421f47de414a36",
+      "rows": 128,
+      "rows_sha256": "3a3d6bcff51009ffb3db004be082f9f6df83b67749076ef24128ecfc54128a35",
+      "source_column_order": [
+        "answer",
+        "answer_mode_count",
+        "answer_mode_split",
+        "modebench_task",
+        "problem",
+        "scale_bridge_law_version",
+        "scale_candidate_generator",
+        "scale_candidate_profile",
+        "scale_candidate_tier",
+        "scale_cell_index",
+        "scale_origin_metadata"
+      ],
+      "source_repository_path": "var/data/modebench_scale_domain_revisions_v1/level4_graph_coloring_r2/level4/dataset/graph_coloring",
+      "split": "dev",
+      "status": "heldout_confirmed_difficulty_matched",
+      "support_histogram": {
+        "12": 21,
+        "4": 54,
+        "6": 25,
+        "8": 24,
+        "9": 4
+      },
+      "verifier_values": [
+        "graph_coloring"
+      ]
+    },
+    {
+      "config_name": "level4_graph_coloring",
+      "data_file": "data/level4_graph_coloring/eval.parquet",
+      "difficulty_matched": true,
+      "domain": "graph_coloring",
+      "exclusions_sha256": "63c31b5763053d386d5189c3e5cbef0d65183bad4442228d5181f1c08a0996fc",
+      "features": {
+        "answer": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "answer_mode_count": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "answer_mode_split": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "modebench_task": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "problem": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_bridge_law_version": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_generator": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_profile": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_tier": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_cell_index": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_origin_metadata": {
+          "_type": "Value",
+          "dtype": "string"
+        }
+      },
+      "frozen_identity_record": {
+        "cells": [
+          {
+            "cell": [
+              4
+            ],
+            "rows": 62
+          },
+          {
+            "cell": [
+              5
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              6
+            ],
+            "rows": 28
+          },
+          {
+            "cell": [
+              8
+            ],
+            "rows": 17
+          },
+          {
+            "cell": [
+              9
+            ],
+            "rows": 6
+          },
+          {
+            "cell": [
+              12
+            ],
+            "rows": 14
+          }
+        ],
+        "fresh": true,
+        "rows": 128,
+        "rows_sha256": "f080cdff73d60ae723ca6e13328cadf6c3cac585db4157a65c56e140fc419ae7"
+      },
+      "level": 4,
+      "level_admitted": false,
+      "original_datasetdict_split": "multi_answer",
+      "parquet_bytes": 18437,
+      "parquet_sha256": "84789a0071d78197e9f961bf4ab02189e168e8b84bd496902630bc098bbeec36",
+      "protocol_sha256": "fc8bfdd39866bd9330d0d0efebff3a4c6f5184d692967e83c835d61d41b45026",
+      "recipe_sha256": "1c15a4297b39d516d46f27d61e79f8b0f6d1e01bf7251253b7421f47de414a36",
+      "rows": 128,
+      "rows_sha256": "f080cdff73d60ae723ca6e13328cadf6c3cac585db4157a65c56e140fc419ae7",
+      "source_column_order": [
+        "problem",
+        "answer",
+        "modebench_task",
+        "answer_mode_count",
+        "answer_mode_split",
+        "scale_candidate_generator",
+        "scale_candidate_tier",
+        "scale_candidate_profile",
+        "scale_origin_metadata",
+        "scale_cell_index",
+        "scale_bridge_law_version"
+      ],
+      "source_repository_path": "var/data/modebench_scale_domain_revisions_v1/level4_graph_coloring_r2/level4/dataset/graph_coloring",
+      "split": "eval",
+      "status": "heldout_confirmed_difficulty_matched",
+      "support_histogram": {
+        "12": 14,
+        "4": 62,
+        "5": 1,
+        "6": 28,
+        "8": 17,
+        "9": 6
+      },
+      "verifier_values": [
+        "graph_coloring"
+      ]
+    },
+    {
+      "config_name": "level4_countdown",
+      "data_file": "data/level4_countdown/train.parquet",
+      "difficulty_matched": true,
+      "domain": "countdown",
+      "exclusions_sha256": null,
+      "features": {
+        "answer": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "answer_mode_count": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "answer_mode_split": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "modebench_task": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "problem": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_generator": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_profile": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_tier": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_cell_index": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_countdown_target_family": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_origin_metadata": {
+          "_type": "Value",
+          "dtype": "string"
+        }
+      },
+      "frozen_identity_record": {
+        "cells": [
+          {
+            "cell": [
+              2
+            ],
+            "rows": 29
+          },
+          {
+            "cell": [
+              3
+            ],
+            "rows": 87
+          },
+          {
+            "cell": [
+              4
+            ],
+            "rows": 5
+          },
+          {
+            "cell": [
+              5
+            ],
+            "rows": 210
+          },
+          {
+            "cell": [
+              6
+            ],
+            "rows": 42
+          },
+          {
+            "cell": [
+              7
+            ],
+            "rows": 6
+          },
+          {
+            "cell": [
+              8
+            ],
+            "rows": 5
+          }
+        ],
+        "fresh": true,
+        "rows": 384,
+        "rows_sha256": "13e66486941efb730906e318876b99a12b6c7cd24faddcf47ba17ff73235fd79"
+      },
+      "level": 4,
+      "level_admitted": false,
+      "original_datasetdict_split": "train",
+      "parquet_bytes": 22428,
+      "parquet_sha256": "4d5e969b27a0552154ad146fe342d3f1bb96b56b406bfdf36ea83e3c3a20b667",
+      "protocol_sha256": "b764df4f5e23cf02f7bf4d3339226134739c5f1ccedf7a884c5947c65dd2f6d4",
+      "recipe_sha256": "aa6e64ac19e6c1c3acd56ac37c9550c79df8314c8042c299a5e3a0503451bfeb",
+      "rows": 384,
+      "rows_sha256": "13e66486941efb730906e318876b99a12b6c7cd24faddcf47ba17ff73235fd79",
+      "source_column_order": [
+        "problem",
+        "answer",
+        "modebench_task",
+        "answer_mode_count",
+        "answer_mode_split",
+        "scale_countdown_target_family",
+        "scale_origin_metadata",
+        "scale_candidate_generator",
+        "scale_candidate_tier",
+        "scale_candidate_profile",
+        "scale_cell_index"
+      ],
+      "source_repository_path": "var/data/modebench_scale_v1/level4/dataset/countdown",
+      "split": "train",
+      "status": "heldout_confirmed_difficulty_matched",
+      "support_histogram": {
+        "2": 29,
+        "3": 87,
+        "4": 5,
+        "5": 210,
+        "6": 42,
+        "7": 6,
+        "8": 5
+      },
+      "verifier_values": [
+        "countdown"
+      ]
+    },
+    {
+      "config_name": "level4_countdown",
+      "data_file": "data/level4_countdown/dev.parquet",
+      "difficulty_matched": true,
+      "domain": "countdown",
+      "exclusions_sha256": null,
+      "features": {
+        "answer": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "answer_mode_count": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "answer_mode_split": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "modebench_task": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "problem": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_generator": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_profile": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_tier": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_cell_index": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_countdown_target_family": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_origin_metadata": {
+          "_type": "Value",
+          "dtype": "string"
+        }
+      },
+      "frozen_identity_record": {
+        "origin": "sole fixed selected development rows; model scored for calibration",
+        "rows": 128,
+        "rows_sha256": "2b98eef5351cc14c629145a1d2c6e434c6cccc32731a609febfc70b553895771"
+      },
+      "level": 4,
+      "level_admitted": false,
+      "original_datasetdict_split": "multi_answer",
+      "parquet_bytes": 14481,
+      "parquet_sha256": "2508b6201c8efc9919583a88314a2c3c668fb05f9480d1748a7386a70983c01c",
+      "protocol_sha256": "b764df4f5e23cf02f7bf4d3339226134739c5f1ccedf7a884c5947c65dd2f6d4",
+      "recipe_sha256": "aa6e64ac19e6c1c3acd56ac37c9550c79df8314c8042c299a5e3a0503451bfeb",
+      "rows": 128,
+      "rows_sha256": "2b98eef5351cc14c629145a1d2c6e434c6cccc32731a609febfc70b553895771",
+      "source_column_order": [
+        "answer",
+        "answer_mode_count",
+        "answer_mode_split",
+        "modebench_task",
+        "problem",
+        "scale_candidate_generator",
+        "scale_candidate_profile",
+        "scale_candidate_tier",
+        "scale_cell_index",
+        "scale_countdown_target_family",
+        "scale_origin_metadata"
+      ],
+      "source_repository_path": "var/data/modebench_scale_v1/level4/dataset/countdown",
+      "split": "dev",
+      "status": "heldout_confirmed_difficulty_matched",
+      "support_histogram": {
+        "2": 15,
+        "3": 28,
+        "5": 70,
+        "6": 10,
+        "7": 5
+      },
+      "verifier_values": [
+        "countdown"
+      ]
+    },
+    {
+      "config_name": "level4_countdown",
+      "data_file": "data/level4_countdown/eval.parquet",
+      "difficulty_matched": true,
+      "domain": "countdown",
+      "exclusions_sha256": null,
+      "features": {
+        "answer": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "answer_mode_count": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "answer_mode_split": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "modebench_task": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "problem": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_generator": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_profile": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_tier": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_cell_index": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_countdown_target_family": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_origin_metadata": {
+          "_type": "Value",
+          "dtype": "string"
+        }
+      },
+      "frozen_identity_record": {
+        "cells": [
+          {
+            "cell": [
+              2
+            ],
+            "rows": 6
+          },
+          {
+            "cell": [
+              3
+            ],
+            "rows": 40
+          },
+          {
+            "cell": [
+              4
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              5
+            ],
+            "rows": 66
+          },
+          {
+            "cell": [
+              6
+            ],
+            "rows": 10
+          },
+          {
+            "cell": [
+              7
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              8
+            ],
+            "rows": 1
+          }
+        ],
+        "fresh": true,
+        "rows": 128,
+        "rows_sha256": "d2ba8c64a83be80983a144e5bd321cd5219320319742fa712862f48f0cb28eee"
+      },
+      "level": 4,
+      "level_admitted": false,
+      "original_datasetdict_split": "multi_answer",
+      "parquet_bytes": 14365,
+      "parquet_sha256": "d9ffe3a874ea6fb39713c7aa9f10c56895415e3297f4d42247bd07c2d92cbee6",
+      "protocol_sha256": "b764df4f5e23cf02f7bf4d3339226134739c5f1ccedf7a884c5947c65dd2f6d4",
+      "recipe_sha256": "aa6e64ac19e6c1c3acd56ac37c9550c79df8314c8042c299a5e3a0503451bfeb",
+      "rows": 128,
+      "rows_sha256": "d2ba8c64a83be80983a144e5bd321cd5219320319742fa712862f48f0cb28eee",
+      "source_column_order": [
+        "problem",
+        "answer",
+        "modebench_task",
+        "answer_mode_count",
+        "answer_mode_split",
+        "scale_countdown_target_family",
+        "scale_origin_metadata",
+        "scale_candidate_generator",
+        "scale_candidate_tier",
+        "scale_candidate_profile",
+        "scale_cell_index"
+      ],
+      "source_repository_path": "var/data/modebench_scale_v1/level4/dataset/countdown",
+      "split": "eval",
+      "status": "heldout_confirmed_difficulty_matched",
+      "support_histogram": {
+        "2": 6,
+        "3": 40,
+        "4": 2,
+        "5": 66,
+        "6": 10,
+        "7": 3,
+        "8": 1
+      },
+      "verifier_values": [
+        "countdown"
+      ]
+    },
+    {
+      "config_name": "level4_python_factors",
+      "data_file": "data/level4_python_factors/train.parquet",
+      "difficulty_matched": true,
+      "domain": "python_factors",
+      "exclusions_sha256": "6c850b180dadd8d678a78129794904f962f5e13cc941c4d8de0593847e33acb8",
+      "features": {
+        "answer": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "answer_mode_count": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "answer_mode_split": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "modebench_task": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "problem": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_generator": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_profile": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_tier": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_cell_index": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_origin_metadata": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_python_harder_law_version": {
+          "_type": "Value",
+          "dtype": "string"
+        }
+      },
+      "frozen_identity_record": {
+        "cells": [
+          {
+            "cell": [
+              16
+            ],
+            "rows": 20
+          },
+          {
+            "cell": [
+              24
+            ],
+            "rows": 7
+          },
+          {
+            "cell": [
+              32
+            ],
+            "rows": 34
+          },
+          {
+            "cell": [
+              40
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              48
+            ],
+            "rows": 32
+          },
+          {
+            "cell": [
+              56
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              64
+            ],
+            "rows": 24
+          },
+          {
+            "cell": [
+              72
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              80
+            ],
+            "rows": 19
+          },
+          {
+            "cell": [
+              96
+            ],
+            "rows": 34
+          },
+          {
+            "cell": [
+              112
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              120
+            ],
+            "rows": 4
+          },
+          {
+            "cell": [
+              128
+            ],
+            "rows": 13
+          },
+          {
+            "cell": [
+              140
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              144
+            ],
+            "rows": 13
+          },
+          {
+            "cell": [
+              160
+            ],
+            "rows": 26
+          },
+          {
+            "cell": [
+              168
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              180
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              192
+            ],
+            "rows": 21
+          },
+          {
+            "cell": [
+              240
+            ],
+            "rows": 16
+          },
+          {
+            "cell": [
+              256
+            ],
+            "rows": 6
+          },
+          {
+            "cell": [
+              280
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              288
+            ],
+            "rows": 16
+          },
+          {
+            "cell": [
+              320
+            ],
+            "rows": 16
+          },
+          {
+            "cell": [
+              336
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              360
+            ],
+            "rows": 4
+          },
+          {
+            "cell": [
+              384
+            ],
+            "rows": 9
+          },
+          {
+            "cell": [
+              400
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              432
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              448
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              480
+            ],
+            "rows": 8
+          },
+          {
+            "cell": [
+              504
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              560
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              576
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              640
+            ],
+            "rows": 5
+          },
+          {
+            "cell": [
+              648
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              720
+            ],
+            "rows": 5
+          },
+          {
+            "cell": [
+              768
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              800
+            ],
+            "rows": 5
+          },
+          {
+            "cell": [
+              840
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              864
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              960
+            ],
+            "rows": 4
+          },
+          {
+            "cell": [
+              1152
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              1280
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              1920
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              2400
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              2520
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              2880
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              3600
+            ],
+            "rows": 1
+          }
+        ],
+        "fresh": true,
+        "rows": 384,
+        "rows_sha256": "fdc669b27543e372dec9dc716e8913a7f918617e2792cc239c739acd830f3fb3"
+      },
+      "level": 4,
+      "level_admitted": false,
+      "original_datasetdict_split": "train",
+      "parquet_bytes": 43125,
+      "parquet_sha256": "2f09728ab48729f6a84965617100e92333c8c63dd7a607afa5e2cbe199d82b73",
+      "protocol_sha256": "ff443cdacde6a45e9222bf9f552673fcb8c50b5636d7cf614df4dd00e2753e0c",
+      "recipe_sha256": "cd623c6134dc452b27101185486704b9dbd9bfd8a9d5f450abb2ea3c9631da35",
+      "rows": 384,
+      "rows_sha256": "fdc669b27543e372dec9dc716e8913a7f918617e2792cc239c739acd830f3fb3",
+      "source_column_order": [
+        "problem",
+        "answer",
+        "modebench_task",
+        "answer_mode_count",
+        "answer_mode_split",
+        "scale_candidate_generator",
+        "scale_candidate_tier",
+        "scale_candidate_profile",
+        "scale_origin_metadata",
+        "scale_cell_index",
+        "scale_python_harder_law_version"
+      ],
+      "source_repository_path": "var/data/modebench_scale_domain_revisions_v1/level4_python_factors_r5/level4/dataset/python_factors",
+      "split": "train",
+      "status": "heldout_confirmed_difficulty_matched",
+      "support_histogram": {
+        "112": 1,
+        "1152": 2,
+        "120": 4,
+        "128": 13,
+        "1280": 1,
+        "140": 1,
+        "144": 13,
+        "16": 20,
+        "160": 26,
+        "168": 2,
+        "180": 1,
+        "192": 21,
+        "1920": 1,
+        "24": 7,
+        "240": 16,
+        "2400": 1,
+        "2520": 1,
+        "256": 6,
+        "280": 1,
+        "288": 16,
+        "2880": 1,
+        "32": 34,
+        "320": 16,
+        "336": 1,
+        "360": 4,
+        "3600": 1,
+        "384": 9,
+        "40": 2,
+        "400": 3,
+        "432": 3,
+        "448": 1,
+        "48": 32,
+        "480": 8,
+        "504": 2,
+        "56": 1,
+        "560": 2,
+        "576": 3,
+        "64": 24,
+        "640": 5,
+        "648": 1,
+        "72": 1,
+        "720": 5,
+        "768": 3,
+        "80": 19,
+        "800": 5,
+        "840": 3,
+        "864": 3,
+        "96": 34,
+        "960": 4
+      },
+      "verifier_values": [
+        "python_factor_function"
+      ]
+    },
+    {
+      "config_name": "level4_python_factors",
+      "data_file": "data/level4_python_factors/dev.parquet",
+      "difficulty_matched": true,
+      "domain": "python_factors",
+      "exclusions_sha256": "6c850b180dadd8d678a78129794904f962f5e13cc941c4d8de0593847e33acb8",
+      "features": {
+        "answer": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "answer_mode_count": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "answer_mode_split": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "modebench_task": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "problem": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_generator": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_profile": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_tier": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_cell_index": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_origin_metadata": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_python_harder_law_version": {
+          "_type": "Value",
+          "dtype": "string"
+        }
+      },
+      "frozen_identity_record": {
+        "origin": "sole selected development rows",
+        "rows": 128,
+        "rows_sha256": "f9af69ed13d40da2e102f3d36c84324b4a3045e18093a17c2e076cdf1002a116"
+      },
+      "level": 4,
+      "level_admitted": false,
+      "original_datasetdict_split": "multi_answer",
+      "parquet_bytes": 25632,
+      "parquet_sha256": "48ae468c33c36fe6afd04ff333b2acc77fa434df414eb72ae61d8ca8050d2380",
+      "protocol_sha256": "ff443cdacde6a45e9222bf9f552673fcb8c50b5636d7cf614df4dd00e2753e0c",
+      "recipe_sha256": "cd623c6134dc452b27101185486704b9dbd9bfd8a9d5f450abb2ea3c9631da35",
+      "rows": 128,
+      "rows_sha256": "f9af69ed13d40da2e102f3d36c84324b4a3045e18093a17c2e076cdf1002a116",
+      "source_column_order": [
+        "answer",
+        "answer_mode_count",
+        "answer_mode_split",
+        "modebench_task",
+        "problem",
+        "scale_candidate_generator",
+        "scale_candidate_profile",
+        "scale_candidate_tier",
+        "scale_cell_index",
+        "scale_origin_metadata",
+        "scale_python_harder_law_version"
+      ],
+      "source_repository_path": "var/data/modebench_scale_domain_revisions_v1/level4_python_factors_r5/level4/dataset/python_factors",
+      "split": "dev",
+      "status": "heldout_confirmed_difficulty_matched",
+      "support_histogram": {
+        "120": 2,
+        "1200": 1,
+        "128": 3,
+        "144": 6,
+        "16": 2,
+        "160": 7,
+        "180": 1,
+        "192": 7,
+        "200": 1,
+        "24": 3,
+        "240": 6,
+        "256": 2,
+        "280": 2,
+        "288": 5,
+        "32": 12,
+        "320": 5,
+        "336": 1,
+        "384": 3,
+        "40": 2,
+        "400": 1,
+        "420": 1,
+        "432": 1,
+        "48": 14,
+        "480": 9,
+        "560": 1,
+        "600": 1,
+        "64": 11,
+        "640": 3,
+        "72": 1,
+        "80": 3,
+        "800": 1,
+        "96": 10
+      },
+      "verifier_values": [
+        "python_factor_function"
+      ]
+    },
+    {
+      "config_name": "level4_python_factors",
+      "data_file": "data/level4_python_factors/eval.parquet",
+      "difficulty_matched": true,
+      "domain": "python_factors",
+      "exclusions_sha256": "6c850b180dadd8d678a78129794904f962f5e13cc941c4d8de0593847e33acb8",
+      "features": {
+        "answer": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "answer_mode_count": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "answer_mode_split": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "modebench_task": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "problem": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_generator": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_profile": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_tier": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_cell_index": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_origin_metadata": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_python_harder_law_version": {
+          "_type": "Value",
+          "dtype": "string"
+        }
+      },
+      "frozen_identity_record": {
+        "cells": [
+          {
+            "cell": [
+              16
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              24
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              32
+            ],
+            "rows": 13
+          },
+          {
+            "cell": [
+              48
+            ],
+            "rows": 7
+          },
+          {
+            "cell": [
+              64
+            ],
+            "rows": 9
+          },
+          {
+            "cell": [
+              72
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              80
+            ],
+            "rows": 11
+          },
+          {
+            "cell": [
+              96
+            ],
+            "rows": 16
+          },
+          {
+            "cell": [
+              112
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              120
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              128
+            ],
+            "rows": 4
+          },
+          {
+            "cell": [
+              144
+            ],
+            "rows": 8
+          },
+          {
+            "cell": [
+              160
+            ],
+            "rows": 10
+          },
+          {
+            "cell": [
+              192
+            ],
+            "rows": 5
+          },
+          {
+            "cell": [
+              216
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              224
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              240
+            ],
+            "rows": 5
+          },
+          {
+            "cell": [
+              256
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              288
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              320
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              336
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              384
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              400
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              432
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              480
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              512
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              576
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              672
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              720
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              800
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              1200
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              1440
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              1800
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              2240
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              2880
+            ],
+            "rows": 1
+          }
+        ],
+        "fresh": true,
+        "rows": 128,
+        "rows_sha256": "a2abfdd2b0fd02b90b2c604889edec92d3db100ac290cf7e72a79d5555fae45c"
+      },
+      "level": 4,
+      "level_admitted": false,
+      "original_datasetdict_split": "multi_answer",
+      "parquet_bytes": 25410,
+      "parquet_sha256": "d4e60141fd94d3a038ef4a3af794623bcbe8664306e347676f84ce13213eed1d",
+      "protocol_sha256": "ff443cdacde6a45e9222bf9f552673fcb8c50b5636d7cf614df4dd00e2753e0c",
+      "recipe_sha256": "cd623c6134dc452b27101185486704b9dbd9bfd8a9d5f450abb2ea3c9631da35",
+      "rows": 128,
+      "rows_sha256": "a2abfdd2b0fd02b90b2c604889edec92d3db100ac290cf7e72a79d5555fae45c",
+      "source_column_order": [
+        "problem",
+        "answer",
+        "modebench_task",
+        "answer_mode_count",
+        "answer_mode_split",
+        "scale_candidate_generator",
+        "scale_candidate_tier",
+        "scale_candidate_profile",
+        "scale_origin_metadata",
+        "scale_cell_index",
+        "scale_python_harder_law_version"
+      ],
+      "source_repository_path": "var/data/modebench_scale_domain_revisions_v1/level4_python_factors_r5/level4/dataset/python_factors",
+      "split": "eval",
+      "status": "heldout_confirmed_difficulty_matched",
+      "support_histogram": {
+        "112": 1,
+        "120": 2,
+        "1200": 2,
+        "128": 4,
+        "144": 8,
+        "1440": 1,
+        "16": 2,
+        "160": 10,
+        "1800": 1,
+        "192": 5,
+        "216": 2,
+        "224": 1,
+        "2240": 1,
+        "24": 1,
+        "240": 5,
+        "256": 2,
+        "288": 3,
+        "2880": 1,
+        "32": 13,
+        "320": 2,
+        "336": 2,
+        "384": 3,
+        "400": 1,
+        "432": 1,
+        "48": 7,
+        "480": 2,
+        "512": 1,
+        "576": 1,
+        "64": 9,
+        "672": 1,
+        "72": 1,
+        "720": 3,
+        "80": 11,
+        "800": 2,
+        "96": 16
+      },
+      "verifier_values": [
+        "python_factor_function"
+      ]
+    },
+    {
+      "config_name": "level4_mathir",
+      "data_file": "data/level4_mathir/train.parquet",
+      "difficulty_matched": false,
+      "domain": "mathir",
+      "exclusions_sha256": null,
+      "features": {
+        "answer": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "answer_mode_count": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "answer_mode_split": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "mathir_family": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "modebench_task": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "problem": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_generator": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_profile": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_tier": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_cell_index": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_origin_metadata": {
+          "_type": "Value",
+          "dtype": "string"
+        }
+      },
+      "frozen_identity_record": {
+        "cells": [
+          {
+            "cell": [
+              5
+            ],
+            "rows": 384
+          }
+        ],
+        "fresh": true,
+        "rows": 384,
+        "rows_sha256": "066f0eab5571a317f437e414a90ce5e8050a9ff27d329b134921ba3818a59e02"
+      },
+      "level": 4,
+      "level_admitted": false,
+      "original_datasetdict_split": "train",
+      "parquet_bytes": 50853,
+      "parquet_sha256": "b7046ff0b40f53880c014204ebfb94dccd4629403b7e802edcd7d4bfa4a7b8b4",
+      "protocol_sha256": "b764df4f5e23cf02f7bf4d3339226134739c5f1ccedf7a884c5947c65dd2f6d4",
+      "recipe_sha256": "ce60dda02a56faa9ecd1e180982227625fd8b8684595d52a6b33c396b150aa02",
+      "rows": 384,
+      "rows_sha256": "066f0eab5571a317f437e414a90ce5e8050a9ff27d329b134921ba3818a59e02",
+      "source_column_order": [
+        "problem",
+        "answer",
+        "modebench_task",
+        "answer_mode_count",
+        "answer_mode_split",
+        "mathir_family",
+        "scale_origin_metadata",
+        "scale_candidate_generator",
+        "scale_candidate_tier",
+        "scale_candidate_profile",
+        "scale_cell_index"
+      ],
+      "source_repository_path": "var/data/modebench_scale_v1/level4/dataset/mathir",
+      "split": "train",
+      "status": "heldout_confirmed_not_difficulty_matched",
+      "support_histogram": {
+        "5": 384
+      },
+      "verifier_values": [
+        "mathir_action_menu"
+      ]
+    },
+    {
+      "config_name": "level4_mathir",
+      "data_file": "data/level4_mathir/dev.parquet",
+      "difficulty_matched": false,
+      "domain": "mathir",
+      "exclusions_sha256": null,
+      "features": {
+        "answer": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "answer_mode_count": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "answer_mode_split": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "mathir_family": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "modebench_task": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "problem": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_generator": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_profile": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_tier": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_cell_index": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_origin_metadata": {
+          "_type": "Value",
+          "dtype": "string"
+        }
+      },
+      "frozen_identity_record": {
+        "origin": "sole fixed selected development rows; model scored for calibration",
+        "rows": 128,
+        "rows_sha256": "93554349d0094fc313a4607ad9126a56301b2a0830e9da7bcba9c600e00b97b5"
+      },
+      "level": 4,
+      "level_admitted": false,
+      "original_datasetdict_split": "multi_answer",
+      "parquet_bytes": 28689,
+      "parquet_sha256": "931966f5bdea1bc49e2ab0ab92cdf815305efadec9ec3671955409699cfc7237",
+      "protocol_sha256": "b764df4f5e23cf02f7bf4d3339226134739c5f1ccedf7a884c5947c65dd2f6d4",
+      "recipe_sha256": "ce60dda02a56faa9ecd1e180982227625fd8b8684595d52a6b33c396b150aa02",
+      "rows": 128,
+      "rows_sha256": "93554349d0094fc313a4607ad9126a56301b2a0830e9da7bcba9c600e00b97b5",
+      "source_column_order": [
+        "answer",
+        "answer_mode_count",
+        "answer_mode_split",
+        "mathir_family",
+        "modebench_task",
+        "problem",
+        "scale_candidate_generator",
+        "scale_candidate_profile",
+        "scale_candidate_tier",
+        "scale_cell_index",
+        "scale_origin_metadata"
+      ],
+      "source_repository_path": "var/data/modebench_scale_v1/level4/dataset/mathir",
+      "split": "dev",
+      "status": "heldout_confirmed_not_difficulty_matched",
+      "support_histogram": {
+        "5": 128
+      },
+      "verifier_values": [
+        "mathir_action_menu"
+      ]
+    },
+    {
+      "config_name": "level4_mathir",
+      "data_file": "data/level4_mathir/eval.parquet",
+      "difficulty_matched": false,
+      "domain": "mathir",
+      "exclusions_sha256": null,
+      "features": {
+        "answer": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "answer_mode_count": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "answer_mode_split": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "mathir_family": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "modebench_task": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "problem": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_generator": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_profile": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_tier": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_cell_index": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_origin_metadata": {
+          "_type": "Value",
+          "dtype": "string"
+        }
+      },
+      "frozen_identity_record": {
+        "cells": [
+          {
+            "cell": [
+              5
+            ],
+            "rows": 128
+          }
+        ],
+        "fresh": true,
+        "rows": 128,
+        "rows_sha256": "41eeeefea069addb1995326ffe94ceac682ca6273a45a5ed592e13c7af164152"
+      },
+      "level": 4,
+      "level_admitted": false,
+      "original_datasetdict_split": "multi_answer",
+      "parquet_bytes": 28765,
+      "parquet_sha256": "ef8e32741a37d447c5b62b7e9a52f46760731f00184b8df2ed9dfd57f9ed1a85",
+      "protocol_sha256": "b764df4f5e23cf02f7bf4d3339226134739c5f1ccedf7a884c5947c65dd2f6d4",
+      "recipe_sha256": "ce60dda02a56faa9ecd1e180982227625fd8b8684595d52a6b33c396b150aa02",
+      "rows": 128,
+      "rows_sha256": "41eeeefea069addb1995326ffe94ceac682ca6273a45a5ed592e13c7af164152",
+      "source_column_order": [
+        "problem",
+        "answer",
+        "modebench_task",
+        "answer_mode_count",
+        "answer_mode_split",
+        "mathir_family",
+        "scale_origin_metadata",
+        "scale_candidate_generator",
+        "scale_candidate_tier",
+        "scale_candidate_profile",
+        "scale_cell_index"
+      ],
+      "source_repository_path": "var/data/modebench_scale_v1/level4/dataset/mathir",
+      "split": "eval",
+      "status": "heldout_confirmed_not_difficulty_matched",
+      "support_histogram": {
+        "5": 128
+      },
+      "verifier_values": [
+        "mathir_action_menu"
+      ]
+    },
+    {
+      "config_name": "level4_pantry_plan",
+      "data_file": "data/level4_pantry_plan/train.parquet",
+      "difficulty_matched": true,
+      "domain": "pantry_plan",
+      "exclusions_sha256": "a0e0f2881259826ca3c4fb6aed3b0a0cd2d01f86d9c33e5e9cc20789a3758161",
+      "features": {
+        "answer": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "answer_mode_count": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "answer_mode_family": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "answer_mode_split": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "instance_fingerprint": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "modebench_task": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "problem": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_bridge_law_version": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_generator": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_profile": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_tier": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_cell_index": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_generation_seed": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_origin_metadata": {
+          "_type": "Value",
+          "dtype": "string"
+        }
+      },
+      "frozen_identity_record": {
+        "cells": [
+          {
+            "cell": [
+              8,
+              "breakfast_formulation"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              8,
+              "high_fiber_snack"
+            ],
+            "rows": 6
+          },
+          {
+            "cell": [
+              8,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              8,
+              "plant_protein_bowl"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              9,
+              "breakfast_formulation"
+            ],
+            "rows": 9
+          },
+          {
+            "cell": [
+              9,
+              "high_fiber_snack"
+            ],
+            "rows": 15
+          },
+          {
+            "cell": [
+              9,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 6
+          },
+          {
+            "cell": [
+              9,
+              "plant_protein_bowl"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              10,
+              "breakfast_formulation"
+            ],
+            "rows": 9
+          },
+          {
+            "cell": [
+              10,
+              "high_fiber_snack"
+            ],
+            "rows": 16
+          },
+          {
+            "cell": [
+              10,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              10,
+              "plant_protein_bowl"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              11,
+              "breakfast_formulation"
+            ],
+            "rows": 5
+          },
+          {
+            "cell": [
+              11,
+              "high_fiber_snack"
+            ],
+            "rows": 8
+          },
+          {
+            "cell": [
+              11,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              11,
+              "plant_protein_bowl"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              12,
+              "breakfast_formulation"
+            ],
+            "rows": 7
+          },
+          {
+            "cell": [
+              12,
+              "high_fiber_snack"
+            ],
+            "rows": 6
+          },
+          {
+            "cell": [
+              12,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              12,
+              "plant_protein_bowl"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              13,
+              "breakfast_formulation"
+            ],
+            "rows": 7
+          },
+          {
+            "cell": [
+              13,
+              "high_fiber_snack"
+            ],
+            "rows": 4
+          },
+          {
+            "cell": [
+              13,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 5
+          },
+          {
+            "cell": [
+              13,
+              "plant_protein_bowl"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              14,
+              "breakfast_formulation"
+            ],
+            "rows": 11
+          },
+          {
+            "cell": [
+              14,
+              "high_fiber_snack"
+            ],
+            "rows": 4
+          },
+          {
+            "cell": [
+              14,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 5
+          },
+          {
+            "cell": [
+              14,
+              "plant_protein_bowl"
+            ],
+            "rows": 5
+          },
+          {
+            "cell": [
+              15,
+              "breakfast_formulation"
+            ],
+            "rows": 9
+          },
+          {
+            "cell": [
+              15,
+              "high_fiber_snack"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              15,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 4
+          },
+          {
+            "cell": [
+              15,
+              "plant_protein_bowl"
+            ],
+            "rows": 4
+          },
+          {
+            "cell": [
+              16,
+              "breakfast_formulation"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              16,
+              "high_fiber_snack"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              16,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              16,
+              "plant_protein_bowl"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              17,
+              "breakfast_formulation"
+            ],
+            "rows": 4
+          },
+          {
+            "cell": [
+              17,
+              "high_fiber_snack"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              17,
+              "plant_protein_bowl"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              18,
+              "breakfast_formulation"
+            ],
+            "rows": 10
+          },
+          {
+            "cell": [
+              18,
+              "high_fiber_snack"
+            ],
+            "rows": 7
+          },
+          {
+            "cell": [
+              18,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              18,
+              "plant_protein_bowl"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              19,
+              "breakfast_formulation"
+            ],
+            "rows": 4
+          },
+          {
+            "cell": [
+              19,
+              "high_fiber_snack"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              19,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              19,
+              "plant_protein_bowl"
+            ],
+            "rows": 5
+          },
+          {
+            "cell": [
+              20,
+              "breakfast_formulation"
+            ],
+            "rows": 12
+          },
+          {
+            "cell": [
+              20,
+              "high_fiber_snack"
+            ],
+            "rows": 5
+          },
+          {
+            "cell": [
+              20,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 6
+          },
+          {
+            "cell": [
+              20,
+              "plant_protein_bowl"
+            ],
+            "rows": 4
+          },
+          {
+            "cell": [
+              21,
+              "breakfast_formulation"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              21,
+              "high_fiber_snack"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              21,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 4
+          },
+          {
+            "cell": [
+              21,
+              "plant_protein_bowl"
+            ],
+            "rows": 7
+          },
+          {
+            "cell": [
+              22,
+              "high_fiber_snack"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              22,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 4
+          },
+          {
+            "cell": [
+              22,
+              "plant_protein_bowl"
+            ],
+            "rows": 11
+          },
+          {
+            "cell": [
+              23,
+              "high_fiber_snack"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              23,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              23,
+              "plant_protein_bowl"
+            ],
+            "rows": 5
+          },
+          {
+            "cell": [
+              24,
+              "high_fiber_snack"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              24,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              24,
+              "plant_protein_bowl"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              25,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 6
+          },
+          {
+            "cell": [
+              25,
+              "plant_protein_bowl"
+            ],
+            "rows": 7
+          },
+          {
+            "cell": [
+              26,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              26,
+              "plant_protein_bowl"
+            ],
+            "rows": 7
+          },
+          {
+            "cell": [
+              27,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              27,
+              "plant_protein_bowl"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              28,
+              "high_fiber_snack"
+            ],
+            "rows": 4
+          },
+          {
+            "cell": [
+              28,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              29,
+              "high_fiber_snack"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              29,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 6
+          },
+          {
+            "cell": [
+              30,
+              "high_fiber_snack"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              30,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              30,
+              "plant_protein_bowl"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              31,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              31,
+              "plant_protein_bowl"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              32,
+              "high_fiber_snack"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              32,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              32,
+              "plant_protein_bowl"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              33,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              33,
+              "plant_protein_bowl"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              34,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              34,
+              "plant_protein_bowl"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              35,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              36,
+              "high_fiber_snack"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              36,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 4
+          },
+          {
+            "cell": [
+              36,
+              "plant_protein_bowl"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              37,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              37,
+              "plant_protein_bowl"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              38,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              38,
+              "plant_protein_bowl"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              39,
+              "high_fiber_snack"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              39,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              39,
+              "plant_protein_bowl"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              40,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              40,
+              "plant_protein_bowl"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              42,
+              "breakfast_formulation"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              42,
+              "plant_protein_bowl"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              44,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              45,
+              "breakfast_formulation"
+            ],
+            "rows": 1
+          }
+        ],
+        "fresh": true,
+        "rows": 384,
+        "rows_sha256": "c3f00059baea5f437c01461e1a2f8d9c8c3813dbd2f720d2cd420057a49d625f"
+      },
+      "level": 4,
+      "level_admitted": false,
+      "original_datasetdict_split": "train",
+      "parquet_bytes": 119097,
+      "parquet_sha256": "34910a2f86e5131c6e791f6e0a5666e996ce6ee09156ee3f9597d2ccfc1ecaf5",
+      "protocol_sha256": "6171f00dac5d69d345ef6aa1a234f548e34b3477e0eb0f1d7bd6535f3fe0c635",
+      "recipe_sha256": "a3580c2977ca063aea85f2f1729374302479f05da2bb64d4291d6d9cf984692d",
+      "rows": 384,
+      "rows_sha256": "c3f00059baea5f437c01461e1a2f8d9c8c3813dbd2f720d2cd420057a49d625f",
+      "source_column_order": [
+        "problem",
+        "answer",
+        "modebench_task",
+        "answer_mode_family",
+        "answer_mode_count",
+        "answer_mode_split",
+        "instance_fingerprint",
+        "scale_candidate_generator",
+        "scale_candidate_tier",
+        "scale_candidate_profile",
+        "scale_origin_metadata",
+        "scale_cell_index",
+        "scale_generation_seed",
+        "scale_bridge_law_version"
+      ],
+      "source_repository_path": "var/data/modebench_scale_domain_revisions_v1/level4_pantry_r2/level4/dataset/pantry",
+      "split": "train",
+      "status": "heldout_confirmed_difficulty_matched",
+      "support_histogram": {
+        "10": 29,
+        "11": 19,
+        "12": 18,
+        "13": 18,
+        "14": 25,
+        "15": 18,
+        "16": 7,
+        "17": 9,
+        "18": 20,
+        "19": 14,
+        "20": 27,
+        "21": 14,
+        "22": 17,
+        "23": 10,
+        "24": 3,
+        "25": 13,
+        "26": 9,
+        "27": 4,
+        "28": 7,
+        "29": 7,
+        "30": 6,
+        "31": 3,
+        "32": 5,
+        "33": 5,
+        "34": 4,
+        "35": 2,
+        "36": 9,
+        "37": 2,
+        "38": 2,
+        "39": 4,
+        "40": 4,
+        "42": 2,
+        "44": 1,
+        "45": 1,
+        "8": 13,
+        "9": 33
+      },
+      "verifier_values": [
+        "pantry_plan"
+      ]
+    },
+    {
+      "config_name": "level4_pantry_plan",
+      "data_file": "data/level4_pantry_plan/dev.parquet",
+      "difficulty_matched": true,
+      "domain": "pantry_plan",
+      "exclusions_sha256": "a0e0f2881259826ca3c4fb6aed3b0a0cd2d01f86d9c33e5e9cc20789a3758161",
+      "features": {
+        "answer": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "answer_mode_count": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "answer_mode_family": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "answer_mode_split": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "instance_fingerprint": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "modebench_task": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "problem": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_bridge_law_version": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_generator": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_profile": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_tier": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_cell_index": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_generation_seed": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_origin_metadata": {
+          "_type": "Value",
+          "dtype": "string"
+        }
+      },
+      "frozen_identity_record": {
+        "origin": "sole selected development rows",
+        "rows": 128,
+        "rows_sha256": "fd7103b3d48ba83706a905548f19a5ede9af69731e06a8b2c45ee68a773423a4"
+      },
+      "level": 4,
+      "level_admitted": false,
+      "original_datasetdict_split": "multi_answer",
+      "parquet_bytes": 62373,
+      "parquet_sha256": "0cc1be8c282c8e01bd1ee57d1277a4157eb35e85466b5bab0f709cabfc53230d",
+      "protocol_sha256": "6171f00dac5d69d345ef6aa1a234f548e34b3477e0eb0f1d7bd6535f3fe0c635",
+      "recipe_sha256": "a3580c2977ca063aea85f2f1729374302479f05da2bb64d4291d6d9cf984692d",
+      "rows": 128,
+      "rows_sha256": "fd7103b3d48ba83706a905548f19a5ede9af69731e06a8b2c45ee68a773423a4",
+      "source_column_order": [
+        "answer",
+        "answer_mode_count",
+        "answer_mode_family",
+        "answer_mode_split",
+        "instance_fingerprint",
+        "modebench_task",
+        "problem",
+        "scale_bridge_law_version",
+        "scale_candidate_generator",
+        "scale_candidate_profile",
+        "scale_candidate_tier",
+        "scale_cell_index",
+        "scale_generation_seed",
+        "scale_origin_metadata"
+      ],
+      "source_repository_path": "var/data/modebench_scale_domain_revisions_v1/level4_pantry_r2/level4/dataset/pantry",
+      "split": "dev",
+      "status": "heldout_confirmed_difficulty_matched",
+      "support_histogram": {
+        "10": 8,
+        "11": 8,
+        "12": 2,
+        "13": 10,
+        "14": 6,
+        "15": 4,
+        "16": 4,
+        "17": 2,
+        "18": 6,
+        "19": 2,
+        "20": 12,
+        "21": 4,
+        "22": 8,
+        "23": 2,
+        "24": 8,
+        "25": 2,
+        "26": 4,
+        "28": 2,
+        "29": 4,
+        "31": 2,
+        "32": 6,
+        "34": 2,
+        "36": 2,
+        "37": 2,
+        "38": 2,
+        "39": 2,
+        "8": 6,
+        "9": 6
+      },
+      "verifier_values": [
+        "pantry_plan"
+      ]
+    },
+    {
+      "config_name": "level4_pantry_plan",
+      "data_file": "data/level4_pantry_plan/eval.parquet",
+      "difficulty_matched": true,
+      "domain": "pantry_plan",
+      "exclusions_sha256": "a0e0f2881259826ca3c4fb6aed3b0a0cd2d01f86d9c33e5e9cc20789a3758161",
+      "features": {
+        "answer": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "answer_mode_count": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "answer_mode_family": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "answer_mode_split": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "instance_fingerprint": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "modebench_task": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "problem": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_bridge_law_version": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_generator": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_profile": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_tier": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_cell_index": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_generation_seed": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_origin_metadata": {
+          "_type": "Value",
+          "dtype": "string"
+        }
+      },
+      "frozen_identity_record": {
+        "cells": [
+          {
+            "cell": [
+              8,
+              "high_fiber_snack"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              8,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              9,
+              "high_fiber_snack"
+            ],
+            "rows": 5
+          },
+          {
+            "cell": [
+              10,
+              "breakfast_formulation"
+            ],
+            "rows": 4
+          },
+          {
+            "cell": [
+              10,
+              "high_fiber_snack"
+            ],
+            "rows": 5
+          },
+          {
+            "cell": [
+              10,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              11,
+              "breakfast_formulation"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              11,
+              "high_fiber_snack"
+            ],
+            "rows": 5
+          },
+          {
+            "cell": [
+              12,
+              "breakfast_formulation"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              12,
+              "high_fiber_snack"
+            ],
+            "rows": 4
+          },
+          {
+            "cell": [
+              13,
+              "breakfast_formulation"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              13,
+              "high_fiber_snack"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              14,
+              "breakfast_formulation"
+            ],
+            "rows": 6
+          },
+          {
+            "cell": [
+              14,
+              "high_fiber_snack"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              14,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              14,
+              "plant_protein_bowl"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              15,
+              "breakfast_formulation"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              15,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              15,
+              "plant_protein_bowl"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              16,
+              "breakfast_formulation"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              16,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              16,
+              "plant_protein_bowl"
+            ],
+            "rows": 4
+          },
+          {
+            "cell": [
+              17,
+              "breakfast_formulation"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              17,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              17,
+              "plant_protein_bowl"
+            ],
+            "rows": 4
+          },
+          {
+            "cell": [
+              18,
+              "breakfast_formulation"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              18,
+              "high_fiber_snack"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              18,
+              "plant_protein_bowl"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              19,
+              "high_fiber_snack"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              19,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              20,
+              "breakfast_formulation"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              20,
+              "high_fiber_snack"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              20,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              20,
+              "plant_protein_bowl"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              21,
+              "breakfast_formulation"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              21,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              21,
+              "plant_protein_bowl"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              22,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              22,
+              "plant_protein_bowl"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              23,
+              "breakfast_formulation"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              23,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              23,
+              "plant_protein_bowl"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              25,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              25,
+              "plant_protein_bowl"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              26,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              28,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              28,
+              "plant_protein_bowl"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              30,
+              "plant_protein_bowl"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              31,
+              "plant_protein_bowl"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              34,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              35,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              37,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              37,
+              "plant_protein_bowl"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              38,
+              "plant_protein_bowl"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              39,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              39,
+              "plant_protein_bowl"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              40,
+              "breakfast_formulation"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              40,
+              "plant_protein_bowl"
+            ],
+            "rows": 1
+          }
+        ],
+        "fresh": true,
+        "rows": 128,
+        "rows_sha256": "f4eb817f8864d31714f868f83fb43342fe33c0e7e3735d388d53c30df9ae4489"
+      },
+      "level": 4,
+      "level_admitted": false,
+      "original_datasetdict_split": "multi_answer",
+      "parquet_bytes": 61747,
+      "parquet_sha256": "8c97438a150b84fa558e611cb32ccce0ae57f17e0b3b2c725219f75302c6e981",
+      "protocol_sha256": "6171f00dac5d69d345ef6aa1a234f548e34b3477e0eb0f1d7bd6535f3fe0c635",
+      "recipe_sha256": "a3580c2977ca063aea85f2f1729374302479f05da2bb64d4291d6d9cf984692d",
+      "rows": 128,
+      "rows_sha256": "f4eb817f8864d31714f868f83fb43342fe33c0e7e3735d388d53c30df9ae4489",
+      "source_column_order": [
+        "problem",
+        "answer",
+        "modebench_task",
+        "answer_mode_family",
+        "answer_mode_count",
+        "answer_mode_split",
+        "instance_fingerprint",
+        "scale_candidate_generator",
+        "scale_candidate_tier",
+        "scale_candidate_profile",
+        "scale_origin_metadata",
+        "scale_cell_index",
+        "scale_generation_seed",
+        "scale_bridge_law_version"
+      ],
+      "source_repository_path": "var/data/modebench_scale_domain_revisions_v1/level4_pantry_r2/level4/dataset/pantry",
+      "split": "eval",
+      "status": "heldout_confirmed_difficulty_matched",
+      "support_histogram": {
+        "10": 12,
+        "11": 8,
+        "12": 5,
+        "13": 6,
+        "14": 11,
+        "15": 6,
+        "16": 8,
+        "17": 8,
+        "18": 7,
+        "19": 4,
+        "20": 5,
+        "21": 8,
+        "22": 5,
+        "23": 4,
+        "25": 3,
+        "26": 2,
+        "28": 2,
+        "30": 1,
+        "31": 2,
+        "34": 1,
+        "35": 2,
+        "37": 3,
+        "38": 1,
+        "39": 3,
+        "40": 2,
+        "8": 4,
+        "9": 5
+      },
+      "verifier_values": [
+        "pantry_plan"
+      ]
+    },
+    {
+      "config_name": "level5_graph_coloring",
+      "data_file": "data/level5_graph_coloring/train.parquet",
+      "difficulty_matched": true,
+      "domain": "graph_coloring",
+      "exclusions_sha256": "b82ba6cf9fe67ec8606b151ac5f0ac116784d095362777ee438979f5d1afa7e4",
+      "features": {
+        "answer": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "answer_mode_count": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "answer_mode_split": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "modebench_task": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "problem": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_generator": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_profile": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_tier": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_cell_index": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_graph_topology_law_version": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_origin_metadata": {
+          "_type": "Value",
+          "dtype": "string"
+        }
+      },
+      "frozen_identity_record": {
+        "cells": [
+          {
+            "cell": [
+              4
+            ],
+            "rows": 177
+          },
+          {
+            "cell": [
+              5
+            ],
+            "rows": 11
+          },
+          {
+            "cell": [
+              6
+            ],
+            "rows": 73
+          },
+          {
+            "cell": [
+              8
+            ],
+            "rows": 61
+          },
+          {
+            "cell": [
+              9
+            ],
+            "rows": 7
+          },
+          {
+            "cell": [
+              12
+            ],
+            "rows": 54
+          },
+          {
+            "cell": [
+              18
+            ],
+            "rows": 1
+          }
+        ],
+        "fresh": true,
+        "rows": 384,
+        "rows_sha256": "bf3936f990df7c09898c540c222cfc5b8eb85f2040831b4779e9dd20a09c385f"
+      },
+      "level": 5,
+      "level_admitted": true,
+      "original_datasetdict_split": "train",
+      "parquet_bytes": 33450,
+      "parquet_sha256": "ed2fe860cc971afc285b52536d9d2458431b26b01d5c616d105461beafa06154",
+      "protocol_sha256": "d494ebc009bb7d96ab917bed6dc2cdb0261d601794d2568e4c5353386e08c479",
+      "recipe_sha256": "0edc2d5bf0e4b7ee50e3af876d0247eb5415e57f3dee59af151b29aa79824417",
+      "rows": 384,
+      "rows_sha256": "bf3936f990df7c09898c540c222cfc5b8eb85f2040831b4779e9dd20a09c385f",
+      "source_column_order": [
+        "problem",
+        "answer",
+        "modebench_task",
+        "answer_mode_count",
+        "answer_mode_split",
+        "scale_candidate_generator",
+        "scale_candidate_tier",
+        "scale_candidate_profile",
+        "scale_origin_metadata",
+        "scale_cell_index",
+        "scale_graph_topology_law_version"
+      ],
+      "source_repository_path": "var/data/modebench_scale_release_v2/level5/dataset/graph_coloring",
+      "split": "train",
+      "status": "admitted_difficulty_matched",
+      "support_histogram": {
+        "12": 54,
+        "18": 1,
+        "4": 177,
+        "5": 11,
+        "6": 73,
+        "8": 61,
+        "9": 7
+      },
+      "verifier_values": [
+        "graph_coloring"
+      ]
+    },
+    {
+      "config_name": "level5_graph_coloring",
+      "data_file": "data/level5_graph_coloring/dev.parquet",
+      "difficulty_matched": true,
+      "domain": "graph_coloring",
+      "exclusions_sha256": "b82ba6cf9fe67ec8606b151ac5f0ac116784d095362777ee438979f5d1afa7e4",
+      "features": {
+        "answer": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "answer_mode_count": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "answer_mode_split": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "modebench_task": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "problem": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_generator": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_profile": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_tier": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_cell_index": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_graph_topology_law_version": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_origin_metadata": {
+          "_type": "Value",
+          "dtype": "string"
+        }
+      },
+      "frozen_identity_record": {
+        "origin": "sole selected development rows",
+        "rows": 128,
+        "rows_sha256": "356229a6dbe28ab25977d5490bfaaa81e3c37e56108adf4bc97114123dc798e6"
+      },
+      "level": 5,
+      "level_admitted": true,
+      "original_datasetdict_split": "multi_answer",
+      "parquet_bytes": 22350,
+      "parquet_sha256": "db9d1789c353a2af3e5e6532dcaf2db6de28e22dc52171049d3393e82b038c02",
+      "protocol_sha256": "d494ebc009bb7d96ab917bed6dc2cdb0261d601794d2568e4c5353386e08c479",
+      "recipe_sha256": "0edc2d5bf0e4b7ee50e3af876d0247eb5415e57f3dee59af151b29aa79824417",
+      "rows": 128,
+      "rows_sha256": "356229a6dbe28ab25977d5490bfaaa81e3c37e56108adf4bc97114123dc798e6",
+      "source_column_order": [
+        "answer",
+        "answer_mode_count",
+        "answer_mode_split",
+        "modebench_task",
+        "problem",
+        "scale_candidate_generator",
+        "scale_candidate_profile",
+        "scale_candidate_tier",
+        "scale_cell_index",
+        "scale_graph_topology_law_version",
+        "scale_origin_metadata"
+      ],
+      "source_repository_path": "var/data/modebench_scale_release_v2/level5/dataset/graph_coloring",
+      "split": "dev",
+      "status": "admitted_difficulty_matched",
+      "support_histogram": {
+        "12": 21,
+        "4": 54,
+        "6": 25,
+        "8": 24,
+        "9": 4
+      },
+      "verifier_values": [
+        "graph_coloring"
+      ]
+    },
+    {
+      "config_name": "level5_graph_coloring",
+      "data_file": "data/level5_graph_coloring/eval.parquet",
+      "difficulty_matched": true,
+      "domain": "graph_coloring",
+      "exclusions_sha256": "b82ba6cf9fe67ec8606b151ac5f0ac116784d095362777ee438979f5d1afa7e4",
+      "features": {
+        "answer": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "answer_mode_count": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "answer_mode_split": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "modebench_task": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "problem": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_generator": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_profile": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_tier": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_cell_index": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_graph_topology_law_version": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_origin_metadata": {
+          "_type": "Value",
+          "dtype": "string"
+        }
+      },
+      "frozen_identity_record": {
+        "cells": [
+          {
+            "cell": [
+              4
+            ],
+            "rows": 62
+          },
+          {
+            "cell": [
+              5
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              6
+            ],
+            "rows": 28
+          },
+          {
+            "cell": [
+              8
+            ],
+            "rows": 17
+          },
+          {
+            "cell": [
+              9
+            ],
+            "rows": 6
+          },
+          {
+            "cell": [
+              12
+            ],
+            "rows": 14
+          }
+        ],
+        "fresh": true,
+        "rows": 128,
+        "rows_sha256": "2c1ae70c31998035d56b757afd89a1df69e90118f9208fd1a132e1ebd9f1b268"
+      },
+      "level": 5,
+      "level_admitted": true,
+      "original_datasetdict_split": "multi_answer",
+      "parquet_bytes": 21928,
+      "parquet_sha256": "75ca0480b6e7e113ea681d3a1b1145a09fa2c3de7355ff921919ad708851febc",
+      "protocol_sha256": "d494ebc009bb7d96ab917bed6dc2cdb0261d601794d2568e4c5353386e08c479",
+      "recipe_sha256": "0edc2d5bf0e4b7ee50e3af876d0247eb5415e57f3dee59af151b29aa79824417",
+      "rows": 128,
+      "rows_sha256": "2c1ae70c31998035d56b757afd89a1df69e90118f9208fd1a132e1ebd9f1b268",
+      "source_column_order": [
+        "problem",
+        "answer",
+        "modebench_task",
+        "answer_mode_count",
+        "answer_mode_split",
+        "scale_candidate_generator",
+        "scale_candidate_tier",
+        "scale_candidate_profile",
+        "scale_origin_metadata",
+        "scale_cell_index",
+        "scale_graph_topology_law_version"
+      ],
+      "source_repository_path": "var/data/modebench_scale_release_v2/level5/dataset/graph_coloring",
+      "split": "eval",
+      "status": "admitted_difficulty_matched",
+      "support_histogram": {
+        "12": 14,
+        "4": 62,
+        "5": 1,
+        "6": 28,
+        "8": 17,
+        "9": 6
+      },
+      "verifier_values": [
+        "graph_coloring"
+      ]
+    },
+    {
+      "config_name": "level5_countdown",
+      "data_file": "data/level5_countdown/train.parquet",
+      "difficulty_matched": true,
+      "domain": "countdown",
+      "exclusions_sha256": null,
+      "features": {
+        "answer": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "answer_mode_count": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "answer_mode_split": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "modebench_task": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "problem": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_generator": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_profile": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_tier": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_cell_index": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_countdown_target_family": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_origin_metadata": {
+          "_type": "Value",
+          "dtype": "string"
+        }
+      },
+      "frozen_identity_record": {
+        "cells": [
+          {
+            "cell": [
+              2
+            ],
+            "rows": 29
+          },
+          {
+            "cell": [
+              3
+            ],
+            "rows": 87
+          },
+          {
+            "cell": [
+              4
+            ],
+            "rows": 5
+          },
+          {
+            "cell": [
+              5
+            ],
+            "rows": 210
+          },
+          {
+            "cell": [
+              6
+            ],
+            "rows": 42
+          },
+          {
+            "cell": [
+              7
+            ],
+            "rows": 6
+          },
+          {
+            "cell": [
+              8
+            ],
+            "rows": 5
+          }
+        ],
+        "fresh": true,
+        "rows": 384,
+        "rows_sha256": "1c01e76d0f64638e2bf112c109794024cc2a3a47c91909756bc4812e70d5c7c5"
+      },
+      "level": 5,
+      "level_admitted": true,
+      "original_datasetdict_split": "train",
+      "parquet_bytes": 24557,
+      "parquet_sha256": "d80d91bc0faeabc825482f8f6fbd44592a5be2f970350895c25eae093e10f795",
+      "protocol_sha256": "b764df4f5e23cf02f7bf4d3339226134739c5f1ccedf7a884c5947c65dd2f6d4",
+      "recipe_sha256": "a17638b37fd5b240b3984bff4d2a4adaa4cb4a167292b8eb1f73c6a38c233ac8",
+      "rows": 384,
+      "rows_sha256": "1c01e76d0f64638e2bf112c109794024cc2a3a47c91909756bc4812e70d5c7c5",
+      "source_column_order": [
+        "problem",
+        "answer",
+        "modebench_task",
+        "answer_mode_count",
+        "answer_mode_split",
+        "scale_countdown_target_family",
+        "scale_origin_metadata",
+        "scale_candidate_generator",
+        "scale_candidate_tier",
+        "scale_candidate_profile",
+        "scale_cell_index"
+      ],
+      "source_repository_path": "var/data/modebench_scale_release_v2/level5/dataset/countdown",
+      "split": "train",
+      "status": "admitted_difficulty_matched",
+      "support_histogram": {
+        "2": 29,
+        "3": 87,
+        "4": 5,
+        "5": 210,
+        "6": 42,
+        "7": 6,
+        "8": 5
+      },
+      "verifier_values": [
+        "countdown"
+      ]
+    },
+    {
+      "config_name": "level5_countdown",
+      "data_file": "data/level5_countdown/dev.parquet",
+      "difficulty_matched": true,
+      "domain": "countdown",
+      "exclusions_sha256": null,
+      "features": {
+        "answer": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "answer_mode_count": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "answer_mode_split": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "modebench_task": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "problem": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_generator": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_profile": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_tier": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_cell_index": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_countdown_target_family": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_origin_metadata": {
+          "_type": "Value",
+          "dtype": "string"
+        }
+      },
+      "frozen_identity_record": {
+        "origin": "sole fixed selected development rows; model scored for calibration",
+        "rows": 128,
+        "rows_sha256": "cc6ac72abc761977affef0f78e94161bc9e8828dfa2850f735d3778e0025c7eb"
+      },
+      "level": 5,
+      "level_admitted": true,
+      "original_datasetdict_split": "multi_answer",
+      "parquet_bytes": 15398,
+      "parquet_sha256": "c7bc35dca1ce719eafcab008ee08b957d7563c83eb5468bbaca57a37636b1dc1",
+      "protocol_sha256": "b764df4f5e23cf02f7bf4d3339226134739c5f1ccedf7a884c5947c65dd2f6d4",
+      "recipe_sha256": "a17638b37fd5b240b3984bff4d2a4adaa4cb4a167292b8eb1f73c6a38c233ac8",
+      "rows": 128,
+      "rows_sha256": "cc6ac72abc761977affef0f78e94161bc9e8828dfa2850f735d3778e0025c7eb",
+      "source_column_order": [
+        "answer",
+        "answer_mode_count",
+        "answer_mode_split",
+        "modebench_task",
+        "problem",
+        "scale_candidate_generator",
+        "scale_candidate_profile",
+        "scale_candidate_tier",
+        "scale_cell_index",
+        "scale_countdown_target_family",
+        "scale_origin_metadata"
+      ],
+      "source_repository_path": "var/data/modebench_scale_release_v2/level5/dataset/countdown",
+      "split": "dev",
+      "status": "admitted_difficulty_matched",
+      "support_histogram": {
+        "2": 15,
+        "3": 28,
+        "5": 70,
+        "6": 10,
+        "7": 5
+      },
+      "verifier_values": [
+        "countdown"
+      ]
+    },
+    {
+      "config_name": "level5_countdown",
+      "data_file": "data/level5_countdown/eval.parquet",
+      "difficulty_matched": true,
+      "domain": "countdown",
+      "exclusions_sha256": null,
+      "features": {
+        "answer": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "answer_mode_count": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "answer_mode_split": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "modebench_task": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "problem": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_generator": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_profile": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_tier": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_cell_index": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_countdown_target_family": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_origin_metadata": {
+          "_type": "Value",
+          "dtype": "string"
+        }
+      },
+      "frozen_identity_record": {
+        "cells": [
+          {
+            "cell": [
+              2
+            ],
+            "rows": 6
+          },
+          {
+            "cell": [
+              3
+            ],
+            "rows": 40
+          },
+          {
+            "cell": [
+              4
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              5
+            ],
+            "rows": 66
+          },
+          {
+            "cell": [
+              6
+            ],
+            "rows": 10
+          },
+          {
+            "cell": [
+              7
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              8
+            ],
+            "rows": 1
+          }
+        ],
+        "fresh": true,
+        "rows": 128,
+        "rows_sha256": "065577315904ea387c0d070d57c35aa6da7452af01841c7f30e9437c6696368e"
+      },
+      "level": 5,
+      "level_admitted": true,
+      "original_datasetdict_split": "multi_answer",
+      "parquet_bytes": 15207,
+      "parquet_sha256": "11459a06b49bd0dd61eb668e52ae3f2958c2b1aae22dbc1a9514fe41a28fb3ea",
+      "protocol_sha256": "b764df4f5e23cf02f7bf4d3339226134739c5f1ccedf7a884c5947c65dd2f6d4",
+      "recipe_sha256": "a17638b37fd5b240b3984bff4d2a4adaa4cb4a167292b8eb1f73c6a38c233ac8",
+      "rows": 128,
+      "rows_sha256": "065577315904ea387c0d070d57c35aa6da7452af01841c7f30e9437c6696368e",
+      "source_column_order": [
+        "problem",
+        "answer",
+        "modebench_task",
+        "answer_mode_count",
+        "answer_mode_split",
+        "scale_countdown_target_family",
+        "scale_origin_metadata",
+        "scale_candidate_generator",
+        "scale_candidate_tier",
+        "scale_candidate_profile",
+        "scale_cell_index"
+      ],
+      "source_repository_path": "var/data/modebench_scale_release_v2/level5/dataset/countdown",
+      "split": "eval",
+      "status": "admitted_difficulty_matched",
+      "support_histogram": {
+        "2": 6,
+        "3": 40,
+        "4": 2,
+        "5": 66,
+        "6": 10,
+        "7": 3,
+        "8": 1
+      },
+      "verifier_values": [
+        "countdown"
+      ]
+    },
+    {
+      "config_name": "level5_python_factors",
+      "data_file": "data/level5_python_factors/train.parquet",
+      "difficulty_matched": true,
+      "domain": "python_factors",
+      "exclusions_sha256": "801e143cac6fc0854b9add965fa16aa9691906834de0369a6017734da2078631",
+      "features": {
+        "answer": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "answer_mode_count": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "answer_mode_split": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "modebench_task": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "problem": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_bridge_law_version": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_generator": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_profile": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_tier": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_cell_index": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_origin_metadata": {
+          "_type": "Value",
+          "dtype": "string"
+        }
+      },
+      "frozen_identity_record": {
+        "cells": [
+          {
+            "cell": [
+              16
+            ],
+            "rows": 20
+          },
+          {
+            "cell": [
+              24
+            ],
+            "rows": 7
+          },
+          {
+            "cell": [
+              32
+            ],
+            "rows": 34
+          },
+          {
+            "cell": [
+              40
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              48
+            ],
+            "rows": 32
+          },
+          {
+            "cell": [
+              56
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              64
+            ],
+            "rows": 24
+          },
+          {
+            "cell": [
+              72
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              80
+            ],
+            "rows": 19
+          },
+          {
+            "cell": [
+              96
+            ],
+            "rows": 34
+          },
+          {
+            "cell": [
+              112
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              120
+            ],
+            "rows": 4
+          },
+          {
+            "cell": [
+              128
+            ],
+            "rows": 13
+          },
+          {
+            "cell": [
+              140
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              144
+            ],
+            "rows": 13
+          },
+          {
+            "cell": [
+              160
+            ],
+            "rows": 26
+          },
+          {
+            "cell": [
+              168
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              180
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              192
+            ],
+            "rows": 21
+          },
+          {
+            "cell": [
+              240
+            ],
+            "rows": 16
+          },
+          {
+            "cell": [
+              256
+            ],
+            "rows": 6
+          },
+          {
+            "cell": [
+              280
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              288
+            ],
+            "rows": 16
+          },
+          {
+            "cell": [
+              320
+            ],
+            "rows": 16
+          },
+          {
+            "cell": [
+              336
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              360
+            ],
+            "rows": 4
+          },
+          {
+            "cell": [
+              384
+            ],
+            "rows": 9
+          },
+          {
+            "cell": [
+              400
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              432
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              448
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              480
+            ],
+            "rows": 8
+          },
+          {
+            "cell": [
+              504
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              560
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              576
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              640
+            ],
+            "rows": 5
+          },
+          {
+            "cell": [
+              648
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              720
+            ],
+            "rows": 5
+          },
+          {
+            "cell": [
+              768
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              800
+            ],
+            "rows": 5
+          },
+          {
+            "cell": [
+              840
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              864
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              960
+            ],
+            "rows": 4
+          },
+          {
+            "cell": [
+              1152
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              1280
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              1920
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              2400
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              2520
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              2880
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              3600
+            ],
+            "rows": 1
+          }
+        ],
+        "fresh": true,
+        "rows": 384,
+        "rows_sha256": "8a13e10479042488b476765013c8f8ba406d253d2514eb79d18117761f8ea8f7"
+      },
+      "level": 5,
+      "level_admitted": true,
+      "original_datasetdict_split": "train",
+      "parquet_bytes": 41534,
+      "parquet_sha256": "7b48efcf989206137696fb1194f5caa22cfb698d06bc343d688e344ad12568e1",
+      "protocol_sha256": "2f0821cd95b453babfa4c572dd9a9bd8c7134a3b77ef43220aff32131b98cad5",
+      "recipe_sha256": "d5739495cd03252f6485a1306d1db9d0da8ac061d9f4463a69f5cdeb9e6f5bbd",
+      "rows": 384,
+      "rows_sha256": "8a13e10479042488b476765013c8f8ba406d253d2514eb79d18117761f8ea8f7",
+      "source_column_order": [
+        "problem",
+        "answer",
+        "modebench_task",
+        "answer_mode_count",
+        "answer_mode_split",
+        "scale_candidate_generator",
+        "scale_candidate_tier",
+        "scale_candidate_profile",
+        "scale_origin_metadata",
+        "scale_cell_index",
+        "scale_bridge_law_version"
+      ],
+      "source_repository_path": "var/data/modebench_scale_release_v2/level5/dataset/python_factors",
+      "split": "train",
+      "status": "admitted_difficulty_matched",
+      "support_histogram": {
+        "112": 1,
+        "1152": 2,
+        "120": 4,
+        "128": 13,
+        "1280": 1,
+        "140": 1,
+        "144": 13,
+        "16": 20,
+        "160": 26,
+        "168": 2,
+        "180": 1,
+        "192": 21,
+        "1920": 1,
+        "24": 7,
+        "240": 16,
+        "2400": 1,
+        "2520": 1,
+        "256": 6,
+        "280": 1,
+        "288": 16,
+        "2880": 1,
+        "32": 34,
+        "320": 16,
+        "336": 1,
+        "360": 4,
+        "3600": 1,
+        "384": 9,
+        "40": 2,
+        "400": 3,
+        "432": 3,
+        "448": 1,
+        "48": 32,
+        "480": 8,
+        "504": 2,
+        "56": 1,
+        "560": 2,
+        "576": 3,
+        "64": 24,
+        "640": 5,
+        "648": 1,
+        "72": 1,
+        "720": 5,
+        "768": 3,
+        "80": 19,
+        "800": 5,
+        "840": 3,
+        "864": 3,
+        "96": 34,
+        "960": 4
+      },
+      "verifier_values": [
+        "python_factor_function"
+      ]
+    },
+    {
+      "config_name": "level5_python_factors",
+      "data_file": "data/level5_python_factors/dev.parquet",
+      "difficulty_matched": true,
+      "domain": "python_factors",
+      "exclusions_sha256": "801e143cac6fc0854b9add965fa16aa9691906834de0369a6017734da2078631",
+      "features": {
+        "answer": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "answer_mode_count": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "answer_mode_split": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "modebench_task": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "problem": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_bridge_law_version": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_generator": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_profile": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_tier": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_cell_index": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_origin_metadata": {
+          "_type": "Value",
+          "dtype": "string"
+        }
+      },
+      "frozen_identity_record": {
+        "origin": "sole selected development rows",
+        "rows": 128,
+        "rows_sha256": "e163d697f619c6571a816e9be31fc0a8f6f4cfe585898ee52567dde31070451e"
+      },
+      "level": 5,
+      "level_admitted": true,
+      "original_datasetdict_split": "multi_answer",
+      "parquet_bytes": 23612,
+      "parquet_sha256": "4e78331a2eb9b1c8b1f71c0c844325778d65bbbc3106fee933f32e9c838c36ff",
+      "protocol_sha256": "2f0821cd95b453babfa4c572dd9a9bd8c7134a3b77ef43220aff32131b98cad5",
+      "recipe_sha256": "d5739495cd03252f6485a1306d1db9d0da8ac061d9f4463a69f5cdeb9e6f5bbd",
+      "rows": 128,
+      "rows_sha256": "e163d697f619c6571a816e9be31fc0a8f6f4cfe585898ee52567dde31070451e",
+      "source_column_order": [
+        "answer",
+        "answer_mode_count",
+        "answer_mode_split",
+        "modebench_task",
+        "problem",
+        "scale_bridge_law_version",
+        "scale_candidate_generator",
+        "scale_candidate_profile",
+        "scale_candidate_tier",
+        "scale_cell_index",
+        "scale_origin_metadata"
+      ],
+      "source_repository_path": "var/data/modebench_scale_release_v2/level5/dataset/python_factors",
+      "split": "dev",
+      "status": "admitted_difficulty_matched",
+      "support_histogram": {
+        "120": 2,
+        "1200": 1,
+        "128": 3,
+        "144": 6,
+        "16": 2,
+        "160": 7,
+        "180": 1,
+        "192": 7,
+        "200": 1,
+        "24": 3,
+        "240": 6,
+        "256": 2,
+        "280": 2,
+        "288": 5,
+        "32": 12,
+        "320": 5,
+        "336": 1,
+        "384": 3,
+        "40": 2,
+        "400": 1,
+        "420": 1,
+        "432": 1,
+        "48": 14,
+        "480": 9,
+        "560": 1,
+        "600": 1,
+        "64": 11,
+        "640": 3,
+        "72": 1,
+        "80": 3,
+        "800": 1,
+        "96": 10
+      },
+      "verifier_values": [
+        "python_factor_function"
+      ]
+    },
+    {
+      "config_name": "level5_python_factors",
+      "data_file": "data/level5_python_factors/eval.parquet",
+      "difficulty_matched": true,
+      "domain": "python_factors",
+      "exclusions_sha256": "801e143cac6fc0854b9add965fa16aa9691906834de0369a6017734da2078631",
+      "features": {
+        "answer": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "answer_mode_count": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "answer_mode_split": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "modebench_task": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "problem": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_bridge_law_version": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_generator": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_profile": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_tier": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_cell_index": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_origin_metadata": {
+          "_type": "Value",
+          "dtype": "string"
+        }
+      },
+      "frozen_identity_record": {
+        "cells": [
+          {
+            "cell": [
+              16
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              24
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              32
+            ],
+            "rows": 13
+          },
+          {
+            "cell": [
+              48
+            ],
+            "rows": 7
+          },
+          {
+            "cell": [
+              64
+            ],
+            "rows": 9
+          },
+          {
+            "cell": [
+              72
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              80
+            ],
+            "rows": 11
+          },
+          {
+            "cell": [
+              96
+            ],
+            "rows": 16
+          },
+          {
+            "cell": [
+              112
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              120
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              128
+            ],
+            "rows": 4
+          },
+          {
+            "cell": [
+              144
+            ],
+            "rows": 8
+          },
+          {
+            "cell": [
+              160
+            ],
+            "rows": 10
+          },
+          {
+            "cell": [
+              192
+            ],
+            "rows": 5
+          },
+          {
+            "cell": [
+              216
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              224
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              240
+            ],
+            "rows": 5
+          },
+          {
+            "cell": [
+              256
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              288
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              320
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              336
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              384
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              400
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              432
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              480
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              512
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              576
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              672
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              720
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              800
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              1200
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              1440
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              1800
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              2240
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              2880
+            ],
+            "rows": 1
+          }
+        ],
+        "fresh": true,
+        "rows": 128,
+        "rows_sha256": "5bbe40f4e9af659307317206cdab9fd20de08d6862028ef0f2e29e1bb86b7f27"
+      },
+      "level": 5,
+      "level_admitted": true,
+      "original_datasetdict_split": "multi_answer",
+      "parquet_bytes": 23551,
+      "parquet_sha256": "496f9d6020fcb906a1ee6b6ec9cb868a4d5478c3f492ab0514d3a825a083b521",
+      "protocol_sha256": "2f0821cd95b453babfa4c572dd9a9bd8c7134a3b77ef43220aff32131b98cad5",
+      "recipe_sha256": "d5739495cd03252f6485a1306d1db9d0da8ac061d9f4463a69f5cdeb9e6f5bbd",
+      "rows": 128,
+      "rows_sha256": "5bbe40f4e9af659307317206cdab9fd20de08d6862028ef0f2e29e1bb86b7f27",
+      "source_column_order": [
+        "problem",
+        "answer",
+        "modebench_task",
+        "answer_mode_count",
+        "answer_mode_split",
+        "scale_candidate_generator",
+        "scale_candidate_tier",
+        "scale_candidate_profile",
+        "scale_origin_metadata",
+        "scale_cell_index",
+        "scale_bridge_law_version"
+      ],
+      "source_repository_path": "var/data/modebench_scale_release_v2/level5/dataset/python_factors",
+      "split": "eval",
+      "status": "admitted_difficulty_matched",
+      "support_histogram": {
+        "112": 1,
+        "120": 2,
+        "1200": 2,
+        "128": 4,
+        "144": 8,
+        "1440": 1,
+        "16": 2,
+        "160": 10,
+        "1800": 1,
+        "192": 5,
+        "216": 2,
+        "224": 1,
+        "2240": 1,
+        "24": 1,
+        "240": 5,
+        "256": 2,
+        "288": 3,
+        "2880": 1,
+        "32": 13,
+        "320": 2,
+        "336": 2,
+        "384": 3,
+        "400": 1,
+        "432": 1,
+        "48": 7,
+        "480": 2,
+        "512": 1,
+        "576": 1,
+        "64": 9,
+        "672": 1,
+        "72": 1,
+        "720": 3,
+        "80": 11,
+        "800": 2,
+        "96": 16
+      },
+      "verifier_values": [
+        "python_factor_function"
+      ]
+    },
+    {
+      "config_name": "level5_mathir",
+      "data_file": "data/level5_mathir/train.parquet",
+      "difficulty_matched": true,
+      "domain": "mathir",
+      "exclusions_sha256": "c7d1876a757611ce52875c0dc969d470e8fdc191b28a11f9bfc39ef31ee4ff75",
+      "features": {
+        "answer": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "answer_mode_count": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "answer_mode_split": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "mathir_family": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "modebench_task": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "problem": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_generator": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_profile": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_tier": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_cell_index": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_generation_seed": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_origin_metadata": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_structural_law_version": {
+          "_type": "Value",
+          "dtype": "string"
+        }
+      },
+      "frozen_identity_record": {
+        "cells": [
+          {
+            "cell": [
+              5
+            ],
+            "rows": 384
+          }
+        ],
+        "fresh": true,
+        "rows": 384,
+        "rows_sha256": "7c472892ae42812dc470c3f82ca60f58f152fb08cd01d7a59fddd481ea1acd8a"
+      },
+      "level": 5,
+      "level_admitted": true,
+      "original_datasetdict_split": "train",
+      "parquet_bytes": 55510,
+      "parquet_sha256": "ea91001c8fff8c230d2bc7d184343324011286fecb27d3e7ca3a94b4cf2f9250",
+      "protocol_sha256": "a921fd0fb8f22806e87d6aff9e3c6d755eb3844493128f842a79a3e61de5bec7",
+      "recipe_sha256": "3424a2d400fb4e436197e6b7fcf822a7da7b08b18c367b986409d55d1331d957",
+      "rows": 384,
+      "rows_sha256": "7c472892ae42812dc470c3f82ca60f58f152fb08cd01d7a59fddd481ea1acd8a",
+      "source_column_order": [
+        "problem",
+        "answer",
+        "modebench_task",
+        "answer_mode_count",
+        "answer_mode_split",
+        "mathir_family",
+        "scale_candidate_generator",
+        "scale_candidate_tier",
+        "scale_candidate_profile",
+        "scale_origin_metadata",
+        "scale_cell_index",
+        "scale_generation_seed",
+        "scale_structural_law_version"
+      ],
+      "source_repository_path": "var/data/modebench_scale_release_v2/level5/dataset/mathir",
+      "split": "train",
+      "status": "admitted_difficulty_matched",
+      "support_histogram": {
+        "5": 384
+      },
+      "verifier_values": [
+        "mathir_action_menu"
+      ]
+    },
+    {
+      "config_name": "level5_mathir",
+      "data_file": "data/level5_mathir/dev.parquet",
+      "difficulty_matched": true,
+      "domain": "mathir",
+      "exclusions_sha256": "c7d1876a757611ce52875c0dc969d470e8fdc191b28a11f9bfc39ef31ee4ff75",
+      "features": {
+        "answer": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "answer_mode_count": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "answer_mode_split": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "mathir_family": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "modebench_task": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "problem": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_generator": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_profile": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_tier": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_cell_index": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_generation_seed": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_origin_metadata": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_structural_law_version": {
+          "_type": "Value",
+          "dtype": "string"
+        }
+      },
+      "frozen_identity_record": {
+        "origin": "sole selected development rows",
+        "rows": 128,
+        "rows_sha256": "46789606ca12e070037305d3451298a2abf9e35fac64464388210fd2558404a6"
+      },
+      "level": 5,
+      "level_admitted": true,
+      "original_datasetdict_split": "multi_answer",
+      "parquet_bytes": 34716,
+      "parquet_sha256": "8ee260290035a2d5a30f76481f9c42115640629a3a6efa97073841994f21d8c7",
+      "protocol_sha256": "a921fd0fb8f22806e87d6aff9e3c6d755eb3844493128f842a79a3e61de5bec7",
+      "recipe_sha256": "3424a2d400fb4e436197e6b7fcf822a7da7b08b18c367b986409d55d1331d957",
+      "rows": 128,
+      "rows_sha256": "46789606ca12e070037305d3451298a2abf9e35fac64464388210fd2558404a6",
+      "source_column_order": [
+        "answer",
+        "answer_mode_count",
+        "answer_mode_split",
+        "mathir_family",
+        "modebench_task",
+        "problem",
+        "scale_candidate_generator",
+        "scale_candidate_profile",
+        "scale_candidate_tier",
+        "scale_cell_index",
+        "scale_generation_seed",
+        "scale_origin_metadata",
+        "scale_structural_law_version"
+      ],
+      "source_repository_path": "var/data/modebench_scale_release_v2/level5/dataset/mathir",
+      "split": "dev",
+      "status": "admitted_difficulty_matched",
+      "support_histogram": {
+        "5": 128
+      },
+      "verifier_values": [
+        "mathir_action_menu"
+      ]
+    },
+    {
+      "config_name": "level5_mathir",
+      "data_file": "data/level5_mathir/eval.parquet",
+      "difficulty_matched": true,
+      "domain": "mathir",
+      "exclusions_sha256": "c7d1876a757611ce52875c0dc969d470e8fdc191b28a11f9bfc39ef31ee4ff75",
+      "features": {
+        "answer": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "answer_mode_count": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "answer_mode_split": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "mathir_family": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "modebench_task": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "problem": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_generator": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_profile": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_tier": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_cell_index": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_generation_seed": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_origin_metadata": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_structural_law_version": {
+          "_type": "Value",
+          "dtype": "string"
+        }
+      },
+      "frozen_identity_record": {
+        "cells": [
+          {
+            "cell": [
+              5
+            ],
+            "rows": 128
+          }
+        ],
+        "fresh": true,
+        "rows": 128,
+        "rows_sha256": "d81a9446dd0edeac26bb5db498cabcb70a93930f85576b69688dc41c60de1d42"
+      },
+      "level": 5,
+      "level_admitted": true,
+      "original_datasetdict_split": "multi_answer",
+      "parquet_bytes": 34531,
+      "parquet_sha256": "a82293cd9a2245eb664f1f9082eec83d7232a00308e28a47de9b895a0ca8fd04",
+      "protocol_sha256": "a921fd0fb8f22806e87d6aff9e3c6d755eb3844493128f842a79a3e61de5bec7",
+      "recipe_sha256": "3424a2d400fb4e436197e6b7fcf822a7da7b08b18c367b986409d55d1331d957",
+      "rows": 128,
+      "rows_sha256": "d81a9446dd0edeac26bb5db498cabcb70a93930f85576b69688dc41c60de1d42",
+      "source_column_order": [
+        "problem",
+        "answer",
+        "modebench_task",
+        "answer_mode_count",
+        "answer_mode_split",
+        "mathir_family",
+        "scale_candidate_generator",
+        "scale_candidate_tier",
+        "scale_candidate_profile",
+        "scale_origin_metadata",
+        "scale_cell_index",
+        "scale_generation_seed",
+        "scale_structural_law_version"
+      ],
+      "source_repository_path": "var/data/modebench_scale_release_v2/level5/dataset/mathir",
+      "split": "eval",
+      "status": "admitted_difficulty_matched",
+      "support_histogram": {
+        "5": 128
+      },
+      "verifier_values": [
+        "mathir_action_menu"
+      ]
+    },
+    {
+      "config_name": "level5_pantry_plan",
+      "data_file": "data/level5_pantry_plan/train.parquet",
+      "difficulty_matched": true,
+      "domain": "pantry_plan",
+      "exclusions_sha256": "e911603894999906f60e85dbaa200120eea0fb867f9df42f8e2fdac53fa194fd",
+      "features": {
+        "answer": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "answer_mode_count": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "answer_mode_family": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "answer_mode_split": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "instance_fingerprint": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "modebench_task": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "problem": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_bridge_law_version": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_generator": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_profile": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_tier": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_cell_index": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_generation_seed": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_origin_metadata": {
+          "_type": "Value",
+          "dtype": "string"
+        }
+      },
+      "frozen_identity_record": {
+        "cells": [
+          {
+            "cell": [
+              8,
+              "breakfast_formulation"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              8,
+              "high_fiber_snack"
+            ],
+            "rows": 6
+          },
+          {
+            "cell": [
+              8,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              8,
+              "plant_protein_bowl"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              9,
+              "breakfast_formulation"
+            ],
+            "rows": 9
+          },
+          {
+            "cell": [
+              9,
+              "high_fiber_snack"
+            ],
+            "rows": 15
+          },
+          {
+            "cell": [
+              9,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 6
+          },
+          {
+            "cell": [
+              9,
+              "plant_protein_bowl"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              10,
+              "breakfast_formulation"
+            ],
+            "rows": 9
+          },
+          {
+            "cell": [
+              10,
+              "high_fiber_snack"
+            ],
+            "rows": 16
+          },
+          {
+            "cell": [
+              10,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              10,
+              "plant_protein_bowl"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              11,
+              "breakfast_formulation"
+            ],
+            "rows": 5
+          },
+          {
+            "cell": [
+              11,
+              "high_fiber_snack"
+            ],
+            "rows": 8
+          },
+          {
+            "cell": [
+              11,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              11,
+              "plant_protein_bowl"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              12,
+              "breakfast_formulation"
+            ],
+            "rows": 7
+          },
+          {
+            "cell": [
+              12,
+              "high_fiber_snack"
+            ],
+            "rows": 6
+          },
+          {
+            "cell": [
+              12,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              12,
+              "plant_protein_bowl"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              13,
+              "breakfast_formulation"
+            ],
+            "rows": 7
+          },
+          {
+            "cell": [
+              13,
+              "high_fiber_snack"
+            ],
+            "rows": 4
+          },
+          {
+            "cell": [
+              13,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 5
+          },
+          {
+            "cell": [
+              13,
+              "plant_protein_bowl"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              14,
+              "breakfast_formulation"
+            ],
+            "rows": 11
+          },
+          {
+            "cell": [
+              14,
+              "high_fiber_snack"
+            ],
+            "rows": 4
+          },
+          {
+            "cell": [
+              14,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 5
+          },
+          {
+            "cell": [
+              14,
+              "plant_protein_bowl"
+            ],
+            "rows": 5
+          },
+          {
+            "cell": [
+              15,
+              "breakfast_formulation"
+            ],
+            "rows": 9
+          },
+          {
+            "cell": [
+              15,
+              "high_fiber_snack"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              15,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 4
+          },
+          {
+            "cell": [
+              15,
+              "plant_protein_bowl"
+            ],
+            "rows": 4
+          },
+          {
+            "cell": [
+              16,
+              "breakfast_formulation"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              16,
+              "high_fiber_snack"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              16,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              16,
+              "plant_protein_bowl"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              17,
+              "breakfast_formulation"
+            ],
+            "rows": 4
+          },
+          {
+            "cell": [
+              17,
+              "high_fiber_snack"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              17,
+              "plant_protein_bowl"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              18,
+              "breakfast_formulation"
+            ],
+            "rows": 10
+          },
+          {
+            "cell": [
+              18,
+              "high_fiber_snack"
+            ],
+            "rows": 7
+          },
+          {
+            "cell": [
+              18,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              18,
+              "plant_protein_bowl"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              19,
+              "breakfast_formulation"
+            ],
+            "rows": 4
+          },
+          {
+            "cell": [
+              19,
+              "high_fiber_snack"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              19,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              19,
+              "plant_protein_bowl"
+            ],
+            "rows": 5
+          },
+          {
+            "cell": [
+              20,
+              "breakfast_formulation"
+            ],
+            "rows": 12
+          },
+          {
+            "cell": [
+              20,
+              "high_fiber_snack"
+            ],
+            "rows": 5
+          },
+          {
+            "cell": [
+              20,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 6
+          },
+          {
+            "cell": [
+              20,
+              "plant_protein_bowl"
+            ],
+            "rows": 4
+          },
+          {
+            "cell": [
+              21,
+              "breakfast_formulation"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              21,
+              "high_fiber_snack"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              21,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 4
+          },
+          {
+            "cell": [
+              21,
+              "plant_protein_bowl"
+            ],
+            "rows": 7
+          },
+          {
+            "cell": [
+              22,
+              "high_fiber_snack"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              22,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 4
+          },
+          {
+            "cell": [
+              22,
+              "plant_protein_bowl"
+            ],
+            "rows": 11
+          },
+          {
+            "cell": [
+              23,
+              "high_fiber_snack"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              23,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              23,
+              "plant_protein_bowl"
+            ],
+            "rows": 5
+          },
+          {
+            "cell": [
+              24,
+              "high_fiber_snack"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              24,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              24,
+              "plant_protein_bowl"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              25,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 6
+          },
+          {
+            "cell": [
+              25,
+              "plant_protein_bowl"
+            ],
+            "rows": 7
+          },
+          {
+            "cell": [
+              26,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              26,
+              "plant_protein_bowl"
+            ],
+            "rows": 7
+          },
+          {
+            "cell": [
+              27,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              27,
+              "plant_protein_bowl"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              28,
+              "high_fiber_snack"
+            ],
+            "rows": 4
+          },
+          {
+            "cell": [
+              28,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              29,
+              "high_fiber_snack"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              29,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 6
+          },
+          {
+            "cell": [
+              30,
+              "high_fiber_snack"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              30,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              30,
+              "plant_protein_bowl"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              31,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              31,
+              "plant_protein_bowl"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              32,
+              "high_fiber_snack"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              32,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              32,
+              "plant_protein_bowl"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              33,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              33,
+              "plant_protein_bowl"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              34,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              34,
+              "plant_protein_bowl"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              35,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              36,
+              "high_fiber_snack"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              36,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 4
+          },
+          {
+            "cell": [
+              36,
+              "plant_protein_bowl"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              37,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              37,
+              "plant_protein_bowl"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              38,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              38,
+              "plant_protein_bowl"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              39,
+              "high_fiber_snack"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              39,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              39,
+              "plant_protein_bowl"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              40,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              40,
+              "plant_protein_bowl"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              42,
+              "breakfast_formulation"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              42,
+              "plant_protein_bowl"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              44,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              45,
+              "breakfast_formulation"
+            ],
+            "rows": 1
+          }
+        ],
+        "fresh": true,
+        "rows": 384,
+        "rows_sha256": "6b2bdcdf373fd120d22dd0fed9b7751c0ecbe4a022f10e44ca270359ec3e0c1a"
+      },
+      "level": 5,
+      "level_admitted": true,
+      "original_datasetdict_split": "train",
+      "parquet_bytes": 127834,
+      "parquet_sha256": "6b5f3199b5bb074d8f18b84f054d9950bf20e379e1bdabbb66a1f56879d59327",
+      "protocol_sha256": "cc67865c1dda90ca5bad77bfa6863fd88abdd51e4f976ca521e58262d56e7614",
+      "recipe_sha256": "79a9c52ca8daae72ce7922cda15c2fcfd7b0fde59b8a827d291d477b75b5f561",
+      "rows": 384,
+      "rows_sha256": "6b2bdcdf373fd120d22dd0fed9b7751c0ecbe4a022f10e44ca270359ec3e0c1a",
+      "source_column_order": [
+        "problem",
+        "answer",
+        "modebench_task",
+        "answer_mode_family",
+        "answer_mode_count",
+        "answer_mode_split",
+        "instance_fingerprint",
+        "scale_candidate_generator",
+        "scale_candidate_tier",
+        "scale_candidate_profile",
+        "scale_origin_metadata",
+        "scale_cell_index",
+        "scale_generation_seed",
+        "scale_bridge_law_version"
+      ],
+      "source_repository_path": "var/data/modebench_scale_release_v2/level5/dataset/pantry",
+      "split": "train",
+      "status": "admitted_difficulty_matched",
+      "support_histogram": {
+        "10": 29,
+        "11": 19,
+        "12": 18,
+        "13": 18,
+        "14": 25,
+        "15": 18,
+        "16": 7,
+        "17": 9,
+        "18": 20,
+        "19": 14,
+        "20": 27,
+        "21": 14,
+        "22": 17,
+        "23": 10,
+        "24": 3,
+        "25": 13,
+        "26": 9,
+        "27": 4,
+        "28": 7,
+        "29": 7,
+        "30": 6,
+        "31": 3,
+        "32": 5,
+        "33": 5,
+        "34": 4,
+        "35": 2,
+        "36": 9,
+        "37": 2,
+        "38": 2,
+        "39": 4,
+        "40": 4,
+        "42": 2,
+        "44": 1,
+        "45": 1,
+        "8": 13,
+        "9": 33
+      },
+      "verifier_values": [
+        "pantry_plan"
+      ]
+    },
+    {
+      "config_name": "level5_pantry_plan",
+      "data_file": "data/level5_pantry_plan/dev.parquet",
+      "difficulty_matched": true,
+      "domain": "pantry_plan",
+      "exclusions_sha256": "e911603894999906f60e85dbaa200120eea0fb867f9df42f8e2fdac53fa194fd",
+      "features": {
+        "answer": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "answer_mode_count": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "answer_mode_family": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "answer_mode_split": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "instance_fingerprint": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "modebench_task": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "problem": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_bridge_law_version": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_generator": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_profile": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_tier": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_cell_index": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_generation_seed": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_origin_metadata": {
+          "_type": "Value",
+          "dtype": "string"
+        }
+      },
+      "frozen_identity_record": {
+        "origin": "sole selected development rows",
+        "rows": 128,
+        "rows_sha256": "2d084ed12e40c4b84e7e4c33c8aa918f489389608c01183f5f11bcab81b4b1fd"
+      },
+      "level": 5,
+      "level_admitted": true,
+      "original_datasetdict_split": "multi_answer",
+      "parquet_bytes": 66774,
+      "parquet_sha256": "22d002000a0bd2f6624e274415c8fa0ae291bfd95a257a938729400ab356d5ae",
+      "protocol_sha256": "cc67865c1dda90ca5bad77bfa6863fd88abdd51e4f976ca521e58262d56e7614",
+      "recipe_sha256": "79a9c52ca8daae72ce7922cda15c2fcfd7b0fde59b8a827d291d477b75b5f561",
+      "rows": 128,
+      "rows_sha256": "2d084ed12e40c4b84e7e4c33c8aa918f489389608c01183f5f11bcab81b4b1fd",
+      "source_column_order": [
+        "answer",
+        "answer_mode_count",
+        "answer_mode_family",
+        "answer_mode_split",
+        "instance_fingerprint",
+        "modebench_task",
+        "problem",
+        "scale_bridge_law_version",
+        "scale_candidate_generator",
+        "scale_candidate_profile",
+        "scale_candidate_tier",
+        "scale_cell_index",
+        "scale_generation_seed",
+        "scale_origin_metadata"
+      ],
+      "source_repository_path": "var/data/modebench_scale_release_v2/level5/dataset/pantry",
+      "split": "dev",
+      "status": "admitted_difficulty_matched",
+      "support_histogram": {
+        "10": 8,
+        "11": 8,
+        "12": 2,
+        "13": 10,
+        "14": 6,
+        "15": 4,
+        "16": 4,
+        "17": 2,
+        "18": 6,
+        "19": 2,
+        "20": 12,
+        "21": 4,
+        "22": 8,
+        "23": 2,
+        "24": 8,
+        "25": 2,
+        "26": 4,
+        "28": 2,
+        "29": 4,
+        "31": 2,
+        "32": 6,
+        "34": 2,
+        "36": 2,
+        "37": 2,
+        "38": 2,
+        "39": 2,
+        "8": 6,
+        "9": 6
+      },
+      "verifier_values": [
+        "pantry_plan"
+      ]
+    },
+    {
+      "config_name": "level5_pantry_plan",
+      "data_file": "data/level5_pantry_plan/eval.parquet",
+      "difficulty_matched": true,
+      "domain": "pantry_plan",
+      "exclusions_sha256": "e911603894999906f60e85dbaa200120eea0fb867f9df42f8e2fdac53fa194fd",
+      "features": {
+        "answer": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "answer_mode_count": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "answer_mode_family": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "answer_mode_split": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "instance_fingerprint": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "modebench_task": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "problem": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_bridge_law_version": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_generator": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_profile": {
+          "_type": "Value",
+          "dtype": "string"
+        },
+        "scale_candidate_tier": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_cell_index": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_generation_seed": {
+          "_type": "Value",
+          "dtype": "int64"
+        },
+        "scale_origin_metadata": {
+          "_type": "Value",
+          "dtype": "string"
+        }
+      },
+      "frozen_identity_record": {
+        "cells": [
+          {
+            "cell": [
+              8,
+              "high_fiber_snack"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              8,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              9,
+              "high_fiber_snack"
+            ],
+            "rows": 5
+          },
+          {
+            "cell": [
+              10,
+              "breakfast_formulation"
+            ],
+            "rows": 4
+          },
+          {
+            "cell": [
+              10,
+              "high_fiber_snack"
+            ],
+            "rows": 5
+          },
+          {
+            "cell": [
+              10,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              11,
+              "breakfast_formulation"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              11,
+              "high_fiber_snack"
+            ],
+            "rows": 5
+          },
+          {
+            "cell": [
+              12,
+              "breakfast_formulation"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              12,
+              "high_fiber_snack"
+            ],
+            "rows": 4
+          },
+          {
+            "cell": [
+              13,
+              "breakfast_formulation"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              13,
+              "high_fiber_snack"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              14,
+              "breakfast_formulation"
+            ],
+            "rows": 6
+          },
+          {
+            "cell": [
+              14,
+              "high_fiber_snack"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              14,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              14,
+              "plant_protein_bowl"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              15,
+              "breakfast_formulation"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              15,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              15,
+              "plant_protein_bowl"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              16,
+              "breakfast_formulation"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              16,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              16,
+              "plant_protein_bowl"
+            ],
+            "rows": 4
+          },
+          {
+            "cell": [
+              17,
+              "breakfast_formulation"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              17,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              17,
+              "plant_protein_bowl"
+            ],
+            "rows": 4
+          },
+          {
+            "cell": [
+              18,
+              "breakfast_formulation"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              18,
+              "high_fiber_snack"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              18,
+              "plant_protein_bowl"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              19,
+              "high_fiber_snack"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              19,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              20,
+              "breakfast_formulation"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              20,
+              "high_fiber_snack"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              20,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              20,
+              "plant_protein_bowl"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              21,
+              "breakfast_formulation"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              21,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              21,
+              "plant_protein_bowl"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              22,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 3
+          },
+          {
+            "cell": [
+              22,
+              "plant_protein_bowl"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              23,
+              "breakfast_formulation"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              23,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              23,
+              "plant_protein_bowl"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              25,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              25,
+              "plant_protein_bowl"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              26,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              28,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              28,
+              "plant_protein_bowl"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              30,
+              "plant_protein_bowl"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              31,
+              "plant_protein_bowl"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              34,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              35,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              37,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              37,
+              "plant_protein_bowl"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              38,
+              "plant_protein_bowl"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              39,
+              "low_sodium_pantry_meal"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              39,
+              "plant_protein_bowl"
+            ],
+            "rows": 2
+          },
+          {
+            "cell": [
+              40,
+              "breakfast_formulation"
+            ],
+            "rows": 1
+          },
+          {
+            "cell": [
+              40,
+              "plant_protein_bowl"
+            ],
+            "rows": 1
+          }
+        ],
+        "fresh": true,
+        "rows": 128,
+        "rows_sha256": "744b85ec1fe2bd025831d14ae42615349702de4d38e8b5c1c214e480064f7a6c"
+      },
+      "level": 5,
+      "level_admitted": true,
+      "original_datasetdict_split": "multi_answer",
+      "parquet_bytes": 65530,
+      "parquet_sha256": "474f112bfcb3abf9c3ac41e49c03e2b4f34e6a1d11670a4ad03768a6f37ac763",
+      "protocol_sha256": "cc67865c1dda90ca5bad77bfa6863fd88abdd51e4f976ca521e58262d56e7614",
+      "recipe_sha256": "79a9c52ca8daae72ce7922cda15c2fcfd7b0fde59b8a827d291d477b75b5f561",
+      "rows": 128,
+      "rows_sha256": "744b85ec1fe2bd025831d14ae42615349702de4d38e8b5c1c214e480064f7a6c",
+      "source_column_order": [
+        "problem",
+        "answer",
+        "modebench_task",
+        "answer_mode_family",
+        "answer_mode_count",
+        "answer_mode_split",
+        "instance_fingerprint",
+        "scale_candidate_generator",
+        "scale_candidate_tier",
+        "scale_candidate_profile",
+        "scale_origin_metadata",
+        "scale_cell_index",
+        "scale_generation_seed",
+        "scale_bridge_law_version"
+      ],
+      "source_repository_path": "var/data/modebench_scale_release_v2/level5/dataset/pantry",
+      "split": "eval",
+      "status": "admitted_difficulty_matched",
+      "support_histogram": {
+        "10": 12,
+        "11": 8,
+        "12": 5,
+        "13": 6,
+        "14": 11,
+        "15": 6,
+        "16": 8,
+        "17": 8,
+        "18": 7,
+        "19": 4,
+        "20": 5,
+        "21": 8,
+        "22": 5,
+        "23": 4,
+        "25": 3,
+        "26": 2,
+        "28": 2,
+        "30": 1,
+        "31": 2,
+        "34": 1,
+        "35": 2,
+        "37": 3,
+        "38": 1,
+        "39": 3,
+        "40": 2,
+        "8": 4,
+        "9": 5
+      },
+      "verifier_values": [
+        "pantry_plan"
+      ]
+    }
+  ],
+  "status_corrected_by": {
+    "level4_release_status_sha256": "516b8d47fae5608cddda02b1d86959dd8afc79a2e419530a76fd3b9b9085ed51",
+    "level5_admission_sha256": "484c9fe432500c10a144d2689233d154a61d3f7e3c6e23fcf45436a814994273",
+    "reason": "the packaged status fields were copied from each frozen dataset identity, which is never revised after confirmation; they are re-derived here from the level admission and the published per-domain audits",
+    "source": "/n/fs/similarity/maxent-grpo/artifacts/correct_modebench_levels45_release_status_20260916.py",
+    "source_sha256": "530009d36ac4420ef6906cd85fa046436f0255cf9f11c7109e55b9a947287fb0"
+  }
+}

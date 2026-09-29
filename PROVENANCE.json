@@ -1,0 +1,252 @@
+{
+  "source_commit": "698dc0fd59de270d324a5a091eb7c4824268e4ee",
+  "source_kind": "working tree (includes uncommitted changes)",
+  "files": [
+    {
+      "path": "src/modebench/grading.py",
+      "sha256": "e455521ce5e83a3c7f7bfaa83f0b660e2e96e6e574c5a970fa381933afb6bea5",
+      "transformation": "extract benchmark functions; remove maze dispatch; benchmark-only reward adapter",
+      "source": "src/oat_drgrpo/math_grader.py",
+      "source_sha256": "5bc8a2382ab30d9ccb2dfa4a9cbfb78be28187e1b5049063814cc262b5bac255",
+      "extracted_sha256": "dcb9c199ff430b7c93fee773a8daee60fa3a4aa2299aa70f474c9097f4d13f47",
+      "post_extraction_review": "See repository validation and release status; final file identity differs from the initial mechanical extraction."
+    },
+    {
+      "path": "src/modebench/mathir.py",
+      "sha256": "1f35d72b68033e1a272305034ca15ab3a53a74edd93a838de831262c75b5825a",
+      "transformation": "namespace relocation; lazy torch import in templates",
+      "source": "src/oat_drgrpo/mathir.py",
+      "source_sha256": "1f35d72b68033e1a272305034ca15ab3a53a74edd93a838de831262c75b5825a",
+      "extracted_sha256": "1f35d72b68033e1a272305034ca15ab3a53a74edd93a838de831262c75b5825a"
+    },
+    {
+      "path": "src/modebench/pantry_plan.py",
+      "sha256": "dd246a0510fc5d2964794b6d228ff30cc682200cdc0073540bf45e3273666712",
+      "transformation": "namespace relocation; lazy torch import in templates",
+      "source": "src/oat_drgrpo/pantry_plan.py",
+      "source_sha256": "dd246a0510fc5d2964794b6d228ff30cc682200cdc0073540bf45e3273666712",
+      "extracted_sha256": "dd246a0510fc5d2964794b6d228ff30cc682200cdc0073540bf45e3273666712"
+    },
+    {
+      "path": "src/modebench/pantry_support_action.py",
+      "sha256": "78c555485b1975fd17cc8ad30886f3665b41a4c6423b14ade9540136db212a6a",
+      "transformation": "namespace relocation; lazy torch import in templates",
+      "source": "src/oat_drgrpo/pantry_support_action.py",
+      "source_sha256": "78c555485b1975fd17cc8ad30886f3665b41a4c6423b14ade9540136db212a6a",
+      "extracted_sha256": "78c555485b1975fd17cc8ad30886f3665b41a4c6423b14ade9540136db212a6a"
+    },
+    {
+      "path": "src/modebench/python_modebench.py",
+      "sha256": "94e77d8c8f45800138f97776c343280c6f7419ee8d8587bbc0a1182418777a40",
+      "transformation": "namespace relocation; lazy torch import in templates",
+      "source": "src/oat_drgrpo/python_modebench.py",
+      "source_sha256": "0fa4a452d5935f3922ef3e2ffeacbc5d9f3ddb8defdcbb31c04050346313c726",
+      "extracted_sha256": "94e77d8c8f45800138f97776c343280c6f7419ee8d8587bbc0a1182418777a40"
+    },
+    {
+      "path": "src/modebench/python_modebench_process.py",
+      "sha256": "7679505af4f683d5c593bfb3c679b578d43d6d86d5b8fea9b87c78672c562244",
+      "transformation": "namespace relocation; lazy torch import in templates",
+      "source": "src/oat_drgrpo/python_modebench_process.py",
+      "source_sha256": "5b8471171f9ef433d111db19b39dba172482bfcc32e01897cf3382357096680e",
+      "extracted_sha256": "7679505af4f683d5c593bfb3c679b578d43d6d86d5b8fea9b87c78672c562244"
+    },
+    {
+      "path": "src/modebench/python_modebench_worker.py",
+      "sha256": "6595e9ea6a1786753734e8ddb03efd4d78ac7f6091e8dc3c6db312eef12db210",
+      "transformation": "namespace relocation; lazy torch import in templates",
+      "source": "src/oat_drgrpo/python_modebench_worker.py",
+      "source_sha256": "6595e9ea6a1786753734e8ddb03efd4d78ac7f6091e8dc3c6db312eef12db210",
+      "extracted_sha256": "6595e9ea6a1786753734e8ddb03efd4d78ac7f6091e8dc3c6db312eef12db210"
+    },
+    {
+      "path": "src/modebench/templates.py",
+      "sha256": "a2064baf07693f8813c735c7c9c73ff3ed6de000d40c2b41b030539cf2f726d2",
+      "transformation": "namespace relocation; lazy torch import in templates",
+      "source": "src/oat_drgrpo/templates.py",
+      "source_sha256": "b2c410eb252aac54201016b13597fb7f83e8d8c8ba845424e377d5335114c51a",
+      "extracted_sha256": "a2064baf07693f8813c735c7c9c73ff3ed6de000d40c2b41b030539cf2f726d2"
+    },
+    {
+      "path": "src/modebench/metrics.py",
+      "sha256": "7ec513efc3c9ce627945833a27692620129b5f3888dc2311584554ff21aed6a5",
+      "transformation": "byte-preserving copy",
+      "source": "ops/mode_diversity.py",
+      "source_sha256": "7ec513efc3c9ce627945833a27692620129b5f3888dc2311584554ff21aed6a5",
+      "extracted_sha256": "7ec513efc3c9ce627945833a27692620129b5f3888dc2311584554ff21aed6a5"
+    },
+    {
+      "path": "src/modebench/historical_prompts.py",
+      "sha256": "54a9ea1b86c58c8a9a5cd144efa95d5b28b0bcf62b7b703397c44412b9282e1b",
+      "transformation": "package imports; remove research-checkout sys.path injection",
+      "source": "ops/frontier_modebench_contract.py",
+      "source_sha256": "abfd71ec6f08267310aa2545f6f19e0a6213c8d69b2838410953850e101624f7",
+      "extracted_sha256": "54a9ea1b86c58c8a9a5cd144efa95d5b28b0bcf62b7b703397c44412b9282e1b"
+    },
+    {
+      "path": "src/modebench/prompts.py",
+      "sha256": "c1414eb3a2ffe7964e9f46c2afa0d7d93f63edf91cfcdc29a6996a7b5e60dea9",
+      "transformation": "package imports; remove research-checkout sys.path injection",
+      "source": "ops/modebench_current_contract.py",
+      "source_sha256": "3a2f63cb70469ccd7374f1295b99549df9b0a84dcc687ddc1dcc63086fd77310",
+      "extracted_sha256": "3a99e9145f18a3c08cd97958899fa1b66e800bc90e5bc0135de6ee91297167e3",
+      "post_extraction_review": "See repository validation and release status; final file identity differs from the initial mechanical extraction."
+    },
+    {
+      "path": "src/modebench/__init__.py",
+      "sha256": "238f7da5285e1c507aa02ba3251cfffa3ed959ce13fb8c3025dad3258bf2b592",
+      "transformation": "new release interface",
+      "extracted_sha256": "238f7da5285e1c507aa02ba3251cfffa3ed959ce13fb8c3025dad3258bf2b592"
+    },
+    {
+      "path": "ops/make_modebench_data.py",
+      "sha256": "b094263a353bb85f6f8654a5c0a6b03e55ae6a43e4fd0ceb4bcde4881eff5e3a",
+      "transformation": "benchmark imports relocated",
+      "source": "ops/make_modebench_data.py",
+      "source_sha256": "b094263a353bb85f6f8654a5c0a6b03e55ae6a43e4fd0ceb4bcde4881eff5e3a",
+      "extracted_sha256": "b094263a353bb85f6f8654a5c0a6b03e55ae6a43e4fd0ceb4bcde4881eff5e3a"
+    },
+    {
+      "path": "ops/make_exact_countdown_mode_data.py",
+      "sha256": "a087efc9253981aa589138a2aff2d2f5de1cab4d0dd7012e9890c24a64cae165",
+      "transformation": "benchmark imports relocated",
+      "source": "ops/make_exact_countdown_mode_data.py",
+      "source_sha256": "9712aa2b01f61df567cbbef569c4d7e1230aebebf34d51db641daeaccee5f583",
+      "extracted_sha256": "a087efc9253981aa589138a2aff2d2f5de1cab4d0dd7012e9890c24a64cae165"
+    },
+    {
+      "path": "ops/make_python_factor_mode_data.py",
+      "sha256": "b522c592e03b2e772f45486723f3d182fc21add9e4d6c0a887d01f699d6474ec",
+      "transformation": "benchmark imports relocated",
+      "source": "ops/make_python_factor_mode_data.py",
+      "source_sha256": "86d0f23147360bd389190eac4a0fbb99950e08287a986a01bda7dd13f811bc18",
+      "extracted_sha256": "b522c592e03b2e772f45486723f3d182fc21add9e4d6c0a887d01f699d6474ec"
+    },
+    {
+      "path": "ops/verify_python_factor_mode.py",
+      "sha256": "22964a490a63d48faacce75941c48a01565ca922ca564c28a3b2dd4b74a30a3b",
+      "transformation": "benchmark imports relocated",
+      "source": "ops/verify_python_factor_mode.py",
+      "source_sha256": "8bb662ac8bdc866a25f9db94f9b903b4f39daba3ccba705d971b9ca5ba4718e0",
+      "extracted_sha256": "22964a490a63d48faacce75941c48a01565ca922ca564c28a3b2dd4b74a30a3b"
+    },
+    {
+      "path": "ops/make_mathir_action_menu_data.py",
+      "sha256": "9075e3f1c4ac7a0d2b337cab1d016f2752612c6a94b7b993a0b9d0eb28477716",
+      "transformation": "benchmark imports relocated",
+      "source": "ops/make_mathir_action_menu_data.py",
+      "source_sha256": "bc1122151c9abbfa5b7e3e7dbbe48535b30bb75bea3b1619c0472b2fd0ae0418",
+      "extracted_sha256": "9075e3f1c4ac7a0d2b337cab1d016f2752612c6a94b7b993a0b9d0eb28477716"
+    },
+    {
+      "path": "ops/make_pantry_plan_mode_data.py",
+      "sha256": "a5f2942f93fe8b1ac0a55c51c164aedaa999873db43a996792d9d340e7d09cdb",
+      "transformation": "benchmark imports relocated",
+      "source": "ops/make_pantry_plan_mode_data.py",
+      "source_sha256": "ce790e0da293774d722c5faab69ce9fa23d70e0f7ab78ca92022fb1d6319d866",
+      "extracted_sha256": "a5f2942f93fe8b1ac0a55c51c164aedaa999873db43a996792d9d340e7d09cdb"
+    },
+    {
+      "path": "ops/make_pantry_plan_mode_data_v2.py",
+      "sha256": "d32bac202688be48588887acf7f0800137ffb77ee5b3f1ce9c11b42bad956240",
+      "transformation": "benchmark imports relocated",
+      "source": "ops/make_pantry_plan_mode_data_v2.py",
+      "source_sha256": "d32bac202688be48588887acf7f0800137ffb77ee5b3f1ce9c11b42bad956240",
+      "extracted_sha256": "d32bac202688be48588887acf7f0800137ffb77ee5b3f1ce9c11b42bad956240"
+    },
+    {
+      "path": "tests/test_modebench_grader.py",
+      "sha256": "a82f57702890487de883fee4186832e89076b5739d5c243656e9b4ca97972829",
+      "transformation": "imports relocated",
+      "source": "tests/test_modebench_grader.py",
+      "source_sha256": "18ebd675c2d2e3d5f6865ddab0d75cb8214627683cfba81784add61f3bffb644",
+      "extracted_sha256": "a82f57702890487de883fee4186832e89076b5739d5c243656e9b4ca97972829"
+    },
+    {
+      "path": "tests/test_python_modebench.py",
+      "sha256": "1262a5c8b962199a4e0e79f6b26ef8860bacffa6592d4c8387ff45548eeb9c80",
+      "transformation": "imports relocated",
+      "source": "tests/test_python_modebench.py",
+      "source_sha256": "f4ad28cc2790f356543e5c1e9a74d7843d881b0014865e565ca56335cf69f225",
+      "extracted_sha256": "1262a5c8b962199a4e0e79f6b26ef8860bacffa6592d4c8387ff45548eeb9c80"
+    },
+    {
+      "path": "tests/test_mathir_action_menu.py",
+      "sha256": "f2901f787184227e72142f23a5a5ac24f0f6f20165afa9fa7ef872765ca4586e",
+      "transformation": "imports relocated",
+      "source": "tests/test_mathir_action_menu.py",
+      "source_sha256": "f502b6b23b0b45d37ad7d75341214d8585c6b7ccb67426ce96260641c6524163",
+      "extracted_sha256": "f2901f787184227e72142f23a5a5ac24f0f6f20165afa9fa7ef872765ca4586e"
+    },
+    {
+      "path": "tests/test_mathir_algebra.py",
+      "sha256": "b5f9bc96f7379a93104bd21fb4326d91c065496295c15558bc43334fb2dce4c0",
+      "transformation": "imports relocated",
+      "source": "tests/test_mathir_algebra.py",
+      "source_sha256": "4d1c0d2d5e6dddd06e4484518fb67180c0a86929018767b01a0d22fe7a14d916",
+      "extracted_sha256": "b5f9bc96f7379a93104bd21fb4326d91c065496295c15558bc43334fb2dce4c0"
+    },
+    {
+      "path": "tests/test_pantry_plan.py",
+      "sha256": "e5caa35842f635c3a0bb444b08168895beaacc9fbc2fb37ff3f3fccb3f8a0ceb",
+      "transformation": "imports relocated",
+      "source": "tests/test_pantry_plan.py",
+      "source_sha256": "99b9629a29074dfdaf4bc79c194ca25bd77b3266d38797928807f13d6099216a",
+      "extracted_sha256": "e5caa35842f635c3a0bb444b08168895beaacc9fbc2fb37ff3f3fccb3f8a0ceb"
+    },
+    {
+      "path": "tests/test_pantry_support_action.py",
+      "sha256": "30df936a8cd3add67ac0731250e2319cfe2bdea76d821ca7682fc0232402a9ea",
+      "transformation": "imports relocated",
+      "source": "tests/test_pantry_support_action.py",
+      "source_sha256": "66b0fcb17d858ebd3414eb4e63f204c83b43ac7448dbd4d989032709d821c664",
+      "extracted_sha256": "d4667c01858d28d2714e9542a58b2632b31988223efdbf571280d5306bf99bb0"
+    },
+    {
+      "path": "tests/test_mode_diversity.py",
+      "sha256": "646f0cd265d2efcbb7e2791b9e65e7add48d24595b7c16c3596735b6b8dc87f3",
+      "transformation": "imports relocated",
+      "source": "tests/test_mode_diversity.py",
+      "source_sha256": "98b5e168d4118db580d5dcb60026622ce46ba67272b629673fe3e9bc548e5106",
+      "extracted_sha256": "97ff7f23e9ffd798c1d876a115e8dd3f1f7d6241b5f8e4dcfe13fca852e7cca5",
+      "post_extraction_review": "See repository validation and release status; final file identity differs from the initial mechanical extraction."
+    },
+    {
+      "path": "tests/test_frontier_modebench_contract.py",
+      "sha256": "4cf8e40e86906eaf15431e613915b9a6b054cd513f614a67b14a951f7efa473d",
+      "transformation": "imports relocated",
+      "source": "tests/test_frontier_modebench_contract.py",
+      "source_sha256": "ec58989190025a2abac60308810c9b64a62b0bd06ff3b85b4eb553edd584b51a",
+      "extracted_sha256": "4cf8e40e86906eaf15431e613915b9a6b054cd513f614a67b14a951f7efa473d"
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "transformation": "byte-preserving copy",
+      "source": "LICENSE",
+      "source_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "extracted_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "53cfb1cacaf65736b38439ed81d55e8c5e7252aa065aa873d23f6446967e900c",
+      "transformation": "new release interface",
+      "extracted_sha256": "53cfb1cacaf65736b38439ed81d55e8c5e7252aa065aa873d23f6446967e900c"
+    },
+    {
+      "path": "tests/conftest.py",
+      "sha256": "8f705f40cc7bdfc8eea108fcd6258562e177d13f171dd505705bb8740bb52b39",
+      "transformation": "new release interface",
+      "extracted_sha256": "8f705f40cc7bdfc8eea108fcd6258562e177d13f171dd505705bb8740bb52b39"
+    },
+    {
+      "path": "docs/assets/modebench-domains.png",
+      "source": "paper/figures/modebench_examples.png",
+      "source_sha256": "5485d7e44b6b5d20085d138885e6661535c52cb738125105ff206dc8cd0fcb5b",
+      "sha256": "5485d7e44b6b5d20085d138885e6661535c52cb738125105ff206dc8cd0fcb5b",
+      "extracted_sha256": "5485d7e44b6b5d20085d138885e6661535c52cb738125105ff206dc8cd0fcb5b",
+      "transformation": "Unmodified paper domain illustration, copied for the public README."
+    }
+  ],
+  "scope": "Initial source extraction map. RELEASE_MANIFEST.json covers all final files, including new interfaces and evidence."
+}
