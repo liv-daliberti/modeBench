@@ -1,0 +1,13 @@
+{
+  "model": {
+    "id": "replace-with-your-model-id",
+    "revision": "replace-with-the-exact-model-revision"
+  },
+  "generation": {
+    "temperature": 0.7,
+    "top_p": 0.95,
+    "max_tokens": 192,
+    "seed": 43
+  },
+  "prompt_condition": "registered_hints_v1"
+}

@@ -23,8 +23,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "bdfc5b53872c157578f0f5cc9e6c17154367580e875c1c7ad90e0eef344daf02",
-      "bytes": 14128
+      "sha256": "17e4775dce9fcb46080b7a4249c5dc4e29429e1e353864ba735b082afcbb75a6",
+      "bytes": 19165
     },
     {
       "path": "assets/modebench-domains.png",
@@ -412,6 +412,11 @@
       "bytes": 330
     },
     {
+      "path": "examples/run.json",
+      "sha256": "b38f7436609d4bf62aa1713f395206323aecebecd54321c73c4132bf9da99fb7",
+      "bytes": 266
+    },
+    {
       "path": "ops/make_exact_countdown_mode_data.py",
       "sha256": "a087efc9253981aa589138a2aff2d2f5de1cab4d0dd7012e9890c24a64cae165",
       "bytes": 6480
@@ -493,28 +498,38 @@
     },
     {
       "path": "provenance/source.json",
-      "sha256": "86bd173f0dd5b456b236b546034ed5a1e5421071e088073379443369b65ae179",
+      "sha256": "dee91426e5ccb31b94a4d7070602a14429face0f1dbf711e10e4369f5df70fad",
       "bytes": 13964
     },
     {
       "path": "pyproject.toml",
-      "sha256": "fdf648817f2a59e57f2a9b451570a78dc413fccdfcc74c206987f81438864618",
-      "bytes": 854
+      "sha256": "78aa5f569a3a88ad3fac725d5fb1d666d20d35c8d00b465d3f038c8e27718e3e",
+      "bytes": 921
     },
     {
       "path": "src/modebench/__init__.py",
-      "sha256": "238f7da5285e1c507aa02ba3251cfffa3ed959ce13fb8c3025dad3258bf2b592",
+      "sha256": "ed30e5f9c9d6ed64cfd1593d27d7028324591130f096eff5ac497d46179dff59",
       "bytes": 280
     },
     {
       "path": "src/modebench/cli.py",
-      "sha256": "95895d8e706bad006156196035b894b721d9e6bb6ae6dba1883efb00fb1f8edb",
-      "bytes": 3133
+      "sha256": "e4b6117886830d7ea592bd5d083e38f5679cb2226f7ee3212c5cdc806cf34f02",
+      "bytes": 3399
     },
     {
       "path": "src/modebench/data.py",
-      "sha256": "40dd839c7373dfab891ae42b2ef18daaa97613c178e8c6bf59e7206d8da27ca6",
-      "bytes": 967
+      "sha256": "d42fa6af5ea7b24a0382631eaf3309c59bc3ca912153804419ad0e1604613650",
+      "bytes": 3945
+    },
+    {
+      "path": "src/modebench/evaluation.py",
+      "sha256": "a153ddbbba662e3d54d1bebe8dde972cc5451d85f8fb26c5cbf04c34fc4a14c2",
+      "bytes": 11830
+    },
+    {
+      "path": "src/modebench/frozen_splits.json",
+      "sha256": "b25710ac5514f4d6f3fe566d830ccaedf60c42fb22345c04e852f735e6b71405",
+      "bytes": 54973
     },
     {
       "path": "src/modebench/grading.py",
@@ -523,8 +538,13 @@
     },
     {
       "path": "src/modebench/historical_prompts.py",
-      "sha256": "54a9ea1b86c58c8a9a5cd144efa95d5b28b0bcf62b7b703397c44412b9282e1b",
-      "bytes": 5934
+      "sha256": "ebb0888e14000bd66acb30853de5772d92af200a81220c676b387a7e7ef97f24",
+      "bytes": 6095
+    },
+    {
+      "path": "src/modebench/identity.py",
+      "sha256": "b2035c40d4017a1d3511c66fe76a52da771ac4ecaaf73e456303940117fd6ef0",
+      "bytes": 1794
     },
     {
       "path": "src/modebench/mathir.py",
@@ -533,8 +553,8 @@
     },
     {
       "path": "src/modebench/metrics.py",
-      "sha256": "7ec513efc3c9ce627945833a27692620129b5f3888dc2311584554ff21aed6a5",
-      "bytes": 8820
+      "sha256": "611fee51132bec4b1c32568c3e6ccd449a70557887b18faa085ad02c6978b249",
+      "bytes": 9635
     },
     {
       "path": "src/modebench/pantry_plan.py",
@@ -572,6 +592,11 @@
       "bytes": 19943
     },
     {
+      "path": "src/modebench/validation.py",
+      "sha256": "440c68849f3aeb20cb4bccb26bb1590ed95fcaaff09698b5cc54450f76951ffb",
+      "bytes": 6780
+    },
+    {
       "path": "tests/collision_reference.py",
       "sha256": "047a270e07758e77790d4b72dc81f1670ba599be9f78767ce231d42cfc413601",
       "bytes": 446
@@ -582,9 +607,19 @@
       "bytes": 144
     },
     {
+      "path": "tests/test_evaluation_contract.py",
+      "sha256": "893d803e3a0328f785064a83374729265398afdea8aa9bafdecfd4a550a2ca6f",
+      "bytes": 9289
+    },
+    {
       "path": "tests/test_frontier_modebench_contract.py",
       "sha256": "4cf8e40e86906eaf15431e613915b9a6b054cd513f614a67b14a951f7efa473d",
       "bytes": 4547
+    },
+    {
+      "path": "tests/test_frozen_evaluation.py",
+      "sha256": "ea6deb35933516a81d612a6b2ef7af157b50fec9d5ca2efaa7d86927c374a4c9",
+      "bytes": 8668
     },
     {
       "path": "tests/test_mathir_action_menu.py",

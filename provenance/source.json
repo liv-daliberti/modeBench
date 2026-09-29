@@ -69,7 +69,7 @@
     },
     {
       "path": "src/modebench/metrics.py",
-      "sha256": "7ec513efc3c9ce627945833a27692620129b5f3888dc2311584554ff21aed6a5",
+      "sha256": "611fee51132bec4b1c32568c3e6ccd449a70557887b18faa085ad02c6978b249",
       "transformation": "byte-preserving copy",
       "source": "ops/mode_diversity.py",
       "source_sha256": "7ec513efc3c9ce627945833a27692620129b5f3888dc2311584554ff21aed6a5",
@@ -77,7 +77,7 @@
     },
     {
       "path": "src/modebench/historical_prompts.py",
-      "sha256": "54a9ea1b86c58c8a9a5cd144efa95d5b28b0bcf62b7b703397c44412b9282e1b",
+      "sha256": "ebb0888e14000bd66acb30853de5772d92af200a81220c676b387a7e7ef97f24",
       "transformation": "package imports; remove research-checkout sys.path injection",
       "source": "ops/frontier_modebench_contract.py",
       "source_sha256": "abfd71ec6f08267310aa2545f6f19e0a6213c8d69b2838410953850e101624f7",
@@ -94,7 +94,7 @@
     },
     {
       "path": "src/modebench/__init__.py",
-      "sha256": "238f7da5285e1c507aa02ba3251cfffa3ed959ce13fb8c3025dad3258bf2b592",
+      "sha256": "ed30e5f9c9d6ed64cfd1593d27d7028324591130f096eff5ac497d46179dff59",
       "transformation": "new release interface",
       "extracted_sha256": "238f7da5285e1c507aa02ba3251cfffa3ed959ce13fb8c3025dad3258bf2b592"
     },

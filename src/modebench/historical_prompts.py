@@ -108,7 +108,11 @@ def grade_response(level: int | str, domain: str, row: Mapping[str, Any], text: 
     level, domain = _identity(level, domain)
     if not isinstance(text, str):
         raise TypeError("response text must be a string")
-    answer = row["answer"]
+    from .validation import validate_reference
+
+    if "answer" not in row:
+        raise ValueError("missing field: answer")
+    answer = validate_reference(level, domain, row["answer"])
     graded_text = text
     if level == 1 and domain == "pantry_plan":
         from modebench.pantry_support_action import decode_pantry_support_mask

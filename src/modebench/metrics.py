@@ -51,6 +51,9 @@ from __future__ import annotations
 from collections import Counter
 from typing import Any, Iterable, Mapping, Sequence
 import statistics
+import math
+from numbers import Integral, Real
+from .validation import positive_integer
 
 PER_GROUP = 'per_group'
 POOLED = 'pooled'
@@ -58,6 +61,13 @@ AGGREGATIONS = (PER_GROUP, POOLED)
 
 #: Cells with fewer defined prompts than this are reported as gaps, not numbers.
 DEFAULT_MIN_DEFINED_PROMPTS = 30
+
+
+def _counts(counts):
+    values = list(counts.values()) if isinstance(counts, Mapping) else list(counts)
+    if any(isinstance(n, bool) or not isinstance(n, Integral) or n < 0 for n in values):
+        raise ValueError('verified mode counts must be nonnegative integers')
+    return [int(n) for n in values]
 
 
 def mode_diversity(counts: Mapping[Any, int] | Iterable[int]) -> float | None:
@@ -68,9 +78,7 @@ def mode_diversity(counts: Mapping[Any, int] | Iterable[int]) -> float | None:
     counts. Returns ``None`` when fewer than two verified samples are present,
     which is the only case where the quantity is undefined.
     """
-    values = list(counts.values()) if isinstance(counts, Mapping) else list(counts)
-    if any(n < 0 for n in values):
-        raise ValueError('verified mode counts must be nonnegative')
+    values = _counts(counts)
     total = sum(values)
     if total < 2:
         return None
@@ -89,11 +97,8 @@ def rarefied_distinct(counts: Mapping[Any, int] | Iterable[int], depth: int = 2)
     fewer prompts, so they serve as robustness checks rather than headline
     numbers.
     """
-    if depth < 1:
-        raise ValueError('rarefaction depth must be at least one')
-    values = list(counts.values()) if isinstance(counts, Mapping) else list(counts)
-    if any(n < 0 for n in values):
-        raise ValueError('verified mode counts must be nonnegative')
+    depth = positive_integer(depth, 'rarefaction depth')
+    values = _counts(counts)
     total = sum(values)
     if total < depth:
         return None
@@ -119,15 +124,25 @@ def effective_modes(d_mode: float | None) -> float | None:
     """
     if d_mode is None:
         return None
-    if d_mode >= 1.0:
+    if isinstance(d_mode, bool) or not isinstance(d_mode, Real) or not math.isfinite(d_mode) or not 0 <= d_mode <= 1:
+        raise ValueError('d_mode must be finite and between zero and one')
+    if d_mode == 1.0:
         return None
     return 1.0 / (1.0 - d_mode)
 
 
 def verified_mode_counts(attempts: Sequence[Mapping[str, Any]]) -> Counter:
     """Count verified attempts by canonical key, ignoring failures."""
-    return Counter(attempt['canonical_key'] for attempt in attempts
-                   if attempt.get('verified'))
+    counts = Counter()
+    for attempt in attempts:
+        if not isinstance(attempt, Mapping) or type(attempt.get('verified')) is not bool:
+            raise ValueError('each attempt requires a boolean verified flag')
+        if attempt['verified']:
+            key = attempt.get('canonical_key')
+            if not isinstance(key, str) or not key:
+                raise ValueError('verified attempts require a nonempty canonical_key string')
+            counts[key] += 1
+    return counts
 
 
 def prompt_mode_diversity(draws: Sequence[Mapping[str, Any]],
@@ -166,6 +181,9 @@ def cell_summary(prompt_results: Sequence[Mapping[str, Any]],
     part of the result, not diagnostics, and are meant to travel with the value
     wherever it is printed.
     """
+    min_defined_prompts = positive_integer(min_defined_prompts, 'min_defined_prompts')
+    if aggregation not in AGGREGATIONS:
+        raise ValueError(f'unknown aggregation: {aggregation!r}')
     values = [prompt_mode_diversity(result['draws'], aggregation)
               for result in prompt_results]
     defined = [value for value in values if value is not None]

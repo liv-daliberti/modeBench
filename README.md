@@ -62,7 +62,7 @@ print(result)  # verified, canonical_key, graded_text
 
 Keep `answer`, support counts, and certified solutions out of model requests. Match saved responses by stable prompt ID, not asynchronous completion order. Preserve raw generations, refusals, and malformed answers; collection failures need a declared protocol and must not silently reduce the draw budget.
 
-For batch evaluation, write one JSON object per prompt to a JSONL file:
+**Custom-reference evaluation:** write one JSON object per prompt to a JSONL file:
 
 ```json
 {"id":"example","level":1,"domain":"countdown","answer":{"verifier":"countdown","numbers":[1,2,3],"target":6},"responses":["1+2+3","1*2*3","1+2","bad"]}
@@ -80,9 +80,63 @@ modebench evaluate INPUT.jsonl --output OUTPUT.json
 | `answer` | Exact executable reference from the frozen row, as an object or JSON-encoded string |
 | `responses` | Nonempty list of raw response strings, including failed answers |
 
-Use one input file per model and generation condition: grouping uses only level, domain, and response count `k`. Extra metadata fields are not used in scoring; retain collection metadata separately. The evaluator does not authenticate references against a dataset, model identity, or generation provenance.
+Use one input file per model and generation condition. Grouping uses level, domain, and response count `k`. Version 0.2 rejects unknown record fields, malformed references, domain/verifier mismatches, duplicate JSON fields, and nonfinite numbers before grading. CLI errors identify the input line and prompt. Integer counts and positive integer thresholds are enforced by the metric API too.
 
-Outputs contain a schema version, the input SHA-256, and cells with accuracy, pass@k, distinct@k, PCMD/support, and per-response results. Failed verification has a null canonical key. For Level 1 Pantry, `graded_text` is the deterministic allocation projected from the submitted six-bit support mask. Use `grade_response` or the CLI for this interface; the low-level key validator does not apply that projection.
+Custom references are labeled `dataset.kind: "custom"` and `references_authenticated: false`. Use `--run RUN.json` to record model, generation, and prompt metadata; without it, those details are explicitly unreported. An inline `run` object on every record is also supported. Inline metadata must match the shared run exactly; mixed models, revisions, generation settings, or prompt conditions are rejected. Arbitrary record fields such as `model_id` are rejected rather than silently ignored.
+
+Outputs use `modebench-saved-responses-v2` and include the input SHA-256, software identity, run metadata, dataset identity, aggregation settings, and cells with accuracy, pass@k, distinct@k, PCMD/support, and per-response results. Failed verification has a null canonical key. For Level 1 Pantry, `graded_text` is the deterministic allocation projected from the submitted six-bit support mask. Use `grade_response` or the CLI for this interface; the low-level key validator does not apply that projection.
+
+### Evaluate a frozen split
+
+Export registered requests with stable IDs and prompt/dataset hashes. Reference answers and support counts are never included:
+
+```sh
+modebench prepare --config level1_countdown --output outputs/requests.jsonl
+```
+
+Send each `messages` list to your model. Save the exported records to a response file with a `responses` list added to each record. Preserve IDs and hashes. IDs have the form `level1_countdown/eval/0`: configuration, split, and zero-based row index. They are stable within the frozen split identity.
+
+Copy [examples/run.json](examples/run.json) to your run directory and replace its illustrative values with the actual settings:
+
+```json
+{
+  "model": {"id": "your-model", "revision": "exact-model-revision"},
+  "generation": {"temperature": 0.7, "top_p": 0.95, "max_tokens": 192, "seed": 43},
+  "prompt_condition": "registered_hints_v1"
+}
+```
+
+Then evaluate against the frozen references:
+
+```sh
+modebench evaluate outputs/responses.jsonl --config level1_countdown \
+  --run outputs/run.json --output outputs/metrics.json
+```
+
+`--split` defaults to `eval`; `train` and `dev` are also accepted where available. `--data-root` defaults to `data/`. Frozen evaluation compares the local manifest against the registry shipped inside the package, verifies Parquet bytes, resolves each prompt ID, and supplies its reference internally. Do not include `answer` in frozen response records. Optional supplied `level`, `domain`, `problem`, `messages`, `prompt_sha256`, and `dataset_sha256` must match the frozen source and registered prompt.
+
+Frozen records must have the same draw count per prompt; failures remain in the response lists. An optional `generation.draws_per_prompt` in run metadata is checked against every record in either mode. Complete split coverage is required by default. For an intentional subset, use `--allow-partial`; results list selected and missing IDs, counts, and `complete: false`. Missing prompts are not imputed. Frozen evaluation requires `registered_hints_v1`; changed prompt conditions belong in custom mode. Frozen reference binding does not mean every dataset is an admitted benchmark condition: Level 4 and diagnostic qualifications remain attached to the results.
+
+<details>
+<summary>Result identities and compatibility</summary>
+
+| Field | Meaning |
+| --- | --- |
+| `software` | ModeBench version, verifier contract, package-source hashes, Python/dependency versions, Git commit/dirty state when available |
+| `input_sha256` | CLI input file bytes; the Python API instead always supplies `records_sha256` for canonical JSON records |
+| `run`, `run_sha256` | Declared model/revision, generation settings, prompt condition, and metadata digest |
+| `dataset` | Custom versus frozen binding; frozen split metadata, hashes, coverage, and missing IDs |
+| `evaluation` | Aggregation, equal prompt weighting, support threshold, and empirical pass@k convention |
+| `cells[*].protocol_notes` | Level 4 admission and MathIR matching caveats |
+| `prompt_results[*]` | Prompt/reference hashes, registered prompt profile, scores, and graded attempts |
+
+Generation settings are **user-declared**, not proof that a model produced the responses. Prompt hashes identify the expected registered messages, not the actual transport used. Custom records need `problem` plus declared run metadata to compute a prompt hash; otherwise it is null. Model identity/revision strings and a nonempty generation-settings object are required whenever run metadata is supplied. Record any unavailable provider revision explicitly, with the collection date; do not invent one.
+
+Version 0.2 keeps the existing `evaluate` command and `modebench.cli.evaluate` import, and valid scores remain unchanged. The output schema advances from v1 to v2. Consumers that check the schema must update; malformed references and previously ignored extra record fields now raise errors. The low-level verifier remains fail-closed for incorrect model responses.
+
+The Python API also supports `evaluate(records, run=metadata, data_root="data", config="level1_countdown", split="eval", allow_partial=False)` through `modebench.evaluation`.
+
+</details>
 
 <details>
 <summary>Troubleshooting</summary>
@@ -173,7 +227,7 @@ make check                          # Regression suite, frozen analysis, dataset
 python ops/verify_release.py         # Repository file inventory and hashes
 ```
 
-Validation covers **112 tests**, **375 frozen base-grid cells**, and **72 splits / 15,552 rows**. CI runs on Python 3.10, 3.11, and 3.12. Installation, the saved-response example, and Countdown materialization were checked in a fresh Linux/Python 3.10 environment; [tested dependencies](provenance/constraints-py310.txt) are recorded.
+Validation covers the regression suite, **375 frozen base-grid cells**, and **72 splits / 15,552 rows**. CI runs on Python 3.10, 3.11, and 3.12. Installation, the saved-response example, and Countdown materialization were checked in a fresh Linux/Python 3.10 environment; [tested dependencies](provenance/constraints-py310.txt) are recorded.
 
 The [verified-key archive](evidence/base_grid_keys.jsonl.gz) retains attempt flags/keys, repeated groups, recorded pass@8/distinct@8, and source receipt hashes. `ops/reproduce_base_grid.py` compares its recomputed summaries with the [frozen results](evidence/mode_diversity_base_grid.json), allowing only final-bit numeric tolerance (`rel_tol=1e-14`, `abs_tol=1e-15`); identifiers and counts match exactly. The archive lacks complete raw responses, so this check does not independently regrade generations or reproduce model sampling.
 
@@ -185,7 +239,7 @@ For reported results, retain raw responses and record the repository commit, dat
 
 Run `make check` before submitting changes. Report bugs through [GitHub issues](https://github.com/liv-daliberti/modeBench/issues) with the commit, Python version, domain/level, and a minimal response/reference example.
 
-Explain changes to accepted responses, canonical identities, prompts, splits, or aggregation, and add focused behavioral tests. Keep frozen datasets and evidence immutable; changed conditions need new identities. Preserve the external Python execution boundary and keep the core independent of training frameworks.
+Explain changes to accepted responses, canonical identities, prompts, splits, or aggregation, and add focused behavioral tests. The packaged `src/modebench/frozen_splits.json` registry must match `data/manifest.json`; adding a frozen release is an explicit scientific version change, not a hash repair. Keep frozen datasets and evidence immutable; changed conditions need new identities. Preserve the external Python execution boundary and keep the core independent of training frameworks.
 
 After reviewing deliberate file changes, refresh the release inventory with `python ops/verify_release.py --refresh`, inspect its diff, then verify it again. Updating hashes records changed bytes; it does not establish scientific equivalence.
 
