@@ -29,4 +29,3 @@ def grade(candidate, spec, text):
             return result('correct', key='countdown:' + _canonical_countdown_ast(parsed), text=text)
     return result('incorrect' if evaluable else 'malformed', text=text,
                   detail='arithmetic or operand mismatch' if evaluable else 'invalid expression syntax')
-

@@ -20,4 +20,3 @@ def grade(candidate, spec):
     except (PythonModeBenchError, ArithmeticError) as error:
         return result('incorrect', text=candidate, detail=str(error))
     return result('correct', key=validation.canonical_key, text=candidate, outputs=list(validation.outputs))
-
