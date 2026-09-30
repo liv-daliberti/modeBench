@@ -258,6 +258,18 @@ def render():
     return "\n".join(lines)
 
 
+def performance_overview():
+    """Reuse the same evidence-derived base grid shown in the detailed section."""
+    text = render()
+    start = text.index("| Level | Qwen 0.5B |")
+    table_text = text[start:].split("\n\n", 1)[0]
+    return (
+        "<!-- modebench-performance:start -->\n"
+        + table_text
+        + "\n<!-- modebench-performance:end -->"
+    )
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     modes = parser.add_mutually_exclusive_group()
@@ -265,9 +277,18 @@ def main():
     modes.add_argument("--write", action="store_true")
     args = parser.parse_args()
     generated = render()
+    overview = performance_overview()
     path = ROOT / "README.md"
     text = path.read_text()
     if args.check or args.write:
+        overview_begin = "<!-- modebench-performance:start -->"
+        overview_end = "<!-- modebench-performance:end -->"
+        before, remainder = text.split(overview_begin, 1)
+        present, after = remainder.split(overview_end, 1)
+        if args.check and overview_begin + present + overview_end != overview:
+            raise SystemExit("README performance overview differs; review evidence then regenerate")
+        if args.write:
+            text = before + overview + after
         left, rest = text.split(BEGIN, 1)
         current, right = rest.split(END, 1)
         if args.check:

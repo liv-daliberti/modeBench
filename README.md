@@ -2,7 +2,7 @@
 
 **Can a model find more than one correct solution to the same problem?** ModeBench evaluates correctness and solution diversity using executable tasks with canonical outcome identities.
 
-[![The five ModeBench domains, each showing two verified solution modes.](assets/modebench-domains.png)](assets/modebench-domains.png)
+[![The five ModeBench domains, each showing two verified solution modes.](https://raw.githubusercontent.com/liv-daliberti/modeBench/v0.4.0/assets/modebench-domains.png)](https://raw.githubusercontent.com/liv-daliberti/modeBench/v0.4.0/assets/modebench-domains.png)
 
 Five domains, five task levels, and **72 frozen dataset splits containing 15,552 rows**. Evaluate saved model responses on CPU without PyTorch, CUDA, or a training framework. [Re:Max / Re:Dr](https://github.com/liv-daliberti/remax) provides the separate optimization and training implementation.
 
@@ -16,7 +16,32 @@ Five domains, five task levels, and **72 frozen dataset splits containing 15,552
 
 Mode identity is prompt-local. Different wording alone does not create a different mode; different Python programs can produce the same divisor vector.
 
-[Installation](#installation) · [Evaluation](#evaluation) · [Metrics](#metrics) · [Datasets](#datasets) · [Levels and results](#levels-and-results) · [Reproducibility](#reproducibility) · [Contributing](#contributing) · [Changelog](#changelog) · [Citation](#citation)
+[Performance](#performance) · [Installation](#installation) · [Evaluation](#evaluation) · [Metrics](#metrics) · [Datasets](#datasets) · [Levels and results](#levels-and-results) · [Reproducibility](#reproducibility) · [Contributing](#contributing) · [Changelog](#changelog) · [Citation](#citation)
+
+## Performance
+
+Mean **pass@8** across the five domains for Qwen2.5-Instruct before RL training. Each cell uses 128 held-out prompts per domain and four independent groups of eight responses. These are frozen measurements; the detailed [levels and results](#levels-and-results) section also reports diversity and Re:Dr/Re:Max training results.
+
+<!-- modebench-performance:start -->
+| Level | Qwen 0.5B | Qwen 3B | Qwen 7B | Qwen 14B |
+| --- | --- | --- | --- | --- |
+| 1 | 0.387 | 0.436 | 0.532 | 0.518 |
+| 2 | 0.276 | 0.368 | 0.429 | 0.495 |
+| 3 | 0.344 | 0.359 | 0.468 | 0.472 |
+| 4 † | 0.194 | 0.272 | 0.398 | 0.411 |
+| 5 | 0.169 | 0.150 | 0.318 | 0.359 |
+<!-- modebench-performance:end -->
+
+† Level 4 is not admitted overall: MathIR failed its difficulty-matching criterion. Levels change the task populations and sometimes prompt guidance. The grid uses native chat with temperature 1, top-p 1, a 192-token limit, boxed-direct Graph prompts and guided decoding elsewhere; it is not directly comparable to a differently sampled training evaluation.
+
+Recompute the retained base-model scores and verify every README table from the checkout:
+
+```sh
+python ops/reproduce_base_grid.py
+python ops/summarize_levels.py --check
+```
+
+The first command checks **375 cells** from saved correctness flags and canonical keys; it does not regenerate model responses. For [Re:Dr/Re:Max and other training comparisons](https://github.com/liv-daliberti/remax#performance-on-modebench), use ReMax's installed `remax results compare` command. Its comparison guide distinguishes runnable training, saved-key recomputation, and summary-only results.
 
 ## Installation
 
@@ -53,7 +78,7 @@ All five rows have the same scores. `reportable=false` is expected: one eligible
 | `python -m pip install '.[data]'` | Also Parquet loading and dataset construction dependencies |
 | `python -m pip install '.[dev]'` | Also the regression suite |
 
-The wheel and source distribution contain the same runtime resources; the checkout additionally supplies frozen Parquet files, scientific evidence, and construction scripts. CI uploads both distributions as the `distributions` artifact. They can be installed directly with `pip install /path/to/package.whl` or `pip install /path/to/package.tar.gz`; add `[data]` to that path for dataset loading. PyPI publication is not configured yet; do not assume an unrelated package with the same name is this release.
+The wheel and source distribution contain the same runtime resources; the checkout additionally supplies frozen Parquet files, scientific evidence, and construction scripts. CI uploads both distributions as the `distributions` artifact. They can be installed directly with `pip install /path/to/package.whl` or `pip install /path/to/package.tar.gz`; add `[data]` to that path for dataset loading. Versioned releases are built and tested once, attached to [GitHub Releases](https://github.com/liv-daliberti/modeBench/releases), and published to PyPI through Trusted Publishing. Once version 0.4.0 is available there, install it with `python -m pip install modebench==0.4.0`; the source installation above also works before publication completes.
 
 Supported direct dependency ranges are SymPy `>=1.12,<2`, and, for data, datasets `>=2.16.1,<6` and huggingface-hub `>=0.19.4,<2`. CI checks the minimum combination using [compatibility constraints](provenance/constraints-minimum.txt), and current resolver-selected versions. When using datasets 2.16, use those constraints: its older Arrow/NumPy integration requires them. This tests the endpoints, not every possible dependency combination. The [recorded Python 3.10 environment](provenance/constraints-py310.txt) is another reproducible installation choice.
 

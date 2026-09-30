@@ -8,8 +8,13 @@
     },
     {
       "path": ".github/workflows/check.yml",
-      "sha256": "e40b6c3d2c1ec6fb78bd98a1afa3bf644cdd359c0b2c4b6b9c5fe197218a3b2a",
-      "bytes": 2562
+      "sha256": "f12eff6d3952f3345d5470576378dc78c58f87c79996c6d059149bbc6f20486c",
+      "bytes": 2600
+    },
+    {
+      "path": ".github/workflows/publish.yml",
+      "sha256": "7a7620bed3435d1e5db120b5b90845e894b78c368340794ae737a192995e54bb",
+      "bytes": 4567
     },
     {
       "path": ".gitignore",
@@ -43,8 +48,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "069c145e5c2932c71a8919218d89a0215546367385952ea075c782dc84202a7e",
-      "bytes": 57981
+      "sha256": "2bb33c8aadfc66c58091a45a6e4a14cd3f61676abf65fb22c44963fbf11fb8af",
+      "bytes": 60017
     },
     {
       "path": "assets/modebench-domains.png",
@@ -503,8 +508,8 @@
     },
     {
       "path": "ops/summarize_levels.py",
-      "sha256": "2204c4d326cb02f0f02780b4d81aea06eeffbd182580d3f567a70bd802d48a65",
-      "bytes": 15187
+      "sha256": "769b47e5a7dde925b85c6fcbaa29b276b3626d4cd0ce7cedebd67fed720b1179",
+      "bytes": 16082
     },
     {
       "path": "ops/test_installed.py",

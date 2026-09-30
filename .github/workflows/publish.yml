@@ -1,0 +1,127 @@
+name: Publish release
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  identity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Require an exact version tag
+        env:
+          RELEASE_REF: ${{ github.ref }}
+        run: |
+          python - <<'PYTHON'
+          import os, tomllib
+          from pathlib import Path
+          project = tomllib.loads(Path('pyproject.toml').read_text())['project']
+          assert os.environ['RELEASE_REF'] == 'refs/tags/v' + project['version']
+          assert '\nversion: ' + project['version'] + '\n' in Path('CITATION.cff').read_text()
+          PYTHON
+  checks:
+    needs: identity
+    uses: ./.github/workflows/check.yml
+  github-release:
+    needs: checks
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: distributions
+          path: dist
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install twine
+      - run: python -m twine check dist/*.whl dist/*.tar.gz
+      - name: Record tested artifacts and publish GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          cd dist
+          sha256sum *.whl *.tar.gz > SHA256SUMS
+          if ! gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
+            gh release create "$RELEASE_TAG" --verify-tag --title "$RELEASE_TAG" --generate-notes
+          fi
+          gh release upload "$RELEASE_TAG" *.whl *.tar.gz SHA256SUMS --clobber
+  pypi:
+    needs: github-release
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/modebench
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: distributions
+          path: downloaded
+      - name: Select only tested Python distributions
+        run: |
+          mkdir dist
+          cp downloaded/*.whl downloaded/*.tar.gz dist/
+      - uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          skip-existing: true
+  installed-from-pypi:
+    needs: pypi
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: distributions
+          path: dist
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - name: Verify index artifacts equal the tested artifacts
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          python - <<'PYTHON'
+          import hashlib, json, os, time, urllib.request
+          from pathlib import Path
+          version = os.environ['RELEASE_TAG'].removeprefix('v')
+          for attempt in range(12):
+              try:
+                  with urllib.request.urlopen(f'https://pypi.org/pypi/modebench/{version}/json', timeout=30) as response:
+                      files = json.load(response)['urls']
+                  break
+              except Exception:
+                  if attempt == 11: raise
+                  time.sleep(10)
+          actual = {f['filename']: f['digests']['sha256'] for f in files}
+          expected = {p.name: hashlib.sha256(p.read_bytes()).hexdigest()
+                      for p in Path('dist').iterdir() if p.name.endswith(('.whl', '.tar.gz'))}
+          assert len(expected) == 2 and actual == expected, (actual, expected)
+          PYTHON
+      - name: Install the published version and run outside checkout
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          python -m venv "$RUNNER_TEMP/published"
+          PUBLISHED_PYTHON="$RUNNER_TEMP/published/bin/python"
+          "$PUBLISHED_PYTHON" -m pip install --upgrade pip
+          "$PUBLISHED_PYTHON" -m pip install "modebench==${RELEASE_TAG#v}"
+          "$PUBLISHED_PYTHON" -m pip check
+          mkdir "$RUNNER_TEMP/published-work"
+          cd "$RUNNER_TEMP/published-work"
+          unset PYTHONPATH PYTHONHOME
+          "$RUNNER_TEMP/published/bin/modebench" walkthrough --directory demo
+          "$RUNNER_TEMP/published/bin/modebench" evaluate demo/responses.jsonl --run demo/run.json --output demo/report.json
+          "$RUNNER_TEMP/published/bin/modebench" report demo/report.json
