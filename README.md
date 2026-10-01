@@ -50,11 +50,9 @@ The supported runtime is **Linux, CPython 3.10–3.12**. Windows users can use a
 Install a regular package, then run the complete offline walkthrough:
 
 ```sh
-git clone https://github.com/liv-daliberti/modeBench.git
-cd modeBench
 python3 -m venv .venv
 source .venv/bin/activate
-python -m pip install .
+python -m pip install modebench==0.4.0
 modebench walkthrough --directory demo
 head -n 1 demo/tasks.jsonl
 modebench evaluate demo/responses.jsonl --run demo/run.json --output demo/report.json
@@ -72,13 +70,20 @@ level domain          k accuracy pass@k distinct@k PCMD reportable
 
 All five rows have the same scores. `reportable=false` is expected: one eligible prompt is below the default threshold of 30. This walkthrough demonstrates the interface; it is a custom-reference example, not a full benchmark result. Choose a fresh output filename for each run; existing outputs and walkthrough directories are never overwritten.
 
+For construction scripts, frozen evidence, or development, clone the repository:
+
+```sh
+git clone https://github.com/liv-daliberti/modeBench.git
+cd modeBench
+```
+
 | Installation from checkout | Includes |
 | --- | --- |
 | `python -m pip install .` | All five verifiers, metrics, CLI, frozen split registry, and offline walkthrough |
 | `python -m pip install '.[data]'` | Also Parquet loading and dataset construction dependencies |
 | `python -m pip install '.[dev]'` | Also the regression suite |
 
-The wheel and source distribution contain the same runtime resources; the checkout additionally supplies frozen Parquet files, scientific evidence, and construction scripts. CI uploads both distributions as the `distributions` artifact. They can be installed directly with `pip install /path/to/package.whl` or `pip install /path/to/package.tar.gz`; add `[data]` to that path for dataset loading. Versioned releases are built and tested once, attached to [GitHub Releases](https://github.com/liv-daliberti/modeBench/releases), and published to PyPI through Trusted Publishing. Once version 0.4.0 is available there, install it with `python -m pip install modebench==0.4.0`; the source installation above also works before publication completes.
+The wheel and source distribution contain the same runtime resources; the checkout additionally supplies frozen Parquet files, scientific evidence, and construction scripts. CI uploads both distributions as the `distributions` artifact. They can be installed directly with `pip install /path/to/package.whl` or `pip install /path/to/package.tar.gz`; add `[data]` to that path for dataset loading. Versioned releases are built and tested once, attached to [GitHub Releases](https://github.com/liv-daliberti/modeBench/releases), and published to PyPI through Trusted Publishing. The released [ModeBench 0.4.0 package](https://pypi.org/project/modebench/0.4.0/) installs with `python -m pip install modebench==0.4.0`, without Git or a source checkout.
 
 Supported direct dependency ranges are SymPy `>=1.12,<2`, and, for data, datasets `>=2.16.1,<6` and huggingface-hub `>=0.19.4,<2`. CI checks the minimum combination using [compatibility constraints](provenance/constraints-minimum.txt), and current resolver-selected versions. When using datasets 2.16, use those constraints: its older Arrow/NumPy integration requires them. This tests the endpoints, not every possible dependency combination. The [recorded Python 3.10 environment](provenance/constraints-py310.txt) is another reproducible installation choice.
 
@@ -557,7 +562,7 @@ python ops/check_install.py --artifact dist/modebench-0.4.0-py3-none-any.whl
 python ops/check_install.py --artifact dist/modebench-0.4.0.tar.gz --profile data --minimum
 ```
 
-This creates and removes a fresh virtual environment and an external working directory for each check. Installing dependencies requires network access or a configured package mirror. The minimum data stack uses the compatibility constraints described above. Versioned PyPI packages and separately hosted dataset releases remain a release-management follow-up; the current dataset URL is already pinned to immutable Git bytes. Future publishing should use [PyPA's trusted-publisher workflow](https://packaging.python.org/en/latest/guides/publishing-package-distribution-releases-using-github-actions-ci-cd-workflows/) after repository ownership and publisher configuration are established.
+This creates and removes a fresh virtual environment and an external working directory for each check. Installing dependencies requires network access or a configured package mirror. The minimum data stack uses the compatibility constraints described above. Versioned packages are published through Trusted Publishing, with fresh PyPI installation checks and artifact hashes compared against the tested distributions. Separately hosted dataset releases remain a follow-up; the current dataset URL is already pinned to immutable Git bytes.
 
 The [verified-key archive](evidence/base_grid_keys.jsonl.gz) retains attempt flags/keys, repeated groups, recorded pass@8/distinct@8, and source receipt hashes. `ops/reproduce_base_grid.py` compares its recomputed summaries with the [frozen results](evidence/mode_diversity_base_grid.json), allowing only final-bit numeric tolerance (`rel_tol=1e-14`, `abs_tol=1e-15`); identifiers and counts match exactly. The archive lacks complete raw responses, so this check does not independently regrade generations or reproduce model sampling.
 
