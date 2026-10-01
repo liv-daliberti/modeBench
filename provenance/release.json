@@ -12,6 +12,11 @@
       "bytes": 2600
     },
     {
+      "path": ".github/workflows/docs.yml",
+      "sha256": "f6b232bb015843f180530863b789a136155c3b42d4d75982283abc50dea60378",
+      "bytes": 1853
+    },
+    {
       "path": ".github/workflows/publish.yml",
       "sha256": "7a7620bed3435d1e5db120b5b90845e894b78c368340794ae737a192995e54bb",
       "bytes": 4567
@@ -38,18 +43,18 @@
     },
     {
       "path": "MANIFEST.in",
-      "sha256": "c2d1f871a4d514ce087eba96d1af29c057e8fd5e93ff038b4bde892e73ad54bc",
-      "bytes": 192
+      "sha256": "2b7ab13985fc4bdeb7f234788a4900a62e411cfed46bb0104efa36a7f4a7775c",
+      "bytes": 239
     },
     {
       "path": "Makefile",
-      "sha256": "1cfa121b434dbc90159f8bf6cc4fcbb5283fdd4f34167b8bb458360e6ee20f4d",
-      "bytes": 375
+      "sha256": "279b5dade1b8a949157ecc7eb7aef5a95f76282f7a7e9f99c27996e281a8a64f",
+      "bytes": 577
     },
     {
       "path": "README.md",
-      "sha256": "63c340658bed09f9384e7f9a7ae4652cc26c07425e810c3c2a3a69ed94ffdc90",
-      "bytes": 59979
+      "sha256": "cf2e2a19e4e389c5ac46794793ccac0cb4891a21f379d9edf01c53f066ab4917",
+      "bytes": 60118
     },
     {
       "path": "assets/modebench-domains.png",
@@ -422,6 +427,66 @@
       "bytes": 54973
     },
     {
+      "path": "docs/_static/style.css",
+      "sha256": "bd875739fbc15bb7d83f0e8c2c86dcbe87e530117e009fcb8cc4616ec5289938",
+      "bytes": 343
+    },
+    {
+      "path": "docs/api.rst",
+      "sha256": "e761d06d476724a4c5e5cd2341e4ee1b34e9be979de48c09db12c423e9f603ba",
+      "bytes": 2568
+    },
+    {
+      "path": "docs/conf.py",
+      "sha256": "364c951e55e3e8e79222f38bc9748071a2a6bcba2a6a66b55da9a1e39ee77e20",
+      "bytes": 4598
+    },
+    {
+      "path": "docs/contributing.rst",
+      "sha256": "d0f705f6c986e8411fd16a2070e1d0303e4a7a0fbbcfb5eead7ab519913e96eb",
+      "bytes": 2063
+    },
+    {
+      "path": "docs/datasets.rst",
+      "sha256": "dc963bd8e26e891339cbd8990a8c6649c6c5702edec2c7d6c8695a61feed22b4",
+      "bytes": 4328
+    },
+    {
+      "path": "docs/evaluation.rst",
+      "sha256": "cfc60c6611d1afc19764a6107c3174b33496ef09c4019dd14ec650367bc6643e",
+      "bytes": 4279
+    },
+    {
+      "path": "docs/index.rst",
+      "sha256": "8d0983ad4bbc7e24edd63f3cebb48693764762ed3ff29117e23d7f4138db7244",
+      "bytes": 1255
+    },
+    {
+      "path": "docs/metrics.rst",
+      "sha256": "d592ead849fa5d3ad7b4a1df5b020580719470f389d24b3bdd92fa8a0b4ff7ca",
+      "bytes": 2754
+    },
+    {
+      "path": "docs/quickstart.rst",
+      "sha256": "d4f025250bd67d84226bb2e2e871ab76b87a786aaf918f16fc1a8c991a9af757",
+      "bytes": 2692
+    },
+    {
+      "path": "docs/reference.rst",
+      "sha256": "91209417aa1e78ab0dbcf558ddc902f4a45850abc625ca1a8733a02b348e3a7d",
+      "bytes": 1939
+    },
+    {
+      "path": "docs/requirements.txt",
+      "sha256": "77bd0ce35cc08f6b9cab5a753696a3eda1f04b0a374f92f692c1ad851cbd46c0",
+      "bytes": 56
+    },
+    {
+      "path": "docs/results.rst",
+      "sha256": "f639b8d85466c1a0c3584044f6aa944d060af40c9eb46b1a94e19d6f8b42654e",
+      "bytes": 2773
+    },
+    {
       "path": "evidence/base_grid_keys.jsonl.gz",
       "sha256": "351e0111aabe58d367e925c99c5fa39307311a86825947aa57f68a379880fa0c",
       "bytes": 1040794
@@ -455,6 +520,11 @@
       "path": "ops/check_conformance.py",
       "sha256": "0aa90601fa4c1aed1a24da876c64aff58d92b900bb13a2db798fb55af893a8c2",
       "bytes": 1858
+    },
+    {
+      "path": "ops/check_docs.py",
+      "sha256": "7a57d18ec82cdc8ce979ea0f867455b54b2df25919a5742d167c8154abdfedec",
+      "bytes": 1817
     },
     {
       "path": "ops/check_install.py",
@@ -588,8 +658,8 @@
     },
     {
       "path": "pyproject.toml",
-      "sha256": "107c93ce9e47835e6abc69e7109aa32a9a8e55c1fdf2aa7aafc048b500fbf681",
-      "bytes": 1651
+      "sha256": "82b69f3df3506d1a5b5f41e0d737463d5474a1b4e212d7e05ee084a7bcf484b5",
+      "bytes": 1644
     },
     {
       "path": "src/modebench/__init__.py",

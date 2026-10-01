@@ -1,5 +1,7 @@
 # ModeBench
 
+**[Read the user guide](https://liv-daliberti.github.io/modeBench/)** — installation, walkthroughs, API reference, and reproducibility.
+
 **Can a model find more than one correct solution to the same problem?** ModeBench evaluates correctness and solution diversity using executable tasks with canonical outcome identities.
 
 [![The five ModeBench domains, each showing two verified solution modes.](https://raw.githubusercontent.com/liv-daliberti/modeBench/v0.4.0/assets/modebench-domains.png)](https://raw.githubusercontent.com/liv-daliberti/modeBench/v0.4.0/assets/modebench-domains.png)

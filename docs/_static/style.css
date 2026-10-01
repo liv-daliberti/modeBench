@@ -1,0 +1,5 @@
+article img { background: white; border-radius: 8px; padding: 8px; box-sizing: border-box; }
+.performance-table td, .performance-table th { white-space: nowrap; }
+.sidebar-brand-text { font-weight: 750; }
+.admonition.tip { border-left: 4px solid var(--color-brand-primary); }
+.announcement-content { white-space: normal; text-align: center; }

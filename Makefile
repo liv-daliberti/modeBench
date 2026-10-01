@@ -15,3 +15,9 @@ quality:
 
 levels:
 	$(PYTHON) ops/summarize_levels.py --check
+
+.PHONY: docs
+docs:
+	$(PYTHON) -m sphinx -W --keep-going -b doctest docs outputs/docs-doctest
+	$(PYTHON) -m sphinx -n -W --keep-going -b html docs outputs/docs
+	$(PYTHON) ops/check_docs.py outputs/docs

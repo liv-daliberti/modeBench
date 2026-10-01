@@ -25,7 +25,7 @@ quality = ["ruff==0.16.9", "mypy==1.20.2", "cffconvert==2.0.0"]
 
 [project.urls]
 Repository = "https://github.com/liv-daliberti/modeBench"
-Documentation = "https://github.com/liv-daliberti/modeBench#readme"
+Documentation = "https://liv-daliberti.github.io/modeBench/"
 Issues = "https://github.com/liv-daliberti/modeBench/issues"
 
 [project.scripts]

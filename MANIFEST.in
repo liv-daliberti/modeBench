@@ -4,3 +4,5 @@ include assets/modebench-domains.png
 recursive-include src/modebench *.json
 prune tests
 prune ops
+
+recursive-include docs *.rst *.py *.css *.txt
